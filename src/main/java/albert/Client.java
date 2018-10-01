@@ -29,7 +29,7 @@ public class Client extends Application {
 
         this.stage = stage;
 
-        this.router.navigate("products/cool_shit/");
+        this.router.nav("products/cool_shit/");
 
         this.stage.show();
     }

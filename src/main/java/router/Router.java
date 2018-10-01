@@ -25,10 +25,9 @@ public class Router {
         this.routes.put(route, action);
     }
 
-    public void navigate(String url) {
+    public Response navigate(String url) {
 
         for (Route route : this.routes.keySet()) {
-
             if (route.match(url)) {
                 Request request = route.generateRequest(url);
 
@@ -37,14 +36,24 @@ public class Router {
                 // Fetch the response from the action
                 Response response = action.execute(this, request);
 
-                // Execute the response
-                response.execute(this);
-
                 // Return early, we've found our match and executed it
-                return;
+                return response;
             }
-
         }
 
+        return null;
+    }
+
+    public void nav(String url) {
+
+        // Fetch response
+        Response response = this.navigate(url);
+
+        if (response == null) {
+            // TODO: Throw 404 exception and show 404
+            return;
+        }
+
+        this.navigate(url).execute(this);
     }
 }

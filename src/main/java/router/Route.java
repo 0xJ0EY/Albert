@@ -20,6 +20,9 @@ public class Route {
     }
 
     private String generatePattern(String route) {
+
+        route = this.trimRoute(route);
+
         this.args = new ArrayList<>();
         this.route = route;
 
@@ -42,10 +45,17 @@ public class Route {
     }
 
     public boolean match(String route) {
+
+        route = this.trimRoute(route);
+
         return route.matches(this.pattern);
     }
 
     public Request generateRequest(String route) {
+        route = this.trimRoute(route);
+
+        System.out.println("route = " + route);
+
         Request request = new Request();
 
         request.setRoute(route);
@@ -74,6 +84,10 @@ public class Route {
         }
 
         return map;
+    }
+
+    private String trimRoute(String route) {
+        return route.replaceAll("/*$", "");
     }
 
 }
