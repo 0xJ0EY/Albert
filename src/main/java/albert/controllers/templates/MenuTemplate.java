@@ -14,8 +14,7 @@ public class MenuTemplate implements TemplateController {
     @Override
     public void setPage(PageController page) {
         this.page = page;
-        this.page.setTemplate(this);
-
+        this.view.setController(this);
         this.view.load(page);
     }
 
