@@ -3,8 +3,8 @@ package albert.controllers.pages;
 import albert.controllers.PageController;
 import albert.controllers.TemplateController;
 import albert.views.PageView;
-import albert.views.pages.HomeView;
-import albert.views.pages.ProductsView;
+import albert.views.pages.ProjectsDetailView;
+import albert.views.pages.ProjectsView;
 import javafx.scene.layout.AnchorPane;
 import router.Request;
 import router.Router;
@@ -13,13 +13,13 @@ import router.response.ViewResponse;
 
 import java.io.IOException;
 
-public class ProductsPage implements PageController {
+public class ProjectsDetailPage implements PageController {
 
     private TemplateController template;
     private PageView view;
 
-    public ProductsPage(TemplateController template) {
-        this.setView(new ProductsView());
+    public ProjectsDetailPage(TemplateController template) {
+        this.setView(new ProjectsDetailView());
         this.setTemplate(template);
     }
 
@@ -53,8 +53,9 @@ public class ProductsPage implements PageController {
     @Override
     public Response request(Router router, Request request) {
 
-        System.out.println("request = " + request.getParameters());
 
+        System.out.println("request.getParameters() = " + request.getParameters());
+        
         return new ViewResponse(this);
     }
 }

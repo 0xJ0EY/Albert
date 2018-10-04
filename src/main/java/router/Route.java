@@ -54,8 +54,6 @@ public class Route {
     public Request generateRequest(String route) {
         route = this.trimRoute(route);
 
-        System.out.println("route = " + route);
-
         Request request = new Request();
 
         request.setRoute(route);

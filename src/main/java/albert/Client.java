@@ -3,10 +3,11 @@ package albert;
 import albert.controllers.PageController;
 import albert.controllers.TemplateController;
 import albert.controllers.pages.HomePage;
-import albert.controllers.pages.ProductsPage;
+import albert.controllers.pages.ProjectsDetailPage;
+import albert.controllers.pages.ProjectsPage;
 import albert.controllers.templates.MenuTemplate;
-import albert.views.pages.HomeView;
-import albert.views.pages.ProductsView;
+import config.Config;
+import config.ConfigManager;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -23,13 +24,15 @@ public class Client extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+
         // Populate the router
         router.addRoute(new Route("home/"), new PageAction(new HomePage(new MenuTemplate())));
-        router.addRoute(new Route("products/{holy_fuck}/"), new PageAction(new ProductsPage(new MenuTemplate())));
+        router.addRoute(new Route("projects/{test}/"), new PageAction(new ProjectsPage(new MenuTemplate())));
+        router.addRoute(new Route("projects/details/{test}/"), new PageAction(new ProjectsDetailPage(new MenuTemplate())));
 
         this.stage = stage;
 
-        this.router.nav("products/cool_shit/");
+        this.router.nav("projects/details/test/");
 
         this.stage.show();
     }

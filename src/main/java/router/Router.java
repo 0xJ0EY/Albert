@@ -54,6 +54,6 @@ public class Router {
             return;
         }
 
-        this.navigate(url).execute(this);
+        response.execute(this);
     }
 }
