@@ -10,12 +10,12 @@ public interface ConfigStrategy {
     String get(String key) throws InvalidKeyException;
 
     // Create a new key
-    void create(String key, String value);
+    void create(String key, String value) throws InvalidKeyException;
 
     // Update an existing key
-    void update(String key, String value);
+    void update(String key, String value) throws InvalidKeyException;
 
     // Delete an existing key
-    void delete(String key);
+    void delete(String key) throws InvalidKeyException;
 
 }

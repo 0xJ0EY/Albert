@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class ProjectsView extends AnchorPane implements PageView {
 
-    private String resource = "/views/pages/Projects.fxml";
+    private final String resource = "/views/pages/Projects.fxml";
     private PageController controller;
 
     @Override
