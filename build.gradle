@@ -15,6 +15,16 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.1.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.1.0'
+
+
+
+    // https://mvnrepository.com/artifact/org.testfx/testfx-junit5
+    compile group: 'org.testfx', name: 'testfx-junit5', version: '4.0.14-alpha'
+
+
+
+    compile 'org.postgresql:postgresql:42.2.5'
+    compile 'org.ini4j:ini4j:0.5.4'
 }
 
 test {
