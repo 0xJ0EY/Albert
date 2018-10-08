@@ -8,6 +8,7 @@ import albert.controllers.pages.ProjectsPage;
 import albert.controllers.templates.MenuTemplate;
 import config.Config;
 import config.ConfigManager;
+import database.Database;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -15,10 +16,11 @@ import router.Route;
 import router.Router;
 import router.action.PageAction;
 
+import java.sql.Connection;
+
 public class Client extends Application {
 
     private Stage stage;
-    private TemplateController template;
 
     private Router router = new Router(this);
 
@@ -33,6 +35,10 @@ public class Client extends Application {
         this.stage = stage;
 
         this.router.nav("projects/details/test/");
+
+        Database database = Database.getInstance();
+
+        Connection conn = database.getConnection();
 
         this.stage.show();
     }

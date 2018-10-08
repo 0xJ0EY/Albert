@@ -32,7 +32,7 @@ public class Config {
         ConfigStrategy strategy = this.configs.get(config);
 
         if (strategy == null)
-            throw new NullPointerException();
+            throw new NullPointerException("Strategy doesn't exists");
 
         try {
             return strategy.get(key);
