@@ -29,16 +29,12 @@ public class Client extends Application {
 
         // Populate the router
         router.addRoute(new Route("home/"), new PageAction(new HomePage(new MenuTemplate())));
-        router.addRoute(new Route("projects/{test}/"), new PageAction(new ProjectsPage(new MenuTemplate())));
+        router.addRoute(new Route("projects/{page}/"), new PageAction(new ProjectsPage(new MenuTemplate())));
         router.addRoute(new Route("projects/details/{test}/"), new PageAction(new ProjectsDetailPage(new MenuTemplate())));
 
         this.stage = stage;
 
-        this.router.nav("projects/details/test/");
-
-        Database database = Database.getInstance();
-
-        Connection conn = database.getConnection();
+        this.router.nav("projects/details/johhny/");
 
         this.stage.show();
     }

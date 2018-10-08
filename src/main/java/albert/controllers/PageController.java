@@ -16,6 +16,15 @@ public interface PageController {
 
     public AnchorPane render();
 
+    /**
+     * In the request method we can start loading the objects required
+     * for viewing the page.
+     *
+     * @author Joey de Ruiter
+     * @param router
+     * @param request
+     * @return
+     */
     public Response request(Router router, Request request);
 
 }
