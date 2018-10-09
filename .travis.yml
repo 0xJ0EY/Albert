@@ -20,6 +20,7 @@ before_script:
   - psql -c "CREATE DATABASE albert;" -U postgres
   - psql -c "CREATE USER albert WITH PASSWORD 'albert';" -U postgres
   - psql -d albert -U postgres -f db/tables.sql
+  - psql -d albert -U postgres -f db/dataset.sql
 
 script:
   - ./gradlew check
