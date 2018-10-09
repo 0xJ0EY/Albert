@@ -23,8 +23,12 @@ public class ProjectsPage implements PageController {
 
     private ArrayList<Project> projects;
 
-    public ProjectsPage(TemplateController template, Router router) {
-        this.setView(new ProjectsView());
+    public ProjectsPage(
+            PageView view,
+            TemplateController template,
+            Router router
+    ) {
+        this.setView(view);
         this.setTemplate(template);
         this.setRouter(router);
     }

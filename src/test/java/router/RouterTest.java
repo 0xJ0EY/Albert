@@ -2,8 +2,12 @@ package router;
 
 import albert.Client;
 import albert.controllers.pages.HomePage;
+import albert.controllers.pages.ProjectsDetailPage;
 import albert.controllers.pages.ProjectsPage;
 import albert.controllers.templates.MenuTemplate;
+import albert.views.pages.HomeView;
+import albert.views.pages.ProjectsDetailView;
+import albert.views.pages.ProjectsView;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,8 +35,29 @@ public class RouterTest {
         // Make a new router
         this.router = new Router(new Client());
 
-        this.router.addRoute(new Route("/home/"), new PageAction(new HomePage(new MenuTemplate(), this.router)));
-        this.router.addRoute(new Route("/projects/{page}/"), new PageAction(new ProjectsPage(new MenuTemplate(), this.router)));
+        // Populate the router
+        router.addRoute(
+                new Route("home/"),
+                new PageAction(
+                        new HomePage(
+                                new HomeView(),
+                                new MenuTemplate(),
+                                this.router
+                        )
+                )
+        );
+
+        router.addRoute(
+                new Route("projects/{page}/"),
+                new PageAction(
+                        new ProjectsPage(
+                                new ProjectsView(),
+                                new MenuTemplate(),
+                                this.router
+                        )
+                )
+        );
+
     }
 
     @Test
@@ -44,14 +69,14 @@ public class RouterTest {
 
     @Test
     void routeHome() {
-        Response response = this.router.navigate("/home/");
+        Response response = this.router.navigate("home/");
 
         assertNotNull(response);
     }
 
     @Test
     void routeHomeTrailingSlash() {
-        Response response = this.router.navigate("/projects/1/");
+        Response response = this.router.navigate("projects/1/");
 
         assertNotNull(response);
     }

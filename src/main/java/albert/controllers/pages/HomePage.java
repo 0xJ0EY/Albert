@@ -18,8 +18,12 @@ public class HomePage implements PageController {
     private Router router;
     private PageView view;
 
-    public HomePage(TemplateController template, Router router) {
-        this.setView(new HomeView());
+    public HomePage(
+            PageView view,
+            TemplateController template,
+            Router router
+    ) {
+        this.setView(view);
         this.setTemplate(template);
         this.setRouter(router);
     }
