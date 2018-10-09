@@ -1,5 +1,7 @@
 package router;
 
+import router.util.Helper;
+
 import java.util.HashMap;
 
 public class Request {
@@ -17,7 +19,17 @@ public class Request {
     }
 
     public HashMap<String, String> getParameters() {
-        return parameters;
+        return this.parameters;
+    }
+
+    public String getParameter(String key) {
+        return this.parameters.get(key);
+    }
+
+    public <T> T getParameter(String key, Class<T> clazz) {
+        String value = this.getParameter(key);
+
+        return (value == null) ? Helper.zero(clazz) : Helper.parse(value, clazz);
     }
 
     public void setParameters(HashMap<String, String> parameters) {

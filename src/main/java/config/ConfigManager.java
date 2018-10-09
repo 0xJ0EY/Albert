@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class ConfigManager {
 
     private final String ROOT = System.getProperty("user.home") + File.separator + ".albert" + File.separator;
-    private final String ENV_DIRECTORY = File.separator + "env" + File.separator;
+    private final String ENV_DIRECTORY = "/env/";
 
     private Config config;
 
@@ -119,7 +119,7 @@ public class ConfigManager {
 
         iniStrategy.load(ROOT, "config.ini");
 
-        this.config.addConfig(iniStrategy, "database");
+        this.config.addConfig(iniStrategy, "config");
     }
 
     private String toConfigName(String env) {
