@@ -10,6 +10,10 @@ public interface PageController {
 
     public void setTemplate(TemplateController template);
 
+    public void setRouter(Router router);
+
+    public Router getRouter();
+
     public TemplateController getTemplate();
 
     public void setView(PageView view);
@@ -21,10 +25,9 @@ public interface PageController {
      * for viewing the page.
      *
      * @author Joey de Ruiter
-     * @param router
      * @param request
      * @return
      */
-    public Response request(Router router, Request request);
+    public Response request(Request request);
 
 }

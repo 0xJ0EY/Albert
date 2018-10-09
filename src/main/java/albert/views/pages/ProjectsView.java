@@ -39,6 +39,8 @@ public class ProjectsView extends AnchorPane implements PageView {
 
     @FXML
     public void onClickButton() {
-        System.out.println("Hallo");
+
+        this.controller.getRouter().nav("projects/details/1/");
+
     }
 }

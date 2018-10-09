@@ -18,18 +18,21 @@ import java.util.ArrayList;
 public class ProjectsPage implements PageController {
 
     private TemplateController template;
+    private Router router;
     private PageView view;
 
     private ArrayList<Project> projects;
 
-    public ProjectsPage(TemplateController template) {
+    public ProjectsPage(TemplateController template, Router router) {
         this.setView(new ProjectsView());
         this.setTemplate(template);
+        this.setRouter(router);
     }
 
     @Override
     public void setView(PageView view) {
         this.view = view;
+        this.view.setController(this);
         this.view.load();
     }
 
@@ -45,6 +48,16 @@ public class ProjectsPage implements PageController {
     }
 
     @Override
+    public void setRouter(Router router) {
+        this.router = router;
+    }
+
+    @Override
+    public Router getRouter() {
+        return this.router;
+    }
+
+    @Override
     public TemplateController getTemplate() {
         return this.template;
     }
@@ -55,7 +68,7 @@ public class ProjectsPage implements PageController {
     }
 
     @Override
-    public Response request(Router router, Request request) {
+    public Response request(Request request) {
 
         int page = request.getParameter("page", int.class);
 

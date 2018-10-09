@@ -33,8 +33,8 @@ public class RouterTest {
         // Make a new router
         this.router = new Router(new Client());
 
-        this.router.addRoute(new Route("/home/"), new PageAction(new HomePage(new MenuTemplate())));
-        this.router.addRoute(new Route("/projects/{project}/"), new PageAction(new ProjectsPage(new MenuTemplate())));
+        this.router.addRoute(new Route("/home/"), new PageAction(new HomePage(new MenuTemplate(), this.router)));
+        this.router.addRoute(new Route("/projects/{project}/"), new PageAction(new ProjectsPage(new MenuTemplate(), this.router)));
     }
 
     @Test
