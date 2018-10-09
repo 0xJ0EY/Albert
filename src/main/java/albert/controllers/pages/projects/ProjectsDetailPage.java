@@ -1,4 +1,4 @@
-package albert.controllers.pages;
+package albert.controllers.pages.projects;
 
 import albert.controllers.PageController;
 import albert.controllers.TemplateController;
@@ -21,11 +21,10 @@ public class ProjectsDetailPage implements PageController {
 
     public ProjectsDetailPage(
             PageView view,
-            TemplateController template,
-            Router router) {
+            TemplateController template
+    ) {
         this.setView(view);
         this.setTemplate(template);
-        this.setRouter(router);
     }
 
     @Override

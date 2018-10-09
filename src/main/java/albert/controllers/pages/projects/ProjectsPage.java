@@ -1,9 +1,11 @@
-package albert.controllers.pages;
+package albert.controllers.pages.projects;
 
 import albert.controllers.PageController;
 import albert.controllers.TemplateController;
+import albert.dao.ProjectsDAO;
+import albert.models.Project;
 import albert.views.PageView;
-import albert.views.pages.HomeView;
+import albert.views.pages.ProjectsView;
 import javafx.scene.layout.AnchorPane;
 import router.Request;
 import router.Router;
@@ -11,21 +13,22 @@ import router.response.Response;
 import router.response.ViewResponse;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-public class HomePage implements PageController {
+public class ProjectsPage implements PageController {
 
     private TemplateController template;
     private Router router;
     private PageView view;
 
-    public HomePage(
+    private ArrayList<Project> projects;
+
+    public ProjectsPage(
             PageView view,
-            TemplateController template,
-            Router router
+            TemplateController template
     ) {
         this.setView(view);
         this.setTemplate(template);
-        this.setRouter(router);
     }
 
     @Override
@@ -68,6 +71,14 @@ public class HomePage implements PageController {
 
     @Override
     public Response request(Request request) {
+        int page = request.getParameter("page", int.class);
+
+        ProjectsDAO dao = new ProjectsDAO();
+
+        Project project = dao.loadById(page);
+
+        System.out.println("project = " + project);
+
         return new ViewResponse(this);
     }
 }
