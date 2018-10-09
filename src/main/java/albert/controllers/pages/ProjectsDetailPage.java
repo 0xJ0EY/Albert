@@ -16,16 +16,19 @@ import java.io.IOException;
 public class ProjectsDetailPage implements PageController {
 
     private TemplateController template;
+    private Router router;
     private PageView view;
 
-    public ProjectsDetailPage(TemplateController template) {
+    public ProjectsDetailPage(TemplateController template, Router router) {
         this.setView(new ProjectsDetailView());
         this.setTemplate(template);
+        this.setRouter(router);
     }
 
     @Override
     public void setView(PageView view) {
         this.view = view;
+        this.view.setController(this);
         this.view.load();
     }
 
@@ -41,6 +44,16 @@ public class ProjectsDetailPage implements PageController {
     }
 
     @Override
+    public void setRouter(Router router) {
+        this.router = router;
+    }
+
+    @Override
+    public Router getRouter() {
+        return this.router;
+    }
+
+    @Override
     public TemplateController getTemplate() {
         return this.template;
     }
@@ -51,11 +64,7 @@ public class ProjectsDetailPage implements PageController {
     }
 
     @Override
-    public Response request(Router router, Request request) {
-
-
-        System.out.println("request.getParameters() = " + request.getParameters());
-        
+    public Response request(Request request) {
         return new ViewResponse(this);
     }
 }
