@@ -10,12 +10,24 @@ public interface PageController {
 
     public void setTemplate(TemplateController template);
 
+    public void setRouter(Router router);
+
+    public Router getRouter();
+
     public TemplateController getTemplate();
 
     public void setView(PageView view);
 
     public AnchorPane render();
 
-    public Response request(Router router, Request request);
+    /**
+     * In the request method we can start loading the objects required
+     * for viewing the page.
+     *
+     * @author Joey de Ruiter
+     * @param request
+     * @return
+     */
+    public Response request(Request request);
 
 }
