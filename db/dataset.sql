@@ -3,3 +3,4 @@ VALUES
   ('Infographic'),
   ('Illustraties'),
   ('Alberts project')
+;

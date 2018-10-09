@@ -1,17 +1,10 @@
 package albert;
 
 import albert.controllers.PageController;
-import albert.controllers.TemplateController;
-import albert.controllers.pages.HomePage;
-import albert.controllers.pages.ProjectsDetailPage;
-import albert.controllers.pages.ProjectsPage;
-import albert.controllers.templates.MenuTemplate;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import router.Route;
 import router.Router;
-import router.action.PageAction;
 
 public class Client extends Application {
 
@@ -22,14 +15,9 @@ public class Client extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        // Populate the router
-        router.addRoute(new Route("home/"), new PageAction(new HomePage(new MenuTemplate(), this.router)));
-        router.addRoute(new Route("projects/{page}/"), new PageAction(new ProjectsPage(new MenuTemplate(), this.router)));
-        router.addRoute(new Route("projects/details/{test}/"), new PageAction(new ProjectsDetailPage(new MenuTemplate(), this.router)));
-
         this.stage = stage;
 
-        this.router.nav("projects/details/1/");
+        this.router.nav("home/");
 
         this.stage.show();
     }

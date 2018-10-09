@@ -1,4 +1,4 @@
-package albert.controllers.pages;
+package albert.controllers.pages.home;
 
 import albert.controllers.PageController;
 import albert.controllers.TemplateController;
@@ -18,10 +18,12 @@ public class HomePage implements PageController {
     private Router router;
     private PageView view;
 
-    public HomePage(TemplateController template, Router router) {
-        this.setView(new HomeView());
+    public HomePage(
+            PageView view,
+            TemplateController template
+    ) {
+        this.setView(view);
         this.setTemplate(template);
-        this.setRouter(router);
     }
 
     @Override

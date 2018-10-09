@@ -1,4 +1,4 @@
-DROP TABLE [ IF EXISTS ] products
+DROP TABLE IF EXISTS public.projects;
 
 CREATE TABLE public.projects
 (
