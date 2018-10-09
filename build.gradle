@@ -3,6 +3,8 @@ version '1.0'
 
 apply plugin: 'java'
 apply plugin: 'application'
+apply plugin: 'idea'
+
 
 sourceCompatibility = 1.8
 
@@ -28,7 +30,7 @@ dependencies {
 
     // ini4j, ini reader
     compile 'org.ini4j:ini4j:0.5.4'
-}
+    compile 'de.jensd:fontawesomefx:8.9'}
 
 test {
     useJUnitPlatform()
