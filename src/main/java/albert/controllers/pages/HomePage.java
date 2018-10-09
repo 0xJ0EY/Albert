@@ -15,11 +15,13 @@ import java.io.IOException;
 public class HomePage implements PageController {
 
     private TemplateController template;
+    private Router router;
     private PageView view;
 
-    public HomePage(TemplateController template) {
+    public HomePage(TemplateController template, Router router) {
         this.setView(new HomeView());
         this.setTemplate(template);
+        this.setRouter(router);
     }
 
     @Override
@@ -41,6 +43,16 @@ public class HomePage implements PageController {
     }
 
     @Override
+    public void setRouter(Router router) {
+        this.router = router;
+    }
+
+    @Override
+    public Router getRouter() {
+        return this.router;
+    }
+
+    @Override
     public TemplateController getTemplate() {
         return this.template;
     }
@@ -51,7 +63,7 @@ public class HomePage implements PageController {
     }
 
     @Override
-    public Response request(Router router, Request request) {
+    public Response request(Request request) {
         return new ViewResponse(this);
     }
 }

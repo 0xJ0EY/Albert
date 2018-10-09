@@ -8,10 +8,19 @@ jdk:
 os:
   - linux
 
+services:
+  - postgresql
+
 before_install:
   - if [[ "${TRAVIS_OS_NAME}" == linux ]]; then export DISPLAY=:99.0; sh -e /etc/init.d/xvfb start; fi
 
 install: true
+
+before_script:
+  - psql -c "CREATE DATABASE albert;" -U postgres
+  - psql -c "CREATE USER albert WITH PASSWORD 'albert';" -U postgres
+  - psql -d albert -U postgres -f db/tables.sql
+  - psql -d albert -U postgres -f db/dataset.sql
 
 script:
   - ./gradlew check
