@@ -69,7 +69,6 @@ public class ProjectsPage implements PageController {
 
     @Override
     public Response request(Request request) {
-
         int page = request.getParameter("page", int.class);
 
         ProjectsDAO dao = new ProjectsDAO();

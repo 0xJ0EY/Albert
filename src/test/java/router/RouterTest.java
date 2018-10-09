@@ -13,8 +13,6 @@ import org.testfx.framework.junit5.Start;
 import router.action.PageAction;
 import router.response.Response;
 
-
-
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -34,7 +32,7 @@ public class RouterTest {
         this.router = new Router(new Client());
 
         this.router.addRoute(new Route("/home/"), new PageAction(new HomePage(new MenuTemplate(), this.router)));
-        this.router.addRoute(new Route("/projects/{project}/"), new PageAction(new ProjectsPage(new MenuTemplate(), this.router)));
+        this.router.addRoute(new Route("/projects/{page}/"), new PageAction(new ProjectsPage(new MenuTemplate(), this.router)));
     }
 
     @Test
@@ -53,9 +51,7 @@ public class RouterTest {
 
     @Test
     void routeHomeTrailingSlash() {
-        Response response = this.router.navigate("/projects/123/");
-
-        System.out.println("response = " + response);
+        Response response = this.router.navigate("/projects/1/");
 
         assertNotNull(response);
     }

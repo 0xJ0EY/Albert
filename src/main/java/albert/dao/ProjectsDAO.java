@@ -33,8 +33,6 @@ public class ProjectsDAO implements DAO<Project> {
 
             rs.next();
 
-            rs.getString("name");
-
             project = new Project(
                 rs.getInt("id"),
                 rs.getString("name")
