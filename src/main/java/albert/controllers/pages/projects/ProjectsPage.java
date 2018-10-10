@@ -1,4 +1,4 @@
-package albert.controllers.pages;
+package albert.controllers.pages.projects;
 
 import albert.controllers.PageController;
 import albert.controllers.TemplateController;
@@ -23,10 +23,12 @@ public class ProjectsPage implements PageController {
 
     private ArrayList<Project> projects;
 
-    public ProjectsPage(TemplateController template, Router router) {
-        this.setView(new ProjectsView());
+    public ProjectsPage(
+            PageView view,
+            TemplateController template
+    ) {
+        this.setView(view);
         this.setTemplate(template);
-        this.setRouter(router);
     }
 
     @Override

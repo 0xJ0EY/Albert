@@ -1,12 +1,11 @@
 package router.util;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 /**
  * This class isnt the most elegant, but there is no other way to cast String to primitive types
  */
 public class Helper {
 
+    @SuppressWarnings("unchecked")
     public static <T> T zero(Class<T> clazz) {
         Object o = null;
 
@@ -116,7 +115,7 @@ public class Helper {
 
     private static Object parseSpecial(String value, Class clazz) {
         // TODO: Special type parsing
-        throw new NotImplementedException();
+        return null;
     }
 
 }

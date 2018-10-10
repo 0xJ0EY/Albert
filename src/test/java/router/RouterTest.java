@@ -1,59 +1,72 @@
 package router;
 
-import albert.Client;
-import albert.controllers.pages.HomePage;
-import albert.controllers.pages.ProjectsPage;
-import albert.controllers.templates.MenuTemplate;
-import javafx.stage.Stage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.framework.junit5.ApplicationExtension;
-import org.testfx.framework.junit5.Start;
 import router.action.PageAction;
+import router.factories.pages.home.HomePageFactory;
 import router.response.Response;
+import router.response.ViewResponse;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * This is a test for testing the routing functionality
+ *
+ */
 @ExtendWith(ApplicationExtension.class)
 public class RouterTest {
 
     private Router router;
 
-    @Start
-    void onStart(Stage stage) throws Exception {
-
-    }
-
+    /**
+     * Create a new router for every test,
+     * this router will have the default routes from the RouteFactoryBuilder
+     */
     @BeforeEach
     void setupEach() {
-        // Make a new router
-        this.router = new Router(new Client());
-
-        this.router.addRoute(new Route("/home/"), new PageAction(new HomePage(new MenuTemplate(), this.router)));
-        this.router.addRoute(new Route("/projects/{page}/"), new PageAction(new ProjectsPage(new MenuTemplate(), this.router)));
+        this.router = new Router(null);
     }
 
     @Test
-    void unknownRoute() {
-        Response response = this.router.navigate("/");
+    void normalRouteTest() {
+        // We use the home page as default routing test
+        this.router.addRoute(new Route("test/"), new PageAction(new HomePageFactory()));
 
-        assertNull(response);
+        Response response = this.router.navigate("test/");
+
+        assertTrue(response instanceof ViewResponse);
     }
 
     @Test
-    void routeHome() {
-        Response response = this.router.navigate("/home/");
+    void paramRouteTest() {
+        // We use the home page as default routing test
+        this.router.addRoute(new Route("test/{param}/"), new PageAction(new HomePageFactory()));
 
-        assertNotNull(response);
+        Response response = this.router.navigate("test/test/");
+
+        assertTrue(response instanceof ViewResponse);
     }
 
     @Test
-    void routeHomeTrailingSlash() {
-        Response response = this.router.navigate("/projects/1/");
+    void trailingSlashTest() {
+        // We use the home page as default routing test
+        this.router.addRoute(new Route("test/"), new PageAction(new HomePageFactory()));
 
-        assertNotNull(response);
+        Response response = this.router.navigate("test");
+
+        assertTrue(response instanceof ViewResponse);
+    }
+
+    @Test
+    void paramTrailingSlashTest() {
+        // We use the home page as default routing test
+        this.router.addRoute(new Route("test/{param}/"), new PageAction(new HomePageFactory()));
+
+        Response response = this.router.navigate("test/test");
+
+        assertTrue(response instanceof ViewResponse);
     }
 
 }
