@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<?import javafx.scene.control.Button?>
-
-
-<fx:root minHeight="300.0" minWidth="500.0" style="-fx-background-color: red;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="300.0" minWidth="500.0" style="-fx-background-color: #f2f2f2;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickButton" text="Button" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <HBox prefHeight="81.0" prefWidth="191.0">
+         <children>
+            <VBox prefHeight="86.0" prefWidth="99.0" style="-fx-background-color: ededed;">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lopend" wrappingWidth="58.22607421875" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f2f2f2;">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Afgerond" wrappingWidth="58.22607421875" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
    </children>
 </fx:root>
