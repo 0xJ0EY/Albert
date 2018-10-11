@@ -1,9 +1,10 @@
-package albert.controllers.pages.home;
+package albert.controllers.pages;
 
 import albert.controllers.PageController;
 import albert.controllers.TemplateController;
 import albert.views.PageView;
-import albert.views.pages.HomeView;
+import albert.views.pages.ProjectsDetailView;
+import albert.views.pages.ProjectsView;
 import javafx.scene.layout.AnchorPane;
 import router.Request;
 import router.Router;
@@ -12,13 +13,13 @@ import router.response.ViewResponse;
 
 import java.io.IOException;
 
-public class HomePage implements PageController {
+public class ProjectsController implements PageController {
 
     private TemplateController template;
     private Router router;
     private PageView view;
 
-    public HomePage(
+    public ProjectsController(
             PageView view,
             TemplateController template
     ) {
@@ -26,8 +27,7 @@ public class HomePage implements PageController {
         this.setTemplate(template);
     }
 
-    @Override
-    public void setView(PageView view) {
+    private void setView(PageView view) {
         this.view = view;
         this.view.setController(this);
         this.view.load();
@@ -60,8 +60,8 @@ public class HomePage implements PageController {
     }
 
     @Override
-    public AnchorPane render() {
-        return view.render();
+    public PageView getView() {
+        return this.view;
     }
 
     @Override

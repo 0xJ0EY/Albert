@@ -6,7 +6,7 @@ import albert.views.TemplateView;
 import albert.views.templates.MenuView;
 import javafx.scene.Parent;
 
-public class MenuTemplate implements TemplateController {
+public class MenuTemplateController implements TemplateController {
 
     private TemplateView view = new MenuView();
     private PageController page;

@@ -16,9 +16,7 @@ public interface PageController {
 
     public TemplateController getTemplate();
 
-    public void setView(PageView view);
-
-    public AnchorPane render();
+    public PageView getView();
 
     /**
      * In the request method we can start loading the objects required

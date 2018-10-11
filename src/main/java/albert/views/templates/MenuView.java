@@ -32,7 +32,7 @@ public class MenuView extends AnchorPane implements TemplateView {
             ex.printStackTrace();
         }
 
-        AnchorPane panel = page.render();
+        AnchorPane panel = page.getView().render();
 
         // Anchor the panel to the sides of the parent AnchorPane
         AnchorPane.setTopAnchor(panel, 0d);
