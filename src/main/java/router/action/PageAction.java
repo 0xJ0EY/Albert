@@ -3,18 +3,22 @@ package router.action;
 import albert.controllers.PageController;
 import router.Request;
 import router.Router;
+import router.factories.pages.PageFactory;
 import router.response.Response;
 
 public class PageAction implements Action {
 
-    private PageController page;
+    private PageFactory pageFactory;
 
-    public PageAction(PageController page) {
-        this.page = page;
+    public  PageAction(PageFactory page) {
+        this.pageFactory = page;
     }
 
     @Override
     public Response execute(Router router, Request request) {
-        return this.page.request(router, request);
+        PageController page = this.pageFactory.create();
+
+        page.setRouter(router);
+        return page.request(request);
     }
 }

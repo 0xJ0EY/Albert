@@ -1,7 +1,9 @@
-package albert.controllers.pages;
+package albert.controllers.pages.projects;
 
 import albert.controllers.PageController;
 import albert.controllers.TemplateController;
+import albert.dao.ProjectsDAO;
+import albert.models.Project;
 import albert.views.PageView;
 import albert.views.pages.ProjectsView;
 import javafx.scene.layout.AnchorPane;
@@ -11,20 +13,28 @@ import router.response.Response;
 import router.response.ViewResponse;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ProjectsPage implements PageController {
 
     private TemplateController template;
+    private Router router;
     private PageView view;
 
-    public ProjectsPage(TemplateController template) {
-        this.setView(new ProjectsView());
+    private ArrayList<Project> projects;
+
+    public ProjectsPage(
+            PageView view,
+            TemplateController template
+    ) {
+        this.setView(view);
         this.setTemplate(template);
     }
 
     @Override
     public void setView(PageView view) {
         this.view = view;
+        this.view.setController(this);
         this.view.load();
     }
 
@@ -40,6 +50,16 @@ public class ProjectsPage implements PageController {
     }
 
     @Override
+    public void setRouter(Router router) {
+        this.router = router;
+    }
+
+    @Override
+    public Router getRouter() {
+        return this.router;
+    }
+
+    @Override
     public TemplateController getTemplate() {
         return this.template;
     }
@@ -50,11 +70,15 @@ public class ProjectsPage implements PageController {
     }
 
     @Override
-    public Response request(Router router, Request request) {
+    public Response request(Request request) {
+        int page = request.getParameter("page", int.class);
 
+        ProjectsDAO dao = new ProjectsDAO();
 
-        System.out.println("request.getParameters() = " + request.getParameters());
-        
+        Project project = dao.loadById(page);
+
+        System.out.println("project = " + project);
+
         return new ViewResponse(this);
     }
 }

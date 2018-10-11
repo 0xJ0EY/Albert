@@ -2,6 +2,7 @@ package router;
 
 import albert.Client;
 import router.action.Action;
+import router.factories.RouteFactoryBuilder;
 import router.response.Response;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ public class Router {
 
     private Client client;
     private ArrayList<String> history = new ArrayList<>();
-    private HashMap<Route, Action> routes = new HashMap<>();
+    private HashMap<Route, Action> routes = (new RouteFactoryBuilder()).create();
 
     public Router(Client client) {
         this.client = client;

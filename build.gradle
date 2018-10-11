@@ -3,6 +3,8 @@ version '1.0'
 
 apply plugin: 'java'
 apply plugin: 'application'
+apply plugin: 'idea'
+
 
 sourceCompatibility = 1.8
 
@@ -13,11 +15,22 @@ repositories {
 }
 
 dependencies {
+    // junit5, testing framework
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.1.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.1.0'
+
+    // c3p0, JDBC pooling
+    compile 'c3p0:c3p0:0.9.1.2'
+
+    // testfx, JavaFX testing library
+    compile 'org.testfx:testfx-junit5:4.0.14-alpha'
+
+    // postgres, jdbc connector for postgres
     compile 'org.postgresql:postgresql:42.2.5'
+
+    // ini4j, ini reader
     compile 'org.ini4j:ini4j:0.5.4'
-}
+    compile 'de.jensd:fontawesomefx:8.9'}
 
 test {
     useJUnitPlatform()

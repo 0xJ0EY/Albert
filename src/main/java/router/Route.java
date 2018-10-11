@@ -85,6 +85,7 @@ public class Route {
     }
 
     private String trimRoute(String route) {
+        if (route.length() <= 1) return route;
         return route.replaceAll("/*$", "");
     }
 

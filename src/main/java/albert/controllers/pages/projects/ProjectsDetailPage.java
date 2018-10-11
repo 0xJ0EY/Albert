@@ -1,4 +1,4 @@
-package albert.controllers.pages;
+package albert.controllers.pages.projects;
 
 import albert.controllers.PageController;
 import albert.controllers.TemplateController;
@@ -16,16 +16,21 @@ import java.io.IOException;
 public class ProjectsDetailPage implements PageController {
 
     private TemplateController template;
+    private Router router;
     private PageView view;
 
-    public ProjectsDetailPage(TemplateController template) {
-        this.setView(new ProjectsDetailView());
+    public ProjectsDetailPage(
+            PageView view,
+            TemplateController template
+    ) {
+        this.setView(view);
         this.setTemplate(template);
     }
 
     @Override
     public void setView(PageView view) {
         this.view = view;
+        this.view.setController(this);
         this.view.load();
     }
 
@@ -41,6 +46,16 @@ public class ProjectsDetailPage implements PageController {
     }
 
     @Override
+    public void setRouter(Router router) {
+        this.router = router;
+    }
+
+    @Override
+    public Router getRouter() {
+        return this.router;
+    }
+
+    @Override
     public TemplateController getTemplate() {
         return this.template;
     }
@@ -51,11 +66,7 @@ public class ProjectsDetailPage implements PageController {
     }
 
     @Override
-    public Response request(Router router, Request request) {
-
-
-        System.out.println("request.getParameters() = " + request.getParameters());
-        
+    public Response request(Request request) {
         return new ViewResponse(this);
     }
 }

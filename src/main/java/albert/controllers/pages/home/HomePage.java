@@ -1,4 +1,4 @@
-package albert.controllers.pages;
+package albert.controllers.pages.home;
 
 import albert.controllers.PageController;
 import albert.controllers.TemplateController;
@@ -15,10 +15,14 @@ import java.io.IOException;
 public class HomePage implements PageController {
 
     private TemplateController template;
+    private Router router;
     private PageView view;
 
-    public HomePage(TemplateController template) {
-        this.setView(new HomeView());
+    public HomePage(
+            PageView view,
+            TemplateController template
+    ) {
+        this.setView(view);
         this.setTemplate(template);
     }
 
@@ -41,6 +45,16 @@ public class HomePage implements PageController {
     }
 
     @Override
+    public void setRouter(Router router) {
+        this.router = router;
+    }
+
+    @Override
+    public Router getRouter() {
+        return this.router;
+    }
+
+    @Override
     public TemplateController getTemplate() {
         return this.template;
     }
@@ -51,7 +65,7 @@ public class HomePage implements PageController {
     }
 
     @Override
-    public Response request(Router router, Request request) {
+    public Response request(Request request) {
         return new ViewResponse(this);
     }
 }

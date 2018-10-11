@@ -24,30 +24,49 @@ public class IniStrategy implements ConfigStrategy {
     @Override
     public String get(String key) throws InvalidKeyException {
 
+        String[] parts = this.parseKey(key);
+
+        return (String) this.config.get(parts[0], parts[1]);
+    }
+
+
+    @Override
+    public void create(String key, String value) throws InvalidKeyException {
+        String[] parts = this.parseKey(key);
+
+        this.config.put(parts[0], parts[1], value);
+        this.save();
+    }
+
+    @Override
+    public void update(String key, String value) throws InvalidKeyException {
+        this.create(key, value);
+    }
+
+    @Override
+    public void delete(String key) throws InvalidKeyException {
+        String[] parts = this.parseKey(key);
+
+        this.config.remove(parts[0], parts[1]);
+        this.save();
+    }
+
+    private String[] parseKey(String key) throws InvalidKeyException {
+
         String[] parts = key.split("\\.", 2);
 
         if (parts.length < 2)
             throw new InvalidKeyException();
 
-        String root = parts[0];
-        String value = parts[1];
-
-        return (String) this.config.get(root, value);
-    }
-
-
-    @Override
-    public void create(String key, String value) {
+        return parts;
 
     }
 
-    @Override
-    public void update(String key, String value) {
-
-    }
-
-    @Override
-    public void delete(String key) {
-
+    private void save() {
+        try {
+            this.config.store();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }
