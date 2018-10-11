@@ -1,7 +1,7 @@
 package albert.views.templates;
 
 import albert.controllers.PageController;
-import albert.controllers.TemplateController;
+import albert.controllers.templates.TemplateController;
 import albert.views.TemplateView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

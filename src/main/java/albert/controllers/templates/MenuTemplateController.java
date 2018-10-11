@@ -1,7 +1,6 @@
 package albert.controllers.templates;
 
 import albert.controllers.PageController;
-import albert.controllers.TemplateController;
 import albert.views.TemplateView;
 import albert.views.templates.MenuView;
 import javafx.scene.Parent;

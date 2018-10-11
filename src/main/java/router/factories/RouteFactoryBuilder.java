@@ -2,7 +2,8 @@ package router.factories;
 
 import router.Route;
 import router.action.Action;
-import router.action.PageAction;
+import router.action.DetailPageAction;
+import router.action.OverviewPageAction;
 import router.factories.pages.home.HomePageFactory;
 import router.factories.pages.projects.ProjectsDetailPageFactory;
 import router.factories.pages.projects.ProjectsPageFactory;
@@ -15,11 +16,11 @@ public class RouteFactoryBuilder {
         HashMap<Route, Action> map = new HashMap<>();
 
         // Home
-        map.put(new Route("home/"), new PageAction(new HomePageFactory()));
+        map.put(new Route("home/"), new OverviewPageAction(new HomePageFactory()));
 
         // Projects
-        map.put(new Route("projects/{page}/"), new PageAction(new ProjectsPageFactory()));
-        map.put(new Route("projects/details/{project}/"), new PageAction(new ProjectsDetailPageFactory()));
+        map.put(new Route("projects/{page}/"), new OverviewPageAction(new ProjectsPageFactory()));
+        map.put(new Route("projects/details/{project}/"), new DetailPageAction(new ProjectsDetailPageFactory()));
 
         return map;
     }
