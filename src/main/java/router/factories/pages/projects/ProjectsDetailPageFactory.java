@@ -1,16 +1,17 @@
 package router.factories.pages.projects;
 
-import albert.controllers.PageController;
-import albert.controllers.pages.projects.ProjectsDetailPage;
-import albert.controllers.templates.MenuTemplate;
+import albert.controllers.ProjectsController;
+import albert.controllers.pages.DetailPage;
+import albert.controllers.templates.MenuTemplateController;
 import albert.views.pages.ProjectsDetailView;
-import router.factories.pages.PageFactory;
+import router.factories.PageFactory;
+import router.factories.pages.DetailPageFactory;
 
-public class ProjectsDetailPageFactory implements PageFactory {
+public class ProjectsDetailPageFactory implements DetailPageFactory {
 
     @Override
-    public PageController create() {
-        return new ProjectsDetailPage(new ProjectsDetailView(), new MenuTemplate());
+    public DetailPage create() {
+        return new ProjectsController(new ProjectsDetailView(), new MenuTemplateController());
     }
 
 }
