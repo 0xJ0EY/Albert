@@ -1,0 +1,11 @@
+/*
+Main.css is used for the default css.
+
+This is a wrapper for the other css files
+*/
+
+/* Components */
+@import "components/buttons.css";
+
+/* Custom */
+@import "custom/menu.css";
