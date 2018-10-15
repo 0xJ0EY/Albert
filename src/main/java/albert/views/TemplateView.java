@@ -1,7 +1,7 @@
 package albert.views;
 
 import albert.controllers.PageController;
-import albert.controllers.TemplateController;
+import albert.controllers.templates.TemplateController;
 import javafx.scene.Parent;
 
 public interface TemplateView {
