@@ -1,10 +1,16 @@
-package main.java.router.factories.pages.contacts;
+package router.factories.pages.contacts;
+
+import albert.controllers.HomeController;
+import albert.controllers.pages.OverviewPage;
+import albert.controllers.templates.MenuTemplateController;
+import albert.views.pages.HomeView;
+import router.factories.pages.OverviewPageFactory;
 
 public class ContactsPageFactory implements OverviewPageFactory {
 
-    @Override
-    public albert.controllers.PageController create() {
-        return new albert.controllers.pages.home.HomePage(new albert.views.pages.HomeView(), new albert.controllers.templates.MenuTemplate());
-    }
 
+    @Override
+    public OverviewPage create() {
+        return new HomeController(new HomeView(), new MenuTemplateController());
+    }
 }
