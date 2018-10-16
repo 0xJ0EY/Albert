@@ -10,7 +10,6 @@ public interface Data {
     public void setFirstname(String firstname);
 
 
-
     public String getLastname();
 
 
@@ -18,7 +17,6 @@ public interface Data {
 
 
     public String getStreet();
-
 
 
     public void setStreet(String street);

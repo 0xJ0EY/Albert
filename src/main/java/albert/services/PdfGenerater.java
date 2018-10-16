@@ -18,10 +18,13 @@ public class PdfGenerater{
 
 
     private String title;
-    private static final String OUTPUT_FILE = "test.pdf";
+    private String outputFile;
     private static final String UTF_8 = "UTF-8";
 
 
+    public void setOutputFile(String outputFile){
+        this.outputFile =outputFile;
+    }
 
 
     public void generatePdf(Data data) throws Exception {
@@ -46,7 +49,6 @@ public class PdfGenerater{
         //
         // Note that we could also read this data from a JSON file, a database
         // a web service or whatever.
-    Data data =exampleDataForJohnDoe();
         Context context = new Context();
         context.setVariable("data", data);
 
@@ -77,16 +79,6 @@ public class PdfGenerater{
         OutputStream outputStream = new FileOutputStream(OUTPUT_FILE);
         renderer.createPDF(outputStream);
         outputStream.close();
-    }
-    private Data exampleDataForJohnDoe() {
-        Data data = new Data();
-        data.setFirstname("John");
-        data.setLastname("Doe");
-        data.setStreet("Example Street 1");
-        data.setZipCode("12345");
-        data.setCity("Example City");
-        date.setDate();
-        return data;
     }
     private String convertToXhtml(String html) throws UnsupportedEncodingException {
         Tidy tidy = new Tidy();
