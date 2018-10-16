@@ -1,7 +1,7 @@
 package albert.views.pages;
 
 import albert.controllers.PageController;
-import albert.views.PageView;
+import router.views.PageView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
