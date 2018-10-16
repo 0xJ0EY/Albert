@@ -1,16 +1,13 @@
-package albert.views.pages;
+package albert.views;
 
 import albert.controllers.PageController;
-import albert.views.PageView;
-import javafx.fxml.FXML;
+import router.views.PageView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
-import java.io.IOException;
+public class HomeView extends AnchorPane implements PageView {
 
-public class ProjectsView extends AnchorPane implements PageView {
-
-    private final String resource = "/views/pages/Projects.fxml";
+    private final String resource = "/views/pages/Home.fxml";
     private PageController controller;
 
     @Override
@@ -22,7 +19,7 @@ public class ProjectsView extends AnchorPane implements PageView {
 
         try {
             loader.load();
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
@@ -37,10 +34,4 @@ public class ProjectsView extends AnchorPane implements PageView {
         return this;
     }
 
-    @FXML
-    public void onClickButton() {
-
-        this.controller.getRouter().nav("projects/details/1/");
-
-    }
 }

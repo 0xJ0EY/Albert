@@ -23,13 +23,16 @@ public class Client extends Application {
     }
 
     public void renderPage(PageController page) {
-        this.stage.setScene(
-            new Scene(
-                page.getTemplate().render(),
-                this.stage.getWidth(),
-                this.stage.getHeight()
-            )
+
+        Scene scene = new Scene(
+            page.getTemplate().render(),
+            this.stage.getWidth(),
+            this.stage.getHeight()
         );
+
+        scene.getStylesheets().add(getClass().getResource("/css/main.css").toExternalForm());
+
+        this.stage.setScene(scene);
     }
 
     public static void main(String[] args) {
