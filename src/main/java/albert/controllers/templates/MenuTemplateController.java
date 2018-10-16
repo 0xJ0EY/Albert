@@ -15,11 +15,19 @@ public class MenuTemplateController implements TemplateController {
     public void setPage(PageController page) {
         this.page = page;
         this.view.setController(this);
-        this.view.load(page);
+        this.view.load();
+    }
+
+    @Override
+    public PageController getPage() {
+        return this.page;
     }
 
     @Override
     public Parent render() {
+
+        this.view.update();
+
         return this.view.render();
     }
 }

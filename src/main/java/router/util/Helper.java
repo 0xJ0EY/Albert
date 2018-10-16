@@ -1,7 +1,7 @@
 package router.util;
 
 /**
- * This class isnt the most elegant, but there is no other way to cast String to primitive types
+ * This class isnt the most elegant, but there is no other way to cast String to primitive columns
  */
 public class Helper {
 

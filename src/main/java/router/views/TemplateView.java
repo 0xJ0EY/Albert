@@ -6,7 +6,9 @@ import javafx.scene.Parent;
 
 public interface TemplateView {
 
-    public void load(PageController page);
+    public void load();
+
+    public void update();
 
     public void setController(TemplateController controller);
 
