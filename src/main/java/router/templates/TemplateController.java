@@ -9,6 +9,8 @@ public interface TemplateController {
 
     public void setPage(PageController page);
 
+    public PageController getPage();
+
     public Parent render();
 
 }
