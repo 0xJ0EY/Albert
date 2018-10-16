@@ -1,4 +1,4 @@
-package albert.views;
+package router.views;
 
 import albert.controllers.PageController;
 import javafx.scene.layout.AnchorPane;

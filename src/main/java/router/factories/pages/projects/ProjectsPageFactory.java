@@ -1,10 +1,9 @@
 package router.factories.pages.projects;
 
 import albert.controllers.ProjectsController;
-import albert.controllers.pages.OverviewPage;
+import router.pages.OverviewPage;
 import albert.controllers.templates.MenuTemplateController;
-import albert.views.pages.ProjectsView;
-import router.factories.PageFactory;
+import albert.views.ProjectsView;
 import router.factories.pages.OverviewPageFactory;
 
 public class ProjectsPageFactory implements OverviewPageFactory {

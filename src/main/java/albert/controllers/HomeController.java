@@ -1,9 +1,9 @@
 package albert.controllers;
 
-import albert.controllers.pages.OverviewPage;
-import albert.controllers.templates.TemplateController;
-import albert.controllers.pages.DetailPage;
-import albert.views.PageView;
+import router.pages.OverviewPage;
+import router.templates.TemplateController;
+import router.pages.DetailPage;
+import router.views.PageView;
 import router.Request;
 import router.response.Response;
 import router.response.ViewResponse;

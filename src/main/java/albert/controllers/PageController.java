@@ -1,8 +1,8 @@
 package albert.controllers;
 
-import albert.controllers.pages.Page;
-import albert.controllers.templates.TemplateController;
-import albert.views.PageView;
+import router.pages.Page;
+import router.templates.TemplateController;
+import router.views.PageView;
 import router.Router;
 
 public abstract class PageController implements Page {

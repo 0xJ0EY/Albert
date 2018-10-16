@@ -1,10 +1,9 @@
 package router.factories.pages.home;
 
 import albert.controllers.HomeController;
-import albert.controllers.pages.OverviewPage;
+import router.pages.OverviewPage;
 import albert.controllers.templates.MenuTemplateController;
-import albert.views.pages.HomeView;
-import router.factories.PageFactory;
+import albert.views.HomeView;
 import router.factories.pages.OverviewPageFactory;
 
 public class HomePageFactory implements OverviewPageFactory {
