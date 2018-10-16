@@ -38,9 +38,7 @@ dependencies {
     compile group: 'org.xhtmlrenderer', name: 'flying-saucer-core', version: '9.1.6'
     compile group: 'org.xhtmlrenderer', name: 'flying-saucer-pdf-itext5', version: '9.1.6'
 
-
 }
-
 test {
     useJUnitPlatform()
 }

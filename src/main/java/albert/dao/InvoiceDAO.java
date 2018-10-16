@@ -21,12 +21,7 @@ public class InvoiceDAO implements DAO<Invoice>{
     public void create(Invoice obj) {
 
     }
-
-    @Override
-    public void update(Invoice invoice, String[] params) {
-
-    }
-
+    
     @Override
     public void update(Invoice obj) {
 
