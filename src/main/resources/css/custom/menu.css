@@ -1,0 +1,18 @@
+/*
+CSS For the menu
+*/
+
+.menu_btn_back,
+.menu_btn_next {
+    -fx-pref-width: 30px;
+    -fx-pref-height: 15px;
+}
+
+.menu_btn_next {
+    -fx-padding: 3 4 3 6;
+}
+
+.menu_btn_home {
+    -fx-pref-height: 15px;
+    -fx-pref-width: 40px;
+}

@@ -1,12 +1,12 @@
 package albert.controllers.templates;
 
 import albert.controllers.PageController;
-import albert.controllers.TemplateController;
-import albert.views.TemplateView;
+import router.views.TemplateView;
 import albert.views.templates.MenuView;
 import javafx.scene.Parent;
+import router.templates.TemplateController;
 
-public class MenuTemplate implements TemplateController {
+public class MenuTemplateController implements TemplateController {
 
     private TemplateView view = new MenuView();
     private PageController page;

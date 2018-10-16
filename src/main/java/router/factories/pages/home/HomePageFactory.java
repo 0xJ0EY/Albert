@@ -1,16 +1,16 @@
 package router.factories.pages.home;
 
-import albert.controllers.PageController;
-import albert.controllers.pages.home.HomePage;
-import albert.controllers.templates.MenuTemplate;
-import albert.views.pages.HomeView;
-import router.factories.pages.PageFactory;
+import albert.controllers.HomeController;
+import router.pages.OverviewPage;
+import albert.controllers.templates.MenuTemplateController;
+import albert.views.HomeView;
+import router.factories.pages.OverviewPageFactory;
 
-public class HomePageFactory implements PageFactory {
+public class HomePageFactory implements OverviewPageFactory {
 
     @Override
-    public PageController create() {
-        return new HomePage(new HomeView(), new MenuTemplate());
+    public OverviewPage create() {
+        return new HomeController(new HomeView(), new MenuTemplateController());
     }
 
 }

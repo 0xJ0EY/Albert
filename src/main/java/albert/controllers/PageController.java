@@ -1,33 +1,49 @@
 package albert.controllers;
 
-import albert.views.PageView;
-import javafx.scene.layout.AnchorPane;
-import router.Request;
+import router.pages.Page;
+import router.templates.TemplateController;
+import router.views.PageView;
 import router.Router;
-import router.response.Response;
 
-public interface PageController {
+public abstract class PageController implements Page {
 
-    public void setTemplate(TemplateController template);
+    protected TemplateController template;
+    protected PageView view;
+    protected Router router;
 
-    public void setRouter(Router router);
+    public PageController(
+            PageView view,
+            TemplateController template
+    ) {
+        this.setView(view);
+        this.setTemplate(template);
+    }
 
-    public Router getRouter();
+    private void setTemplate(TemplateController template) {
+        this.template = template;
+        this.template.setPage(this);
+    }
 
-    public TemplateController getTemplate();
+    private void setView(PageView view) {
+        this.view = view;
+        this.view.setController(this);
+        this.view.load();
+    }
 
-    public void setView(PageView view);
+    public TemplateController getTemplate() {
+        return this.template;
+    }
 
-    public AnchorPane render();
+    public PageView getView() {
+        return this.view;
+    }
 
-    /**
-     * In the request method we can start loading the objects required
-     * for viewing the page.
-     *
-     * @author Joey de Ruiter
-     * @param request
-     * @return
-     */
-    public Response request(Request request);
+    public void setRouter(Router router) {
+        this.router = router;
+    }
+
+    public Router getRouter() {
+        return this.router;
+    }
 
 }

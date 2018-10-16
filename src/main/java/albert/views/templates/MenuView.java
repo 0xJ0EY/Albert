@@ -1,8 +1,8 @@
 package albert.views.templates;
 
 import albert.controllers.PageController;
-import albert.controllers.TemplateController;
-import albert.views.TemplateView;
+import router.templates.TemplateController;
+import router.views.TemplateView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -32,7 +32,7 @@ public class MenuView extends AnchorPane implements TemplateView {
             ex.printStackTrace();
         }
 
-        AnchorPane panel = page.render();
+        AnchorPane panel = page.getView().render();
 
         // Anchor the panel to the sides of the parent AnchorPane
         AnchorPane.setTopAnchor(panel, 0d);

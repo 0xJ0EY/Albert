@@ -1,10 +1,13 @@
 package router;
 
+import albert.controllers.ProjectsController;
+import albert.controllers.templates.MenuTemplateController;
+import albert.views.ProjectsView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.framework.junit5.ApplicationExtension;
-import router.action.PageAction;
+import router.action.OverviewPageAction;
 import router.factories.pages.home.HomePageFactory;
 import router.response.Response;
 import router.response.ViewResponse;
@@ -32,7 +35,7 @@ public class RouterTest {
     @Test
     void normalRouteTest() {
         // We use the home page as default routing test
-        this.router.addRoute(new Route("test/"), new PageAction(new HomePageFactory()));
+        this.router.addRoute(new Route("test/"), new OverviewPageAction(new HomePageFactory()));
 
         Response response = this.router.navigate("test/");
 
@@ -42,7 +45,7 @@ public class RouterTest {
     @Test
     void paramRouteTest() {
         // We use the home page as default routing test
-        this.router.addRoute(new Route("test/{param}/"), new PageAction(new HomePageFactory()));
+        this.router.addRoute(new Route("test/{param}/"), new OverviewPageAction(new HomePageFactory()));
 
         Response response = this.router.navigate("test/test/");
 
@@ -52,7 +55,7 @@ public class RouterTest {
     @Test
     void trailingSlashTest() {
         // We use the home page as default routing test
-        this.router.addRoute(new Route("test/"), new PageAction(new HomePageFactory()));
+        this.router.addRoute(new Route("test/"), new OverviewPageAction(new HomePageFactory()));
 
         Response response = this.router.navigate("test");
 
@@ -62,7 +65,20 @@ public class RouterTest {
     @Test
     void paramTrailingSlashTest() {
         // We use the home page as default routing test
-        this.router.addRoute(new Route("test/{param}/"), new PageAction(new HomePageFactory()));
+        this.router.addRoute(new Route("test/{param}/"), new OverviewPageAction(new HomePageFactory()));
+
+        Response response = this.router.navigate("test/test");
+
+        assertTrue(response instanceof ViewResponse);
+    }
+
+    @Test
+    void lambdaRouteTest() {
+
+        this.router.addRoute(new Route("test/{param}/"), new OverviewPageAction(() -> {
+                return new ProjectsController(new ProjectsView(), new MenuTemplateController());
+            })
+        );
 
         Response response = this.router.navigate("test/test");
 
