@@ -1,9 +1,10 @@
 package albert.controllers.templates;
 
 import albert.controllers.PageController;
-import albert.views.TemplateView;
+import router.views.TemplateView;
 import albert.views.templates.MenuView;
 import javafx.scene.Parent;
+import router.templates.TemplateController;
 
 public class MenuTemplateController implements TemplateController {
 

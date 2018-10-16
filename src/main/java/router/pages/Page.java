@@ -1,7 +1,7 @@
-package albert.controllers.pages;
+package router.pages;
 
-import albert.controllers.templates.TemplateController;
-import albert.views.PageView;
+import router.templates.TemplateController;
+import router.views.PageView;
 import router.Router;
 
 public interface Page {

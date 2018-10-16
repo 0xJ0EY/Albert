@@ -1,4 +1,4 @@
-package albert.controllers.templates;
+package router.templates;
 
 import albert.controllers.PageController;
 import javafx.scene.Parent;

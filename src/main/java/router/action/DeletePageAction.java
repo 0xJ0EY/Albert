@@ -1,6 +1,6 @@
 package router.action;
 
-import albert.controllers.pages.DeletePage;
+import router.pages.DeletePage;
 import router.Request;
 import router.Router;
 import router.factories.pages.DeletePageFactory;

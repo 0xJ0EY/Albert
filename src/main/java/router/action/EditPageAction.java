@@ -1,6 +1,6 @@
 package router.action;
 
-import albert.controllers.pages.EditPage;
+import router.pages.EditPage;
 import router.Request;
 import router.Router;
 import router.factories.pages.EditPageFactory;
