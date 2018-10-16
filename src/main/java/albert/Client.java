@@ -1,8 +1,10 @@
 package albert;
 
 import albert.controllers.PageController;
+import config.Config;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import router.Router;
 
@@ -17,7 +19,10 @@ public class Client extends Application {
 
         this.stage = stage;
 
-        this.router.nav("home/");
+        // Set application title
+        this.stage.setTitle(Config.get("config", "application.name"));
+
+        this.router.nav("home");
 
         this.stage.show();
     }
