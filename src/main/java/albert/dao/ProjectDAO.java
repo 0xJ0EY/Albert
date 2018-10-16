@@ -9,14 +9,33 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ProjectsDAO implements DAO<Project> {
+public class ProjectDAO implements DAO<Project> {
 
     @Override
     public ArrayList<Project> getAll() {
-        return null;
+
+        String sql = "SELECT * FROM projects";
+        ArrayList<Project> projectArrayList = null;
+        try {
+            Connection conn = Database.getInstance().getConnection();
+
+            PreparedStatement statement = conn.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()){
+                Project project = extractFromResultSet(rs);
+                projectArrayList.add(project);
+            }
+
+            conn.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return projectArrayList;
     }
 
-    @Override
+        @Override
     public Project loadById(long id) {
         Project project = null;
 
@@ -33,10 +52,8 @@ public class ProjectsDAO implements DAO<Project> {
 
             rs.next();
 
-            project = new Project(
-                rs.getInt("id"),
-                rs.getString("name")
-            );
+            this.extractFromResultSet(rs);
+
 
             conn.close();
         }
@@ -57,8 +74,17 @@ public class ProjectsDAO implements DAO<Project> {
 
     }
 
+
     @Override
     public void delete(Project obj) {
 
+    }
+
+    @Override
+    public Project extractFromResultSet(ResultSet rs) throws SQLException {
+        Project project = new Project(rs.getInt("id"), rs.getString("name"));
+        //TODO add all columns
+
+        return project;
     }
 }
