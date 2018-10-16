@@ -65,7 +65,7 @@
             </Text>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="page" layoutX="174.0" layoutY="60.0" prefHeight="440.0" prefWidth="658.0" rotate="180.0" style="-fx-background-color: f7f7f7;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
+      <AnchorPane fx:id="page" layoutX="174.0" layoutY="60.0" prefHeight="440.0" prefWidth="658.0" style="-fx-background-color: f7f7f7;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
       <HBox alignment="CENTER_LEFT" maxHeight="50.0" prefHeight="50.0" prefWidth="820.0" style="-fx-background-color: #FF711E;" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" style="-fx-background-color: #00000000;" text="Rapportages">
