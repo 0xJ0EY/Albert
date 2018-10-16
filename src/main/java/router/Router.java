@@ -2,6 +2,7 @@ package router;
 
 import albert.Client;
 import router.action.Action;
+import router.exceptions.PageNotFoundException;
 import router.factories.RouteFactoryBuilder;
 import router.response.Response;
 
@@ -12,7 +13,7 @@ public class Router {
 
     private Client client;
     private ArrayList<String> history = new ArrayList<>();
-    private HashMap<Route, Action> routes = (new RouteFactoryBuilder()).create();
+    private HashMap<Route, Action> routes = (new RouteFactoryBuilder()).routes();
 
     public Router(Client client) {
         this.client = client;
@@ -42,17 +43,19 @@ public class Router {
             }
         }
 
-        return null;
+        throw new PageNotFoundException();
     }
 
     public void nav(String url) {
 
-        // Fetch response
-        Response response = this.navigate(url);
+        Response response;
 
-        if (response == null) {
-            // TODO: Throw 404 exception and show 404
-            return;
+        try {
+            // Fetch response
+            response = this.navigate(url);
+        } catch (PageNotFoundException ex) {
+            // Fetch 404 page
+            response = this.navigate("errors/404");
         }
 
         response.execute(this);
