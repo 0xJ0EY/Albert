@@ -2,25 +2,29 @@ package table.views.tables;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.HPos;
-import javafx.geometry.Pos;
 import javafx.scene.layout.*;
 import table.Column;
 import table.Row;
 import table.Table;
+import table.Value;
 import table.exceptions.ViewNotFoundException;
-import table.views.ColumnView;
+import table.views.CellView;
+import table.views.HeaderView;
 import table.views.TableView;
+import table.views.column.ColumnView;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class BaseTableView extends AnchorPane implements TableView {
 
     private final String resource = "/views/table/tables/BaseTableView.fxml";
     private Table table;
 
+    private ArrayList<ColumnView> columns;
+
     @FXML
-    private GridPane rowContainer;
+    private HBox container;
 
     @FXML
     private HBox paginationContainer;
@@ -28,8 +32,6 @@ public class BaseTableView extends AnchorPane implements TableView {
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
-
-        System.out.println("loader = " + loader);
 
         loader.setController(this);
         loader.setRoot(this);
@@ -41,46 +43,91 @@ public class BaseTableView extends AnchorPane implements TableView {
             throw new ViewNotFoundException();
         }
 
-        this.update();
     }
 
     @Override
     public void update() {
 
-        int rowIndex = 0;
-        int colIndex;
+        // Create cells
+        this.createColumns();
 
-        // Create table constraints
-        for (Column column : this.table.getCols()) {
-            ColumnView view = column.getView();
+        // Create headers
+        this.createHeaders();
 
-            Pane pane = view.render();
+        // Render rows to the columns
+        this.createRows();
 
-            ColumnConstraints constraint = new ColumnConstraints(
-                pane.getMinWidth(),
-                pane.getPrefWidth(),
-                pane.getMaxWidth()
-            );
+    }
 
-            constraint.setHgrow(view.getPriority());
 
-            this.rowContainer.getColumnConstraints().add(constraint);
+    private void createColumns() {
+
+        this.columns = new ArrayList<>();
+
+        int length = this.table.getData().size();
+
+        for (int i = 0; i < length; i++) {
+            ColumnView column = new ColumnView();
+
+            column.load();
+
+            this.columns.add(column);
+        }
+    }
+
+    private void createHeaders() {
+
+        ArrayList<Column> cols = this.table.getCols();
+
+        int index = 0;
+
+        for (Column col : cols) {
+            HeaderView view = col.getHeaderView();
+
+            view.load();
+
+            view.setName(col.getName());
+
+            view.update();
+
+            AnchorPane pane = view.render();
+
+            pane.getStyleClass().add("header");
+
+            this.columns.get(index).getChildren().add(pane);
+
+            index++;
         }
 
-        // Render rows
-        for (Row row : this.table.getData()) {
-            ArrayList<ColumnView> columns = row.getColumns();
+    }
 
-            colIndex = 0;
+    private void createRows() {
 
-            // Render columns
-            for (ColumnView column : columns) {
+        // Based on a row
+        ArrayList<Row> rows = this.table.getData();
 
-                Pane pane = column.render();
+        int rowIndex = 0;
 
-                GridPane.setHalignment(pane, column.getHPos());
+        // For every row, render the cols to the same index
+        for (Row row : rows) {
 
-                this.rowContainer.add(pane, colIndex, rowIndex);
+            int colIndex = 0;
+
+            ArrayList<Value> values = row.getValues();
+
+            for (Value value : values) {
+
+                CellView view = value.getView();
+
+                view.load();
+
+                view.update();
+
+                AnchorPane pane = view.render();
+
+                pane.getStyleClass().add(rowIndex % 2 == 0 ? "even" : "odd");
+
+                this.columns.get(colIndex).getChildren().add(view.render());
 
                 colIndex++;
             }
@@ -96,6 +143,22 @@ public class BaseTableView extends AnchorPane implements TableView {
 
     @Override
     public AnchorPane render() {
+
+        this.container.getChildren().clear();
+
+        ArrayList<VBox> columns = new ArrayList<>();
+
+        for (ColumnView column : this.columns) {
+
+            VBox view = column.render();
+
+            HBox.setHgrow(view, Priority.ALWAYS);
+
+            columns.add(view);
+        }
+
+        this.container.getChildren().addAll(columns);
+
         return this;
     }
 }

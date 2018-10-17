@@ -1,17 +1,20 @@
-package table.views.columns;
+package table.views.cells;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.HPos;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import table.Value;
 import table.exceptions.ViewNotFoundException;
-import table.views.ColumnView;
+import table.views.CellView;
 
-public class TextColumnView extends AnchorPane implements ColumnView<String> {
+public class IntCellView extends AnchorPane implements CellView<Integer> {
 
-    private final String resource = "/views/table/columns/TextColumnView.fxml";
+    @FXML
+    private Label label;
+
+    private final String resource = "/views/table/cells/IntCellView.fxml";
     private Value value;
 
     @Override
@@ -24,23 +27,21 @@ public class TextColumnView extends AnchorPane implements ColumnView<String> {
         try {
             loader.load();
         } catch (Exception ex) {
+            ex.printStackTrace();;
             throw new ViewNotFoundException();
         }
     }
 
     @Override
     public void update() {
+        int value = (int) this.value.getObject();
 
+        label.setText(Integer.toString(value));
     }
 
     @Override
     public Priority getPriority() {
-        return Priority.SOMETIMES;
-    }
-
-    @Override
-    public HPos getHPos() {
-        return HPos.CENTER;
+        return Priority.ALWAYS;
     }
 
     @Override
@@ -50,7 +51,7 @@ public class TextColumnView extends AnchorPane implements ColumnView<String> {
 
     @Override
     public Object getObjectClass() {
-        return String.class;
+        return Integer.class;
     }
 
     @Override

@@ -48,7 +48,7 @@ public class Table {
 
     public void addRow(Object... data) {
 
-        // Check if the row and columns are the same size
+        // Check if the row and cells are the same size
         // Else throw an exception
         if (data.length != cols.size())
             throw new InvalidRowException();
@@ -57,9 +57,9 @@ public class Table {
         int index = this.data.size();
 
         // Create new row
-        Row row = new Row(index, this);
+        Row row = new Row(this);
 
-        // Check if the row and columns have the same data type on correct key
+        // Check if the row and cells have the same data type on correct key
         // Else throw an exception
         for (int i = 0; i < data.length; i++) {
             Column col = this.cols.get(i);
@@ -89,6 +89,8 @@ public class Table {
 
         // Load
         this.view.load();
+
+        this.view.update();
 
         return this.view;
     }

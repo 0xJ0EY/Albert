@@ -4,11 +4,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.layout.GridPane?>
-<fx:root minWidth="500.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minWidth="500.0" styleClass="table" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox fx:id="paginationContainer" prefHeight="20.0" prefWidth="255.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <GridPane fx:id="rowContainer" prefHeight="300.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <HBox fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Text layoutX="14.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="# van de # regels" AnchorPane.bottomAnchor="2.5" AnchorPane.leftAnchor="10.0" />
    </children>
 </fx:root>

@@ -1,18 +1,15 @@
 package table;
 
-import table.views.ColumnView;
+import table.views.CellView;
 
 import java.util.ArrayList;
 
 public class Row {
 
     private Table table;
-
-    private int index;
     private ArrayList<Value> values = new ArrayList<>();
 
-    public Row(int index, Table table) {
-        this.setIndex(index);
+    public Row(Table table) {
         this.setTable(table);
     }
 
@@ -20,15 +17,11 @@ public class Row {
         this.table = table;
     }
 
-    private void setIndex(int index) {
-        this.index = index;
-    }
-
-    public ArrayList<ColumnView> getColumns() {
-        ArrayList<ColumnView> list = new ArrayList<>();
+    public ArrayList<CellView> getColumns() {
+        ArrayList<CellView> list = new ArrayList<>();
 
         for (Value value : this.values) {
-            ColumnView view = value.getView();
+            CellView view = value.getView();
 
             view.load();
 
@@ -45,6 +38,7 @@ public class Row {
     }
 
     public void addValue(Value value) {
+        value.setRow(this);
         this.values.add(value);
     }
 

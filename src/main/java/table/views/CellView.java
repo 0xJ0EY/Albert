@@ -1,19 +1,16 @@
 package table.views;
 
-import javafx.geometry.HPos;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Priority;
 import table.Value;
 
-public interface ColumnView<T> {
+public interface CellView<T> {
 
     public void load();
 
     public void update();
 
     public Priority getPriority();
-
-    public HPos getHPos();
 
     public void setValue(Value value);
 

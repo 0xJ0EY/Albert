@@ -1,19 +1,20 @@
 package table;
 
-import table.views.ColumnView;
+import table.views.CellView;
 
 public class Value {
 
-    ColumnView view;
-    Object object;
+    private CellView view;
+    private Object object;
+    private Row row;
 
-    public Value(ColumnView view, Object object) {
+    public Value(CellView view, Object object) {
         this.setView(view);
         this.setObject(object);
         this.object = object;
     }
 
-    private void setView(ColumnView view) {
+    private void setView(CellView view) {
         this.view = view;
         this.view.setValue(this);
     }
@@ -22,7 +23,11 @@ public class Value {
         this.object = object;
     }
 
-    public ColumnView getView() {
+    public void setRow(Row row) {
+        this.row = row;
+    }
+
+    public CellView getView() {
         return view;
     }
 
