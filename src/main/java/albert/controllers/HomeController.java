@@ -8,15 +8,10 @@ import router.Request;
 import router.response.Response;
 import router.response.ViewResponse;
 import table.Column;
-import table.Row;
 import table.Table;
 import table.factories.columns.IntColumnViewFactory;
 import table.factories.columns.TextColumnViewFactory;
-import table.factories.rows.BaseRowFactory;
 import table.strategies.DatabaseStrategy;
-import table.views.columns.IntColumnView;
-import table.views.columns.TextColumnView;
-import table.views.rows.BaseRowView;
 import table.views.tables.BaseTableView;
 
 public class HomeController extends PageController implements OverviewPage, DetailPage {
@@ -33,12 +28,12 @@ public class HomeController extends PageController implements OverviewPage, Deta
     @Override
     public Response overview(Request request) {
 
-        this.overviewTable = new Table(new DatabaseStrategy(), new BaseTableView(), new BaseRowFactory());
+        this.overviewTable = new Table(new DatabaseStrategy(), new BaseTableView());
         this.overviewTable.addCol(new Column("firstname", new TextColumnViewFactory()));
         this.overviewTable.addCol(new Column("age", new IntColumnViewFactory()));
 
-        this.overviewTable.addRow(new Row("Joey", 20));
-        this.overviewTable.addRow(new Row("Johnny", 50));
+        this.overviewTable.addRow("Joey", 20);
+        this.overviewTable.addRow("Johhny", 50);
 
         return new ViewResponse(this);
     }

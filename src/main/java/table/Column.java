@@ -8,11 +8,11 @@ public class Column {
     private Row row;
 
     private String name;
-    private ColumnView view;
+    private ColumnViewFactory viewFactory;
 
     public Column(String name, ColumnViewFactory viewFactory) {
         this.name = name;
-        this.view = viewFactory.create();
+        this.viewFactory = viewFactory;
     }
 
     public String getName() {
@@ -20,10 +20,10 @@ public class Column {
     }
 
     public ColumnView getView() {
-        return this.view;
+        return this.viewFactory.create();
     }
 
     public boolean match(Object object) {
-        return object.getClass() == this.view.getObjectClass();
+        return object.getClass() == this.getView().getObjectClass();
     }
 }

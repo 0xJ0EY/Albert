@@ -2,9 +2,7 @@ package table;
 
 import table.exceptions.IllegalTableChangeException;
 import table.exceptions.InvalidRowException;
-import table.factories.rows.RowViewFactory;
 import table.strategies.DataStrategy;
-import table.views.RowView;
 import table.views.TableView;
 
 import java.util.ArrayList;
@@ -13,15 +11,13 @@ public class Table {
 
     private DataStrategy strategy;
     private TableView view;
-    private RowViewFactory rowViewFactory;
 
     private ArrayList<Column> cols = new ArrayList<Column>();
     private ArrayList<Row> data = new ArrayList<Row>();
 
-    public Table(DataStrategy strategy, TableView view, RowViewFactory rowViewFactory) {
+    public Table(DataStrategy strategy, TableView view) {
         this.setStrategy(strategy);
         this.setView(view);
-        this.rowViewFactory = rowViewFactory;
     }
 
     private void setStrategy(DataStrategy strategy) {
@@ -50,13 +46,18 @@ public class Table {
         this.cols.add(col);
     }
 
-    public void addRow(Row row) {
-        Object[] data = row.getData();
+    public void addRow(Object... data) {
 
         // Check if the row and columns are the same size
         // Else throw an exception
         if (data.length != cols.size())
             throw new InvalidRowException();
+
+        // Get the index for the new row, indices start at 0
+        int index = this.data.size();
+
+        // Create new row
+        Row row = new Row(index, this);
 
         // Check if the row and columns have the same data type on correct key
         // Else throw an exception
@@ -65,18 +66,11 @@ public class Table {
 
             if ( ! col.match(data[i]))
                 throw new InvalidRowException();
+
+            row.addValue(new Value(col.getView(), data[i]));
         }
 
-        // Set index
-        row.setIndex(this.data.size());
-
-        // Append selected view
-        row.setView(this.rowViewFactory.create());
-
-        // Append current table
-        row.setTable(this);
-
-        // Add row to the dataset
+        // Add row to the table
         this.data.add(row);
     }
 

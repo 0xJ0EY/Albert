@@ -1,6 +1,9 @@
 package table.views;
 
-import javafx.scene.layout.Pane;
+import javafx.geometry.HPos;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Priority;
+import table.Value;
 
 public interface ColumnView<T> {
 
@@ -8,12 +11,18 @@ public interface ColumnView<T> {
 
     public void update();
 
+    public Priority getPriority();
+
+    public HPos getHPos();
+
+    public void setValue(Value value);
+
     /**
      * Return the object required to display this object
      * @return
      */
     public Object getObjectClass();
 
-    public Pane render();
+    public AnchorPane render();
 
 }

@@ -1,13 +1,24 @@
 package table.views.columns;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.HPos;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
+import table.Value;
 import table.exceptions.ViewNotFoundException;
 import table.views.ColumnView;
 
-public class IntColumnView extends Pane implements ColumnView<Integer> {
+public class IntColumnView extends AnchorPane implements ColumnView<Integer> {
 
-    private final String resource = "/views/table/rows/IntColumnView.fxml";
+
+    @FXML
+    private Label label;
+
+    private final String resource = "/views/table/columns/IntColumnView.fxml";
+    private Value value;
 
     @Override
     public void load() {
@@ -19,13 +30,31 @@ public class IntColumnView extends Pane implements ColumnView<Integer> {
         try {
             loader.load();
         } catch (Exception ex) {
+            ex.printStackTrace();;
             throw new ViewNotFoundException();
         }
     }
 
     @Override
     public void update() {
+        int value = (int) this.value.getObject();
 
+        label.setText(Integer.toString(value));
+    }
+
+    @Override
+    public Priority getPriority() {
+        return Priority.SOMETIMES;
+    }
+
+    @Override
+    public HPos getHPos() {
+        return HPos.RIGHT;
+    }
+
+    @Override
+    public void setValue(Value value) {
+        this.value = value;
     }
 
     @Override
@@ -34,7 +63,7 @@ public class IntColumnView extends Pane implements ColumnView<Integer> {
     }
 
     @Override
-    public Pane render() {
+    public AnchorPane render() {
         return this;
     }
 
