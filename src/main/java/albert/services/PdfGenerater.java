@@ -76,7 +76,7 @@ public class PdfGenerater{
         renderer.layout();
 
         // And finally, we create the PDF:
-        OutputStream outputStream = new FileOutputStream(OUTPUT_FILE);
+        OutputStream outputStream = new FileOutputStream(outputFile);
         renderer.createPDF(outputStream);
         outputStream.close();
     }
