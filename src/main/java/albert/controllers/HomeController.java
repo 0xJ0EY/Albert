@@ -11,7 +11,8 @@ import table.Column;
 import table.Table;
 import table.factories.cells.IntCellViewFactory;
 import table.factories.cells.TextCellViewFactory;
-import table.factories.header.CenterHeaderViewFactory;
+import table.factories.header.LeftHeaderViewFactory;
+import table.factories.header.RightHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
 import table.views.tables.BaseTableView;
 
@@ -33,22 +34,34 @@ public class HomeController extends PageController implements OverviewPage, Deta
 
         this.overviewTable.addCol(
             new Column(
-                "firstname",
-                new CenterHeaderViewFactory(),
+                new LeftHeaderViewFactory("Voornaam"),
                 new TextCellViewFactory()
             )
         );
 
         this.overviewTable.addCol(
             new Column(
-                "age",
-                new CenterHeaderViewFactory(),
+                    new LeftHeaderViewFactory("Achternaam"),
+                    new TextCellViewFactory()
+            )
+        );
+
+        this.overviewTable.addCol(
+            new Column(
+                new LeftHeaderViewFactory("Straat"),
+                new TextCellViewFactory()
+            )
+        );
+
+        this.overviewTable.addCol(
+            new Column(
+                new RightHeaderViewFactory("Leeftijd"),
                 new IntCellViewFactory()
             )
         );
 
-        this.overviewTable.addRow("Joey", 20);
-        this.overviewTable.addRow("Johhny", 50);
+        this.overviewTable.addRow("Joey", "De Ruiter", "Valkenburgerweg 7", 20);
+        this.overviewTable.addRow("Johhny", "De Ruiter", "Valkenburgerweg 7", 50);
 
         return new ViewResponse(this);
     }

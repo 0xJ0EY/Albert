@@ -2,7 +2,7 @@ package table.views;
 
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Priority;
-import table.Value;
+import table.Cell;
 
 public interface CellView<T> {
 
@@ -12,7 +12,7 @@ public interface CellView<T> {
 
     public Priority getPriority();
 
-    public void setValue(Value value);
+    public void setCell(Cell cell);
 
     /**
      * Return the object required to display this object

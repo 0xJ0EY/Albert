@@ -43,6 +43,8 @@ public class Table {
         if (this.data.size() > 0)
             throw new IllegalTableChangeException();
 
+        System.out.println("this.cols.size() = " + this.cols.size());
+
         this.cols.add(col);
     }
 
@@ -67,7 +69,7 @@ public class Table {
             if ( ! col.match(data[i]))
                 throw new InvalidRowException();
 
-            row.addValue(new Value(col.getView(), data[i]));
+            row.addCell(new Cell(col.getView(), data[i]));
         }
 
         // Add row to the table

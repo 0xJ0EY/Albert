@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Row {
 
     private Table table;
-    private ArrayList<Value> values = new ArrayList<>();
+    private ArrayList<Cell> cells = new ArrayList<>();
 
     public Row(Table table) {
         this.setTable(table);
@@ -20,7 +20,7 @@ public class Row {
     public ArrayList<CellView> getColumns() {
         ArrayList<CellView> list = new ArrayList<>();
 
-        for (Value value : this.values) {
+        for (Cell value : this.cells) {
             CellView view = value.getView();
 
             view.load();
@@ -37,12 +37,12 @@ public class Row {
         return table;
     }
 
-    public void addValue(Value value) {
+    public void addCell(Cell value) {
         value.setRow(this);
-        this.values.add(value);
+        this.cells.add(value);
     }
 
-    public ArrayList<Value> getValues() {
-        return this.values;
+    public ArrayList<Cell> getCells() {
+        return this.cells;
     }
 }

@@ -15,6 +15,10 @@ public class CenterHeaderView extends AnchorPane implements HeaderView {
     private final String resource = "/views/table/header/CenterHeaderView.fxml";
     private String name;
 
+    public CenterHeaderView(String name) {
+        this.name = name;
+    }
+
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));

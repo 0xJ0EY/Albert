@@ -2,13 +2,13 @@ package table;
 
 import table.views.CellView;
 
-public class Value {
+public class Cell {
 
     private CellView view;
     private Object object;
     private Row row;
 
-    public Value(CellView view, Object object) {
+    public Cell(CellView view, Object object) {
         this.setView(view);
         this.setObject(object);
         this.object = object;
@@ -16,7 +16,7 @@ public class Value {
 
     private void setView(CellView view) {
         this.view = view;
-        this.view.setValue(this);
+        this.view.setCell(this);
     }
 
     private void setObject(Object object) {

@@ -6,7 +6,7 @@ import javafx.scene.layout.*;
 import table.Column;
 import table.Row;
 import table.Table;
-import table.Value;
+import table.Cell;
 import table.exceptions.ViewNotFoundException;
 import table.views.CellView;
 import table.views.HeaderView;
@@ -14,7 +14,6 @@ import table.views.TableView;
 import table.views.column.ColumnView;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class BaseTableView extends AnchorPane implements TableView {
 
@@ -64,7 +63,7 @@ public class BaseTableView extends AnchorPane implements TableView {
 
         this.columns = new ArrayList<>();
 
-        int length = this.table.getData().size();
+        int length = this.table.getCols().size();
 
         for (int i = 0; i < length; i++) {
             ColumnView column = new ColumnView();
@@ -82,11 +81,12 @@ public class BaseTableView extends AnchorPane implements TableView {
         int index = 0;
 
         for (Column col : cols) {
+
+            System.out.println("index = " + index);
+            
             HeaderView view = col.getHeaderView();
 
             view.load();
-
-            view.setName(col.getName());
 
             view.update();
 
@@ -113,9 +113,9 @@ public class BaseTableView extends AnchorPane implements TableView {
 
             int colIndex = 0;
 
-            ArrayList<Value> values = row.getValues();
+            ArrayList<Cell> values = row.getCells();
 
-            for (Value value : values) {
+            for (Cell value : values) {
 
                 CellView view = value.getView();
 

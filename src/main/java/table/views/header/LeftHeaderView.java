@@ -1,21 +1,23 @@
-package table.views.cells;
+package table.views.header;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Priority;
-import table.Cell;
 import table.exceptions.ViewNotFoundException;
-import table.views.CellView;
+import table.views.HeaderView;
 
-public class IntCellView extends AnchorPane implements CellView<Integer> {
+public class LeftHeaderView extends AnchorPane implements HeaderView {
 
     @FXML
     private Label label;
 
-    private final String resource = "/views/table/cells/IntCellView.fxml";
-    private Cell value;
+    private final String resource = "/views/table/header/LeftHeaderView.fxml";
+    private String name;
+
+    public LeftHeaderView(String name) {
+        this.name = name;
+    }
 
     @Override
     public void load() {
@@ -33,29 +35,16 @@ public class IntCellView extends AnchorPane implements CellView<Integer> {
 
     @Override
     public void update() {
-        int value = (int) this.value.getObject();
-
-        label.setText(Integer.toString(value));
+        this.label.setText(this.name);
     }
 
     @Override
-    public Priority getPriority() {
-        return Priority.ALWAYS;
-    }
-
-    @Override
-    public void setCell(Cell cell) {
-        this.value = cell;
-    }
-
-    @Override
-    public Object getObjectClass() {
-        return Integer.class;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public AnchorPane render() {
         return this;
     }
-
 }

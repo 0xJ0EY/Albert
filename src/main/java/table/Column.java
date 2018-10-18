@@ -7,20 +7,12 @@ import table.views.HeaderView;
 
 public class Column {
 
-    private String name;
     private HeaderViewFactory headerViewFactory;
     private CellViewFactory viewFactory;
 
-    public Column(String name,
-                  HeaderViewFactory headerViewFactory,
-                  CellViewFactory viewFactory) {
-        this.name = name;
+    public Column(HeaderViewFactory headerViewFactory, CellViewFactory viewFactory) {
         this.headerViewFactory = headerViewFactory;
         this.viewFactory = viewFactory;
-    }
-
-    public String getName() {
-        return this.name;
     }
 
     public CellView getView() {
