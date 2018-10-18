@@ -11,9 +11,8 @@ import router.templates.TemplateController;
 public class MenuTemplateController implements TemplateController {
 
     private TemplateView view = new MenuView();
-    private PageController pageController;
+    private PageController page;
     protected Router router;
-    private Page page;
 
 
     @Override
@@ -29,8 +28,8 @@ public class MenuTemplateController implements TemplateController {
     }
 
     @Override
-    public Page getPage() {
-        return this.page;
+    public Router getRouter() {
+        return page.getRouter();
     }
 
 

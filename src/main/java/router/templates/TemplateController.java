@@ -11,6 +11,6 @@ public interface TemplateController {
 
     public Parent render();
 
-    public Page getPage();
+    public Router getRouter();
 
 }
