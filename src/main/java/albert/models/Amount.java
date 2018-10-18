@@ -3,7 +3,7 @@ package albert.models;
 public class Amount {
     private double price;
     private double hours;
-    private Contact contact
+    private Contact contact;
 
     public Amount(double price, double hours, Contact contact) {
         this.price = price;

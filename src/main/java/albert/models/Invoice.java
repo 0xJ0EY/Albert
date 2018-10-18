@@ -52,9 +52,15 @@ public class Invoice {
     private Contact contact;
     private ArrayList<Amount> bedragen;
 
-    public Invoice(int id, String name) {
+    /**
+     *
+     * @param id
+     * @param name
+     */
+    public Invoice(int id, String name, ArrayList<Amount> amountArrayList) {
         this.id = id;
         this.name = name;
+        this.bedragen = amountArrayList;
 
     }
 }

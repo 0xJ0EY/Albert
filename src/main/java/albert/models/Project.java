@@ -13,7 +13,7 @@ public class Project {
 
     private List<Contact> contactList;
 
-    private boolean done;
+    private boolean done = false;
 
     private List<Expense> expenseList;
 

@@ -1,6 +1,8 @@
 package albert.views.templates;
 
+import albert.controllers.HomeController;
 import albert.controllers.PageController;
+import albert.views.HomeView;
 import router.templates.TemplateController;
 import router.views.TemplateView;
 import javafx.fxml.FXML;
@@ -51,5 +53,9 @@ public class MenuView extends AnchorPane implements TemplateView {
     @Override
     public Parent render() {
         return this;
+    }
+
+    public void clickOnHome(){
+        return;
     }
 }

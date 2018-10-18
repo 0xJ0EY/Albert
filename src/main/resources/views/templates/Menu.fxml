@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<fx:root minHeight="500.0" minWidth="800.0" style="-fx-background-color: f7f7f7;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="500.0" minWidth="800.0" style="-fx-background-color: f7f7f7;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane minWidth="200.0" prefWidth="200.0" style="-fx-background-color: eeeeee;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -38,7 +38,7 @@
                               <Insets />
                            </opaqueInsets>
                         </Button>
-                        <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="menu_btn_next" textOverrun="WORD_ELLIPSIS">
+                        <Button contentDisplay="CENTER" onAction="#clickOnHome" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="menu_btn_next" textOverrun="WORD_ELLIPSIS">
                            <graphic>
                               <FontAwesomeIconView glyphName="ANGLE_RIGHT" size="25.0" text="" />
                            </graphic>

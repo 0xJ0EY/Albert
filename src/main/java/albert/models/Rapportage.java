@@ -1,18 +1,16 @@
 package albert.models;
 
-public class Rapportage implements ModelSample  {
-    @Override
+public class Rapportage {
+    
     public void setName(String name) {
 
     }
 
-    @Override
     public String getName() {
         return null;
     }
 
-    @Override
     public int getId() {
-
+        return 0;
     }
 }

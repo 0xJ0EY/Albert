@@ -2,6 +2,7 @@ package router.templates;
 
 import albert.controllers.PageController;
 import javafx.scene.Parent;
+import router.Router;
 
 import java.io.IOException;
 
