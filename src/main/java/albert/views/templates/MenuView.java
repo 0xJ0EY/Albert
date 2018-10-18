@@ -56,6 +56,12 @@ public class MenuView extends AnchorPane implements TemplateView {
     }
 
     public void clickOnHome(){
-        return;
+        System.out.println("click on home");
+        controller.getPage().getRouter().nav("home/");
+
+    }
+    public void clickOnRapports(){
+        System.out.println("click on Rapports");
+        controller.getPage().getRouter().nav("invoices/1/");
     }
 }

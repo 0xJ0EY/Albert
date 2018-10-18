@@ -18,7 +18,7 @@
                <children>
                   <HBox alignment="CENTER" layoutX="80.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="menu_btn_home" textOverrun="WORD_ELLIPSIS">
+                        <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#clickOnHome" prefHeight="28.0" prefWidth="28.0" styleClass="menu_btn_home" textOverrun="WORD_ELLIPSIS">
                            <graphic>
                               <FontAwesomeIconView glyphName="HOME" size="25.0" />
                            </graphic>
@@ -38,7 +38,7 @@
                               <Insets />
                            </opaqueInsets>
                         </Button>
-                        <Button contentDisplay="CENTER" onAction="#clickOnHome" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="menu_btn_next" textOverrun="WORD_ELLIPSIS">
+                        <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="menu_btn_next" textOverrun="WORD_ELLIPSIS">
                            <graphic>
                               <FontAwesomeIconView glyphName="ANGLE_RIGHT" size="25.0" text="" />
                            </graphic>
@@ -68,7 +68,7 @@
       <AnchorPane fx:id="page" layoutX="174.0" layoutY="60.0" prefHeight="440.0" prefWidth="658.0" style="-fx-background-color: f7f7f7;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
       <HBox alignment="CENTER_LEFT" maxHeight="50.0" prefHeight="50.0" prefWidth="820.0" style="-fx-background-color: #FF711E;" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" style="-fx-background-color: #00000000;" text="Rapportages">
+            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#clickOnRapports" style="-fx-background-color: #00000000;" text="Rapportages">
                <graphic>
                   <FontAwesomeIconView glyphName="AREA_CHART" size="25.0" />
                </graphic>

@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class RapportsView extends AnchorPane implements PageView {
 
-    private final String resource = "/views/pages/RaportsViews.fxml";
+    private final String resource = "/views/pages/RapportsViews.fxml";
     private PageController controller;
 
     @Override
@@ -37,4 +37,10 @@ public class RapportsView extends AnchorPane implements PageView {
         return this;
     }
 
+    @FXML
+    public void onClickButton() {
+
+        this.controller.getRouter().nav("projects/details/1/");
+
+    }
 }

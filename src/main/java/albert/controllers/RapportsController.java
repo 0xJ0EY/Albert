@@ -1,13 +1,14 @@
 package albert.controllers;
 
 import router.Request;
+import router.pages.DetailPage;
 import router.pages.OverviewPage;
 import router.response.Response;
 import router.response.ViewResponse;
 import router.templates.TemplateController;
 import router.views.PageView;
 
-public class RapportsController extends PageController implements OverviewPage {
+public class RapportsController extends PageController implements OverviewPage, DetailPage {
 
 
     public RapportsController(PageView view, TemplateController template) {
@@ -17,6 +18,11 @@ public class RapportsController extends PageController implements OverviewPage {
 
     @Override
     public Response overview(Request request) {
+        return new ViewResponse(this);
+    }
+
+    @Override
+    public Response detail(Request request) {
         return new ViewResponse(this);
     }
 }
