@@ -32,4 +32,5 @@ public class ContactController extends PageController implements OverviewPage, D
     public Response edit(Request request) {
         return new ViewResponse(this);
     }
+
 }

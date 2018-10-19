@@ -2,45 +2,15 @@ package albert.services;
 
 import java.util.Date;
 
-public interface Data {
+public class Data {
 
-    public String getFirstname();
+    private String city;
 
+    public String getCity() {
+        return city;
+    }
 
-    public void setFirstname(String firstname);
-
-
-    public String getLastname();
-
-
-    public void setLastname(String lastname);
-
-
-    public String getStreet();
-
-
-    public void setStreet(String street);
-
-
-
-    public String getZipCode();
-
-
-
-    public void setZipCode(String zipCode);
-
-
-    public String getCity();
-
-
-
-    public void setCity(String city);
-
-
-    public Date getDate();
-
-
-
-    public void setDate(Date date);
-
+    public void setCity(String city) {
+        this.city = city;
+    }
 }

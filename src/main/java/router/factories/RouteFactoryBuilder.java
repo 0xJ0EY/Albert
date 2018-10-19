@@ -35,7 +35,7 @@ public class RouteFactoryBuilder {
         map.put(new Route("contacts/{page}/"), new OverviewPageAction(new ContactPageFactory()));
         map.put(new Route("contacts/edit/{contacts}/"), new EditPageAction(new ContactEditPageFactory()));
 
-        //Invoice
+        //ContactTemplate
         map.put(new Route("invoices/{page}/"), new OverviewPageAction(new InvoicePageFactory()));
 
         //Rapports

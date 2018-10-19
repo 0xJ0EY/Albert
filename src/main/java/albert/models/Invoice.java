@@ -60,7 +60,7 @@ public class Invoice {
     public Invoice(int id, String name, ArrayList<Amount> amountArrayList) {
         this.id = id;
         this.name = name;
-        this.bedragen = amountArrayList;
+
 
     }
 }
