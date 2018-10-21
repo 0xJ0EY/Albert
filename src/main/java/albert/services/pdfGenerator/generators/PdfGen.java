@@ -4,8 +4,8 @@ import com.itextpdf.text.DocumentException;
 
 import java.io.IOException;
 
-public interface PdfGenerator{
+public interface PdfGen {
 
-    public void generatePdf(Object invoice) throws IOException, DocumentException;
+    public void generatePdf(Object obj) throws IOException, DocumentException;
 
 }

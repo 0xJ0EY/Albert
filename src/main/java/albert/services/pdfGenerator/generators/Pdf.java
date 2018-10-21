@@ -15,6 +15,7 @@ abstract public class Pdf {
     private Stage stage;
 
 
+
     protected String convertToXhtml(String html) throws UnsupportedEncodingException {
         Tidy tidy = new Tidy();
         tidy.setInputEncoding(UTF_8);

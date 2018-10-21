@@ -10,15 +10,16 @@ import java.io.*;
 import java.nio.file.FileSystems;
 
 
-public class PdfInvoice extends Pdf  implements PdfGenerator{
+public class PdfInvoice extends Pdf  implements PdfGen {
 
     private static PdfInvoice instance;
     private static final String templateName = "templateFactuur";
     private Data data = new Data();
     private static final String UTF_8 = "UTF-8";
 
-    @Override
+
 public void generatePdf(Object invoice) throws IOException, DocumentException {
+
 
     Context context = new Context();
     context.setVariable("data", invoice);
