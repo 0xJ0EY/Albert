@@ -82,8 +82,6 @@ public class BaseTableView extends AnchorPane implements TableView {
 
         for (Column col : cols) {
 
-            System.out.println("index = " + index);
-            
             HeaderView view = col.getHeaderView();
 
             view.load();

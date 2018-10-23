@@ -1,5 +1,6 @@
 package table;
 
+import config.Config;
 import table.exceptions.IllegalTableChangeException;
 import table.exceptions.InvalidRowException;
 import table.strategies.DataStrategy;
@@ -8,6 +9,8 @@ import table.views.TableView;
 import java.util.ArrayList;
 
 public class Table {
+
+    private int amountRows = Integer.parseInt(Config.get("config", "database.default_rows"));
 
     private DataStrategy strategy;
     private TableView view;
@@ -26,7 +29,6 @@ public class Table {
             throw new IllegalTableChangeException();
 
         this.strategy = strategy;
-        this.strategy.setTable(this);
     }
 
     private void setView(TableView view) {
@@ -34,16 +36,18 @@ public class Table {
         this.view.setTable(this);
     }
 
+    public void setRowsAmount(int amount) {
+        this.amountRows = amount;
+    }
+
     public void fetch() {
-        this.data = this.strategy.fetch();
+        this.data = this.strategy.fetch(this.amountRows);
     }
 
     public void addCol(Column col) {
         // Do not allow changes to the tables when it already has data.
         if (this.data.size() > 0)
             throw new IllegalTableChangeException();
-
-        System.out.println("this.cols.size() = " + this.cols.size());
 
         this.cols.add(col);
     }
@@ -87,7 +91,7 @@ public class Table {
     public TableView getView() {
 
         // Fetch data
-//        this.fetch();
+        this.fetch();
 
         // Load
         this.view.load();

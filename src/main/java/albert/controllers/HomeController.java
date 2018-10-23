@@ -9,10 +9,10 @@ import router.response.Response;
 import router.response.ViewResponse;
 import table.Column;
 import table.Table;
-import table.factories.cells.IntCellViewFactory;
+import table.dao.ProjectsTableDAO;
+import table.dao.db.DB;
 import table.factories.cells.TextCellViewFactory;
 import table.factories.header.LeftHeaderViewFactory;
-import table.factories.header.RightHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
 import table.views.tables.BaseTableView;
 
@@ -30,38 +30,26 @@ public class HomeController extends PageController implements OverviewPage, Deta
     @Override
     public Response overview(Request request) {
 
-        this.overviewTable = new Table(new DatabaseStrategy(), new BaseTableView());
+        String query = DB.table("projects")
+                .where("name", "=", "test")
+                .where(q -> q
+                        .where("name", "=", "test")
+                        .orWhere("name", "like", "%test%")
+                )
+                .orWhere("name", "like", "%test%")
+                .get();
+
+        System.out.println("query = " + query);
+
+        this.overviewTable = new Table(new DatabaseStrategy(new ProjectsTableDAO()), new BaseTableView());
 
         this.overviewTable.addCol(
             new Column(
-                new LeftHeaderViewFactory("Voornaam"),
+                "name",
+                new LeftHeaderViewFactory("Project naam"),
                 new TextCellViewFactory()
             )
         );
-
-        this.overviewTable.addCol(
-            new Column(
-                    new LeftHeaderViewFactory("Achternaam"),
-                    new TextCellViewFactory()
-            )
-        );
-
-        this.overviewTable.addCol(
-            new Column(
-                new LeftHeaderViewFactory("Straat"),
-                new TextCellViewFactory()
-            )
-        );
-
-        this.overviewTable.addCol(
-            new Column(
-                new RightHeaderViewFactory("Leeftijd"),
-                new IntCellViewFactory()
-            )
-        );
-
-        this.overviewTable.addRow("Joey", "De Ruiter", "Valkenburgerweg 7", 20);
-        this.overviewTable.addRow("Johhny", "De Ruiter", "Valkenburgerweg 7", 50);
 
         return new ViewResponse(this);
     }

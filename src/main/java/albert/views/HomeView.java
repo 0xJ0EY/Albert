@@ -27,7 +27,6 @@ public class HomeView extends AnchorPane implements PageView {
 
     @Override
     public void update() {
-        System.out.println("this.controller.getOverviewTable() = " + this.controller.getOverviewTable());
     }
 
     @Override
