@@ -12,6 +12,8 @@ public interface WhereQuery {
 
     public WhereQuery orWhere(WhereQueryLambda query);
 
-    public String get();
+    public ArrayList<Object> getValues();
+
+    public String createQuery();
 
 }

@@ -1,8 +1,10 @@
 package table.views.tables;
 
+import config.Config;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.*;
+import javafx.scene.text.Text;
 import table.Column;
 import table.Row;
 import table.Table;
@@ -19,6 +21,7 @@ public class BaseTableView extends AnchorPane implements TableView {
 
     private final String resource = "/views/table/tables/BaseTableView.fxml";
     private Table table;
+    private final String descriptionContent = Config.get("database", "text.description");
 
     private ArrayList<ColumnView> columns;
 
@@ -27,6 +30,9 @@ public class BaseTableView extends AnchorPane implements TableView {
 
     @FXML
     private HBox paginationContainer;
+
+    @FXML
+    private Text description;
 
     @Override
     public void load() {
@@ -55,6 +61,9 @@ public class BaseTableView extends AnchorPane implements TableView {
 
         // Render rows to the columns
         this.createRows();
+
+        // Update the text below
+        this.updateText();
 
     }
 
@@ -132,6 +141,17 @@ public class BaseTableView extends AnchorPane implements TableView {
 
             rowIndex++;
         }
+    }
+
+    private void updateText() {
+
+        this.description.setText(
+            String.format(
+                this.descriptionContent,
+                this.table.getCurrentRows(),
+                this.table.getTotalRows()
+            )
+        );
     }
 
     @Override

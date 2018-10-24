@@ -32,4 +32,8 @@ public class Column {
     public boolean match(Object object) {
         return object.getClass() == this.getView().getObjectClass();
     }
+
+    public String getDatabaseColumn() {
+        return databaseColumn;
+    }
 }

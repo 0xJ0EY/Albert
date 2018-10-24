@@ -12,7 +12,7 @@ public class GroupedWhere implements WhereStatement {
 
     @Override
     public String create(boolean first) {
-        return (first ? "" : "AND ") + "(" + query.get() + ") ";
+        return (first ? "" : "AND ") + "(" + query.createQuery() + ") ";
     }
 
 }

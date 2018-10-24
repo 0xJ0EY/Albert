@@ -4,12 +4,10 @@ public class Where implements WhereStatement {
 
     private String key;
     private String operator;
-    private Object value;
 
-    public Where(String key, String operator, Object value) {
+    public Where(String key, String operator) {
         this.key = key;
         this.operator = operator;
-        this.value = value;
     }
 
     public String create(boolean first) {

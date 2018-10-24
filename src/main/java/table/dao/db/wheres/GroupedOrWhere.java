@@ -12,7 +12,7 @@ public class GroupedOrWhere implements WhereStatement {
 
     @Override
     public String create(boolean first) {
-        return (first ? "" : "OR ") + "(" + query.get() + ") ";
+        return (first ? "" : "OR ") + "(" + query.createQuery() + ") ";
     }
 
 }

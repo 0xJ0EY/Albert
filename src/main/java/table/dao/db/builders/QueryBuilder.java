@@ -1,30 +1,109 @@
 package table.dao.db.builders;
 
 import table.dao.db.WhereQuery;
+import table.dao.db.selects.Select;
 
-public class QueryBuilder implements WhereQueryBuilderInterface {
+import java.util.ArrayList;
 
-    private String table;
+public class QueryBuilder implements
+        SelectQueryBuilderInterface,
+        WhereQueryBuilderInterface,
+        TableQueryBuilderInterface,
+        LimitQueryBuilderInterface,
+        OffsetQueryBuilderInterface {
+
+    private SelectQueryBuilder selectQueryBuilder = new SelectQueryBuilder();
+    private TableQueryBuilder tableQueryBuilder = new TableQueryBuilder();
     private WhereQueryBuilder whereQueryBuilder = new WhereQueryBuilder();
+    private LimitQueryBuilder limitQueryBuilder = new LimitQueryBuilder();
+    private OffsetQueryBuilder offsetQueryBuilder = new OffsetQueryBuilder();
 
-    public void where(String key, String operator, Object value) {
-        this.whereQueryBuilder.where(key, operator, value);
+    @Override
+    public void select(String key, Object type) {
+        this.selectQueryBuilder.select(key, type);
     }
 
-    public void orWhere(String key, String operator, Object value) {
-        this.whereQueryBuilder.orWhere(key, operator, value);
+    @Override
+    public ArrayList<Select> getSelected() {
+        return this.selectQueryBuilder.getSelected();
     }
 
+    @Override
+    public void clearSelect() {
+        this.selectQueryBuilder.clearSelect();
+    }
+
+    @Override
+    public void table(String table) {
+        this.tableQueryBuilder.table(table);
+    }
+
+    @Override
+    public void where(String key, String operator) {
+        this.whereQueryBuilder.where(key, operator);
+    }
+
+    @Override
+    public void orWhere(String key, String operator) {
+        this.whereQueryBuilder.orWhere(key, operator);
+    }
+
+    @Override
     public void where(WhereQuery query) {
         this.whereQueryBuilder.where(query);
     }
 
+    @Override
     public void orWhere(WhereQuery query) {
         this.whereQueryBuilder.orWhere(query);
     }
 
+    @Override
+    public void clearWhere() {
+        this.whereQueryBuilder.clearWhere();
+    }
+
+    @Override
+    public void limit(int limit) {
+        this.limitQueryBuilder.limit(limit);
+    }
+
+    @Override
+    public void clearLimit() {
+        this.limitQueryBuilder.clearLimit();
+    }
+
+    @Override
+    public void offset(int offset) {
+        this.offsetQueryBuilder.offset(offset);
+    }
+
+    @Override
+    public void clearOffset() {
+        this.offsetQueryBuilder.clearOffset();
+    }
+
+    @Override
     public String build() {
-        return whereQueryBuilder.build();
+
+        StringBuilder query = new StringBuilder();
+
+        query.append(this.selectQueryBuilder.build());
+
+        query.append(this.tableQueryBuilder.build());
+
+        String where = this.whereQueryBuilder.build();
+
+        if (where.length() > 0) {
+            query.append(" WHERE ");
+            query.append(where);
+        }
+
+        query.append(this.limitQueryBuilder.build());
+
+        query.append(this.offsetQueryBuilder.build());
+
+        return query.toString();
     }
 
 }

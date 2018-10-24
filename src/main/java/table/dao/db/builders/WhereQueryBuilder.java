@@ -9,12 +9,12 @@ public class WhereQueryBuilder implements WhereQueryBuilderInterface {
 
     private ArrayList<WhereStatement> wheres = new ArrayList<>();
 
-    public void where(String key, String operator, Object value) {
-        this.wheres.add(new Where(key, operator, value));
+    public void where(String key, String operator) {
+        this.wheres.add(new Where(key, operator));
     }
 
-    public void orWhere(String key, String operator, Object value) {
-        this.wheres.add(new OrWhere(key, operator, value));
+    public void orWhere(String key, String operator) {
+        this.wheres.add(new OrWhere(key, operator));
     }
 
     public void where(WhereQuery query) {
@@ -31,7 +31,7 @@ public class WhereQueryBuilder implements WhereQueryBuilderInterface {
         StringBuilder query = new StringBuilder();
 
         boolean isFirst = true;
-        
+
         for (WhereStatement statement : this.wheres) {
 
             query.append(statement.create(isFirst));
@@ -40,5 +40,10 @@ public class WhereQueryBuilder implements WhereQueryBuilderInterface {
         }
         
         return query.toString();
+    }
+
+    @Override
+    public void clearWhere() {
+        this.wheres = new ArrayList<>();
     }
 }

@@ -10,10 +10,13 @@ import java.util.ArrayList;
 
 public class Table {
 
-    private int amountRows = Integer.parseInt(Config.get("config", "database.default_rows"));
+    private int amountRows = Integer.parseInt(Config.get("database", "settings.default_rows"));
 
     private DataStrategy strategy;
     private TableView view;
+
+    private int currentRows = 0;
+    private int totalRows = 0;
 
     private ArrayList<Column> cols = new ArrayList<Column>();
     private ArrayList<Row> data = new ArrayList<Row>();
@@ -29,6 +32,8 @@ public class Table {
             throw new IllegalTableChangeException();
 
         this.strategy = strategy;
+        this.strategy.setLimit(this.amountRows);
+        this.strategy.setTable(this);
     }
 
     private void setView(TableView view) {
@@ -41,7 +46,7 @@ public class Table {
     }
 
     public void fetch() {
-        this.data = this.strategy.fetch(this.amountRows);
+        this.strategy.fetch();
     }
 
     public void addCol(Column col) {
@@ -78,6 +83,22 @@ public class Table {
 
         // Add row to the table
         this.data.add(row);
+    }
+
+    public void setTotalRows(int totalRows) {
+        this.totalRows = totalRows;
+    }
+
+    public void setCurrentRows(int currentRows) {
+        this.currentRows = currentRows;
+    }
+
+    public int getCurrentRows() {
+        return currentRows;
+    }
+
+    public int getTotalRows() {
+        return totalRows;
     }
 
     public ArrayList<Column> getCols() {

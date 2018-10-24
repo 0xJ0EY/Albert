@@ -9,8 +9,7 @@ import router.response.Response;
 import router.response.ViewResponse;
 import table.Column;
 import table.Table;
-import table.dao.ProjectsTableDAO;
-import table.dao.db.DB;
+import table.dao.db.Query;
 import table.factories.cells.TextCellViewFactory;
 import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
@@ -30,18 +29,12 @@ public class HomeController extends PageController implements OverviewPage, Deta
     @Override
     public Response overview(Request request) {
 
-        String query = DB.table("projects")
-                .where("name", "=", "test")
-                .where(q -> q
-                        .where("name", "=", "test")
-                        .orWhere("name", "like", "%test%")
-                )
-                .orWhere("name", "like", "%test%")
-                .get();
-
-        System.out.println("query = " + query);
-
-        this.overviewTable = new Table(new DatabaseStrategy(new ProjectsTableDAO()), new BaseTableView());
+        this.overviewTable = new Table(
+                new DatabaseStrategy(
+                    Query.table("projects")
+                ),
+                new BaseTableView()
+        );
 
         this.overviewTable.addCol(
             new Column(
