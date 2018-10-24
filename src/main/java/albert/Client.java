@@ -30,8 +30,8 @@ public class Client extends Application {
 
         Scene scene = new Scene(
             page.getTemplate().render(),
-            this.stage.getWidth(),
-            this.stage.getHeight()
+            this.stage.getWidth()-16,
+            this.stage.getHeight()-39
         );
 
         scene.getStylesheets().add(getClass().getResource("/css/main.css").toExternalForm());
