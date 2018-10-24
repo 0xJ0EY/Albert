@@ -49,8 +49,8 @@ public class IntCellView extends AnchorPane implements CellView<Integer> {
     }
 
     @Override
-    public Object getObjectClass() {
-        return Integer.class;
+    public boolean match(Object object) {
+        return object.getClass() == Integer.class;
     }
 
     @Override

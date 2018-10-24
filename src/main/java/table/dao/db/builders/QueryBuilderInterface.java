@@ -1,6 +1,8 @@
 package table.dao.db.builders;
 
-public interface QueryBuilderInterface {
+import java.io.Serializable;
+
+public interface QueryBuilderInterface extends Serializable {
 
     public String build();
 

@@ -39,8 +39,6 @@ public class HomeView extends AnchorPane implements PageView {
 
         this.controller.getOverviewTable().update();
 
-//        this.controller.getOverviewTable().navigate(2);
-
         return this.controller.getOverviewTable().getView().render();
     }
 

@@ -18,38 +18,23 @@ import table.views.column.ColumnView;
 
 import java.util.ArrayList;
 
-public class BaseTableView extends AnchorPane implements TableView {
+public abstract class BaseTableView extends AnchorPane implements TableView {
 
-    private final String resource = "/views/table/tables/BaseTableView.fxml";
-    private Table table;
-    private final String descriptionContent = Config.get("database", "text.description");
+    protected Table table;
+    protected final String descriptionContent = Config.get("database", "text.description");
 
-    private ArrayList<ColumnView> columns = new ArrayList<>();
-
-    @FXML
-    private HBox container;
+    protected ArrayList<ColumnView> columns = new ArrayList<>();
 
     @FXML
-    private HBox paginationContainer;
+    protected HBox container;
 
     @FXML
-    private Text description;
+    protected HBox paginationContainer;
 
-    @Override
-    public void load() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
+    @FXML
+    protected Text description;
 
-        loader.setController(this);
-        loader.setRoot(this);
-
-        try {
-            loader.load();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            throw new ViewNotFoundException();
-        }
-
-    }
+    public abstract void load();
 
     @Override
     public void update() {

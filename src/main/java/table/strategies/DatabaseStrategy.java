@@ -1,6 +1,7 @@
 package table.strategies;
 
 import config.Config;
+import org.apache.commons.lang.SerializationUtils;
 import table.Column;
 import table.Table;
 import table.dao.db.Query;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 
 public class DatabaseStrategy implements DataStrategy {
 
-    private Query originalBaseQuery;
+    private final Query originalBaseQuery;
     private Query baseQuery;
 
     private Table table;
@@ -23,8 +24,8 @@ public class DatabaseStrategy implements DataStrategy {
     private int limit = Integer.parseInt(Config.get("database", "settings.default_rows"));
 
     public DatabaseStrategy(Query query) {
-        this.baseQuery = query;
-        this.originalBaseQuery = query;
+        this.baseQuery = (Query) SerializationUtils.clone(query);
+        this.originalBaseQuery = (Query) SerializationUtils.clone(query);
     }
 
     @Override
@@ -116,14 +117,19 @@ public class DatabaseStrategy implements DataStrategy {
 
     @Override
     public void search(String str) {
-        if (str.length() == 0) {
-            this.baseQuery = this.originalBaseQuery;
 
-            return;
-        }
+        this.baseQuery = (Query) SerializationUtils.clone(this.originalBaseQuery);
 
-        // Loop through columns
+        // Build filters
+        ArrayList<Column> columns = this.table.getCols();
 
+        this.baseQuery.where(query -> {
+            for (Column column : columns) {
+                query.orWhere(column.getDatabaseColumn(), "ilike", "%" + str + "%");
+            }
+
+            return query;
+        });
 
     }
 }

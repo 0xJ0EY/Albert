@@ -18,6 +18,17 @@ public class QueryBuilder implements
     private LimitQueryBuilder limitQueryBuilder = new LimitQueryBuilder();
     private OffsetQueryBuilder offsetQueryBuilder = new OffsetQueryBuilder();
 
+    public QueryBuilder() {}
+
+    // Copy constructor
+    public QueryBuilder(QueryBuilder qb) {
+        this.selectQueryBuilder = qb.selectQueryBuilder;
+        this.tableQueryBuilder = qb.tableQueryBuilder;
+        this.whereQueryBuilder = qb.whereQueryBuilder;
+        this.limitQueryBuilder = qb.limitQueryBuilder;
+        this.offsetQueryBuilder = qb.offsetQueryBuilder;
+    }
+
     @Override
     public void select(String key, Object type) {
         this.selectQueryBuilder.select(key, type);

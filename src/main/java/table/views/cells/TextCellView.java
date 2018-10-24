@@ -33,7 +33,7 @@ public class TextCellView extends AnchorPane implements CellView<String> {
 
     @Override
     public void update() {
-        String name = (String) this.value.getObject();
+        String name = this.value.getObject().toString();
 
         this.label.setText(name);
     }
@@ -49,8 +49,8 @@ public class TextCellView extends AnchorPane implements CellView<String> {
     }
 
     @Override
-    public Object getObjectClass() {
-        return String.class;
+    public boolean match(Object object) {
+        return true;
     }
 
     @Override

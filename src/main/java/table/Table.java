@@ -123,12 +123,17 @@ public class Table {
         this.update();
     }
 
+    public void search(String query) {
+        this.strategy.search(query);
+
+        // After searching, always go to the first page and update
+        this.navigate(1);
+    }
+
     public void update() {
 
         // Fetch data
         this.fetch();
-
-        System.out.println("new data");
 
         // Update view
         this.view.update();

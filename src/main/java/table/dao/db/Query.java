@@ -4,13 +4,14 @@ import database.Database;
 import table.dao.db.builders.QueryBuilder;
 import table.dao.db.exceptions.DatabaseException;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Query {
+public class Query implements Cloneable, Serializable {
 
     private ArrayList<Object> values = new ArrayList<>();
     private QueryBuilder queryBuilder;

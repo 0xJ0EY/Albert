@@ -1,6 +1,8 @@
 package table.dao.db.selects;
 
-public class Select {
+import java.io.Serializable;
+
+public class Select implements Serializable {
 
     private String key;
     private Object type;

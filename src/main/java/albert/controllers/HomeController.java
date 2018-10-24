@@ -13,7 +13,9 @@ import table.dao.db.Query;
 import table.factories.cells.TextCellViewFactory;
 import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
+import table.views.tables.BareTableView;
 import table.views.tables.BaseTableView;
+import table.views.tables.SearchTableView;
 
 public class HomeController extends PageController implements OverviewPage, DetailPage {
 
@@ -30,16 +32,24 @@ public class HomeController extends PageController implements OverviewPage, Deta
     public Response overview(Request request) {
 
         this.overviewTable = new Table(
-                new DatabaseStrategy(
-                    Query.table("projects")
-                ),
-                new BaseTableView()
+            new DatabaseStrategy(
+                Query.table("projects")
+            ),
+            new SearchTableView()
         );
 
         this.overviewTable.addCol(
             new Column(
                 "name",
                 new LeftHeaderViewFactory("Project naam"),
+                new TextCellViewFactory()
+            )
+        );
+
+        this.overviewTable.addCol(
+            new Column(
+                "created_at::text",
+                new LeftHeaderViewFactory("Datum"),
                 new TextCellViewFactory()
             )
         );

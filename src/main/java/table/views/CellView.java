@@ -18,7 +18,7 @@ public interface CellView<T> {
      * Return the object required to display this object
      * @return
      */
-    public Object getObjectClass();
+    public boolean match(Object object);
 
     public AnchorPane render();
 

@@ -30,7 +30,7 @@ public class Column {
     }
 
     public boolean match(Object object) {
-        return object.getClass() == this.getView().getObjectClass();
+        return this.getView().match(object);
     }
 
     public String getDatabaseColumn() {
