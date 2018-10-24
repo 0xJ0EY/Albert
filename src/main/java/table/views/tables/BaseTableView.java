@@ -3,6 +3,7 @@ package table.views.tables;
 import config.Config;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import table.Column;
@@ -23,7 +24,7 @@ public class BaseTableView extends AnchorPane implements TableView {
     private Table table;
     private final String descriptionContent = Config.get("database", "text.description");
 
-    private ArrayList<ColumnView> columns;
+    private ArrayList<ColumnView> columns = new ArrayList<>();
 
     @FXML
     private HBox container;
@@ -59,11 +60,17 @@ public class BaseTableView extends AnchorPane implements TableView {
         // Create headers
         this.createHeaders();
 
-        // Render rows to the columns
+        // Create the rows with data in the columns
         this.createRows();
+
+        // Actually render the table to the view
+        this.updateTable();
 
         // Update the text below
         this.updateText();
+
+        // Create pagination
+        this.createPagination();
 
     }
 
@@ -143,6 +150,39 @@ public class BaseTableView extends AnchorPane implements TableView {
         }
     }
 
+    private void createPagination() {
+
+        this.createPreviousButton();
+        this.createPageNumberButtons();
+        this.createNextButton();
+
+    }
+
+    private void createPreviousButton() {
+
+    }
+
+    private void createPageNumberButtons() {
+
+        int minPage = 1;
+        int maxPage = this.table.getMaxPage();
+
+        this.paginationContainer.getChildren().clear();
+
+        for (int i = minPage; i <= maxPage; i++) {
+
+            PaginationButton nextButton = new PaginationButton(Integer.toString(i), i, this.table);
+
+
+            this.paginationContainer.getChildren().add(nextButton);
+        }
+
+    }
+
+    private void createNextButton() {
+
+    }
+
     private void updateText() {
 
         this.description.setText(
@@ -154,14 +194,7 @@ public class BaseTableView extends AnchorPane implements TableView {
         );
     }
 
-    @Override
-    public void setTable(Table table) {
-        this.table = table;
-    }
-
-    @Override
-    public AnchorPane render() {
-
+    private void updateTable() {
         this.container.getChildren().clear();
 
         ArrayList<VBox> columns = new ArrayList<>();
@@ -176,7 +209,15 @@ public class BaseTableView extends AnchorPane implements TableView {
         }
 
         this.container.getChildren().addAll(columns);
+    }
 
+    @Override
+    public void setTable(Table table) {
+        this.table = table;
+    }
+
+    @Override
+    public AnchorPane render() {
         return this;
     }
 }

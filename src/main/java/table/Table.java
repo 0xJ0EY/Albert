@@ -32,13 +32,13 @@ public class Table {
             throw new IllegalTableChangeException();
 
         this.strategy = strategy;
-        this.strategy.setLimit(this.amountRows);
         this.strategy.setTable(this);
     }
 
     private void setView(TableView view) {
         this.view = view;
         this.view.setTable(this);
+        this.view.load();
     }
 
     public void setRowsAmount(int amount) {
@@ -46,6 +46,10 @@ public class Table {
     }
 
     public void fetch() {
+        // Clear old data set
+        this.data = new ArrayList<>();
+
+        // Fetch new data set
         this.strategy.fetch();
     }
 
@@ -109,16 +113,29 @@ public class Table {
         return this.data;
     }
 
-    public TableView getView() {
+
+    public int getMaxPage() {
+        return this.strategy.getMaxPage();
+    }
+
+    public void navigate(int page) {
+        this.strategy.setPage(page);
+        this.update();
+    }
+
+    public void update() {
 
         // Fetch data
         this.fetch();
 
-        // Load
-        this.view.load();
+        System.out.println("new data");
 
+        // Update view
         this.view.update();
 
+    }
+
+    public TableView getView() {
         return this.view;
     }
 

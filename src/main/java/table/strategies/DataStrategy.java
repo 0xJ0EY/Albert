@@ -6,11 +6,9 @@ import table.enumerations.OrderBy;
 
 public interface DataStrategy {
 
-    public void setOffset(int offset);
+    public int getMaxPage();
 
-    public void setLimit(int limit);
-
-    public void resetOffset();
+    public void setPage(int page);
 
     public void setTable(Table table);
 

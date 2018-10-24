@@ -1,5 +1,6 @@
 package table.strategies;
 
+import config.Config;
 import table.Column;
 import table.Table;
 import table.dao.db.Query;
@@ -15,8 +16,11 @@ public class DatabaseStrategy implements DataStrategy {
 
     private Table table;
 
+    private int page;
+    private int total = 0;
+
     private int offset = 0;
-    private int limit = -1;
+    private int limit = Integer.parseInt(Config.get("database", "settings.default_rows"));
 
     public DatabaseStrategy(Query query) {
         this.baseQuery = query;
@@ -24,18 +28,16 @@ public class DatabaseStrategy implements DataStrategy {
     }
 
     @Override
-    public void setOffset(int offset) {
-        this.offset = offset;
+    public int getMaxPage() {
+        return (int) Math.ceil((double) this.total / this.limit);
     }
 
     @Override
-    public void setLimit(int limit) {
-        this.limit = limit;
-    }
+    public void setPage(int page) {
+        page = Math.max(1, page);
 
-    @Override
-    public void resetOffset() {
-        this.offset = 0;
+        this.page = page;
+        this.offset = (page - 1) * limit;
     }
 
     public void setTable(Table table) {
@@ -96,7 +98,8 @@ public class DatabaseStrategy implements DataStrategy {
 
         Record record = countQuery.fetch().get(0);
 
-        this.table.setTotalRows(((Long) record.getObjects().get(0)).intValue());
+        this.total = ((Long) record.getObjects().get(0)).intValue();
+        this.table.setTotalRows(this.total);
     }
 
     public void currentRows() {
