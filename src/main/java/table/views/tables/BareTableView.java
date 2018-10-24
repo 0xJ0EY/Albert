@@ -6,7 +6,7 @@ import table.views.TableView;
 
 public class BareTableView extends BaseTableView implements TableView {
 
-    private final String resource = "/views/table/tables/BaseTableView.fxml";
+    private final String resource = "/views/table/tables/BareTableView.fxml";
 
     @Override
     public void load() {

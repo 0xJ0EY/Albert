@@ -30,7 +30,13 @@ dependencies {
 
     // ini4j, ini reader
     compile 'org.ini4j:ini4j:0.5.4'
-    compile 'de.jensd:fontawesomefx:8.9'}
+
+    // Fontawesome
+    compile 'de.jensd:fontawesomefx:8.9'
+
+    // Apache Commons Lang
+    compile 'commons-lang:commons-lang:2.6'
+}
 
 test {
     useJUnitPlatform()
