@@ -30,30 +30,6 @@ public class HomeController extends PageController implements OverviewPage, Deta
 
     @Override
     public Response overview(Request request) {
-
-        this.overviewTable = new Table(
-            new DatabaseStrategy(
-                Query.table("projects")
-            ),
-            new SearchTableView()
-        );
-
-        this.overviewTable.addCol(
-            new Column(
-                "name",
-                new LeftHeaderViewFactory("Project naam"),
-                new TextCellViewFactory()
-            )
-        );
-
-        this.overviewTable.addCol(
-            new Column(
-                "created_at::text",
-                new LeftHeaderViewFactory("Datum"),
-                new TextCellViewFactory()
-            )
-        );
-
         return new ViewResponse(this);
     }
 
