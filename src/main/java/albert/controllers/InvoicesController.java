@@ -8,9 +8,10 @@ import router.response.ViewResponse;
 import router.templates.TemplateController;
 import router.views.PageView;
 
-import javax.xml.soap.Detail;
+import java.io.IOException;
 
 public class InvoicesController extends PageController implements OverviewPage, DetailPage {
+
     public InvoicesController(PageView view, TemplateController template) {
         super(view, template);
     }
@@ -24,4 +25,5 @@ public class InvoicesController extends PageController implements OverviewPage, 
     public Response detail(Request request) {
         return new ViewResponse(this);
     }
+
 }

@@ -2,6 +2,9 @@ package albert.views;
 
 import albert.controllers.HomeController;
 import albert.controllers.PageController;
+import albert.models.Invoice;
+import albert.services.PdfService;
+import com.itextpdf.text.DocumentException;
 import router.views.PageView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
