@@ -1,14 +1,14 @@
 package albert.views;
 
 import albert.controllers.PageController;
-import javafx.fxml.FXML;
 import router.views.PageView;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
-public class ContactsView extends AnchorPane implements PageView {
+public class InvoiceEditView extends AnchorPane implements PageView {
 
-    private final String resource = "/views/pages/ContactView.fxml";
+    private final String resource = "/views/pages/InvoiceEditDetail.fxml";
     private PageController controller;
 
     @Override
@@ -41,15 +41,7 @@ public class ContactsView extends AnchorPane implements PageView {
     }
 
     @FXML
-    public void onClickEditContact(){
-        controller.getRouter().nav("contacts/edit/{contacts}/");
+    public void onClickButton() {
+        this.controller.getRouter().nav("home/");
     }
-
-    @FXML
-    public void onClickAddContact(){
-        System.out.println("Click on add Contacts");
-        controller.getRouter().nav("contacts/create/{new}");
-    }
-
-
 }

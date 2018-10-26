@@ -1,5 +1,6 @@
 package albert.controllers;
 
+import router.pages.CreatePage;
 import router.pages.EditPage;
 import router.pages.OverviewPage;
 import router.templates.TemplateController;
@@ -9,7 +10,7 @@ import router.Request;
 import router.response.Response;
 import router.response.ViewResponse;
 
-public class ContactController extends PageController implements OverviewPage, DetailPage, EditPage {
+public class ContactController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
 
     public ContactController(
             PageView view,
@@ -33,4 +34,8 @@ public class ContactController extends PageController implements OverviewPage, D
         return new ViewResponse(this);
     }
 
+    @Override
+    public Response create(Request request) {
+        return new ViewResponse(this);
+    }
 }

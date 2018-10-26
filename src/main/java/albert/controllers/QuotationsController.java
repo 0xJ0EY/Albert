@@ -1,20 +1,17 @@
 package albert.controllers;
 
+import router.Request;
+import router.pages.DetailPage;
 import router.pages.EditPage;
 import router.pages.OverviewPage;
-import router.templates.TemplateController;
-import router.pages.DetailPage;
-import router.views.PageView;
-import router.Request;
 import router.response.Response;
 import router.response.ViewResponse;
+import router.templates.TemplateController;
+import router.views.PageView;
 
-public class ProjectsController extends PageController implements OverviewPage, DetailPage, EditPage {
 
-    public ProjectsController(
-            PageView view,
-            TemplateController template
-    ) {
+public class QuotationsController extends PageController implements OverviewPage, DetailPage, EditPage {
+    public QuotationsController(PageView view, TemplateController template) {
         super(view, template);
     }
 
