@@ -15,6 +15,8 @@ public class Router {
     private ArrayList<String> history = new ArrayList<>();
     private HashMap<Route, Action> routes = (new RouteFactoryBuilder()).routes();
 
+    private int historyIndex = 0;
+
     public Router(Client client) {
         this.client = client;
     }
@@ -47,8 +49,15 @@ public class Router {
     }
 
     public void nav(String url) {
+        this.nav(url, true);
+    }
+
+    public void nav(String url, boolean history) {
 
         Response response;
+
+        if (history)
+            this.addToHistory(url);
 
         try {
             // Fetch response
@@ -59,5 +68,51 @@ public class Router {
         }
 
         response.execute(this);
+
+    }
+
+    private void addToHistory(String url) {
+
+        // Delete left over history, this is not needed anymore
+        if (this.historyIndex < this.history.size() - 1) {
+
+            // Delete the history back to front
+            for (int i = this.history.size() - 1; i > this.historyIndex; i--) {
+                this.history.remove(i);
+            }
+        }
+
+        this.history.add(url);
+        this.historyIndex = this.history.size() - 1;
+    }
+
+    public boolean hasItems() {
+        return this.history.size() > 0;
+    }
+
+    public boolean hasPrevious() {
+        return this.hasItems() && this.historyIndex > 0;
+    }
+
+    public boolean hasNext() {
+        return this.hasItems() && this.historyIndex < this.history.size() - 1;
+    }
+
+    public void navToPrevious() {
+        // Get previous history
+        String route = this.history.get(--this.historyIndex);
+
+        // Route to the new history
+        this.nav(route, false);
+
+    }
+
+    public void navToNext() {
+        // Get next history
+        String route = this.history.get(++this.historyIndex);
+
+        // Route to the new history
+        this.nav(route, false);
+
     }
 }

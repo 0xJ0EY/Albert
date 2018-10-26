@@ -3,8 +3,11 @@ package albert;
 import albert.controllers.PageController;
 import config.Config;
 import javafx.application.Application;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import router.Router;
 
@@ -17,16 +20,23 @@ public class Client extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        this.stage = stage;
+            stage.addEventHandler(KeyEvent.KEY_PRESSED, e -> {
+                if (e.getCode() == KeyCode.F1) {
+                    System.out.println("HELP ME");
+                }
+            });
 
-        // Set application title
-        this.stage.setTitle(Config.get("config", "application.name"));
+            this.stage = stage;
 
-        this.router.nav("home");
+            // Set application title
+            this.stage.setTitle(Config.get("config", "application.name"));
 
-        this.stage.show();
+            this.router.nav("home");
+
+
+            this.stage.show();
+
     }
-
     public void renderPage(PageController page) {
 
         Scene scene = new Scene(

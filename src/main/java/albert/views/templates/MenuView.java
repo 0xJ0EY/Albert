@@ -3,7 +3,10 @@ package albert.views.templates;
 import albert.controllers.HomeController;
 import albert.controllers.PageController;
 import albert.views.HomeView;
+import javafx.scene.control.Button;
+import router.Router;
 import router.templates.TemplateController;
+import router.views.PageView;
 import router.views.TemplateView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,8 +22,14 @@ public class MenuView extends AnchorPane implements TemplateView {
     private final String resource = "/views/templates/Menu.fxml";
     private TemplateController controller;
 
+    @FXML
+    private Button backButton;
+
+    @FXML
+    private Button nextButton;
+
     @Override
-    public void load(PageController page) {
+    public void load() {
 
         // Load from FXML
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
@@ -33,8 +42,21 @@ public class MenuView extends AnchorPane implements TemplateView {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
 
-        AnchorPane panel = page.getView().render();
+    @Override
+    public void update() {
+
+        this.updateHistoryButtons();
+
+        // Fetch the view of the page
+        PageView pageView = this.controller.getPage().getView();
+
+        // Update the view before rendering it
+        pageView.update();
+
+        // Render the page
+        AnchorPane panel = pageView.render();
 
         // Anchor the panel to the sides of the parent AnchorPane
         AnchorPane.setTopAnchor(panel, 0d);
@@ -44,6 +66,23 @@ public class MenuView extends AnchorPane implements TemplateView {
 
         this.page.getChildren().setAll(panel);
     }
+
+
+    private void updateHistoryButtons() {
+        this.updateNextButton();
+        this.updateBackButton();
+    }
+
+    private void updateBackButton() {
+        Router router = this.controller.getRouter();
+        this.backButton.setDisable( ! router.hasPrevious());
+    }
+
+    private void updateNextButton() {
+        Router router = this.controller.getRouter();
+        this.nextButton.setDisable( ! router.hasNext());
+    }
+
 
     @Override
     public void setController(TemplateController controller) {
@@ -55,13 +94,34 @@ public class MenuView extends AnchorPane implements TemplateView {
         return this;
     }
 
-    public void clickOnHome(){
-        System.out.println("click on home");
+    public void onClickHomeButton(){
         controller.getRouter().nav("home/");
-
     }
+
+    public void onClickBackButton() {
+        Router router = this.controller.getRouter();
+        router.navToPrevious();
+    }
+
+    public void onClickNextButton() {
+        Router router = this.controller.getRouter();
+        router.navToNext();
+    }
+
     public void clickOnRapports(){
-        System.out.println("click on Rapports");
         controller.getRouter().nav("rapports/1/");
+    }
+
+    public void clickOnContacts()
+    {
+        System.out.println("click on Contacts");
+
+        controller.getRouter().nav("contacts/{page}");
+    }
+
+    public void clickOnSettings(){
+        System.out.println("click on Settings");
+
+        controller.getRouter().nav("settings/{page}");
     }
 }

@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class InvoiceView extends AnchorPane implements PageView {
 
-    private final String resource = "/views/pages/Projects.fxml";
+    private final String resource = "/views/pages/InvoiceView.fxml";
     private PageController controller;
 
     @Override
@@ -25,6 +25,11 @@ public class InvoiceView extends AnchorPane implements PageView {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    @Override
+    public void update() {
+
     }
 
     @Override
