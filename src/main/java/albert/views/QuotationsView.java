@@ -1,4 +1,4 @@
-package albert.views.pages;
+package albert.views;
 
 import albert.controllers.PageController;
 import router.views.PageView;
@@ -8,9 +8,9 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class ContactDetailView extends AnchorPane implements PageView {
+public class QuotationsView extends AnchorPane implements PageView {
 
-    private final String resource = "/views/pages/ContactDetailView.fxml";
+    private final String resource = "/views/pages/QuotationsView.fxml";
     private PageController controller;
 
     @Override

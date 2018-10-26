@@ -1,16 +1,16 @@
 package albert.views;
 
 import albert.controllers.PageController;
+import router.views.PageView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
-import router.views.PageView;
 
 import java.io.IOException;
 
-public class InvoiceView extends AnchorPane implements PageView {
+public class ContactDetailView extends AnchorPane implements PageView {
 
-    private final String resource = "/views/pages/InvoiceView.fxml";
+    private final String resource = "/views/pages/ContactDetailView.fxml";
     private PageController controller;
 
     @Override
@@ -37,4 +37,10 @@ public class InvoiceView extends AnchorPane implements PageView {
         return this;
     }
 
+    @FXML
+    public void onClickButton() {
+
+        this.controller.getRouter().nav("projects/details/1/");
+
+    }
 }

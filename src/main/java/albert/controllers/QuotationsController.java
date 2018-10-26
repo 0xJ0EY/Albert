@@ -9,10 +9,9 @@ import router.response.ViewResponse;
 import router.templates.TemplateController;
 import router.views.PageView;
 
-import javax.xml.soap.Detail;
 
-public class InvoicesController extends PageController implements OverviewPage, DetailPage, EditPage {
-    public InvoicesController(PageView view, TemplateController template) {
+public class QuotationsController extends PageController implements OverviewPage, DetailPage, EditPage {
+    public QuotationsController(PageView view, TemplateController template) {
         super(view, template);
     }
 
@@ -30,5 +29,4 @@ public class InvoicesController extends PageController implements OverviewPage, 
     public Response edit(Request request) {
         return new ViewResponse(this);
     }
-
 }

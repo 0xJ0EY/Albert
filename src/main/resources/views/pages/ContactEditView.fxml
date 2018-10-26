@@ -13,7 +13,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <fx:root style="-fx-background-color: white;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane prefHeight="630.0" prefWidth="1020.0" style="-fx-background-color: #EDEDED;">
@@ -30,12 +29,17 @@
                                  </font>
                               </Text>
                               <TextField />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="52.580078125">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Achternaam" wrappingWidth="75.580078125">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Achternaam" wrappingWidth="75.580078125">
+                              <TextField />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="31.0" prefWidth="1020.0" spacing="10.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ContactID:" wrappingWidth="70.1962890625">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -77,11 +81,6 @@
                                  </font>
                               </Text>
                               <TextField prefHeight="25.0" prefWidth="146.0" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="60.0">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Text>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Woonplaats">
                                  <font>
                                     <Font size="14.0" />
