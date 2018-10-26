@@ -1,4 +1,4 @@
-package table.dao.db.selects;
+package query.selects;
 
 import java.io.Serializable;
 

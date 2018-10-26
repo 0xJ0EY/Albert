@@ -1,6 +1,6 @@
-package table.dao.db.wheres;
+package query.wheres;
 
-import table.dao.db.WhereQuery;
+import query.WhereQuery;
 
 public class GroupedWhere implements WhereStatement {
 
