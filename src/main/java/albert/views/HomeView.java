@@ -48,16 +48,6 @@ public class HomeView extends AnchorPane implements PageView {
         controller.getRouter().nav("invoices/1");
     }
     public void clickOnRapports(){
-        Invoice invoice = new Invoice();
-        invoice.setName("Joey");
-
-        try {
-            PdfService.getInstance().generateInvoicePdf(invoice);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (DocumentException e) {
-            e.printStackTrace();
-        }
         System.out.println("print Rapports");
         controller.getRouter().nav("rapports/1");
     }

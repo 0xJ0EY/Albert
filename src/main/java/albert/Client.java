@@ -18,6 +18,11 @@ public class Client extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
+            stage.addEventHandler(KeyEvent.KEY_PRESSED, e -> {
+                if (e.getCode() == KeyCode.F1) {
+                    System.out.println("HELP ME");
+                }
+            });
 
             this.stage = stage;
 
@@ -26,17 +31,9 @@ public class Client extends Application {
 
             this.router.nav("home");
 
-        try {
-            stage.addEventHandler(KeyEvent.ANY, e -> {
-                if (e.getCode() == KeyCode.F1) {
-                    System.out.println("HELP ME");
-                }
-            });
+
             this.stage.show();
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-        }
+
     }
     public void renderPage(PageController page) {
 

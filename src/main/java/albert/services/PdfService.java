@@ -1,6 +1,7 @@
 package albert.services;
 
 import albert.models.Invoice;
+import albert.models.Rapportage;
 import com.itextpdf.text.DocumentException;
 import javafx.stage.Stage;
 import org.thymeleaf.TemplateEngine;
@@ -40,7 +41,7 @@ public class PdfService {
     public boolean generateInvoicePdf(Invoice invoice) throws IOException, DocumentException {
 
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-        templateResolver.setPrefix("templates/Invoice/");
+        templateResolver.setPrefix("templates/invoice/");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode(HTML);
         templateResolver.setCharacterEncoding(UTF_8);
@@ -48,12 +49,11 @@ public class PdfService {
         TemplateEngine templateEngine = new TemplateEngine();
         templateEngine.setTemplateResolver(templateResolver);
 
-
         Context context = new Context();
         context.setVariable("data", invoice);
 
 
-        String renderedHtmlContent = templateEngine.process("templateFactuur", context);
+        String renderedHtmlContent = templateEngine.process("templateInvoice", context);
         String xHtml = convertToXhtml(renderedHtmlContent);
 
         ITextRenderer renderer = new ITextRenderer();
@@ -73,7 +73,42 @@ public class PdfService {
         return true;
 
     }
-    private boolean generateRepports(){
+    private boolean generateRepports(Rapportage rapportage) throws IOException, DocumentException {
+
+        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+        templateResolver.setPrefix("templates/invoice/");
+        templateResolver.setSuffix(".html");
+        templateResolver.setTemplateMode(HTML);
+        templateResolver.setCharacterEncoding(UTF_8);
+
+        TemplateEngine templateEngine = new TemplateEngine();
+        templateEngine.setTemplateResolver(templateResolver);
+
+        Context context = new Context();
+        context.setVariable("data", rapportage);
+
+
+        String renderedHtmlContent = templateEngine.process("templateInvoice", context);
+        String xHtml = convertToXhtml(renderedHtmlContent);
+
+        ITextRenderer renderer = new ITextRenderer();
+
+        String baseUrl = FileSystems
+                .getDefault()
+                .getPath("src", "main", "resources", "/")
+                .toUri()
+                .toURL()
+                .toString();
+        renderer.setDocumentFromString(xHtml, baseUrl);
+        renderer.layout();
+
+        OutputStream outputStream = new FileOutputStream("src/main/resources/rapportgage.pdf");
+        renderer.createPDF(outputStream);
+        outputStream.close();
+        return true;
+    }
+
+    private void setParms(){
 
     }
     private String convertToXhtml(String html) throws UnsupportedEncodingException {

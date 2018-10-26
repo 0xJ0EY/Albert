@@ -57,7 +57,7 @@ public class Invoice {
      * @param id
      * @param name
      */
-    /*public Invoice(int id, String name, ArrayList<Amount> amountArrayList) {
+    /*public invoice(int id, String name, ArrayList<Amount> amountArrayList) {
         this.id = id;
         this.name = name;
 
