@@ -60,7 +60,7 @@ public class PdfService {
 
         String baseUrl = FileSystems
                 .getDefault()
-                .getPath("src", "main", "resources", "/")
+                .getPath("src", "main", "resources","/")
                 .toUri()
                 .toURL()
                 .toString();
@@ -76,7 +76,7 @@ public class PdfService {
     private boolean generateRepports(Rapportage rapportage) throws IOException, DocumentException {
 
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-        templateResolver.setPrefix("templates/invoice/");
+        templateResolver.setPrefix("templates/rapportage/");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode(HTML);
         templateResolver.setCharacterEncoding(UTF_8);
@@ -88,7 +88,7 @@ public class PdfService {
         context.setVariable("data", rapportage);
 
 
-        String renderedHtmlContent = templateEngine.process("templateInvoice", context);
+        String renderedHtmlContent = templateEngine.process("templateRapportage", context);
         String xHtml = convertToXhtml(renderedHtmlContent);
 
         ITextRenderer renderer = new ITextRenderer();
@@ -102,7 +102,7 @@ public class PdfService {
         renderer.setDocumentFromString(xHtml, baseUrl);
         renderer.layout();
 
-        OutputStream outputStream = new FileOutputStream("src/main/resources/rapportgage.pdf");
+        OutputStream outputStream = new FileOutputStream("src/main/resources/rapportage.pdf");
         renderer.createPDF(outputStream);
         outputStream.close();
         return true;
