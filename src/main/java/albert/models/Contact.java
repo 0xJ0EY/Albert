@@ -13,7 +13,7 @@ public class Contact {
 
     private String addres;
 
-    private int telephoneNumber;
+    private String telephoneNumber;
 
     private String postcode;
 
@@ -31,9 +31,42 @@ public class Contact {
 
     private String houseNumber;
 
+    /**
+     *
+     * @param firstName
+     * @param lastName
+     */
+    public Contact(String firstName, String lastName){
+        this.firstName= firstName;
+        this.lastName = lastName;
+    }
+//TODO added telephonenumber
 
-    public Contact(){
-
+    /**
+     *
+     * @param firstName
+     * @param lastName
+     * @param housenumber
+     * @param telephoneNumber
+     * @param postcode
+     * @param email
+     * @param website
+     * @param beschrijving
+     * @param straatnaam
+     * @param woonplaats
+     */
+    public Contact(String firstName, String lastName, String housenumber, String telephoneNumber, String postcode, String email, String website, String beschrijving, String straatnaam, String woonplaats) {
+        this.name = firstName + lastName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.addres = housenumber;
+        this.telephoneNumber = telephoneNumber;
+        this.postcode = postcode;
+        this.email = email;
+        this.website = website;
+        this.beschrijving = beschrijving;
+        this.straatnaam = straatnaam;
+        this.woonplaats = woonplaats;
     }
 
     public String getHouseNumber() {
@@ -44,7 +77,6 @@ public class Contact {
         this.houseNumber = houseNumber;
     }
 
-    private Project project;
 
     public void setId(int id) {
         this.id = id;
@@ -74,11 +106,11 @@ public class Contact {
         this.addres = addres;
     }
 
-    public int getTelephoneNumber() {
+    public String getTelephoneNumber() {
         return telephoneNumber;
     }
 
-    public void setTelephoneNumber(int telephoneNumber) {
+    public void setTelephoneNumber(String telephoneNumber) {
         this.telephoneNumber = telephoneNumber;
     }
 
@@ -129,14 +161,7 @@ public class Contact {
     public void setWoonplaats(String woonplaats) {
         this.woonplaats = woonplaats;
     }
-    
-    public Project getProject() {
-        return project;
-    }
 
-    public void setProject(Project project) {
-        this.project = project;
-    }
 
     public void setName(String name) {
 
