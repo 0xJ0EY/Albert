@@ -4,6 +4,8 @@ import albert.controllers.PageController;
 import config.Config;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import router.Router;
 
@@ -16,16 +18,26 @@ public class Client extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        this.stage = stage;
 
-        // Set application title
-        this.stage.setTitle(Config.get("config", "application.name"));
+            this.stage = stage;
 
-        this.router.nav("home");
+            // Set application title
+            this.stage.setTitle(Config.get("config", "application.name"));
 
-        this.stage.show();
+            this.router.nav("home");
+
+        try {
+            stage.addEventHandler(KeyEvent.ANY, e -> {
+                if (e.getCode() == KeyCode.F1) {
+                    System.out.println("HELP ME");
+                }
+            });
+            this.stage.show();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
     }
-
     public void renderPage(PageController page) {
 
         Scene scene = new Scene(
