@@ -26,6 +26,11 @@ public class QuotationsDetailView extends AnchorPane implements PageView {
     }
 
     @Override
+    public void update() {
+
+    }
+
+    @Override
     public void setController(PageController controller) {
         this.controller = controller;
     }
