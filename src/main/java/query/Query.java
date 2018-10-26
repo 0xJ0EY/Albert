@@ -1,8 +1,8 @@
-package table.dao.db;
+package query;
 
 import database.Database;
-import table.dao.db.builders.QueryBuilder;
-import table.dao.db.exceptions.DatabaseException;
+import query.builders.QueryBuilder;
+import query.exceptions.DatabaseException;
 
 import java.io.Serializable;
 import java.sql.Connection;

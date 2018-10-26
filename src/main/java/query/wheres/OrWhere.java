@@ -1,4 +1,4 @@
-package table.dao.db.wheres;
+package query.wheres;
 
 public class OrWhere implements WhereStatement {
     private String key;

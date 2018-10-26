@@ -1,4 +1,4 @@
-package table.dao.db.builders;
+package query.builders;
 
 import java.io.Serializable;
 

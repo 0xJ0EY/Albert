@@ -3,7 +3,9 @@ package albert;
 import albert.controllers.PageController;
 import config.Config;
 import javafx.application.Application;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import router.Router;
 

@@ -4,8 +4,8 @@ import config.Config;
 import org.apache.commons.lang.SerializationUtils;
 import table.Column;
 import table.Table;
-import table.dao.db.Query;
-import table.dao.db.Record;
+import query.Query;
+import query.Record;
 import table.enumerations.OrderBy;
 
 import java.util.ArrayList;

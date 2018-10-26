@@ -1,6 +1,6 @@
-package table.dao.db.builders;
+package query.builders;
 
-import table.dao.db.WhereQuery;
+import query.WhereQuery;
 
 public interface WhereQueryBuilderInterface extends QueryBuilderInterface {
 
