@@ -14,11 +14,11 @@
    <children>
       <AnchorPane minWidth="200.0" prefWidth="200.0" style="-fx-background-color: eeeeee;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane minHeight="50.0" style="-fx-background-color: #6CB0E5;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane minHeight="50.0" prefHeight="53.0" prefWidth="200.0" style="-fx-background-color: #6CB0E5;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <HBox alignment="CENTER" layoutX="80.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="menu_btn_home" textOverrun="WORD_ELLIPSIS">
+                        <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#clickOnHome" prefHeight="28.0" prefWidth="28.0" styleClass="menu_btn_home" textOverrun="WORD_ELLIPSIS">
                            <graphic>
                               <FontAwesomeIconView glyphName="HOME" size="25.0" />
                            </graphic>
@@ -63,14 +63,27 @@
                   <Font name="SansSerif Bold" size="12.0" />
                </font>
             </Text>
+            <Button contentDisplay="TOP" layoutX="6.0" layoutY="474.0" mnemonicParsing="false" onAction="#clickOnSettings" style="-fx-background-color: #00000000;" text="Instellingen">
+               <graphic>
+                  <FontAwesomeIconView glyphName="COG" size="16.0" />
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="page" layoutX="174.0" layoutY="60.0" prefHeight="440.0" prefWidth="658.0" style="-fx-background-color: f7f7f7;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
-      <HBox alignment="CENTER_LEFT" maxHeight="50.0" prefHeight="50.0" prefWidth="820.0" style="-fx-background-color: #FF711E;" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="CENTER_LEFT" maxHeight="50.0" prefHeight="0.0" prefWidth="820.0" spacing="10.0" style="-fx-background-color: #FF711E;" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" style="-fx-background-color: #00000000;" text="Rapportages">
+            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#clickOnRapports" style="-fx-background-color: #00000000;" text="Rapportages">
                <graphic>
                   <FontAwesomeIconView glyphName="AREA_CHART" size="25.0" />
+               </graphic>
+               <font>
+                  <Font name="SansSerif Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#clickOnContacts" style="-fx-background-color: #00000000;" text="Contacten">
+               <graphic>
+                  <FontAwesomeIconView glyphName="BOOK" size="25.0" />
                </graphic>
                <font>
                   <Font name="SansSerif Bold" size="12.0" />

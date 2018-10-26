@@ -2,8 +2,8 @@ package router.templates;
 
 import albert.controllers.PageController;
 import javafx.scene.Parent;
-
-import java.io.IOException;
+import router.Router;
+import router.pages.Page;
 
 public interface TemplateController {
 
@@ -12,5 +12,7 @@ public interface TemplateController {
     public PageController getPage();
 
     public Parent render();
+
+    public Router getRouter();
 
 }

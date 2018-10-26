@@ -5,6 +5,7 @@ import albert.controllers.PageController;
 import router.views.PageView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+import java.io.IOException;
 
 public class HomeView extends AnchorPane implements PageView {
 
@@ -40,6 +41,20 @@ public class HomeView extends AnchorPane implements PageView {
         this.controller.getOverviewTable().update();
 
         return this.controller.getOverviewTable().getView().render();
+    }
+
+    public void clickOnContacts(){
+        controller.getRouter().nav("contacts/{page}/");
+    }
+    public void clickOnProject(){
+        controller.getRouter().nav("projects/1/");
+    }
+    public void clickOnInvoice(){
+        controller.getRouter().nav("invoices/1");
+    }
+    public void clickOnRapports(){
+        System.out.println("print Rapports");
+        controller.getRouter().nav("rapports/1");
     }
 
 }
