@@ -1,5 +1,6 @@
 package albert.views;
 
+import albert.controllers.HomeController;
 import albert.controllers.PageController;
 import albert.models.Invoice;
 import albert.services.PdfService;
@@ -12,7 +13,7 @@ import java.io.IOException;
 public class HomeView extends AnchorPane implements PageView {
 
     private final String resource = "/views/pages/Home.fxml";
-    private PageController controller;
+    private HomeController controller;
 
     @Override
     public void load() {
@@ -29,8 +30,12 @@ public class HomeView extends AnchorPane implements PageView {
     }
 
     @Override
+    public void update() {
+    }
+
+    @Override
     public void setController(PageController controller) {
-        this.controller = controller;
+        this.controller = (HomeController) controller;
     }
 
     @Override
@@ -39,17 +44,20 @@ public class HomeView extends AnchorPane implements PageView {
     }
 
     public void clickOnContacts(){
-        controller.getRouter().nav("contacts/{page}/");
+        controller.getRouter().nav("contacts/1/");
     }
+
     public void clickOnProject(){
         controller.getRouter().nav("projects/1/");
     }
+
     public void clickOnInvoice(){
         controller.getRouter().nav("invoices/1");
     }
+
     public void clickOnRapports(){
-        System.out.println("print Rapports");
         controller.getRouter().nav("rapports/1");
     }
+
 
 }

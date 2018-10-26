@@ -28,6 +28,11 @@ public class ContactDetailView extends AnchorPane implements PageView {
     }
 
     @Override
+    public void update() {
+
+    }
+
+    @Override
     public void setController(PageController controller) {
         this.controller = controller;
     }
@@ -35,12 +40,5 @@ public class ContactDetailView extends AnchorPane implements PageView {
     @Override
     public AnchorPane render() {
         return this;
-    }
-
-    @FXML
-    public void onClickButton() {
-
-        this.controller.getRouter().nav("projects/details/1/");
-
     }
 }
