@@ -2,6 +2,7 @@ package albert.views;
 
 import albert.controllers.HomeController;
 import albert.controllers.PageController;
+import javafx.fxml.FXML;
 import router.views.PageView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -40,20 +41,19 @@ public class HomeView extends AnchorPane implements PageView {
         return this;
     }
 
-    public void clickOnContacts(){
-        controller.getRouter().nav("contacts/1/");
-    }
 
-    public void clickOnProject(){
+    public void clickOnProjects(){
         controller.getRouter().nav("projects/1/");
     }
 
-    public void clickOnInvoice(){
+
+    public void clickOnInvoices(){
         controller.getRouter().nav("invoices/1");
     }
 
-    public void clickOnRapports(){
-        controller.getRouter().nav("rapports/1");
+
+    public void clickOnReports(){
+        controller.getRouter().nav("reports/1");
     }
 
 

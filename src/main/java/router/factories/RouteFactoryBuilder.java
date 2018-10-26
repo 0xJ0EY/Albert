@@ -39,7 +39,7 @@ public class RouteFactoryBuilder {
         map.put(new Route("invoices/{page}/"), new OverviewPageAction(new InvoicePageFactory()));
 
         //Rapports
-        map.put(new Route("rapports/{page}/"), new OverviewPageAction(new RapportsPageFactory()));
+        map.put(new Route("reports/{page}/"), new OverviewPageAction(new RapportsPageFactory()));
 
         //Settings
         map.put(new Route("settings/{page}/"), new OverviewPageAction(new SettingsPageFactory()));
