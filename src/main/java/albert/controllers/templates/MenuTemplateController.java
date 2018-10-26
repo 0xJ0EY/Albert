@@ -6,6 +6,8 @@ import albert.views.templates.MenuView;
 import javafx.scene.Parent;
 import router.templates.TemplateController;
 
+import java.util.ArrayList;
+
 public class MenuTemplateController implements TemplateController {
 
     private TemplateView view = new MenuView();
@@ -16,6 +18,7 @@ public class MenuTemplateController implements TemplateController {
         this.page = page;
         this.view.setController(this);
         this.view.load(page);
+
     }
 
     @Override

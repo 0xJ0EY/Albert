@@ -5,6 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import router.views.PageView;
 
+/*
+Hier wordt de error view getoont zodra er een fout in staat.
+*/
+
 public class NotFoundView extends AnchorPane implements PageView {
 
     private final String resource = "/views/error_pages/PageNotFound.fxml";
