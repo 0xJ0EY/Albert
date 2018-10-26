@@ -7,8 +7,11 @@ import router.views.PageView;
 import router.Request;
 import router.response.Response;
 import router.response.ViewResponse;
+import table.Table;
 
 public class HomeController extends PageController implements OverviewPage, DetailPage {
+
+    private Table overviewTable;
 
     public HomeController(
             PageView view,
@@ -27,4 +30,7 @@ public class HomeController extends PageController implements OverviewPage, Deta
         return new ViewResponse(this);
     }
 
+    public Table getOverviewTable() {
+        return this.overviewTable;
+    }
 }
