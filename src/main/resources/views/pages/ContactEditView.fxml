@@ -13,15 +13,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<fx:root style="-fx-background-color: white;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root style="-fx-background-color: white;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane prefHeight="630.0" prefWidth="1020.0" style="-fx-background-color: #EDEDED;">
          <center>
             <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <VBox alignment="CENTER" prefHeight="438.0" prefWidth="813.0" style="-fx-background-color: white;">
+                  <VBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="438.0" prefWidth="813.0" style="-fx-background-color: white;">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="31.0" prefWidth="1020.0" spacing="10.0">
+                        <HBox alignment="BASELINE_LEFT" prefHeight="31.0" prefWidth="1020.0" spacing="10.0">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Voornaam" wrappingWidth="70.1962890625">
                                  <font>
@@ -37,7 +37,7 @@
                               <TextField />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="31.0" prefWidth="1020.0" spacing="10.0">
+                        <HBox alignment="BASELINE_LEFT" prefHeight="31.0" prefWidth="1020.0" spacing="10.0">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ContactID:" wrappingWidth="70.1962890625">
                                  <font>
@@ -47,7 +47,7 @@
                               <TextField />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="31.0" prefWidth="1020.0" spacing="10.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="1020.0" spacing="10.0">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bedrijf" wrappingWidth="70.62109375">
                                  <font>
@@ -57,7 +57,7 @@
                               <TextField prefHeight="25.0" prefWidth="457.0" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="31.0" prefWidth="1020.0" spacing="10.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="1020.0" spacing="10.0">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Straatnaam" wrappingWidth="70.2666015625">
                                  <font>
@@ -73,7 +73,7 @@
                               <TextField prefHeight="25.0" prefWidth="88.0" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="31.0" prefWidth="1020.0" spacing="10.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="1020.0" spacing="10.0">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Postcode" wrappingWidth="70.9638671875">
                                  <font>
@@ -89,7 +89,7 @@
                               <TextField />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="31.0" prefWidth="840.0" spacing="10.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="840.0" spacing="10.0">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Land" wrappingWidth="70.8798828125">
                                  <font>
@@ -113,7 +113,7 @@
                               <Insets right="270.0" />
                            </padding>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="31.0" prefWidth="1020.0" spacing="10.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="1020.0" spacing="10.0">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Telefoon" wrappingWidth="69.8798828125">
                                  <font>
@@ -131,7 +131,7 @@
                               <Insets right="270.0" />
                            </padding>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="31.0" prefWidth="1020.0" spacing="10.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="1020.0" spacing="10.0">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="E-Mail" wrappingWidth="69.8798828125">
                                  <font>
@@ -149,7 +149,7 @@
                               <Insets right="270.0" />
                            </padding>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="31.0" prefWidth="1020.0" spacing="10.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="1020.0" spacing="10.0">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Website" wrappingWidth="75.62109375">
                                  <font>
@@ -162,7 +162,7 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="31.0" prefWidth="1020.0" spacing="10.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="1020.0" spacing="10.0">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Beschrijving" wrappingWidth="75.62109375">
                                  <font>
@@ -172,8 +172,10 @@
                               <TextField prefHeight="25.0" prefWidth="457.0" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="31.0" prefWidth="1020.0" spacing="10.0" />
                      </children>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
                   </VBox>
                   <Text layoutY="-26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact" textAlignment="CENTER" wrappingWidth="185.06640625">
                      <font>
