@@ -1,5 +1,6 @@
 package albert.views;
 
+import albert.controllers.HomeController;
 import albert.controllers.PageController;
 import router.views.PageView;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +10,7 @@ import java.io.IOException;
 public class HomeView extends AnchorPane implements PageView {
 
     private final String resource = "/views/pages/Home.fxml";
-    private PageController controller;
+    private HomeController controller;
 
     @Override
     public void load() {
@@ -26,13 +27,20 @@ public class HomeView extends AnchorPane implements PageView {
     }
 
     @Override
+    public void update() {
+    }
+
+    @Override
     public void setController(PageController controller) {
-        this.controller = controller;
+        this.controller = (HomeController) controller;
     }
 
     @Override
     public AnchorPane render() {
-        return this;
+
+        this.controller.getOverviewTable().update();
+
+        return this.controller.getOverviewTable().getView().render();
     }
 
     public void clickOnContacts(){

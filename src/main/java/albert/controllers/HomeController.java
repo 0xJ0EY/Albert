@@ -7,8 +7,19 @@ import router.views.PageView;
 import router.Request;
 import router.response.Response;
 import router.response.ViewResponse;
+import table.Column;
+import table.Table;
+import table.dao.db.Query;
+import table.factories.cells.TextCellViewFactory;
+import table.factories.header.LeftHeaderViewFactory;
+import table.strategies.DatabaseStrategy;
+import table.views.tables.BareTableView;
+import table.views.tables.BaseTableView;
+import table.views.tables.SearchTableView;
 
 public class HomeController extends PageController implements OverviewPage, DetailPage {
+
+    private Table overviewTable;
 
     public HomeController(
             PageView view,
@@ -19,6 +30,30 @@ public class HomeController extends PageController implements OverviewPage, Deta
 
     @Override
     public Response overview(Request request) {
+
+        this.overviewTable = new Table(
+            new DatabaseStrategy(
+                Query.table("projects")
+            ),
+            new SearchTableView()
+        );
+
+        this.overviewTable.addCol(
+            new Column(
+                "name",
+                new LeftHeaderViewFactory("Project naam"),
+                new TextCellViewFactory()
+            )
+        );
+
+        this.overviewTable.addCol(
+            new Column(
+                "created_at::text",
+                new LeftHeaderViewFactory("Datum"),
+                new TextCellViewFactory()
+            )
+        );
+
         return new ViewResponse(this);
     }
 
@@ -27,4 +62,7 @@ public class HomeController extends PageController implements OverviewPage, Deta
         return new ViewResponse(this);
     }
 
+    public Table getOverviewTable() {
+        return this.overviewTable;
+    }
 }

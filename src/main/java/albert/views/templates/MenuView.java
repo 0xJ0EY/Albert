@@ -4,6 +4,7 @@ import albert.controllers.HomeController;
 import albert.controllers.PageController;
 import albert.views.HomeView;
 import router.templates.TemplateController;
+import router.views.PageView;
 import router.views.TemplateView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +21,7 @@ public class MenuView extends AnchorPane implements TemplateView {
     private TemplateController controller;
 
     @Override
-    public void load(PageController page) {
+    public void load() {
 
         // Load from FXML
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
@@ -33,8 +34,18 @@ public class MenuView extends AnchorPane implements TemplateView {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
 
-        AnchorPane panel = page.getView().render();
+    @Override
+    public void update() {
+        // Fetch the view of the page
+        PageView pageView = this.controller.getPage().getView();
+
+        // Update the view before rendering it
+        pageView.update();
+
+        // Render the page
+        AnchorPane panel = pageView.render();
 
         // Anchor the panel to the sides of the parent AnchorPane
         AnchorPane.setTopAnchor(panel, 0d);
