@@ -14,7 +14,6 @@ public class MenuTemplateController implements TemplateController {
     private PageController page;
     protected Router router;
 
-
     @Override
     public void setPage(PageController page) {
         this.page = page;

@@ -3,6 +3,8 @@ package albert.views.templates;
 import albert.controllers.HomeController;
 import albert.controllers.PageController;
 import albert.views.HomeView;
+import javafx.scene.control.Button;
+import router.Router;
 import router.templates.TemplateController;
 import router.views.PageView;
 import router.views.TemplateView;
@@ -19,6 +21,12 @@ public class MenuView extends AnchorPane implements TemplateView {
 
     private final String resource = "/views/templates/Menu.fxml";
     private TemplateController controller;
+
+    @FXML
+    private Button backButton;
+
+    @FXML
+    private Button nextButton;
 
     @Override
     public void load() {
@@ -38,6 +46,9 @@ public class MenuView extends AnchorPane implements TemplateView {
 
     @Override
     public void update() {
+
+        this.updateHistoryButtons();
+
         // Fetch the view of the page
         PageView pageView = this.controller.getPage().getView();
 
@@ -56,6 +67,23 @@ public class MenuView extends AnchorPane implements TemplateView {
         this.page.getChildren().setAll(panel);
     }
 
+
+    private void updateHistoryButtons() {
+        this.updateNextButton();
+        this.updateBackButton();
+    }
+
+    private void updateBackButton() {
+        Router router = this.controller.getRouter();
+        this.backButton.setDisable( ! router.hasPrevious());
+    }
+
+    private void updateNextButton() {
+        Router router = this.controller.getRouter();
+        this.nextButton.setDisable( ! router.hasNext());
+    }
+
+
     @Override
     public void setController(TemplateController controller) {
         this.controller = controller;
@@ -66,14 +94,21 @@ public class MenuView extends AnchorPane implements TemplateView {
         return this;
     }
 
-    public void clickOnHome(){
-        System.out.println("click on home");
+    public void onClickHomeButton(){
         controller.getRouter().nav("home/");
+    }
 
+    public void onClickBackButton() {
+        Router router = this.controller.getRouter();
+        router.navToPrevious();
+    }
+
+    public void onClickNextButton() {
+        Router router = this.controller.getRouter();
+        router.navToNext();
     }
 
     public void clickOnRapports(){
-        System.out.println("click on Rapports");
         controller.getRouter().nav("rapports/1/");
     }
 
