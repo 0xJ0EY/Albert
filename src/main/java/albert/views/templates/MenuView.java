@@ -66,11 +66,16 @@ public class MenuView extends AnchorPane implements TemplateView {
         controller.getRouter().nav("rapports/1/");
     }
 
-    public void clickOnContacts(){
+    public void clickOnContacts()
+    {
+        System.out.println("click on Contacts");
+
         controller.getRouter().nav("contacts/{page}");
     }
 
     public void clickOnSettings(){
+        System.out.println("click on Settings");
+
         controller.getRouter().nav("settings/{page}");
     }
 }

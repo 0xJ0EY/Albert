@@ -2,15 +2,13 @@ package router.factories;
 
 import albert.controllers.templates.MenuTemplateController;
 import router.Route;
-import router.action.Action;
-import router.action.DetailPageAction;
-import router.action.EditPageAction;
-import router.action.OverviewPageAction;
+import router.action.*;
 import router.error_pages.ErrorController;
 import router.error_pages.views.NotFoundView;
 import router.factories.pages.Quotations.QuotationsDetailPageFactory;
 import router.factories.pages.Quotations.QuotationsEditPageFactory;
 import router.factories.pages.Quotations.QuotationsPageFactory;
+import router.factories.pages.contacts.ContactCreatePageFactory;
 import router.factories.pages.contacts.ContactDetailPageFactory;
 import router.factories.pages.contacts.ContactEditPageFactory;
 import router.factories.pages.contacts.ContactPageFactory;
@@ -46,6 +44,7 @@ public class RouteFactoryBuilder {
         map.put(new Route("contacts/{page}/"), new OverviewPageAction(new ContactPageFactory()));
         map.put(new Route("contacts/details/{contacts}/"), new DetailPageAction(new ContactDetailPageFactory()));
         map.put(new Route("contacts/edit/{contacts}/"), new EditPageAction(new ContactEditPageFactory()));
+        map.put(new Route("contacts/create/{contact}"), new CreatePageAction(new ContactCreatePageFactory()));
 
         //Invoices
         map.put(new Route("invoice/{page}/"), new OverviewPageAction(new InvoicePageFactory()));
