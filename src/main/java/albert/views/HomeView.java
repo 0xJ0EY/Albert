@@ -4,6 +4,9 @@ import albert.controllers.PageController;
 import router.views.PageView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+/*
+Hier wordt de homeView geladen
+ */
 
 public class HomeView extends AnchorPane implements PageView {
 

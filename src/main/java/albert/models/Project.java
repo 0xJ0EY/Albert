@@ -1,5 +1,8 @@
 package albert.models;
 
+/*
+Hier hebben we de data van de projects in dit model ingestopt
+ */
 public class Project {
 
     private int id;

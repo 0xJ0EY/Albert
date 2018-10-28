@@ -7,7 +7,9 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import router.Router;
-
+/*
+Dat is het begin van de App, waar de stage start en gekopeld aan de router.
+ */
 public class Client extends Application {
 
     private Stage stage;
@@ -35,6 +37,7 @@ public class Client extends Application {
             this.stage.getHeight()
         );
 
+        //css styling
         scene.getStylesheets().add(getClass().getResource("/css/main.css").toExternalForm());
 
         this.stage.setScene(scene);

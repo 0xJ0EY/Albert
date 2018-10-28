@@ -7,7 +7,9 @@ import javafx.scene.Parent;
 import router.templates.TemplateController;
 
 import java.util.ArrayList;
-
+/*
+Hier is de controller klas  zorgt voor het menu pagina in de app.
+ */
 public class MenuTemplateController implements TemplateController {
 
     private TemplateView view = new MenuView();

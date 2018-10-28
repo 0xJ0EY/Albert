@@ -9,6 +9,9 @@ import router.response.Response;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/*
+De klas Router handelt alle requests van de gebruiker af en geeft responses terug.
+ */
 public class Router {
 
     private Client client;

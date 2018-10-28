@@ -5,6 +5,10 @@ import router.views.PageView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+/*
+Hier wordt de DetailView geladen
+ */
+
 
 public class ProjectsDetailView extends AnchorPane implements PageView {
 

@@ -8,7 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+/*
+Deze klas implementeert de interface DAO.
+ */
 public class ProjectsDAO implements DAO<Project> {
 
     @Override

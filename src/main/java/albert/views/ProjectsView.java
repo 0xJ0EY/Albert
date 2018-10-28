@@ -7,6 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+/*
+Hier wordt de prrojects geladen
+ */
 
 public class ProjectsView extends AnchorPane implements PageView {
 
