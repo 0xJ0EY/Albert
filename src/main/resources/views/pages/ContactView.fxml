@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="630.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.pages.ContactEditView">
+<fx:root prefHeight="630.0" prefWidth="1020.0" style="-fx-background-color: #DEDEDE;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane prefHeight="633.0" prefWidth="1020.0" style="-fx-background-color: #EDEDED;" AnchorPane.topAnchor="0.0">
          <center>
@@ -63,16 +63,24 @@
                      <children>
                         <BorderPane maxHeight="73.0" prefHeight="73.0" prefWidth="980.0">
                            <left>
-                              <HBox prefHeight="40.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+                              <HBox prefHeight="40.0" prefWidth="315.0" spacing="5.0" BorderPane.alignment="CENTER">
                                  <children>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contacten">
                                        <HBox.margin>
                                           <Insets left="15.0" right="20.0" top="10.0" />
                                        </HBox.margin>
                                     </Text>
-                                    <Button mnemonicParsing="false" text="Toevoegen">
+                                    <Button mnemonicParsing="false" onAction="#onClickAddContact" text="Toevoegen">
                                        <graphic>
                                           <FontAwesomeIconView glyphName="PLUS" translateY="2.0" />
+                                       </graphic>
+                                       <HBox.margin>
+                                          <Insets top="5.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button mnemonicParsing="false" onAction="#onClickEditContact" text="Bewerken">
+                                       <graphic>
+                                          <FontAwesomeIconView glyphName="PENCIL" translateY="2.0" />
                                        </graphic>
                                        <HBox.margin>
                                           <Insets top="5.0" />
@@ -112,4 +120,4 @@
          </top>
       </BorderPane>
    </children>
-</AnchorPane>
+</fx:root>
