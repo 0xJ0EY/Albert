@@ -12,7 +12,7 @@ import router.views.PageView;
 import java.io.IOException;
 
 
-public class InvoicesController extends PageController implements OverviewPage, DetailPage, EditPage {
+public class InvoicesController extends PageController implements OverviewPage, DetailPage, EditPage, CreateObject {
 
     public InvoicesController(PageView view, TemplateController template) {
         super(view, template);
@@ -34,4 +34,8 @@ public class InvoicesController extends PageController implements OverviewPage, 
         return new ViewResponse(this);
     }
 
+    @Override
+    public void createObj(Object obj) {
+
+    }
 }

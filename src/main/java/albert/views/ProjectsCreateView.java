@@ -2,26 +2,36 @@ package albert.views;
 
 import albert.controllers.PageController;
 import albert.controllers.ProjectsController;
-import router.views.PageView;
+import albert.models.Project;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import router.views.PageView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
-import table.Table;
-import table.views.TableView;
 
-import java.awt.*;
-import java.io.IOException;
+public class ProjectsCreateView extends AnchorPane implements PageView {
 
-public class ProjectsView extends AnchorPane implements PageView {
-
-    private final String resource = "/views/pages/Projects.fxml";
+    private final String resource = "/views/pages/ProjectEditView.fxml";
     private ProjectsController controller;
+    private Project project;
 
     @FXML
-    private AnchorPane overviewTable;
+    private TextField name;
 
     @FXML
-    private Button editButton;
+    private Button klant;
+
+    @FXML
+    private TextField afgerondJa;
+
+    @FXML
+    private TextField afgerondNee;
+
+    @FXML
+    private TextField beschrijving;
+
 
     @Override
     public void load() {
@@ -32,20 +42,14 @@ public class ProjectsView extends AnchorPane implements PageView {
 
         try {
             loader.load();
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
     @Override
     public void update() {
-        Table table = controller.getOverviewTable();
 
-        table.update();
-
-        TableView tableView = table.getView();
-
-        this.overviewTable.getChildren().add(tableView.render());
     }
 
     @Override
@@ -57,5 +61,14 @@ public class ProjectsView extends AnchorPane implements PageView {
     public AnchorPane render() {
         return this;
     }
+
+    @FXML
+    public void clickOnSave(ActionEvent event){
+        System.out.println("Click on Save");
+        project = new Project(name.getText());
+        System.out.println(name.getText());
+        controller.createObj(project);
+    }
+
 
 }
