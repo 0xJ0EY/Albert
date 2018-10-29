@@ -6,10 +6,15 @@ import router.views.PageView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
+import java.awt.*;
+
 public class ContactsView extends AnchorPane implements PageView {
 
     private final String resource = "/views/pages/ContactView.fxml";
     private PageController controller;
+
+    @FXML
+    private TextField search;
 
     @Override
     public void load() {
