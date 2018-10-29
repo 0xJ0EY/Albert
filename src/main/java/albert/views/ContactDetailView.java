@@ -1,6 +1,7 @@
 package albert.views;
 
 import albert.controllers.PageController;
+import javafx.scene.control.TextField;
 import router.views.PageView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +13,8 @@ public class ContactDetailView extends AnchorPane implements PageView {
 
     private final String resource = "/views/pages/ContactDetailView.fxml";
     private PageController controller;
+
+    private TextField search;
 
     @Override
     public void load() {
