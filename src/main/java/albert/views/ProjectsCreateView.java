@@ -1,25 +1,23 @@
 package albert.views;
 
 import albert.controllers.PageController;
-import javafx.scene.control.Button;
+import albert.controllers.ProjectsController;
+import albert.models.Project;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import router.views.PageView;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
-import java.io.IOException;
+public class ProjectsCreateView extends AnchorPane implements PageView {
 
-public class RapportsView extends AnchorPane implements PageView {
-
-    private final String resource = "/views/pages/RapportsView.fxml";
-    private PageController controller;
-
-    @FXML
-    private TextField searchBar;
+    private final String resource = "/views/pages/ProjectEditView.fxml";
+    private ProjectsController controller;
+    private Project project;
 
     @FXML
-    private Button GeneratePDF;
+    private TextField name;
 
     @Override
     public void load() {
@@ -30,7 +28,7 @@ public class RapportsView extends AnchorPane implements PageView {
 
         try {
             loader.load();
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
@@ -42,7 +40,7 @@ public class RapportsView extends AnchorPane implements PageView {
 
     @Override
     public void setController(PageController controller) {
-        this.controller = controller;
+        this.controller = (ProjectsController)controller;
     }
 
     @Override
@@ -51,9 +49,12 @@ public class RapportsView extends AnchorPane implements PageView {
     }
 
     @FXML
-    public void onClickButton() {
-
-        this.controller.getRouter().nav("projects/details/1/");
-
+    public void clickOnSave(ActionEvent event){
+        System.out.println("Click on Save");
+        project = new Project(name.getText());
+        System.out.println(name.getText());
+        controller.createobj(project);
     }
+
+
 }

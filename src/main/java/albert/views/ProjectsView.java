@@ -9,6 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import table.Table;
 import table.views.TableView;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class ProjectsView extends AnchorPane implements PageView {
@@ -18,6 +19,9 @@ public class ProjectsView extends AnchorPane implements PageView {
 
     @FXML
     private AnchorPane overviewTable;
+
+    @FXML
+    private Button editButton;
 
     @Override
     public void load() {
