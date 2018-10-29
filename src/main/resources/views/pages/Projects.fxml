@@ -14,7 +14,7 @@
    <children>
       <BorderPane layoutX="4.0" layoutY="71.0" prefHeight="25.0" prefWidth="493.0">
          <left>
-            <HBox prefHeight="144.0" prefWidth="194.0" style="-fx-alignment: center;" BorderPane.alignment="CENTER">
+            <HBox prefHeight="144.0" prefWidth="194.0" spacing="10.0" style="-fx-alignment: center;" BorderPane.alignment="CENTER">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Projecten" />
                   <Button fx:id="addButton" mnemonicParsing="false" text="Toevoegen">
