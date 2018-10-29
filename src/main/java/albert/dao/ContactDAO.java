@@ -1,10 +1,14 @@
 package albert.dao;
 
+import albert.models.Contact;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ContactDAO implements DAO {
+    private Contact contact;
+
     @Override
     public ArrayList getAll() {
         return null;
@@ -15,8 +19,14 @@ public class ContactDAO implements DAO {
         return null;
     }
 
+
     @Override
-    public void create(Object obj) {
+    public void create(Object contact) {
+        //TODO sql insert schrijven
+        String sql = "";
+       this.contact = (Contact) contact;
+        System.out.println("Contact added");
+
 
     }
 

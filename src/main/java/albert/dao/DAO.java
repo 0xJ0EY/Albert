@@ -1,5 +1,6 @@
 package albert.dao;
 
+import albert.models.Contact;
 import albert.models.Project;
 
 import java.sql.ResultSet;
