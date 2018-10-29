@@ -6,7 +6,7 @@ public class Invoice {
 
     private int id;
     private String name;
-    private ArrayList<Amount> amountList;
+    private Amount amount;
 
     public String getName() {
         return name;
@@ -16,12 +16,12 @@ public class Invoice {
         this.name = name;
     }
 
-    public ArrayList<Amount> getAmountList() {
-        return amountList;
+    public Amount getAmount() {
+        return amount;
     }
 
-    public void setAmountList(ArrayList<Amount> amountList) {
-        this.amountList = amountList;
+    public void setAmount(Amount amount) {
+        this.amount = amount;
     }
 
     public Contact getContact() {
@@ -32,11 +32,11 @@ public class Invoice {
         this.contact = contact;
     }
 
-    public ArrayList<Amount> getBedragen() {
+    public Amount getBedragen() {
         return bedragen;
     }
 
-    public void setBedragen(ArrayList<Amount> bedragen) {
+    public void setBedragen(Amount bedragen) {
         this.bedragen = bedragen;
     }
 
@@ -50,17 +50,14 @@ public class Invoice {
     }
 
     private Contact contact;
-    private ArrayList<Amount> bedragen;
+    private Amount bedragen;
 
     /**
      *
-     * @param id
      * @param name
      */
-    /*public invoice(int id, String name, ArrayList<Amount> amountArrayList) {
-        this.id = id;
+    public Invoice(String name, Amount amount) {
         this.name = name;
-
-
-    }*/
+        this.amount = amount;
+    }
 }
