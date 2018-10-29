@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<fx:root minHeight="300.0" minWidth="500.0" style="-fx-background-color: #f2f2f2;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="overviewTable" minHeight="300.0" minWidth="500.0" style="-fx-background-color: #f2f2f2;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane layoutX="4.0" layoutY="71.0" prefHeight="25.0" prefWidth="493.0">
          <left>
