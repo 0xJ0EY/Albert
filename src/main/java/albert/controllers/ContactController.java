@@ -1,5 +1,8 @@
 package albert.controllers;
 
+import albert.dao.ContactDAO;
+import albert.dao.DAO;
+import albert.models.Contact;
 import router.pages.CreatePage;
 import router.pages.EditPage;
 import router.pages.OverviewPage;
@@ -12,6 +15,7 @@ import router.response.ViewResponse;
 
 public class ContactController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
 
+    private ContactDAO dao = new ContactDAO();
     public ContactController(
             PageView view,
             TemplateController template
@@ -36,6 +40,12 @@ public class ContactController extends PageController implements OverviewPage, D
 
     @Override
     public Response create(Request request) {
+
         return new ViewResponse(this);
+    }
+    public void createobj(Contact contact){
+
+        System.out.println(contact.getFirstName());
+        dao.create(contact);
     }
 }
