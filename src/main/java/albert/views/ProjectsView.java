@@ -45,4 +45,5 @@ public class ProjectsView extends AnchorPane implements PageView {
     public AnchorPane render() {
         return this;
     }
+
 }
