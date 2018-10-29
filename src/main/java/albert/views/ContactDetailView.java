@@ -14,7 +14,9 @@ public class ContactDetailView extends AnchorPane implements PageView {
     private final String resource = "/views/pages/ContactDetailView.fxml";
     private PageController controller;
 
+    @FXML
     private TextField search;
+
 
     @Override
     public void load() {
