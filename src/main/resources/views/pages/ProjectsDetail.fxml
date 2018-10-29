@@ -41,7 +41,7 @@
                                           <Insets right="30.0" />
                                        </HBox.margin>
                                     </Button>
-                                    <TextField promptText="Search" />
+                                    <TextField fx:id="searchBarCosts" promptText="Search" />
                                     <Button mnemonicParsing="false">
                                        <graphic>
                                           <FontAwesomeIconView glyphName="SEARCH" />
@@ -54,20 +54,6 @@
                                  <padding>
                                     <Insets top="5.0" />
                                  </padding>
-                              </HBox>
-                              <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ededed;">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Naam">
-                                       <HBox.margin>
-                                          <Insets left="20.0" top="5.0" />
-                                       </HBox.margin>
-                                    </Text>
-                                    <FontAwesomeIconView glyphName="CHEVRON_DOWN">
-                                       <HBox.margin>
-                                          <Insets bottom="5.0" left="10.0" right="5.0" top="10.0" />
-                                       </HBox.margin>
-                                    </FontAwesomeIconView>
-                                 </children>
                               </HBox>
                            </children>
                         </VBox>
@@ -99,7 +85,7 @@
                                           <Insets right="30.0" />
                                        </HBox.margin>
                                     </Button>
-                                    <TextField promptText="Search" />
+                                    <TextField fx:id="searchBarInvoice" promptText="Search" />
                                     <Button mnemonicParsing="false">
                                        <graphic>
                                           <FontAwesomeIconView glyphName="SEARCH" />
@@ -113,20 +99,6 @@
                                     <Insets top="5.0" />
                                  </padding>
                               </HBox>
-                              <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ededed;">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Naam">
-                                       <HBox.margin>
-                                          <Insets left="20.0" top="5.0" />
-                                       </HBox.margin>
-                                    </Text>
-                                    <FontAwesomeIconView glyphName="CHEVRON_DOWN">
-                                       <HBox.margin>
-                                          <Insets bottom="5.0" left="10.0" right="5.0" top="10.0" />
-                                       </HBox.margin>
-                                    </FontAwesomeIconView>
-                                 </children>
-                              </HBox>
                            </children>
                         </VBox>
                      </top>
@@ -137,11 +109,11 @@
                <top>
                   <HBox alignment="TOP_RIGHT" prefHeight="25.0" prefWidth="255.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Button mnemonicParsing="false" prefWidth="125.0" text="Aanpassen">
+                        <Button fx:id="projectEdit" mnemonicParsing="false" prefWidth="125.0" text="Aanpassen">
                            <graphic>
                               <FontAwesomeIconView glyphName="PENCIL" translateY="1.0" />
                            </graphic></Button>
-                        <Button mnemonicParsing="false" prefWidth="125.0" text="Verwijderen">
+                        <Button fx:id="projectDelete" mnemonicParsing="false" prefWidth="125.0" text="Verwijderen">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>
@@ -176,7 +148,7 @@
                                        <HBox.margin>
                                           <Insets right="30.0" />
                                        </HBox.margin></Button>
-                                    <TextField promptText="Search" />
+                                    <TextField fx:id="searchBarQuotation" promptText="Search" />
                                     <Button mnemonicParsing="false">
                                        <graphic>
                                           <FontAwesomeIconView glyphName="SEARCH" />
@@ -187,19 +159,6 @@
                                     </Button>
                                  </children>
                               </HBox>
-                              <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: ededed;">
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Naam">
-                                       <HBox.margin>
-                                          <Insets left="20.0" top="5.0" />
-                                       </HBox.margin>
-                                    </Text>
-                                    <FontAwesomeIconView glyphName="CHEVRON_DOWN">
-                                       <HBox.margin>
-                                          <Insets bottom="5.0" left="10.0" right="5.0" top="10.0" />
-                                       </HBox.margin>
-                                    </FontAwesomeIconView>
-                                 </children></HBox>
                            </children>
                         </VBox>
                      </top>
@@ -230,7 +189,7 @@
                <top>
                   <HBox prefHeight="25.0" prefWidth="255.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lorem Ipsum">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Project overzicht">
                            <font>
                               <Font size="17.0" />
                            </font>

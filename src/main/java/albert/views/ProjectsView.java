@@ -6,12 +6,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class ProjectsView extends AnchorPane implements PageView {
 
     private final String resource = "/views/pages/Projects.fxml";
     private PageController controller;
+
+    @FXML
+    private Button editButton;
 
     @Override
     public void load() {

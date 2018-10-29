@@ -1,15 +1,21 @@
 package albert.views;
 
 import albert.controllers.PageController;
+import javafx.scene.control.CheckBox;
 import router.views.PageView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
+import java.awt.*;
+
 public class InvoiceDetailView extends AnchorPane implements PageView {
 
     private final String resource = "/views/pages/InvoiceDetailView.fxml";
     private PageController controller;
+
+    @FXML
+    private CheckBox vink;
 
     @Override
     public void load() {
@@ -41,7 +47,6 @@ public class InvoiceDetailView extends AnchorPane implements PageView {
     }
 
     @FXML
-    public void onClickButton() {
-        this.controller.getRouter().nav("home/");
+    public void onClickEdit() {
     }
 }
