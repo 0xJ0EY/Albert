@@ -1,6 +1,7 @@
 package albert.views;
 
 import albert.controllers.PageController;
+import javafx.scene.control.TextField;
 import router.views.PageView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,19 @@ public class QuotationsEditView extends AnchorPane implements PageView {
 
     private final String resource = "/views/pages/QuotationsEditView.fxml";
     private PageController controller;
+
+    @FXML
+    private TextField naamBar;
+
+    @FXML
+    private TextField klantBar;
+
+    @FXML
+    private TextField workBar;
+
+    @FXML
+    private TextField projectBar;
+
 
     @Override
     public void load() {

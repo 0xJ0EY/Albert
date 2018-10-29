@@ -25,24 +25,24 @@
                   </Label>
                   <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="120.0" text="Verwijderen">
                      <graphic>
-                        <FontAwesomeIconView glyphName="TRASH" />
+                        <FontAwesomeIconView fx:id="deleteReport" glyphName="TRASH" />
                      </graphic>
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Button>
                   <GlyphsStack />
-                  <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="117.0" text="Opslaan">
+                  <Button fx:id="SaveReport" mnemonicParsing="false" prefHeight="31.0" prefWidth="117.0" text="Opslaan">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Genereren PDF">
+                  <Button fx:id="GeneratePDF" mnemonicParsing="false" prefHeight="31.0" prefWidth="142.0" text="Genereren PDF">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Button>
-                  <TextField cache="true" mouseTransparent="true" prefHeight="31.0" prefWidth="142.0" styleClass="arc">
+                  <TextField fx:id="searchBar" cache="true" mouseTransparent="true" prefHeight="31.0" prefWidth="142.0" styleClass="arc">
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
