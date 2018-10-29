@@ -53,7 +53,7 @@ public class ProjectsCreateView extends AnchorPane implements PageView {
         System.out.println("Click on Save");
         project = new Project(name.getText());
         System.out.println(name.getText());
-        controller.createobj(project);
+        controller.createObj(project);
     }
 
 
