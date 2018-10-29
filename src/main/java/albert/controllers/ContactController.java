@@ -13,7 +13,7 @@ import router.Request;
 import router.response.Response;
 import router.response.ViewResponse;
 
-public class ContactController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
+public class ContactController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage, CreateObject {
 
     private ContactDAO dao = new ContactDAO();
     public ContactController(
@@ -43,9 +43,9 @@ public class ContactController extends PageController implements OverviewPage, D
 
         return new ViewResponse(this);
     }
-    public void createobj(Contact contact){
-
-        System.out.println(contact.getFirstName());
-        dao.create(contact);
+    
+    @Override
+    public void createObj(Object obj) {
+        dao.create((Contact)obj);
     }
 }

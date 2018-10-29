@@ -9,7 +9,7 @@ import router.response.ViewResponse;
 import router.templates.TemplateController;
 import router.views.PageView;
 
-public class RapportsController extends PageController implements OverviewPage, DetailPage, EditPage {
+public class RapportsController extends PageController implements OverviewPage, DetailPage, EditPage, CreateObject {
 
 
     public RapportsController(PageView view, TemplateController template) {
@@ -30,5 +30,10 @@ public class RapportsController extends PageController implements OverviewPage, 
     @Override
     public Response edit(Request request) {
         return new ViewResponse(this);
+    }
+
+    @Override
+    public void createObj(Object obj) {
+
     }
 }
