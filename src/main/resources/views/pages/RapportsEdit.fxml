@@ -38,7 +38,7 @@
                               </HBox>
                               <HBox prefHeight="40.0" prefWidth="184.0">
                                  <children>
-                                    <TextField prefHeight="31.0" prefWidth="149.0" />
+                                    <TextField fx:id="QuarterYear" prefHeight="31.0" prefWidth="149.0" />
                                  </children></HBox>
                            </children>
                         </HBox>
@@ -58,7 +58,7 @@
                               </HBox>
                               <HBox prefHeight="40.0" prefWidth="151.0">
                                  <children>
-                                    <TextField prefWidth="149.0" />
+                                    <TextField fx:id="nettoBar" prefWidth="149.0" />
                                  </children></HBox>
                            </children>
                         </HBox>
@@ -76,7 +76,7 @@
                                     <Insets right="20.0" />
                                  </HBox.margin>
                               </HBox>
-                              <TextField prefHeight="31.0" prefWidth="149.0" />
+                              <TextField fx:id="btwBar" prefHeight="31.0" prefWidth="149.0" />
                            </children>
                         </HBox>
                         <HBox prefHeight="40.0" prefWidth="806.0">
@@ -94,7 +94,7 @@
                                     <Insets right="20.0" />
                                  </HBox.margin>
                                  <children>
-                                    <TextField />
+                                    <TextField fx:id="brutoBar" />
                                  </children>
                               </HBox>
                            </children>
@@ -109,7 +109,7 @@
                                     <Insets right="20.0" />
                                  </HBox.margin>
                               </HBox>
-                              <TextField prefWidth="149.0" />
+                              <TextField fx:id="amountBar" prefWidth="149.0" />
                            </children>
                         </HBox>
                         <HBox prefHeight="40.0" prefWidth="200.0">
@@ -122,12 +122,12 @@
                                     <Insets right="20.0" />
                                  </HBox.margin>
                               </HBox>
-                              <TextField prefWidth="149.0" />
+                              <TextField fx:id="costBar" prefWidth="149.0" />
                            </children>
                         </HBox>
                         <HBox alignment="TOP_RIGHT" prefHeight="40.0" prefWidth="200.0">
                            <children>
-                              <Button mnemonicParsing="false" prefWidth="100.0" text="Edit" />
+                              <Button fx:id="editButton" mnemonicParsing="false" prefWidth="100.0" text="Edit" />
                            </children>
                         </HBox>
                      </children>
