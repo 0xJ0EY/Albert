@@ -47,7 +47,8 @@ public class ContactsView extends AnchorPane implements PageView {
 
     @FXML
     public void onClickAddContact(){
-        controller.getRouter().nav("contacts/add/{contacts}/");
+        System.out.println("Click on add Contacts");
+        controller.getRouter().nav("contacts/create/{new}");
     }
 
 

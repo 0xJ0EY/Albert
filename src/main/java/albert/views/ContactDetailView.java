@@ -1,19 +1,17 @@
 package albert.views;
 
-import albert.controllers.HomeController;
 import albert.controllers.PageController;
-import javafx.fxml.FXML;
-import albert.models.Invoice;
-import albert.services.PdfService;
 import router.views.PageView;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+
 import java.io.IOException;
 
-public class HomeView extends AnchorPane implements PageView {
+public class ContactDetailView extends AnchorPane implements PageView {
 
-    private final String resource = "/views/pages/Home.fxml";
-    private HomeController controller;
+    private final String resource = "/views/pages/ContactDetailView.fxml";
+    private PageController controller;
 
     @Override
     public void load() {
@@ -24,39 +22,23 @@ public class HomeView extends AnchorPane implements PageView {
 
         try {
             loader.load();
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
 
     @Override
     public void update() {
+
     }
 
     @Override
     public void setController(PageController controller) {
-        this.controller = (HomeController) controller;
+        this.controller = controller;
     }
 
     @Override
     public AnchorPane render() {
         return this;
     }
-
-
-    public void clickOnProjects(){
-        controller.getRouter().nav("projects/1/");
-    }
-
-
-    public void clickOnInvoices(){
-        controller.getRouter().nav("invoices/1");
-    }
-
-
-    public void clickOnReports(){
-        controller.getRouter().nav("reports/1");
-    }
-
-
 }
