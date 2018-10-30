@@ -5,6 +5,7 @@ import albert.controllers.ProjectsController;
 import albert.models.Project;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import router.views.PageView;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +19,19 @@ public class ProjectsCreateView extends AnchorPane implements PageView {
 
     @FXML
     private TextField name;
+
+    @FXML
+    private Button klant;
+
+    @FXML
+    private TextField afgerondJa;
+
+    @FXML
+    private TextField afgerondNee;
+
+    @FXML
+    private TextField beschrijving;
+
 
     @Override
     public void load() {
