@@ -13,6 +13,7 @@ import router.response.Response;
 import router.response.ViewResponse;
 import table.Column;
 import table.Table;
+import table.factories.cells.DateCellViewFactory;
 import table.factories.cells.TextCellViewFactory;
 import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
@@ -34,22 +35,22 @@ public class ProjectsController extends PageController implements OverviewPage, 
                 new SearchTableView()
         );
 
-        table.addCol(new Column("project_id",
+        table.addCol(new Column("project_id::text",
                 new LeftHeaderViewFactory("Project ID"),
                 new TextCellViewFactory())
         );
 
-        table.addCol(new Column("name",
+        table.addCol(new Column("project_naam",
                 new LeftHeaderViewFactory("Naam"),
                 new TextCellViewFactory())
         );
 
-        table.addCol(new Column("created_at",
+        table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
                 new LeftHeaderViewFactory("Aangemaakt op"),
                 new TextCellViewFactory())
         );
 
-        table.addCol(new Column("afgerond",
+        table.addCol(new Column("finished::text",
                 new LeftHeaderViewFactory("Afgerond"),
                 new TextCellViewFactory())
         );
