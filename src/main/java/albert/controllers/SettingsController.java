@@ -1,7 +1,6 @@
 package albert.controllers;
 
 import router.Request;
-import router.pages.DetailPage;
 import router.pages.EditPage;
 import router.pages.OverviewPage;
 import router.response.Response;
@@ -9,7 +8,7 @@ import router.response.ViewResponse;
 import router.templates.TemplateController;
 import router.views.PageView;
 
-public class SettingsController extends PageController implements OverviewPage, EditPage, CreateObject {
+public class SettingsController extends PageController implements OverviewPage, EditPage, CreateContactObject {
 
 
     public SettingsController(PageView view, TemplateController template) {

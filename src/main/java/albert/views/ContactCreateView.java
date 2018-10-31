@@ -32,10 +32,8 @@ public class ContactCreateView extends AnchorPane implements PageView {
     @FXML
     private TextField lastName;
 
-
     @FXML
     private TextField streetName;
-
 
     @FXML
     private TextField compagny;
@@ -94,10 +92,7 @@ public class ContactCreateView extends AnchorPane implements PageView {
     public void clickOnSave(ActionEvent event){
 
         System.out.println("Click on Save");
-        controller.createObj();
         controller.createObj(firstName.getText(), lastName.getText(),houseNumber.getText(),telephone.getText(),postcode.getText(), email.getText(),website.getText(),description.getText(),streetName.getText(),place.getText());
-        //controller.createObj(contact);
 
-        System.out.println(firstName.getText());
     }
 }

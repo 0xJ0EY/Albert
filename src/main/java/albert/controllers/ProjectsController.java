@@ -13,13 +13,12 @@ import router.response.Response;
 import router.response.ViewResponse;
 import table.Column;
 import table.Table;
-import table.factories.cells.DateCellViewFactory;
 import table.factories.cells.TextCellViewFactory;
 import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
 
-public class ProjectsController extends PageController implements OverviewPage, DetailPage, EditPage, CreateObject {
+public class ProjectsController extends PageController implements OverviewPage, DetailPage, EditPage, CreateContactObject {
 
     ProjectDAO dao = new ProjectDAO();
     public ProjectsController(

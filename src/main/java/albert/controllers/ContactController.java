@@ -1,7 +1,6 @@
 package albert.controllers;
 
 import albert.dao.ContactDAO;
-import albert.dao.DAO;
 import albert.models.Contact;
 import query.Query;
 import router.pages.CreatePage;
@@ -20,9 +19,11 @@ import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
 
-public class ContactController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage, CreateObject {
+public class ContactController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage, CreateContactObject {
 
     private ContactDAO dao = new ContactDAO();
+
+    private Contact contact;
     public ContactController(
             PageView view,
             TemplateController template
@@ -112,7 +113,9 @@ public class ContactController extends PageController implements OverviewPage, D
 
 
     @Override
-    public void createObj(String[] args) {
+    public void createObj(String firstName, String lastName, String houseNumber, String telephone, String postcode, String email, String website, String description, String streetName, String place) {
+        contact = new Contact( firstName,  lastName,  houseNumber,  telephone,  postcode,  email,  website,  description,  streetName,  place);
+        dao.create(contact);
 
     }
 }

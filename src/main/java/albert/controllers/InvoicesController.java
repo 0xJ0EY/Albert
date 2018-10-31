@@ -16,10 +16,8 @@ import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
 
-import java.io.IOException;
 
-
-public class InvoicesController extends PageController implements OverviewPage, DetailPage, EditPage, CreateObject {
+public class InvoicesController extends PageController implements OverviewPage, DetailPage, EditPage, CreateContactObject {
 
     public InvoicesController(PageView view, TemplateController template) {
         super(view, template);

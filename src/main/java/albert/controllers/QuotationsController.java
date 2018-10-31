@@ -10,7 +10,7 @@ import router.templates.TemplateController;
 import router.views.PageView;
 
 
-public class QuotationsController extends PageController implements OverviewPage, DetailPage, EditPage, CreateObject {
+public class QuotationsController extends PageController implements OverviewPage, DetailPage, EditPage, CreateContactObject {
     public QuotationsController(PageView view, TemplateController template) {
         super(view, template);
     }
