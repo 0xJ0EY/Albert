@@ -11,6 +11,9 @@ import table.views.TableView;
 
 import java.awt.*;
 import java.io.IOException;
+/*
+Hier wordt de prrojects geladen
+ */
 
 public class ProjectsView extends AnchorPane implements PageView {
 

@@ -31,8 +31,4 @@ public class RapportsController extends PageController implements OverviewPage, 
     public Response edit(Request request) {
         return new ViewResponse(this);
     }
-
-    public void createObj(Object obj) {
-
-    }
 }

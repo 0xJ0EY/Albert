@@ -25,6 +25,7 @@ public class InvoicesController extends PageController implements OverviewPage, 
     private Amount amount;
     private Invoice invoice;
 
+
     public InvoicesController(PageView view, TemplateController template) {
         super(view, template);
     }

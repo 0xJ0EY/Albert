@@ -52,5 +52,4 @@ public class QuotationsController extends PageController implements OverviewPage
     public Response edit(Request request) {
         return new ViewResponse(this);
     }
-
 }

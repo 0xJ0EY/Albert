@@ -9,7 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
 public class ProjectDAO implements DAO<Project> {
+
 
     @Override
     public ArrayList<Project> getAll() {
@@ -20,6 +22,7 @@ public class ProjectDAO implements DAO<Project> {
             Connection conn = Database.getInstance().getConnection();
 
             PreparedStatement statement = conn.prepareStatement(sql);
+
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()){
@@ -63,21 +66,82 @@ public class ProjectDAO implements DAO<Project> {
 
         return project;
     }
+    private Project project;
 
     @Override
     public void create(Project obj) {
 
+        this.project = project;
+        //TODO sql insert schrijven
+        String sql = "INSERT INTO project VALUES (project_id=?, naam=? ,created_at= ?, afgerond=?);";
+
+
+
+        try {
+            Connection conn = Database.getInstance().getConnection();
+
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            statement.setInt(1,this.project.getId());
+            statement.setString(2,this.project.getName());
+            statement.setTimestamp(3, null);
+            statement.setBoolean(4,true);
+
+            statement.execute();
+            conn.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Project added");
     }
 
     @Override
     public void update(Project obj) {
+        this.project = project;
+        //TODO sql update schrijven
+        String sql = "UPDATE project SET naam=? ,created_at= ?, afgerond=? WHERE invoice_id =?";
+
+        try {
+            Connection conn = Database.getInstance().getConnection();
+
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            statement.setInt(4,this.project.getId());
+            statement.setString(1,this.project.getName());
+            statement.setTimestamp(2 ,null);
+            statement.setBoolean(3, true);
+
+            statement.executeUpdate();
+            conn.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Project Updated");
 
     }
 
 
     @Override
     public void delete(Project obj) {
+        this.project = project;
+        //TODO sql delete schrijven
+        String sql = "DELETE FROM project WHERE invoice_id =?";
+        try {
+            Connection conn = Database.getInstance().getConnection();
 
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            statement.setInt(1,this.project.getId());
+
+            statement.execute();
+            conn.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("project deleted");
     }
 
     @Override

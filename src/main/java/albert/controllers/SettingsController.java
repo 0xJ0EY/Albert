@@ -26,7 +26,4 @@ public class SettingsController extends PageController implements OverviewPage, 
         return new ViewResponse(this);
     }
 
-    public void createObj(Object obj) {
-
-    }
 }

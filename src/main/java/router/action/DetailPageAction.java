@@ -6,6 +6,7 @@ import router.Router;
 import router.factories.pages.DetailPageFactory;
 import router.response.Response;
 
+
 public class DetailPageAction implements Action {
 
     private DetailPageFactory factory;

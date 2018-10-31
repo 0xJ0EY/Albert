@@ -72,7 +72,8 @@ public class ProjectsController extends PageController implements OverviewPage, 
         return new ViewResponse(this);
     }
 
-    public void createObj(Object obj) {
-      dao.create((Project)obj);
+    public void saveProject(String name){
+
     }
+
 }
