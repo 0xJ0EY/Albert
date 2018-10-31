@@ -1,5 +1,6 @@
 package albert.views;
 
+import albert.controllers.ContactController;
 import albert.controllers.PageController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,7 +12,7 @@ import javafx.scene.layout.AnchorPane;
 public class ContactsEditView extends AnchorPane implements PageView {
 
     private final String resource = "/views/pages/ContactEditView.fxml";
-    private PageController controller;
+    private ContactController controller;
 
     @FXML
     private TextField firstName;
@@ -71,7 +72,7 @@ public class ContactsEditView extends AnchorPane implements PageView {
 
     @Override
     public void setController(PageController controller) {
-        this.controller = controller;
+        this.controller = (ContactController) controller;
     }
 
     @Override
@@ -79,5 +80,7 @@ public class ContactsEditView extends AnchorPane implements PageView {
         return this;
     }
 
-
+    public void save(){
+        controller.saveContact(firstName.getText(), lastName.getText(),houseNumber.getText(),telephone.getText(),postcode.getText(), email.getText(),website.getText(),description.getText(),streetName.getText(),place.getText());
+    }
 }

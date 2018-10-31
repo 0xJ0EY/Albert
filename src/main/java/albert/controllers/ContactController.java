@@ -19,11 +19,17 @@ import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
 
-public class ContactController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage, CreateContactObject {
+public class ContactController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
 
     private ContactDAO dao = new ContactDAO();
 
     private Contact contact;
+
+    /**
+     *
+     * @param view
+     * @param template
+     */
     public ContactController(
             PageView view,
             TemplateController template
@@ -31,6 +37,10 @@ public class ContactController extends PageController implements OverviewPage, D
         super(view, template);
     }
 
+    /**
+     *
+     * @return
+     */
     public Table getOverviewTable(){
         Table table = new Table(
                 new DatabaseStrategy(Query.table("customer")),
@@ -111,11 +121,45 @@ public class ContactController extends PageController implements OverviewPage, D
         return new ViewResponse(this);
     }
 
-
-    @Override
-    public void createObj(String firstName, String lastName, String houseNumber, String telephone, String postcode, String email, String website, String description, String streetName, String place) {
-        contact = new Contact( firstName,  lastName,  houseNumber,  telephone,  postcode,  email,  website,  description,  streetName,  place);
+    /**
+     *
+     * @param firstName
+     * @param lastName
+     * @param houseNumber
+     * @param telephone
+     * @param postcode
+     * @param email
+     * @param website
+     * @param description
+     * @param streetName
+     * @param place
+     */
+    public void saveContact(String firstName, String lastName, String houseNumber, String telephone, String postcode, String email, String website, String description, String streetName, String place) {
+        contact = new Contact(firstName,  lastName,  houseNumber,  telephone,  postcode,  email,  website,  description,  streetName,  place);
         dao.create(contact);
+    }
 
+    /**
+     *
+     * @param firstName
+     * @param lastName
+     * @param houseNumber
+     * @param telephone
+     * @param postcode
+     * @param email
+     * @param website
+     * @param description
+     * @param streetName
+     * @param place
+     */
+    public void editContact(String firstName, String lastName, String houseNumber, String telephone, String postcode, String email, String website, String description, String streetName, String place){
+
+        contact= new Contact(firstName,  lastName,  houseNumber,  telephone,  postcode,  email,  website,  description,  streetName,  place);
+        dao.update(contact);
+    }
+
+    public void deleteContact(){
+        //contact = new Contact();
+        //dao.delete(contact);
     }
 }

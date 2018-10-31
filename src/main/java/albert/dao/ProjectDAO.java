@@ -9,7 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
 public class ProjectDAO implements DAO<Project> {
+
 
     @Override
     public ArrayList<Project> getAll() {

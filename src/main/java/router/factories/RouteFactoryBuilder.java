@@ -26,7 +26,9 @@ import router.factories.pages.settings.SettingsEditPageFactory;
 import router.factories.pages.settings.SettingsPageFactory;
 
 import java.util.HashMap;
-
+/*
+De RouteFactoryBuilder zorgt dat de app op de juiste factory staat.
+ */
 public class RouteFactoryBuilder {
 
     public HashMap<Route, Action> routes() {

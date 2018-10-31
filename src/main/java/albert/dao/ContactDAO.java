@@ -22,7 +22,7 @@ public class ContactDAO implements DAO {
 
     @Override
     public void create(Object contact) {
-        //TODO sql insert schrijven
+
         String sql = "";
        this.contact = (Contact) contact;
         System.out.println("Contact added");

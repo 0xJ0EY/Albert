@@ -5,12 +5,15 @@ import router.Request;
 import router.Router;
 import router.factories.pages.CreatePageFactory;
 import router.response.Response;
-
+/*
+Hier wordt een page gemaakt, op basis van een request
+ */
 public class CreatePageAction implements Action {
 
     private CreatePageFactory factory;
 
-    public  CreatePageAction(CreatePageFactory factory) {
+    public  CreatePageAction(CreatePageFactory factory)
+    {
         this.factory = factory;
     }
 

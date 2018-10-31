@@ -14,6 +14,9 @@ import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+/*
+Hier wordt de menuView geladen
+ */
 
 public class MenuView extends AnchorPane implements TemplateView {
 

@@ -17,7 +17,7 @@ import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
 
 
-public class InvoicesController extends PageController implements OverviewPage, DetailPage, EditPage, CreateContactObject {
+public class InvoicesController extends PageController implements OverviewPage, DetailPage, EditPage {
 
     public InvoicesController(PageView view, TemplateController template) {
         super(view, template);
@@ -73,8 +73,5 @@ public class InvoicesController extends PageController implements OverviewPage, 
         return new ViewResponse(this);
     }
 
-    @Override
-    public void createObj(Object obj) {
 
-    }
 }

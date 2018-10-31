@@ -1,8 +1,12 @@
 package albert.models;
 
 
+
 import java.util.List;
 
+/**
+ *
+ */
 public class Project {
 
     private int id;
@@ -17,10 +21,6 @@ public class Project {
 
     private List<Expense> expenseList;
 
-    /**
-     *
-     * @param name
-     */
     public Project(String name) {
         this.name = name;
     }
