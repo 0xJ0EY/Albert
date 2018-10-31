@@ -79,5 +79,9 @@ public class ContactsEditView extends AnchorPane implements PageView {
         return this;
     }
 
+    @FXML
+    public void onClickBack(){
+        controller.getRouter().nav("contacts/1");
+    }
 
 }
