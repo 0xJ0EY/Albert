@@ -4,6 +4,7 @@ import router.pages.Page;
 import router.templates.TemplateController;
 import router.views.PageView;
 import router.Router;
+import table.Table;
 
 public abstract class PageController implements Page {
 

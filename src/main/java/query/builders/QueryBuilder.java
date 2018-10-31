@@ -1,7 +1,7 @@
-package table.dao.db.builders;
+package query.builders;
 
-import table.dao.db.WhereQuery;
-import table.dao.db.selects.Select;
+import query.WhereQuery;
+import query.selects.Select;
 
 import java.util.ArrayList;
 

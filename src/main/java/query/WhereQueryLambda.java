@@ -1,4 +1,4 @@
-package table.dao.db;
+package query;
 
 public interface WhereQueryLambda {
 

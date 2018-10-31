@@ -1,4 +1,4 @@
-package table.dao.db.exceptions;
+package query.exceptions;
 
 import albert.exceptions.SystemException;
 
