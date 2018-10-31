@@ -21,7 +21,7 @@ public class DatabaseStrategy implements DataStrategy {
     private int total = 0;
 
     private int offset = 0;
-    private int limit = Integer.parseInt(Config.get("database", "settings.default_rows"));
+    private int limit = Integer.parseInt(Config.get("table", "settings.default_rows"));
 
     public DatabaseStrategy(Query query) {
         this.baseQuery = (Query) SerializationUtils.clone(query);

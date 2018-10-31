@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Priority;
-import table.Cell;
+import table.cells.Cell;
 import table.exceptions.ViewNotFoundException;
 import table.views.CellView;
 
@@ -33,7 +33,7 @@ public class IntCellView extends AnchorPane implements CellView<Integer> {
 
     @Override
     public void update() {
-        int value = (int) this.value.getObject();
+        int value = (int) this.value.getValue();
 
         label.setText(Integer.toString(value));
     }

@@ -2,15 +2,12 @@ package table.views.tables;
 
 import config.Config;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import table.Column;
 import table.Row;
 import table.Table;
-import table.Cell;
-import table.exceptions.ViewNotFoundException;
+import table.cells.Cell;
 import table.views.CellView;
 import table.views.HeaderView;
 import table.views.TableView;
@@ -21,7 +18,7 @@ import java.util.ArrayList;
 public abstract class BaseTableView extends AnchorPane implements TableView {
 
     protected Table table;
-    protected final String descriptionContent = Config.get("database", "text.description");
+    protected final String descriptionContent = Config.get("table", "text.description");
 
     protected ArrayList<ColumnView> columns = new ArrayList<>();
 
@@ -114,9 +111,9 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
 
             ArrayList<Cell> values = row.getCells();
 
-            for (Cell value : values) {
+            for (Cell cell : values) {
 
-                CellView view = value.getView();
+                CellView view = cell.getView();
 
                 view.load();
 

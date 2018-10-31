@@ -1,6 +1,7 @@
 package table;
 
 import config.Config;
+import table.cells.Cell;
 import table.exceptions.IllegalTableChangeException;
 import table.exceptions.InvalidRowException;
 import table.strategies.DataStrategy;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 
 public class Table {
 
-    private int amountRows = Integer.parseInt(Config.get("database", "settings.default_rows"));
+    private int amountRows = Integer.parseInt(Config.get("table", "settings.default_rows"));
 
     private DataStrategy strategy;
     private TableView view;
@@ -82,7 +83,11 @@ public class Table {
             if ( ! col.match(data[i]))
                 throw new InvalidRowException();
 
-            row.addCell(new Cell(col.getView(), data[i]));
+            Cell cell = col.getCell();
+
+            cell.setValue(data[i]);
+
+            row.addCell(cell);
         }
 
         // Add row to the table

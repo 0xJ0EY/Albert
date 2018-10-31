@@ -1,7 +1,6 @@
 package albert.controllers;
 
 import albert.dao.ContactDAO;
-import albert.dao.DAO;
 import albert.models.Contact;
 import query.Query;
 import router.pages.CreatePage;
@@ -15,7 +14,7 @@ import router.response.Response;
 import router.response.ViewResponse;
 import table.Column;
 import table.Table;
-import table.factories.cells.TextCellViewFactory;
+import table.factories.cells.TextCellFactory;
 import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
@@ -38,52 +37,52 @@ public class ContactController extends PageController implements OverviewPage, D
 
         table.addCol(new Column("customer_id::text",
                 new LeftHeaderViewFactory("Contact ID"),
-                new TextCellViewFactory())
+                new TextCellFactory())
         );
 
         table.addCol(new Column("f_name",
                 new LeftHeaderViewFactory("Voornaam"),
-                new TextCellViewFactory())
+                new TextCellFactory())
         );
 
         table.addCol(new Column("b_name",
                 new LeftHeaderViewFactory("Achternaam"),
-                new TextCellViewFactory())
+                new TextCellFactory())
         );
 
         table.addCol(new Column("tel_number::text",
                 new LeftHeaderViewFactory("Telefoonnummer"),
-                new TextCellViewFactory())
+                new TextCellFactory())
         );
 
         table.addCol(new Column("email_address::text",
                 new LeftHeaderViewFactory("E-Mail adres"),
-                new TextCellViewFactory())
+                new TextCellFactory())
         );
 
         table.addCol(new Column("postal_code::text",
                 new LeftHeaderViewFactory("Postcode"),
-                new TextCellViewFactory())
+                new TextCellFactory())
         );
 
         table.addCol(new Column("street_name::text",
                 new LeftHeaderViewFactory("Straatnaam"),
-                new TextCellViewFactory())
+                new TextCellFactory())
         );
 
         table.addCol(new Column("house_nr::text",
                 new LeftHeaderViewFactory("Huisnummer"),
-                new TextCellViewFactory())
+                new TextCellFactory())
         );
 
         table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
                 new LeftHeaderViewFactory("Aangemaakt op"),
-                new TextCellViewFactory())
+                new TextCellFactory())
         );
 
         table.addCol(new Column("TO_CHAR(updated_at, 'DD-MM-YYYY')",
                 new LeftHeaderViewFactory("Aangepast op"),
-                new TextCellViewFactory())
+                new TextCellFactory())
         );
 
         return  table;

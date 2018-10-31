@@ -5,7 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Priority;
-import table.Cell;
+import table.cells.Cell;
+import table.cells.TextCell;
 import table.exceptions.ViewNotFoundException;
 import table.views.CellView;
 
@@ -19,7 +20,7 @@ public class DateCellView extends AnchorPane implements CellView<String> {
     private Label label;
 
     private final String resource = "/views/table/cells/TextCellView.fxml";
-    private Cell value;
+    private TextCell value;
 
     @Override
     public void load() {
@@ -37,9 +38,7 @@ public class DateCellView extends AnchorPane implements CellView<String> {
 
     @Override
     public void update() {
-        String input = this.value.getObject().toString();
-
-
+        String input = this.value.getValue().toString();
 
         // Format the string
 
@@ -66,7 +65,7 @@ public class DateCellView extends AnchorPane implements CellView<String> {
 
     @Override
     public void setCell(Cell cell) {
-        this.value = cell;
+        this.value = (TextCell) cell;
     }
 
     @Override

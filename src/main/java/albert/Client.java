@@ -55,6 +55,8 @@ public class Client extends Application {
     }
 
     public static void main(String[] args) {
+        System.out.println("Config.get(\"table\", \"settings.default_rows\") = " + Config.get("table", "settings.default_rows"));
+
         launch(args);
     }
 

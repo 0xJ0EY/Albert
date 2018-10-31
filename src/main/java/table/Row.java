@@ -1,5 +1,6 @@
 package table;
 
+import table.cells.Cell;
 import table.views.CellView;
 
 import java.util.ArrayList;

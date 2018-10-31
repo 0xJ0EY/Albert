@@ -2,7 +2,7 @@ package table.views;
 
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Priority;
-import table.Cell;
+import table.cells.Cell;
 
 public interface CellView<T> {
 
