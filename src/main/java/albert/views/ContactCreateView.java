@@ -94,8 +94,9 @@ public class ContactCreateView extends AnchorPane implements PageView {
     public void clickOnSave(ActionEvent event){
 
         System.out.println("Click on Save");
-        contact = new Contact(firstName.getText(), lastName.getText(),houseNumber.getText(),telephone.getText(),postcode.getText(), email.getText(),website.getText(),description.getText(),streetName.getText(),place.getText());
-        controller.createObj(contact);
+        controller.createObj();
+        controller.createObj(firstName.getText(), lastName.getText(),houseNumber.getText(),telephone.getText(),postcode.getText(), email.getText(),website.getText(),description.getText(),streetName.getText(),place.getText());
+        //controller.createObj(contact);
 
         System.out.println(firstName.getText());
     }

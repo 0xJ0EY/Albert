@@ -109,9 +109,10 @@ public class ContactController extends PageController implements OverviewPage, D
 
         return new ViewResponse(this);
     }
-    
+
+
     @Override
-    public void createObj(Object obj) {
-        dao.create((Contact)obj);
+    public void createObj(String[] args) {
+
     }
 }
