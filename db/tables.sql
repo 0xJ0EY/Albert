@@ -1,26 +1,20 @@
-DROP TABLE IF EXISTS public.projects;
-
-CREATE TABLE public.projects
-(
-    id BIGSERIAL PRIMARY KEY NOT NULL,
-    name VARCHAR(100) NOT NULL,
-    finished BOOLEAN DEFAULT FALSE,
-    created_at TIMESTAMP DEFAULT NOW() NOT NULL,
-    updated_at TIMESTAMP
-);
-
 CREATE TABLE project
 (
-    project_id integer PRIMARY KEY,
+    project_id BIGSERIAL PRIMARY KEY,
     name VARCHAR,
+    invoice_id integer,
+    contact_id integer,
+    expense_id integer,
+    quotation_id integer,
     created_at TIMESTAMP,
-    afgerond BOOLEAN DEFAULT FALSE
+    done BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE invoice
 (
-    invoice_id integer PRIMARY KEY,
-    paid BOOLEAN DEFAULT FALSE,
+    invoice_id BIGSERIAL PRIMARY KEY,
+    paid VARCHAR(15),
+    tax_id integer,
     created_at TIMESTAMP,
     amount integer,
     deliverydate TIMESTAMP
@@ -28,72 +22,57 @@ CREATE TABLE invoice
 
 CREATE TABLE tax
 (
-    tax_id integer PRIMARY KEY,
+    tax_id BIGSERIAL PRIMARY KEY,
     name VARCHAR,
-    percentage integer,
-    created_at TIMESTAMP
+    percentage integer
 );
 
 CREATE TABLE quotation
 (
     name VARCHAR,
-    quotation_id integer PRIMARY KEY,
+    quotation_id BIGSERIAL PRIMARY KEY,
     description VARCHAR,
-    delivery VARCHAR,
-    costs integer,
-    updated_at TIMESTAMP,
+    product VARCHAR,
+    amount_id integer,
     created_at TIMESTAMP
 );
 
 CREATE TABLE report
 (
-    report_id integer PRIMARY KEY,
-    created_at TIMESTAMP,
+    report_id BIGSERIAL PRIMARY KEY,
     end_date TIMESTAMP,
     start_date TIMESTAMP
 );
 
 CREATE TABLE expense
 (
-    expense_id integer PRIMARY KEY,
-    updated_at TIMESTAMP,
-    price integer,
+    expense_id BIGSERIAL PRIMARY KEY,
+    price numeric(2),
     created_at TIMESTAMP,
-    company varchar,
     name varchar
 );
 
-CREATE TABLE supplier
+CREATE TABLE contact
 (
-    name varchar,
-    tel_number integer
-);
-
-CREATE TABLE customer
-(
-    customer_id integer PRIMARY KEY,
-    f_name varchar,
-    b_name varchar,
+    contact_id BIGSERIAL PRIMARY KEY,
+    first_name varchar,
+    last_name varchar,
     tel_number integer,
-    email_address varchar,
     postal_code varchar,
     street_name varchar,
-    house_nr varchar,
+    house_number varchar,
     created_at TIMESTAMP,
-    updated_at TIMESTAMP
+    website varchar,
+    description varchar
 );
 
-CREATE TABLE company
+CREATE TABLE contact_email
 (
-    company_customer_id integer PRIMARY KEY,
-    name varchar
+    email_id BIGSERIAL PRIMARY KEY,
+    contact_id integer,
+    email_address varchar
 );
 
-CREATE TABLE private
-(
-    private_customer_id integer PRIMARY KEY,
-    type varchar
-);
 
 
 
