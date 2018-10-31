@@ -14,16 +14,21 @@ public class Project {
 
     private List<Invoice> invoiceList;
 
+    private List<Quotation> quotationList;
 
-    private List<Contact> contactList;
+    private Contact contact;
 
     private boolean done = false;
 
     private List<Expense> expenseList;
 
+
+
     public Project(String name) {
         this.name = name;
     }
+
+    //TODO get en set quotation list
 
     public void setId(int id) {
         this.id = id;
@@ -37,13 +42,12 @@ public class Project {
         this.invoiceList = invoiceList;
     }
 
-
-    public List<Contact> getContactList() {
-        return contactList;
+    public Contact getContact() {
+        return contact;
     }
 
-    public void setContactList(List<Contact> contactList) {
-        this.contactList = contactList;
+    public void setContactList(Contact contact) {
+        this.contact = contact;
     }
 
     public boolean isDone() {
@@ -61,8 +65,6 @@ public class Project {
     public void setExpenseList(List<Expense> expenseList) {
         this.expenseList = expenseList;
     }
-
-
 
     public void setName(String name) {
             this.name = name;

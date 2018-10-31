@@ -1,16 +1,18 @@
 package albert.models;
 
 public class Rapportage {
-    
-    public void setName(String name) {
 
-    }
+    private String name;
+    private int id;
+    //TODO: set en get
+
+    public void setName(String name) { this.name = name;   }
 
     public String getName() {
-        return null;
+        return this.name;
     }
 
     public int getId() {
-        return 0;
+        return this.id;
     }
 }

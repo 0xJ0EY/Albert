@@ -1,6 +1,8 @@
 package albert.models;
 
 
+import java.util.ArrayList;
+
 public class Contact {
 
     private String name;
@@ -11,13 +13,11 @@ public class Contact {
 
     private String lastName;
 
-    private String addres;
-
     private String telephoneNumber;
 
     private String postcode;
 
-    private String email;
+    private ArrayList<String> email;
 
     private String website;
 
@@ -25,15 +25,11 @@ public class Contact {
 
     private String straatnaam;
 
+    private String houseNumber;
+
     private String woonplaats;
 
     private String created_at;
-
-    private String updated_at;
-
-
-
-    private String houseNumber;
 
     /**
      *
@@ -59,17 +55,17 @@ public class Contact {
      * @param straatnaam
      * @param woonplaats
      */
-    public Contact(String firstName, String lastName, String housenumber, String telephoneNumber, String postcode, String email, String website, String beschrijving, String straatnaam, String woonplaats) {
+    public Contact(String firstName, String lastName, String housenumber, String telephoneNumber, String postcode, ArrayList<String> email, String website, String beschrijving, String straatnaam, String woonplaats) {
         this.name = firstName + lastName;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.addres = housenumber;
         this.telephoneNumber = telephoneNumber;
         this.postcode = postcode;
         this.email = email;
         this.website = website;
         this.beschrijving = beschrijving;
         this.straatnaam = straatnaam;
+        this.houseNumber = housenumber;
         this.woonplaats = woonplaats;
     }
 
@@ -80,7 +76,6 @@ public class Contact {
     public void setHouseNumber(String houseNumber) {
         this.houseNumber = houseNumber;
     }
-
 
     public void setId(int id) {
         this.id = id;
@@ -102,14 +97,6 @@ public class Contact {
         this.lastName = lastName;
     }
 
-    public String getAddres() {
-        return addres;
-    }
-
-    public void setAddres(String addres) {
-        this.addres = addres;
-    }
-
     public String getTelephoneNumber() {
         return telephoneNumber;
     }
@@ -126,11 +113,11 @@ public class Contact {
         this.postcode = postcode;
     }
 
-    public String getEmail() {
+    public ArrayList<String> getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(ArrayList<String> email) {
         this.email = email;
     }
 
@@ -166,17 +153,14 @@ public class Contact {
         this.woonplaats = woonplaats;
     }
 
-
-    public void setName(String name) {
-
-    }
+    public void setName(String name) { this.name = name; }
 
     public String getName() {
-        return null;
+        return this.name;
     }
 
     public int getId() {
-        return 0;
+        return this.id;
     }
 
 }

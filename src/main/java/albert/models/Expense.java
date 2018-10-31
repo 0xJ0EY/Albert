@@ -1,10 +1,14 @@
 package albert.models;
 
+import java.util.Date;
+
 public class Expense {
 
+    private int id;
     private double price;
-
     private String description;
+    private Date created_at;
+    //TODO: make get en set
 
     public Expense(double price, String description) {
         this.price = price;

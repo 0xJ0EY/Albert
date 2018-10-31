@@ -1,12 +1,15 @@
 package albert.models;
 
+import java.util.Date;
+
 public class Quotation {
 
     private int id;
     private String name;
     private Amount amount;
-    private String delivery;
+    private String product;
     private String description;
+    private Date created_at;
 
     public String getName() {
         return name;
@@ -22,9 +25,9 @@ public class Quotation {
         this.amount = amount;
     }
 
-    public String getDelivery() { return this.delivery; }
+    public String getProduct() { return this.product; }
 
-    public void setDelivery(String delivery) { this.delivery = delivery; }
+    public void setDelivery(String product) { this.product = product; }
 
     public String getDescription() { return this.description; }
 
@@ -46,10 +49,7 @@ public class Quotation {
         this.bedragen = bedragen;
     }
 
-    public int getId() {
-
-        return id;
-    }
+    public int getId() { return id; }
 
     public void setId(int id) {
         this.id = id;
@@ -62,9 +62,9 @@ public class Quotation {
      *
      * @param name
      */
-    public Quotation(String name, Amount amount, String delivery) {
+    public Quotation(String name, Amount amount, String product) {
         this.name = name;
         this.amount = amount;
-        this.delivery = delivery;
+        this.product = product;
     }
 }

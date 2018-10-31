@@ -1,6 +1,6 @@
 package albert.models;
 
-import java.util.ArrayList;
+import java.util.Date;
 
 public class Invoice {
 
@@ -8,6 +8,11 @@ public class Invoice {
     private String name;
     private Amount amount;
     private String delivery;
+    private Boolean paid;
+    private Date created_at;
+    private Date deliveryDate;
+    //TODO: make get en set paid, created_at, deliveryDate
+    //TODO: make enumeration paid: betaald, niet betaald, in afwachting.
 
     public String getName() {
         return name;

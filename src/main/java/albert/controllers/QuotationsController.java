@@ -29,9 +29,7 @@ public class QuotationsController extends PageController implements OverviewPage
         dao.create(quotation);
     }
 
-    public void deleteQuotation() {
-        dao.delete(quotation);
-    }
+    public void deleteQuotation() { dao.delete(quotation); }
 
     public void editQuotation(String name, String price, String hour, String contact, String delivery) {
         amount = new Amount(new Double(price), new Double(hour), contact);
