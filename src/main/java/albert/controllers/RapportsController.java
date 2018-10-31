@@ -9,7 +9,7 @@ import router.response.ViewResponse;
 import router.templates.TemplateController;
 import router.views.PageView;
 
-public class RapportsController extends PageController implements OverviewPage, DetailPage, EditPage, CreateObject {
+public class RapportsController extends PageController implements OverviewPage, DetailPage, EditPage, CreateContactObject {
 
 
     public RapportsController(PageView view, TemplateController template) {

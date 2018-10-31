@@ -20,11 +20,7 @@ public class Client extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-            stage.addEventHandler(KeyEvent.KEY_PRESSED, e -> {
-                if (e.getCode() == KeyCode.F1) {
-                    System.out.println("HELP ME");
-                }
-            });
+
 
             this.stage = stage;
 

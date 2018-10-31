@@ -60,9 +60,9 @@ public class RouteFactoryBuilder {
         map.put(new Route("invoices/{page}/"), new OverviewPageAction(new InvoicePageFactory()));
 
         //Rapports
-        map.put(new Route("rapports/{page}/"), new OverviewPageAction(new RapportsPageFactory()));
-        map.put(new Route("rapports/edit/{rapport}/"), new EditPageAction(new RapportsEditPageFactory()));
-        map.put(new Route("rapports/detail/{rapport}/"), new DetailPageAction(new RapportsDetailPageFactory()));
+        map.put(new Route("reports/{page}/"), new OverviewPageAction(new RapportsPageFactory()));
+        map.put(new Route("reports/edit/{rapport}/"), new EditPageAction(new RapportsEditPageFactory()));
+        map.put(new Route("reports/detail/{rapport}/"), new DetailPageAction(new RapportsDetailPageFactory()));
 
 
         //Settings
