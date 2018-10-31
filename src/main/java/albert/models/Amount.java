@@ -24,9 +24,13 @@ public class Amount {
         return price;
     }
 
-    public void setPRice(double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
+
+    public double getHours() { return this.hours; }
+
+    public void setHours(double hours) { this.hours = hours; }
 
 
 

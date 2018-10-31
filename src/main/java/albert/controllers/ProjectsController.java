@@ -18,7 +18,7 @@ import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
 
-public class ProjectsController extends PageController implements OverviewPage, DetailPage, EditPage, CreateContactObject {
+public class ProjectsController extends PageController implements OverviewPage, DetailPage, EditPage {
 
     ProjectDAO dao = new ProjectDAO();
     public ProjectsController(
@@ -72,7 +72,6 @@ public class ProjectsController extends PageController implements OverviewPage, 
         return new ViewResponse(this);
     }
 
-    @Override
     public void createObj(Object obj) {
       dao.create((Project)obj);
     }

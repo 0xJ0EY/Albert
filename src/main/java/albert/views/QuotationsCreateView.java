@@ -64,10 +64,7 @@ public class QuotationsCreateView extends AnchorPane implements PageView {
 
     @FXML
     public void clickOnSave(ActionEvent event){
-        //TODO: verplaats deze logica naar de controller
         System.out.println("Click on Save");
-        amount = new Amount(new Double(priceBar.getText()), new Double(hourBar.getText()), contactBar.getText());
-        quotation = new Quotation(naamBar.getText(), amount, delivery.getText());
-        controller.createObj(quotation);
+        controller.saveQuotation(naamBar.getText(), priceBar.getText(), hourBar.getText(), contactBar.getText(), delivery.getText());
     }
 }

@@ -7,6 +7,7 @@ public class Invoice {
     private int id;
     private String name;
     private Amount amount;
+    private String delivery;
 
     public String getName() {
         return name;
@@ -15,6 +16,10 @@ public class Invoice {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getDelivery() { return  this.delivery; }
+
+    public void setDelivery(String delivery) { this.delivery = delivery; }
 
     public Amount getAmount() {
         return amount;
@@ -56,8 +61,9 @@ public class Invoice {
      *
      * @param name
      */
-    public Invoice(String name, Amount amount) {
+    public Invoice(String name, Amount amount, String delivery) {
         this.name = name;
         this.amount = amount;
+        this.delivery = delivery;
     }
 }

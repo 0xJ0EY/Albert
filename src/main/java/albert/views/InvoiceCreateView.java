@@ -13,7 +13,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class InvoiceCreateView extends AnchorPane implements PageView {
 
-    private final String resource = "/views/pages/InvoiceEditView.fxml";
+    private final String resource = "/views/pages/InvoiceCreateView.fxml";
     private InvoicesController controller;
     private Invoice invoice;
     private Amount amount;
@@ -32,6 +32,9 @@ public class InvoiceCreateView extends AnchorPane implements PageView {
 
     @FXML
     private TextField project;
+
+    @FXML
+    private TextField delivery;
 
 
     @Override
@@ -65,11 +68,7 @@ public class InvoiceCreateView extends AnchorPane implements PageView {
 
     @FXML
     public void clickOnSave(ActionEvent event){
-        //TODO: verplaats deze logica naar de controller
         System.out.println("Click on Save");
-        amount = new Amount(new Double(price.getText()), new Double(hours.getText()), contact.getText());
-        invoice = new Invoice(name.getText(), amount);
-        System.out.println(name.getText());
-        controller.createObj(invoice);
+        controller.saveInvoice(name.getText(), price.getText(), hours.getText(), contact.getText(), delivery.getText());
     }
 }
