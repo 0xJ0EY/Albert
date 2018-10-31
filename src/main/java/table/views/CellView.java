@@ -14,12 +14,6 @@ public interface CellView {
 
     public void setCell(Cell cell);
 
-    /**
-     * Return the object required to display this object
-     * @return
-     */
-    public boolean match(Object object);
-
     public AnchorPane render();
 
 }

@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root minHeight="30.0" minWidth="50.0" onMouseClicked="#onClickCell" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="30.0" minWidth="50.0" onMouseClicked="#onClickCell" styleClass="nav_button" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="label" alignment="CENTER" text="Label" textAlignment="RIGHT">
+            <Label fx:id="label" alignment="CENTER" text="Label" textAlignment="RIGHT" underline="true">
                <font>
                   <Font size="15.0" />
                </font>

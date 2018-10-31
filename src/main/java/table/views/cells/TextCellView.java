@@ -52,11 +52,6 @@ public class TextCellView extends AnchorPane implements CellView {
     }
 
     @Override
-    public boolean match(Object object) {
-        return true;
-    }
-
-    @Override
     public AnchorPane render() {
         return this;
     }
