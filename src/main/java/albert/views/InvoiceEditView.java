@@ -1,6 +1,7 @@
 package albert.views;
 
 import albert.controllers.PageController;
+import javafx.scene.control.TextField;
 import router.views.PageView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,18 @@ public class InvoiceEditView extends AnchorPane implements PageView {
 
     private final String resource = "/views/pages/InvoiceEditDetail.fxml";
     private PageController controller;
+
+    @FXML
+    private TextField naam;
+
+    @FXML
+    private TextField klant;
+
+    @FXML
+    private TextField uren;
+
+    @FXML
+    private  TextField project;
 
     @Override
     public void load() {

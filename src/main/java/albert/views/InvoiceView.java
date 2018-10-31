@@ -3,6 +3,7 @@ package albert.views;
 import albert.controllers.PageController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import router.views.PageView;
 
@@ -13,6 +14,8 @@ public class InvoiceView extends AnchorPane implements PageView {
     private final String resource = "/views/pages/InvoiceView.fxml";
     private PageController controller;
 
+    @FXML
+    private TextField searchform;
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
@@ -42,4 +45,18 @@ public class InvoiceView extends AnchorPane implements PageView {
         return this;
     }
 
+    public void onClickSearch(){
+
+    }
+    public void clickOnEdit(){
+
+    }
+
+    public void clickOnDelete(){
+
+    }
+
+    public void clickOnPdf(){
+
+    }
 }

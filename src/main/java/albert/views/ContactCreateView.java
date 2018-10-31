@@ -32,8 +32,6 @@ public class ContactCreateView extends AnchorPane implements PageView {
     @FXML
     private TextField lastName;
 
-    @FXML
-    private TextField contactID;
 
     @FXML
     private TextField streetName;

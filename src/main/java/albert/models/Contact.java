@@ -27,6 +27,10 @@ public class Contact {
 
     private String woonplaats;
 
+    private String created_at;
+
+    private String updated_at;
+
 
 
     private String houseNumber;

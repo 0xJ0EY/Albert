@@ -1,9 +1,9 @@
 package albert.views;
 
-import albert.controllers.InvoicesController;
 import albert.controllers.PageController;
+import albert.controllers.QuotationsController;
 import albert.models.Amount;
-import albert.models.Invoice;
+import albert.models.Quotation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -11,28 +11,27 @@ import router.views.PageView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
-public class InvoiceCreateView extends AnchorPane implements PageView {
+public class QuotationsCreateView extends AnchorPane implements PageView {
 
-    private final String resource = "/views/pages/InvoiceEditView.fxml";
-    private InvoicesController controller;
-    private Invoice invoice;
+    private final String resource = "/views/pages/QuotationsCreateView.fxml";
+    private QuotationsController controller;
+    private Quotation quotation;
     private Amount amount;
 
     @FXML
-    private TextField name;
+    private TextField naamBar;
 
     @FXML
-    private TextField contact;
+    private TextField hourBar;
 
     @FXML
-    private TextField hours;
+    private TextField priceBar;
 
     @FXML
-    private TextField price;
+    private TextField contactBar;
 
     @FXML
-    private TextField project;
-
+    private TextField delivery;
 
     @Override
     public void load() {
@@ -55,7 +54,7 @@ public class InvoiceCreateView extends AnchorPane implements PageView {
 
     @Override
     public void setController(PageController controller) {
-        this.controller = (InvoicesController) controller;
+        this.controller = (QuotationsController) controller;
     }
 
     @Override
@@ -67,9 +66,8 @@ public class InvoiceCreateView extends AnchorPane implements PageView {
     public void clickOnSave(ActionEvent event){
         //TODO: verplaats deze logica naar de controller
         System.out.println("Click on Save");
-        amount = new Amount(new Double(price.getText()), new Double(hours.getText()), contact.getText());
-        invoice = new Invoice(name.getText(), amount);
-        System.out.println(name.getText());
-        controller.createObj(invoice);
+        amount = new Amount(new Double(priceBar.getText()), new Double(hourBar.getText()), contactBar.getText());
+        quotation = new Quotation(naamBar.getText(), amount, delivery.getText());
+        controller.createObj(quotation);
     }
 }
