@@ -11,7 +11,7 @@ import table.cells.TextCell;
 import table.exceptions.ViewNotFoundException;
 import table.views.CellView;
 
-public class TextCellView extends AnchorPane implements CellView<String> {
+public class TextCellView extends AnchorPane implements CellView {
 
     @FXML
     private Label label;

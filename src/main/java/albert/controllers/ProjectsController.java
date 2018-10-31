@@ -39,20 +39,20 @@ public class ProjectsController extends PageController implements OverviewPage, 
                 new TextCellFactory())
         );
 
-//        table.addCol(new Column("project_naam",
-//                new LeftHeaderViewFactory("Naam"),
-//                new TextCellFactory())
-//        );
-//
-//        table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
-//                new LeftHeaderViewFactory("Aangemaakt op"),
-//                new TextCellFactory())
-//        );
-//
-//        table.addCol(new Column("finished::text",
-//                new LeftHeaderViewFactory("Afgerond"),
-//                new TextCellFactory())
-//        );
+        table.addCol(new Column("project_naam",
+                new LeftHeaderViewFactory("Naam"),
+                new TextCellFactory())
+        );
+
+        table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
+                new LeftHeaderViewFactory("Aangemaakt op"),
+                new TextCellFactory())
+        );
+
+        table.addCol(new Column("finished::text",
+                new LeftHeaderViewFactory("Afgerond"),
+                new TextCellFactory())
+        );
 
         return  table;
     }

@@ -1,5 +1,6 @@
 package table.cells;
 
+import albert.controllers.PageController;
 import router.Route;
 import table.Row;
 import table.views.CellView;
@@ -13,9 +14,11 @@ public class RouteCell implements Cell {
     private CellView view;
 
     private Route route;
+    private PageController page;
 
-    public RouteCell(String route, CellView view) {
+    public RouteCell(String route, PageController page, CellView view) {
         this.route = new Route(route);
+        this.page = page;
         this.setView(view);
     }
 
@@ -33,6 +36,14 @@ public class RouteCell implements Cell {
     @Override
     public void setRow(Row row) {
         this.row = row;
+    }
+
+    private String getRoute() {
+        return this.route.buildUrl(this.row.getValues());
+    }
+
+    public void nav() {
+        this.page.getRouter().nav(this.getRoute());
     }
 
     @Override

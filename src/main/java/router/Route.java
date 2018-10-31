@@ -44,6 +44,22 @@ public class Route {
         return regex.replaceAll(pattern, "([^\\\\/]+)");
     }
 
+    public String buildUrl(HashMap<String, Object> values) {
+        String URL = this.route;
+
+        for (int i = 0; i < this.args.size(); i++) {
+
+            String arg = this.args.get(i);
+
+            String pattern = "\\{" + arg + "\\}";
+
+            // Replace the URL, with the updated version
+            URL = URL.replaceAll(pattern, values.get(arg).toString());
+        }
+
+        return URL;
+    }
+
     public boolean match(String route) {
 
         route = this.trimRoute(route);

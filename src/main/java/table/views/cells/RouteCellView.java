@@ -1,26 +1,24 @@
 package table.views.cells;
 
+import config.Config;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Priority;
 import table.cells.Cell;
+import table.cells.RouteCell;
 import table.cells.TextCell;
 import table.exceptions.ViewNotFoundException;
 import table.views.CellView;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-public class DateCellView extends AnchorPane implements CellView<String> {
+public class RouteCellView extends AnchorPane implements CellView {
 
     @FXML
     private Label label;
 
-    private final String resource = "/views/table/cells/TextCellView.fxml";
-    private TextCell value;
+    private final String resource = "/views/table/cells/RouteCellView.fxml";
+    private RouteCell controller;
 
     @Override
     public void load() {
@@ -38,24 +36,10 @@ public class DateCellView extends AnchorPane implements CellView<String> {
 
     @Override
     public void update() {
-        String input = this.value.getValue().toString();
 
-        // Format the string
+        Object value = this.controller.getValue();
 
-        try {
-            SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSX");
-
-            Date date = parser.parse(input);
-
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-mm-yyyy");
-
-            String output = formatter.format(date);
-
-            this.label.setText(output);
-
-        } catch (ParseException ex) {
-            throw new RuntimeException(ex);
-        }
+        this.label.setText(value != null ? value.toString() : Config.get("table", "settings.empty"));
     }
 
     @Override
@@ -65,7 +49,7 @@ public class DateCellView extends AnchorPane implements CellView<String> {
 
     @Override
     public void setCell(Cell cell) {
-        this.value = (TextCell) cell;
+        this.controller = (RouteCell) cell;
     }
 
     @Override
@@ -76,6 +60,11 @@ public class DateCellView extends AnchorPane implements CellView<String> {
     @Override
     public AnchorPane render() {
         return this;
+    }
+
+    @FXML
+    public void onClickCell() {
+        this.controller.nav();
     }
 
 }

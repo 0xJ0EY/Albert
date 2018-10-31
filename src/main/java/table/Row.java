@@ -4,11 +4,14 @@ import table.cells.Cell;
 import table.views.CellView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Row {
 
     private Table table;
     private ArrayList<Cell> cells = new ArrayList<>();
+
+    private HashMap<String, Object> values;
 
     public Row(Table table) {
         this.setTable(table);
@@ -16,22 +19,6 @@ public class Row {
 
     private void setTable(Table table) {
         this.table = table;
-    }
-
-    public ArrayList<CellView> getColumns() {
-        ArrayList<CellView> list = new ArrayList<>();
-
-        for (Cell value : this.cells) {
-            CellView view = value.getView();
-
-            view.load();
-
-            view.update();
-
-            list.add(view);
-        }
-
-        return list;
     }
 
     public Table getTable() {
@@ -46,4 +33,17 @@ public class Row {
     public ArrayList<Cell> getCells() {
         return this.cells;
     }
+
+    public void setValues(HashMap<String, Object> values) {
+        this.values = values;
+    }
+
+    public Object getValue(String key) {
+        return this.values.get(key);
+    }
+
+    public HashMap<String, Object> getValues() {
+        return this.values;
+    }
+
 }

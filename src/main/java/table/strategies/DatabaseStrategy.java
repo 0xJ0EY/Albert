@@ -89,7 +89,7 @@ public class DatabaseStrategy implements DataStrategy {
         ArrayList<Record> records = searchQuery.fetch();
 
         for (Record record : records) {
-            this.table.addRow(record.getObjects().toArray());
+            this.table.addRow(record.getValues());
         }
     }
 

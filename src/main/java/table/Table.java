@@ -8,6 +8,7 @@ import table.strategies.DataStrategy;
 import table.views.TableView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Table {
 
@@ -62,30 +63,27 @@ public class Table {
         this.cols.add(col);
     }
 
-    public void addRow(Object... data) {
-
-        // Check if the row and cells are the same size
-        // Else throw an exception
-        if (data.length != cols.size())
-            throw new InvalidRowException();
-
-        // Get the index for the new row, indices start at 0
-        int index = this.data.size();
+    public void addRow(HashMap<String, Object> map) {
 
         // Create new row
         Row row = new Row(this);
 
+        // Save values
+        row.setValues(map);
+
         // Check if the row and cells have the same data type on correct key
         // Else throw an exception
-        for (int i = 0; i < data.length; i++) {
+        for (int i = 0; i < cols.size(); i++) {
             Column col = this.cols.get(i);
 
-            if ( ! col.match(data[i]))
+            Object value = map.get(col.getDatabaseColumn());
+
+            if ( ! col.match(value))
                 throw new InvalidRowException();
 
             Cell cell = col.getCell();
 
-            cell.setValue(data[i]);
+            cell.setValue(value);
 
             row.addCell(cell);
         }
