@@ -14,6 +14,7 @@ import router.response.Response;
 import router.response.ViewResponse;
 import table.Column;
 import table.Table;
+import table.factories.cells.RouteCellFactory;
 import table.factories.cells.TextCellFactory;
 import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
@@ -35,14 +36,14 @@ public class ContactController extends PageController implements OverviewPage, D
                 new SearchTableView()
         );
 
-        table.addCol(new Column("customer_id::text",
-                new LeftHeaderViewFactory("Contact ID"),
-                new TextCellFactory())
-        );
+//        table.addCol(new Column("customer_id::text",
+//                new LeftHeaderViewFactory("Contact ID"),
+//                new RouteCellFactory("/home/{customer_id}/"))
+//        );
 
         table.addCol(new Column("f_name",
                 new LeftHeaderViewFactory("Voornaam"),
-                new TextCellFactory())
+                new RouteCellFactory("/home/"))
         );
 
         table.addCol(new Column("b_name",

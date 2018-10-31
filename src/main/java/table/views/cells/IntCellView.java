@@ -33,9 +33,9 @@ public class IntCellView extends AnchorPane implements CellView<Integer> {
 
     @Override
     public void update() {
-        int value = (int) this.value.getValue();
+        String value =  this.value.getValue().toString();
 
-        label.setText(Integer.toString(value));
+        label.setText(value);
     }
 
     @Override

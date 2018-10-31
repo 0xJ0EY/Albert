@@ -9,6 +9,7 @@ import query.Record;
 import table.enumerations.OrderBy;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class DatabaseStrategy implements DataStrategy {
 
@@ -74,8 +75,15 @@ public class DatabaseStrategy implements DataStrategy {
         // Build select statements
         ArrayList<Column> columns = this.table.getCols();
 
+
+        HashSet<String> cols = new HashSet<>();
+
         for (Column column : columns) {
-            searchQuery.select(column.getDatabaseColumn(), String.class);
+            cols.addAll(column.getRequiredDatabaseColumns());
+        }
+
+        for (String col : cols) {
+            searchQuery.select(col, String.class);
         }
 
         ArrayList<Record> records = searchQuery.fetch();

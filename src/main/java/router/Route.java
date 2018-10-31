@@ -89,4 +89,8 @@ public class Route {
         return route.replaceAll("/*$", "");
     }
 
+    public ArrayList<String> getArgs() {
+        return this.args;
+    }
+
 }

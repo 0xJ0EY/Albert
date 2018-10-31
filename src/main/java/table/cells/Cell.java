@@ -3,6 +3,8 @@ package table.cells;
 import table.Row;
 import table.views.CellView;
 
+import java.util.ArrayList;
+
 public interface Cell {
 
     public void setView(CellView view);
@@ -14,5 +16,7 @@ public interface Cell {
     public CellView getView();
 
     public Object getValue();
+
+    public ArrayList<String> getExtraColumns();
 
 }

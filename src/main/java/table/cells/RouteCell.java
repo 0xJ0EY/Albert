@@ -1,18 +1,21 @@
 package table.cells;
 
+import router.Route;
 import table.Row;
 import table.views.CellView;
 
 import java.util.ArrayList;
 
-public class TextCell implements Cell {
+public class RouteCell implements Cell {
 
     private Row row;
     private Object value;
     private CellView view;
-    private ArrayList<String> extraColumns = new ArrayList<>();
 
-    public TextCell(CellView view) {
+    private Route route;
+
+    public RouteCell(String route, CellView view) {
+        this.route = new Route(route);
         this.setView(view);
     }
 
@@ -44,7 +47,7 @@ public class TextCell implements Cell {
 
     @Override
     public ArrayList<String> getExtraColumns() {
-        return this.extraColumns;
+        return this.route.getArgs();
     }
 
 }

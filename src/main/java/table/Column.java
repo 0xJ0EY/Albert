@@ -5,6 +5,8 @@ import table.factories.cells.CellFactory;
 import table.factories.header.HeaderViewFactory;
 import table.views.HeaderView;
 
+import java.util.ArrayList;
+
 public class Column {
 
     private String databaseColumn;
@@ -38,5 +40,15 @@ public class Column {
 
     public String getDatabaseColumn() {
         return databaseColumn;
+    }
+
+    public ArrayList<String> getRequiredDatabaseColumns() {
+        ArrayList<String> list = new ArrayList<>();
+
+        list.add(this.getDatabaseColumn());
+
+        list.addAll(this.getCell().getExtraColumns());
+
+        return list;
     }
 }
