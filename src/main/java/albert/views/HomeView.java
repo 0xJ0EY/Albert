@@ -45,17 +45,17 @@ public class HomeView extends AnchorPane implements PageView {
 
 
     public void clickOnProjects(){
-        controller.getRouter().nav("projects/1/");
+        controller.getRouter().nav("projects/");
     }
 
 
     public void clickOnInvoices(){
-        controller.getRouter().nav("invoices/1");
+        controller.getRouter().nav("invoices/");
     }
 
 
     public void clickOnReports(){
-        controller.getRouter().nav("reports/1");
+        controller.getRouter().nav("reports/");
     }
 
 

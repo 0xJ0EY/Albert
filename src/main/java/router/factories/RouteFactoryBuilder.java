@@ -36,37 +36,35 @@ public class RouteFactoryBuilder {
         map.put(new Route("home/"), new OverviewPageAction(new HomePageFactory()));
 
         // Projects
-        map.put(new Route("projects/{page}/"), new OverviewPageAction(new ProjectsPageFactory()));
+        map.put(new Route("projects/"), new OverviewPageAction(new ProjectsPageFactory()));
         map.put(new Route("projects/details/{project}/"), new DetailPageAction(new ProjectsDetailPageFactory()));
         map.put(new Route("projects/edit/{project}/"), new EditPageAction(new ProjectsEditPageFactory()));
 
         //Contacts
-        map.put(new Route("contacts/{page}/"), new OverviewPageAction(new ContactPageFactory()));
+        map.put(new Route("contacts/"), new OverviewPageAction(new ContactPageFactory()));
         map.put(new Route("contacts/details/{contacts}/"), new DetailPageAction(new ContactDetailPageFactory()));
         map.put(new Route("contacts/edit/{contacts}/"), new EditPageAction(new ContactEditPageFactory()));
         map.put(new Route("contacts/create/{contact}"), new CreatePageAction(new ContactCreatePageFactory()));
 
         //Invoices
-        map.put(new Route("invoice/{page}/"), new OverviewPageAction(new InvoicePageFactory()));
-        map.put(new Route("invoice/edit/{invoice}/"), new EditPageAction(new InvoiceEditPageFactory()));
+        map.put(new Route("invoices/"), new OverviewPageAction(new InvoicePageFactory()));
+        map.put(new Route("invoices/edit/{invoice}/"), new EditPageAction(new InvoiceEditPageFactory()));
         map.put(new Route("invoices/detail/{invoice}/"), new DetailPageAction(new InvoiceDetailPageFactory()));
 
         //Quotations
-        map.put(new Route("quotations/{page}/"), new OverviewPageAction(new QuotationsPageFactory()));
+        map.put(new Route("quotations/"), new OverviewPageAction(new QuotationsPageFactory()));
         map.put(new Route("quotations/edit/{quotation}/"), new EditPageAction(new QuotationsEditPageFactory()));
         map.put(new Route("quotations/detail/{quotation}/"), new DetailPageAction(new QuotationsDetailPageFactory()));
 
-        //ContactTemplate
-        map.put(new Route("invoices/{page}/"), new OverviewPageAction(new InvoicePageFactory()));
 
         //Rapports
-        map.put(new Route("reports/{page}/"), new OverviewPageAction(new RapportsPageFactory()));
+        map.put(new Route("reports/"), new OverviewPageAction(new RapportsPageFactory()));
         map.put(new Route("reports/edit/{rapport}/"), new EditPageAction(new RapportsEditPageFactory()));
         map.put(new Route("reports/detail/{rapport}/"), new DetailPageAction(new RapportsDetailPageFactory()));
 
 
         //Settings
-        map.put(new Route("settings/{page}/"), new OverviewPageAction(new SettingsPageFactory()));
+        map.put(new Route("settings/"), new OverviewPageAction(new SettingsPageFactory()));
         map.put(new Route("settings/edit/{setting}/"), new EditPageAction(new SettingsEditPageFactory()));
 
 
