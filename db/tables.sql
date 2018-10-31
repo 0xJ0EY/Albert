@@ -52,6 +52,13 @@ CREATE TABLE expense
     name varchar
 );
 
+CREATE TABLE amount
+(
+    amount_id integer PRIMARY KEY,
+    hours integer,
+    amount integer
+);
+
 CREATE TABLE contact
 (
     contact_id BIGSERIAL PRIMARY KEY,
