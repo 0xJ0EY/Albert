@@ -1,0 +1,11 @@
+.table .header {
+    -fx-background-color: #d8d8d8;
+}
+
+.table .even {
+    -fx-background-color: #f5f5f5;
+}
+
+.table .odd {
+    -fx-background-color: #ffffff;
+}

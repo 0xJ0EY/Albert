@@ -8,14 +8,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<fx:root style="-fx-background-color: blue;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="620.0" maxWidth="830.0" minHeight="0.0" minWidth="0.0" prefHeight="620.0" prefWidth="830.0" style="-fx-background-color: white;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane prefHeight="630.0" prefWidth="1020.0" style="-fx-background-color: white;">
+      <AnchorPane maxHeight="620.0" maxWidth="830.0" prefHeight="620.0" prefWidth="830.0" style="-fx-background-color: white;">
          <children>
-            <BorderPane prefHeight="630.0" prefWidth="1020.0">
+            <BorderPane maxHeight="620.0" maxWidth="830.0" minHeight="0.0" minWidth="0.0" prefHeight="620.0" prefWidth="830.0">
                <center>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+                  <VBox alignment="CENTER" maxHeight="620.0" maxWidth="830.0" minHeight="0.0" minWidth="0.0" prefHeight="620.0" prefWidth="830.0" spacing="20.0" BorderPane.alignment="CENTER">
                      <children>
                         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -29,7 +28,7 @@
                         </ImageView>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="80.0">
                            <children>
-                              <Button contentDisplay="TOP" mnemonicParsing="false" text="Button">
+                              <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#clickOnProjects" text="Projecten">
                                  <graphic>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -38,16 +37,16 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button contentDisplay="TOP" mnemonicParsing="false" text="Button">
+                              <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#clickOnInvoices" text="Facturen">
                                  <graphic>
-                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../images/albertimages/onkostenico.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button contentDisplay="TOP" mnemonicParsing="false" text="Button">
+                              <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#clickOnReports" text="Rapporten">
                                  <graphic>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>

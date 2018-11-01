@@ -4,6 +4,7 @@ import router.pages.Page;
 import router.templates.TemplateController;
 import router.views.PageView;
 import router.Router;
+import table.Table;
 
 /*
 De abstracte klas Page controller zorgt voor de juiste view voor elk geslecteerd pagina

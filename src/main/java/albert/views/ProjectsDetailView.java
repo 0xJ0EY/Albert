@@ -1,6 +1,8 @@
 package albert.views;
 
 import albert.controllers.PageController;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import router.views.PageView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +16,21 @@ public class ProjectsDetailView extends AnchorPane implements PageView {
 
     private final String resource = "/views/pages/ProjectsDetail.fxml";
     private PageController controller;
+
+    @FXML
+    private TextField searchBarQuotation;
+
+    @FXML
+    private TextField searchBarInvoice;
+
+    @FXML
+    private TextField searchBarCosts;
+
+    @FXML
+    private Button projectEdit;
+
+    @FXML
+    private Button projectDelete;
 
     @Override
     public void load() {
@@ -30,6 +47,11 @@ public class ProjectsDetailView extends AnchorPane implements PageView {
     }
 
     @Override
+    public void update() {
+
+    }
+
+    @Override
     public void setController(PageController controller) {
         this.controller = controller;
     }
@@ -37,10 +59,5 @@ public class ProjectsDetailView extends AnchorPane implements PageView {
     @Override
     public AnchorPane render() {
         return this;
-    }
-
-    @FXML
-    public void onClickButton() {
-        this.controller.getRouter().nav("home/");
     }
 }

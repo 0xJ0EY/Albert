@@ -7,6 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -14,11 +15,11 @@
    <children>
       <AnchorPane minWidth="200.0" prefWidth="200.0" style="-fx-background-color: eeeeee;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane minHeight="50.0" style="-fx-background-color: #6CB0E5;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane maxHeight="60.0" maxWidth="200.0" minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #6CB0E5;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <HBox alignment="CENTER" layoutX="80.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="menu_btn_home" textOverrun="WORD_ELLIPSIS">
+                        <Button fx:id="homeButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onClickHomeButton" prefHeight="28.0" prefWidth="28.0" styleClass="menu_btn_home" textOverrun="WORD_ELLIPSIS">
                            <graphic>
                               <FontAwesomeIconView glyphName="HOME" size="25.0" />
                            </graphic>
@@ -30,15 +31,15 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="80.0" spacing="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="menu_btn_back" textOverrun="WORD_ELLIPSIS">
+                        <Button fx:id="backButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onClickBackButton" prefHeight="28.0" prefWidth="28.0" styleClass="menu_btn_back" textOverrun="WORD_ELLIPSIS">
                            <graphic>
-                              <FontAwesomeIconView glyphName="ANGLE_LEFT" size="25.0" />
+                              <FontAwesomeIconView glyphName="ANGLE_LEFT" size="25.0"/>
                            </graphic>
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
                         </Button>
-                        <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" styleClass="menu_btn_next" textOverrun="WORD_ELLIPSIS">
+                        <Button fx:id="nextButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onClickNextButton" prefHeight="28.0" prefWidth="28.0" styleClass="menu_btn_next" textOverrun="WORD_ELLIPSIS">
                            <graphic>
                               <FontAwesomeIconView glyphName="ANGLE_RIGHT" size="25.0" text="" />
                            </graphic>
@@ -58,17 +59,58 @@
                   <Insets left="10.0" />
                </padding>
             </AnchorPane>
-            <Text layoutX="14.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Acties">
+            <VBox alignment="BOTTOM_LEFT" layoutY="50.0" maxHeight="450.0" maxWidth="200.0" minHeight="0.0" minWidth="0.0" prefHeight="450.0" prefWidth="200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Acties">
+                     <font>
+                        <Font name="SansSerif Bold" size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <VBox prefHeight="426.0" prefWidth="200.0" />
+               </children>
+            </VBox>
+            <VBox alignment="BOTTOM_LEFT" layoutY="517.0" prefHeight="214.0" prefWidth="200.0">
+               <children>
+                  <Button alignment="BOTTOM_LEFT" contentDisplay="TOP" mnemonicParsing="false" onAction="#clickOnSettings" style="-fx-background-color: #00000000;" text="Instellingen">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="COG" size="25.0" />
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="page" layoutX="174.0" layoutY="60.0" prefHeight="680.0" prefWidth="1030.0" style="-fx-background-color: f7f7f7;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
+      <HBox alignment="CENTER" maxHeight="60.0" maxWidth="820.0" minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="820.0" spacing="50.0" style="-fx-background-color: #FF711E;" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#clickOnProjects" style="-fx-background-color: #00000000;" text="Projecten">
+               <graphic>
+                  <FontAwesomeIconView glyphName="PENCIL" size="25.0" />
+               </graphic>
                <font>
                   <Font name="SansSerif Bold" size="12.0" />
                </font>
-            </Text>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="page" layoutX="174.0" layoutY="60.0" prefHeight="440.0" prefWidth="658.0" style="-fx-background-color: f7f7f7;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
-      <HBox alignment="CENTER_LEFT" maxHeight="50.0" prefHeight="50.0" prefWidth="820.0" style="-fx-background-color: #FF711E;" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" style="-fx-background-color: #00000000;" text="Rapportages">
+            </Button>
+            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#clickOnInvoices" style="-fx-background-color: #00000000;" text="Facturen">
+               <graphic>
+                  <FontAwesomeIconView glyphName="CLIPBOARD" size="25.0" />
+               </graphic>
+               <font>
+                  <Font name="SansSerif Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#clickOnContacts" style="-fx-background-color: #00000000;" text="Contacten">
+               <graphic>
+                  <FontAwesomeIconView glyphName="BOOK" size="25.0" />
+               </graphic>
+               <font>
+                  <Font name="SansSerif Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#clickOnReports" style="-fx-background-color: #00000000;" text="Rapportages">
                <graphic>
                   <FontAwesomeIconView glyphName="AREA_CHART" size="25.0" />
                </graphic>
