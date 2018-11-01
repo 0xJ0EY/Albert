@@ -1,5 +1,6 @@
 package albert.views;
 
+import albert.controllers.InvoicesController;
 import albert.controllers.PageController;
 import javafx.scene.control.TextField;
 import router.views.PageView;
@@ -9,20 +10,26 @@ import javafx.scene.layout.AnchorPane;
 
 public class InvoiceEditView extends AnchorPane implements PageView {
 
-    private final String resource = "/views/pages/InvoiceEditDetail.fxml";
-    private PageController controller;
+    private final String resource = "/views/pages/InvoiceEditView.fxml";
+    private InvoicesController controller;
 
     @FXML
-    private TextField naam;
+    private TextField name;
 
     @FXML
-    private TextField klant;
+    private TextField contact;
 
     @FXML
-    private TextField uren;
+    private TextField hours;
+
+    @FXML
+    private TextField price;
 
     @FXML
     private  TextField project;
+
+    @FXML
+    private TextField delivery;
 
     @Override
     public void load() {
@@ -45,7 +52,7 @@ public class InvoiceEditView extends AnchorPane implements PageView {
 
     @Override
     public void setController(PageController controller) {
-        this.controller = controller;
+        this.controller = (InvoicesController)controller;
     }
 
     @Override
@@ -56,5 +63,10 @@ public class InvoiceEditView extends AnchorPane implements PageView {
     @FXML
     public void onClickButton() {
         this.controller.getRouter().nav("home/");
+    }
+
+    @FXML
+    public void onClickSave() {
+        controller.saveInvoice(name.getText(), price.getText(), hours.getText(), contact.getText(), delivery.getText());
     }
 }

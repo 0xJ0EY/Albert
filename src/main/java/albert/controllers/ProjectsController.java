@@ -1,5 +1,6 @@
 package albert.controllers;
 
+import albert.models.paidState;
 import query.Query;
 import albert.dao.ProjectDAO;
 import albert.models.Project;
@@ -21,6 +22,8 @@ import table.views.tables.SearchTableView;
 public class ProjectsController extends PageController implements OverviewPage, DetailPage, EditPage {
 
     ProjectDAO dao = new ProjectDAO();
+    Project project;
+    paidState paidState1;
     public ProjectsController(
             PageView view,
             TemplateController template
@@ -72,8 +75,10 @@ public class ProjectsController extends PageController implements OverviewPage, 
         return new ViewResponse(this);
     }
 
-    public void saveProject(String name){
-
+    public void saveProject(String name, Boolean done){
+        String status = paidState.notPaid.toString();
+        if(done = true) { status = paidState.paid.toString();}
+        project = new Project(name, status);
     }
 
 }
