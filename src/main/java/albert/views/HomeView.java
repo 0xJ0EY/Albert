@@ -31,6 +31,13 @@ public class HomeView extends AnchorPane implements PageView {
 
     @Override
     public void update() {
+
+        this.controller.getTemplate().addAction("Projects", () -> controller.getRouter().nav("projects/"));
+
+        this.controller.getTemplate().addAction("Invoices", () -> controller.getRouter().nav("invoices/"));
+
+        this.controller.getTemplate().addAction("Reports", () -> controller.getRouter().nav("reports/"));
+
     }
 
     @Override

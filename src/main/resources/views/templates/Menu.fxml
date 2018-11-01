@@ -33,7 +33,7 @@
                      <children>
                         <Button fx:id="backButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onClickBackButton" prefHeight="28.0" prefWidth="28.0" styleClass="menu_btn_back" textOverrun="WORD_ELLIPSIS">
                            <graphic>
-                              <FontAwesomeIconView glyphName="ANGLE_LEFT" size="25.0"/>
+                              <FontAwesomeIconView glyphName="ANGLE_LEFT" size="25.0" />
                            </graphic>
                            <opaqueInsets>
                               <Insets />
@@ -59,27 +59,24 @@
                   <Insets left="10.0" />
                </padding>
             </AnchorPane>
-            <VBox alignment="BOTTOM_LEFT" layoutY="50.0" maxHeight="450.0" maxWidth="200.0" minHeight="0.0" minWidth="0.0" prefHeight="450.0" prefWidth="200.0">
+            <VBox layoutY="60.0" maxHeight="450.0" maxWidth="200.0" minHeight="0.0" minWidth="0.0" prefHeight="450.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="60.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Acties">
                      <font>
-                        <Font name="SansSerif Bold" size="12.0" />
+                        <Font name="SansSerif Bold" size="16.0" />
                      </font>
                      <VBox.margin>
-                        <Insets left="10.0" />
+                        <Insets />
                      </VBox.margin>
                   </Text>
-                  <VBox prefHeight="426.0" prefWidth="200.0" />
+                  <VBox fx:id="actionContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="3.0">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin></VBox>
                </children>
-            </VBox>
-            <VBox alignment="BOTTOM_LEFT" layoutY="517.0" prefHeight="214.0" prefWidth="200.0">
-               <children>
-                  <Button alignment="BOTTOM_LEFT" contentDisplay="TOP" mnemonicParsing="false" onAction="#clickOnSettings" style="-fx-background-color: #00000000;" text="Instellingen">
-                     <graphic>
-                        <FontAwesomeIconView glyphName="COG" size="25.0" />
-                     </graphic>
-                  </Button>
-               </children>
+               <padding>
+                  <Insets left="10.0" right="10.0" top="10.0" />
+               </padding>
             </VBox>
          </children>
       </AnchorPane>

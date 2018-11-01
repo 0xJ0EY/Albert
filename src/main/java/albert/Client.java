@@ -3,12 +3,7 @@ package albert;
 import albert.controllers.PageController;
 import config.Config;
 import javafx.application.Application;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import router.Router;
 
@@ -29,6 +24,7 @@ public class Client extends Application {
             this.router.nav("home/");
 
     }
+
     public void renderPage(PageController page) {
 
         Scene previousScene = this.stage.getScene();
@@ -56,6 +52,10 @@ public class Client extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    private void setIcon() {
+
     }
 
 }
