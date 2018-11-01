@@ -11,8 +11,18 @@ public class Invoice {
     private Boolean paid;
     private Date created_at;
     private Date deliveryDate;
-    //TODO: make get en set paid, created_at, deliveryDate
-    //TODO: make enumeration paid: betaald, niet betaald, in afwachting.
+
+    public Boolean getPaid() { return this.paid; }
+
+    public void setPaid() { this.paid = paid; }
+
+    public Date getCreated_at() { return  this.created_at; }
+
+    public void setCreated_at(Date created_at) { this.created_at = created_at; }
+
+    public Date getDeliveryDate() { return deliveryDate; }
+
+    public void setDeliveryDate(Date deliveryDate) { this.deliveryDate = deliveryDate; }
 
     public String getName() {
         return name;

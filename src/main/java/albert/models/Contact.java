@@ -40,7 +40,6 @@ public class Contact {
         this.firstName= firstName;
         this.lastName = lastName;
     }
-//TODO added telephonenumber
 
     /**
      *

@@ -8,11 +8,11 @@ public class Expense {
     private double price;
     private String description;
     private Date created_at;
-    //TODO: make get en set
 
-    public Expense(double price, String description) {
+    public Expense(double price, String description, Date created_at) {
         this.price = price;
         this.description = description;
+        this.created_at = created_at;
     }
 
     public double getPrice() {
@@ -30,4 +30,8 @@ public class Expense {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public int getId() { return this.id; }
+
+    public Date getCreated_at() { return this.created_at; }
 }

@@ -28,7 +28,9 @@ public class Project {
         this.name = name;
     }
 
-    //TODO get en set quotation list
+    public void setQuotationList(List<Quotation> quotationList) { this.quotationList = quotationList; }
+
+    public List<Quotation> getQuotationList() { return quotationList; }
 
     public void setId(int id) {
         this.id = id;
