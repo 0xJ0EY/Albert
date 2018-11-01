@@ -8,6 +8,8 @@ public interface DataStrategy {
 
     public int getMaxPage();
 
+    public int getPage();
+
     public void setPage(int page);
 
     public void setTable(Table table);

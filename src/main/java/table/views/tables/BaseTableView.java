@@ -12,6 +12,9 @@ import table.views.CellView;
 import table.views.HeaderView;
 import table.views.TableView;
 import table.views.column.ColumnView;
+import table.views.tables.components.NextButton;
+import table.views.tables.components.PaginationButton;
+import table.views.tables.components.PreviousButton;
 
 import java.util.ArrayList;
 
@@ -134,6 +137,8 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
 
     private void createPagination() {
 
+        this.paginationContainer.getChildren().clear();
+
         this.createPreviousButton();
         this.createPageNumberButtons();
         this.createNextButton();
@@ -142,26 +147,47 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
 
     private void createPreviousButton() {
 
+
+        PreviousButton button = new PreviousButton(1, this.table.getPage(), this.table);
+
+        this.paginationContainer.getChildren().add(button);
+
+
     }
 
     private void createPageNumberButtons() {
 
         int minPage = 1;
         int maxPage = this.table.getMaxPage();
+        int maxConfigPage = Integer.valueOf(Config.get("table", "settings.default_page_count"));
 
-        this.paginationContainer.getChildren().clear();
+        int maxConfigSide = (int) Math.ceil((maxConfigPage - 1) / 2);
 
-        for (int i = minPage; i <= maxPage; i++) {
+        int page = this.table.getPage();
 
-            PaginationButton nextButton = new PaginationButton(Integer.toString(i), i, this.table);
+        int left = Math.min(page - minPage, maxConfigSide);
+        int right = Math.min(maxPage - page, maxConfigSide);
 
+        int leftOffset = left + (maxConfigSide - right);
+        int rightOffset = right + (maxConfigSide - left);
 
-            this.paginationContainer.getChildren().add(nextButton);
+        for (int start = page - leftOffset; start <= page + rightOffset; start++) {
+            PaginationButton button = new PaginationButton(Integer.toString(start), start, this.table);
+
+            // Add selected tag
+            if (start == page)
+                button.getStyleClass().add("selected");
+
+            this.paginationContainer.getChildren().add(button);
         }
 
     }
 
     private void createNextButton() {
+
+        NextButton button = new NextButton(this.table.getMaxPage(), this.table.getPage(), this.table);
+
+        this.paginationContainer.getChildren().add(button);
 
     }
 

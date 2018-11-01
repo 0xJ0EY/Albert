@@ -24,8 +24,8 @@ public class Query implements Cloneable, Serializable {
         this.queryBuilder.table(table);
     }
 
-    public Query select(String key, Object type) {
-        this.queryBuilder.select(key, type);
+    public Query select(String key) {
+        this.queryBuilder.select(key);
         return this;
     }
 

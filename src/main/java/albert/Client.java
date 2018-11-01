@@ -26,7 +26,7 @@ public class Client extends Application {
             // Set application title
             this.stage.setTitle(Config.get("config", "application.name"));
 
-            this.router.nav("home");
+            this.router.nav("home/");
 
     }
     public void renderPage(PageController page) {

@@ -21,3 +21,11 @@
 .nav_button:hover VBox Label {
     -fx-text-fill: #4d739a;
 }
+
+.pagination_btn {
+    -fx-text-fill: red;
+}
+
+.pagination_btn.selected {
+    -fx-text-fill: blue;
+}

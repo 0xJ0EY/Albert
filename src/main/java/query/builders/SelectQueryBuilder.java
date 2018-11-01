@@ -9,8 +9,8 @@ public class SelectQueryBuilder implements SelectQueryBuilderInterface {
     private ArrayList<Select> selects = new ArrayList<>();
 
     @Override
-    public void select(String key, Object type) {
-        this.selects.add(new Select(key, type));
+    public void select(String key) {
+        this.selects.add(new Select(key));
     }
 
     @Override
@@ -18,7 +18,7 @@ public class SelectQueryBuilder implements SelectQueryBuilderInterface {
 
         // If no selects are given, take all columns from the database table
         if (this.selects.size() == 0)
-            return "*";
+            return "SELECT *";
 
         ArrayList<String> names = new ArrayList<>();
 

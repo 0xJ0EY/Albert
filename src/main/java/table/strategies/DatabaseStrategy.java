@@ -18,7 +18,7 @@ public class DatabaseStrategy implements DataStrategy {
 
     private Table table;
 
-    private int page;
+    private int page = 1;
     private int total = 0;
 
     private int offset = 0;
@@ -32,6 +32,11 @@ public class DatabaseStrategy implements DataStrategy {
     @Override
     public int getMaxPage() {
         return (int) Math.ceil((double) this.total / this.limit);
+    }
+
+    @Override
+    public int getPage() {
+        return this.page;
     }
 
     @Override
@@ -83,7 +88,7 @@ public class DatabaseStrategy implements DataStrategy {
         }
 
         for (String col : cols) {
-            searchQuery.select(col, String.class);
+            searchQuery.select(col);
         }
 
         ArrayList<Record> records = searchQuery.fetch();
@@ -103,7 +108,7 @@ public class DatabaseStrategy implements DataStrategy {
             .clearOffset()
         ;
 
-        countQuery.select("COUNT(*)", Integer.class);
+        countQuery.select("COUNT(*)");
 
         Record record = countQuery.fetch().get(0);
 

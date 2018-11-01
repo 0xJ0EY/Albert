@@ -121,6 +121,10 @@ public class Table {
         return this.strategy.getMaxPage();
     }
 
+    public int getPage() {
+        return this.strategy.getPage();
+    }
+
     public void navigate(int page) {
         this.strategy.setPage(page);
         this.update();

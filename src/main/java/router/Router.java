@@ -54,6 +54,8 @@ public class Router {
 
     public void nav(String url, boolean history) {
 
+        System.out.println("url = " + url);
+
         Response response;
 
         if (history)
