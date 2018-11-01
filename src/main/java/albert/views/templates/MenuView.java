@@ -1,10 +1,15 @@
 package albert.views.templates;
 
+import albert.components.ActionTemplateButton;
 import albert.controllers.HomeController;
 import albert.controllers.PageController;
 import albert.views.HomeView;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import router.Router;
+import router.action.TemplateAction;
 import router.templates.TemplateController;
 import router.views.PageView;
 import router.views.TemplateView;
@@ -14,9 +19,9 @@ import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
-/*
-Hier wordt de menuView geladen
- */
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class MenuView extends AnchorPane implements TemplateView {
 
@@ -30,6 +35,9 @@ public class MenuView extends AnchorPane implements TemplateView {
 
     @FXML
     private Button nextButton;
+
+    @FXML
+    private VBox actionContainer;
 
     @Override
     public void load() {
@@ -68,6 +76,29 @@ public class MenuView extends AnchorPane implements TemplateView {
         AnchorPane.setRightAnchor(panel, 0d);
 
         this.page.getChildren().setAll(panel);
+
+        this.updateActions();
+    }
+
+    private void updateActions() {
+
+        HashMap<String, TemplateAction> actions = this.controller.getActions();
+
+        Iterator it = actions.entrySet().iterator();
+
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry) it.next();
+
+            ActionTemplateButton btn = new ActionTemplateButton(
+                (String) pair.getKey(),
+                (TemplateAction) pair.getValue()
+            );
+
+            this.actionContainer.getChildren().add(btn);
+
+            it.remove();
+        }
+
     }
 
 
@@ -112,28 +143,27 @@ public class MenuView extends AnchorPane implements TemplateView {
     }
 
     public void clickOnProjects(){
-        controller.getRouter().nav("projects/1/");
+        controller.getRouter().nav("projects/");
     }
 
     public void clickOnInvoices(){
-        controller.getRouter().nav("invoices/1/");
+        controller.getRouter().nav("invoices/");
     }
 
     public void clickOnReports(){
-        controller.getRouter().nav("reports/1/");
+        controller.getRouter().nav("reports/");
     }
 
-    public void clickOnContacts(){
-
-        controller.getRouter().nav("contacts/1");
+    public void clickOnContacts()
+    {
+        controller.getRouter().nav("contacts/");
     }
 
     public void clickOnSettings(){
-
-        controller.getRouter().nav("settings/1");
+        controller.getRouter().nav("settings/");
     }
 
     public void clickOnQuotations(){
-        controller.getRouter().nav("quotations/1");
+        controller.getRouter().nav("quotations/");
     }
 }

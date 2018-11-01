@@ -16,3 +16,12 @@ CSS For the menu
     -fx-pref-height: 15px;
     -fx-pref-width: 40px;
 }
+
+.template_action {
+    -fx-font-size: 14px;
+}
+
+.template_action:hover {
+    -fx-cursor: hand;
+    -fx-underline: true;
+}

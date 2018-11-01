@@ -1,23 +1,28 @@
 package table;
 
-import config.Config;
+import javafx.application.Platform;
+import table.cells.Cell;
 import table.exceptions.IllegalTableChangeException;
 import table.exceptions.InvalidRowException;
 import table.strategies.DataStrategy;
 import table.views.TableView;
+import table.views.tables.components.TableButton;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Table {
-
-    private int amountRows = Integer.parseInt(Config.get("database", "settings.default_rows"));
 
     private DataStrategy strategy;
     private TableView view;
 
+    private DataRunnable dataRunnable;
+
+    private boolean loaded = false;
     private int currentRows = 0;
     private int totalRows = 0;
 
+    private ArrayList<TableButton> buttons = new ArrayList<TableButton>();
     private ArrayList<Column> cols = new ArrayList<Column>();
     private ArrayList<Row> data = new ArrayList<Row>();
 
@@ -41,16 +46,25 @@ public class Table {
         this.view.load();
     }
 
-    public void setRowsAmount(int amount) {
-        this.amountRows = amount;
-    }
-
     public void fetch() {
         // Clear old data set
         this.data = new ArrayList<>();
+        this.loaded = false;
 
         // Fetch new data set
-        this.strategy.fetch();
+        if (this.dataRunnable != null)
+            this.dataRunnable.interrupt();
+
+        this.dataRunnable = new DataRunnable(this.strategy);
+        this.dataRunnable.start();
+    }
+
+    public ArrayList<TableButton> getButtons() {
+        return this.buttons;
+    }
+
+    public void addButton(TableButton button) {
+        this.buttons.add(button);
     }
 
     public void addCol(Column col) {
@@ -61,28 +75,29 @@ public class Table {
         this.cols.add(col);
     }
 
-    public void addRow(Object... data) {
-
-        // Check if the row and cells are the same size
-        // Else throw an exception
-        if (data.length != cols.size())
-            throw new InvalidRowException();
-
-        // Get the index for the new row, indices start at 0
-        int index = this.data.size();
+    public void addRow(HashMap<String, Object> map) {
 
         // Create new row
         Row row = new Row(this);
 
+        // Save values
+        row.setValues(map);
+
         // Check if the row and cells have the same data type on correct key
         // Else throw an exception
-        for (int i = 0; i < data.length; i++) {
+        for (int i = 0; i < cols.size(); i++) {
             Column col = this.cols.get(i);
 
-            if ( ! col.match(data[i]))
+            Object value = map.get(col.getDatabaseColumn());
+
+            if ( ! col.match(value))
                 throw new InvalidRowException();
 
-            row.addCell(new Cell(col.getView(), data[i]));
+            Cell cell = col.getCell();
+
+            cell.setValue(value);
+
+            row.addCell(cell);
         }
 
         // Add row to the table
@@ -118,8 +133,15 @@ public class Table {
         return this.strategy.getMaxPage();
     }
 
+    public int getPage() {
+        return this.strategy.getPage();
+    }
+
     public void navigate(int page) {
         this.strategy.setPage(page);
+
+        this.fetch();
+
         this.update();
     }
 
@@ -130,18 +152,31 @@ public class Table {
         this.navigate(1);
     }
 
+    public void loaded() {
+        this.loaded = true;
+    }
+
+    public boolean isLoaded() {
+        return loaded;
+    }
+
     public void update() {
 
-        // Fetch data
-        this.fetch();
-
         // Update view
-        this.view.update();
+        Platform.runLater(() -> this.view.update());
 
     }
 
     public TableView getView() {
         return this.view;
+    }
+
+    public void limit(int limit) {
+        this.strategy.setLimit(limit);
+    }
+
+    public int getLimit() {
+        return this.strategy.getLimit();
     }
 
 }

@@ -30,8 +30,8 @@ public class QueryBuilder implements
     }
 
     @Override
-    public void select(String key, Object type) {
-        this.selectQueryBuilder.select(key, type);
+    public void select(String key) {
+        this.selectQueryBuilder.select(key);
     }
 
     @Override

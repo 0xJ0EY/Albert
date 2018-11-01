@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public interface SelectQueryBuilderInterface extends QueryBuilderInterface {
 
-    public void select(String key, Object type);
+    public void select(String key);
 
     public ArrayList<Select> getSelected();
 
