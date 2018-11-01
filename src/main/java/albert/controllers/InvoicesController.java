@@ -50,11 +50,6 @@ public class InvoicesController extends PageController implements OverviewPage, 
                 new TextCellFactory())
         );
 
-        table.addCol(new Column("amount::text",
-                new LeftHeaderViewFactory("Bedrag"),
-                new TextCellFactory())
-        );
-
         table.addCol(new Column("paid::text",
                 new LeftHeaderViewFactory("Betaald"),
                 new TextCellFactory())

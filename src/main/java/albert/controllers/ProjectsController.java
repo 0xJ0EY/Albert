@@ -48,7 +48,7 @@ public class ProjectsController extends PageController implements OverviewPage, 
                 new TextCellFactory())
         );
 
-        table.addCol(new Column("project_naam",
+        table.addCol(new Column("name",
                 new LeftHeaderViewFactory("Naam"),
                 new TextCellFactory())
         );
@@ -58,7 +58,7 @@ public class ProjectsController extends PageController implements OverviewPage, 
                 new TextCellFactory())
         );
 
-        table.addCol(new Column("finished::text",
+        table.addCol(new Column("done::text",
                 new LeftHeaderViewFactory("Afgerond"),
                 new TextCellFactory())
         );

@@ -10,7 +10,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class RapportsEditView extends AnchorPane implements PageView {
 
-    private final String resource = "/views/pages/RapportEditView.fxml";
+    private final String resource = "/views/pages/RapportsEdit.fxml";
     private PageController controller;
 
     @FXML
@@ -61,6 +61,16 @@ public class RapportsEditView extends AnchorPane implements PageView {
     @Override
     public AnchorPane render() {
         return this;
+    }
+
+    @FXML
+    public void onClickBack() {
+        this.controller.getRouter().nav("reports/");
+    }
+
+    @FXML
+    public void onClickSave() {
+
     }
 
 

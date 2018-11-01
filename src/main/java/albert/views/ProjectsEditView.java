@@ -23,12 +23,6 @@ public class ProjectsEditView extends AnchorPane implements PageView {
     private TextField klant;
 
     @FXML
-    private RadioButton afgerondJa;
-
-    @FXML
-    private RadioButton afgerondNee;
-
-    @FXML
     private CheckBox isDone;
 
     @FXML
