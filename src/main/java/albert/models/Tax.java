@@ -1,8 +1,8 @@
 package albert.models;
 
-public class tax {
+public class Tax {
 
-    private String id;
+    private int id;
     private int percentage;
     private String name;
 
@@ -17,4 +17,7 @@ public class tax {
 
     public int getPercentage() { return this.percentage; }
 
+    public int getId() {
+        return id;
+    }
 }

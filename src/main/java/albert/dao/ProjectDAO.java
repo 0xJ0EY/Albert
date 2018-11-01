@@ -144,7 +144,7 @@ public class ProjectDAO implements DAO<Project> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("project deleted");
+        System.out.println("Project deleted");
     }
 
     @Override

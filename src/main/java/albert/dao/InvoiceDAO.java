@@ -65,7 +65,7 @@ public class InvoiceDAO implements DAO<Invoice>{
     public void create(Invoice obj) {
     this.invoice = invoice;
         //TODO sql insert schrijven
-        String sql = "INSERT INTO invoice VALUES (invoice_id=?, paid=? ,tax_id= ?,created_at=? , amount=?, deliverydate=?);";
+        String sql = "INSERT INTO invoice VALUES (invoice_id=?, paid=? ,tax_id= ?,project_id=?, amount_id ,created_at=? , deliverydate=?);";
 
         try {
             Connection conn = Database.getInstance().getConnection();
@@ -74,10 +74,11 @@ public class InvoiceDAO implements DAO<Invoice>{
 
             statement.setInt(1,this.invoice.getId());
             statement.setString(2,this.invoice.getPaid());
-            statement.setString(3, null);
-            statement.setTime(4, (Time) this.invoice.getCreated_at());
-            statement.setString(5,null);
-            statement.setDate(6, (Date) this.invoice.getDeliveryDate());
+            statement.setInt(3, this.invoice.getTax().getId());
+            statement.setInt(4,  this.invoice.getProject().getId());
+            statement.setInt(5,this.invoice.getAmount().getId());
+            statement.setTime(6,(Time) this.invoice.getCreated_at());
+            statement.setDate(7, (Date) this.invoice.getDeliveryDate());
 
             statement.execute();
             conn.close();
@@ -92,7 +93,7 @@ public class InvoiceDAO implements DAO<Invoice>{
     public void update(Invoice obj) {
         this.invoice = invoice;
         //TODO sql update schrijven
-        String sql = "UPDATE invoice SET paid=? , tax_id=? , created_at = ?, amount =? ,deliverydate=? WHERE invoice_id =?";
+        String sql = "UPDATE invoice SET ( paid=? ,tax_id= ?,project_id=?, amount_id ,created_at=? , deliverydate=?)WHERE invoice_id =?";
 
         try {
             Connection conn = Database.getInstance().getConnection();
@@ -100,10 +101,11 @@ public class InvoiceDAO implements DAO<Invoice>{
             PreparedStatement statement = conn.prepareStatement(sql);
 
             statement.setString(1,this.invoice.getPaid());
-            statement.setString(2,null);
-            statement.setTime(3 , (Time) this.invoice.getCreated_at());
-            statement.setString(4,null);
-            statement.setDate(5, (Date) this.invoice.getDeliveryDate());
+            statement.setInt(2, this.invoice.getTax().getId());
+            statement.setInt(3,  this.invoice.getProject().getId());
+            statement.setInt(4,this.invoice.getAmount().getId());
+            statement.setTime(5,(Time) this.invoice.getCreated_at());
+            statement.setDate(6, (Date) this.invoice.getDeliveryDate());
 
             statement.executeUpdate();
             conn.close();

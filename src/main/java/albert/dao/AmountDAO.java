@@ -64,31 +64,70 @@ public class AmountDAO implements DAO {
 
         this.amount= amount;
         //TODO sql insert schrijven
-        String sql = "INSERT INTO amount VALUES (amount_id=?, hours =?, amount=?);";
+        String sql = "INSERT INTO amount VALUES (amount_id=?, hours =?, price=?,contact_id=?);";
 
         try {
-
                 Connection conn = Database.getInstance().getConnection();
                 PreparedStatement statement = conn.prepareStatement(sql);
+                statement.setInt(1,this.amount.getId());
+                statement.setDouble(2,this.amount.getHours());
+                statement.setDouble(3,this.amount.getPrice());
+                statement.setString(4,this.amount.getContact());
 
                 statement.execute();
+
                 conn.close();
 
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("Contact added");
+        System.out.println("Amount added");
     }
 
     @Override
     public void update(Object obj) {
+        this.amount = amount;
+        //TODO sql update schrijven
+        String sql = "UPDATE amount SET( hours=?, price =?, contact_id=? ) WHERE amount_id =?";
+        try {
+            Connection conn = Database.getInstance().getConnection();
+
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            statement.setDouble(1,this.amount.getHours());
+            statement.setDouble(2,this.amount.getPrice());
+            statement.setString(3, this.amount.getContact());
+
+            statement.executeUpdate();
+            conn.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("amount Updated");
 
     }
 
     @Override
     public void delete(Object obj) {
+        this.amount = amount;
+        //TODO sql delete schrijven
+        String sql = "DELETE FROM amount WHERE amount_id =?";
+        try {
+            Connection conn = Database.getInstance().getConnection();
 
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            statement.setInt(1,this.amount.getId());
+
+            statement.execute();
+            conn.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Amount deleted");
     }
 
     @Override

@@ -1,14 +1,16 @@
 package albert.models;
 
 public class Amount {
+    private int id;
     private double price;
     private double hours;
     private String contact;
 
-    public Amount(double price, double hours, String contact) {
+    public Amount(double price, double hours, String contact, int id) {
         this.price = price;
         this.hours = hours;
         this.contact = contact;
+        this.id =id;
     }
 
 
@@ -30,7 +32,11 @@ public class Amount {
 
     public double getHours() { return this.hours; }
 
-    public void setHours(double hours) { this.hours = hours; }
+    public void setHours(int hours) { this.hours = hours; }
+
+    public int getId() { return this.id; }
+
+    public void setId(int id) { this.id = id; }
 
 
 

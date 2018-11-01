@@ -8,11 +8,14 @@ public class Expense {
     private double price;
     private String description;
     private Date created_at;
+    private String name;
 
-    public Expense(double price, String description, Date created_at) {
+    public Expense(double price, String description, Date created_at,String name) {
         this.price = price;
         this.description = description;
         this.created_at = created_at;
+        this.name=name;
+
     }
 
     public double getPrice() {
@@ -34,4 +37,11 @@ public class Expense {
     public int getId() { return this.id; }
 
     public Date getCreated_at() { return this.created_at; }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String  getName() { return this.name; }
+
 }

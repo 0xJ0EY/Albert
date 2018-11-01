@@ -67,4 +67,12 @@ public class Quotation {
         this.amount = amount;
         this.product = product;
     }
+
+    public Date getCreated_at() {
+        return created_at;
+    }
+
+    public Project getProject() {
+        return null;
+    }
 }

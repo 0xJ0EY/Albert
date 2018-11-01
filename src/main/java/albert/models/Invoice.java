@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Invoice {
 
+
     private int id;
     private String name;
     private Amount amount;
@@ -11,6 +12,7 @@ public class Invoice {
     private String paid;
     private Date created_at;
     private Date deliveryDate;
+
 
     public String getPaid() { return this.paid; }
 
@@ -81,4 +83,11 @@ public class Invoice {
         this.amount = amount;
         this.delivery = delivery;
     }
+
+    public Tax getTax() {
+        return null;
+    }
+    public Project getProject(){
+        return null;
+    };
 }
