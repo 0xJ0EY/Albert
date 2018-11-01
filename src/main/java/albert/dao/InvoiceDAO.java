@@ -1,9 +1,6 @@
 package albert.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import albert.models.Invoice;
 import database.Database;
@@ -41,13 +38,10 @@ public class InvoiceDAO implements DAO<Invoice>{
     @Override
     public Invoice loadById(long id) {
 
-        String sql = "SELECT * FROM invocie WHERE id = ?";
-
+        String sql = "SELECT * FROM invocie WHERE invoice_id= ?";
         try {
             Connection conn = Database.getInstance().getConnection();
-
             PreparedStatement statement = conn.prepareStatement(sql);
-
             statement.setLong(1, id);
 
             ResultSet rs = statement.executeQuery();
@@ -72,9 +66,7 @@ public class InvoiceDAO implements DAO<Invoice>{
     public void create(Invoice obj) {
     this.invoice = invoice;
         //TODO sql insert schrijven
-        String sql = "INSERT INTO invoice VALUES (invoice_id=?, paid=? ,created_at= ?, amount=?, deliverydate=?);";
-
-
+        String sql = "INSERT INTO invoice VALUES (invoice_id=?, paid=? ,tax_id= ?,created_at=? , amount=?, deliverydate=?);";
 
         try {
             Connection conn = Database.getInstance().getConnection();
@@ -82,10 +74,11 @@ public class InvoiceDAO implements DAO<Invoice>{
             PreparedStatement statement = conn.prepareStatement(sql);
 
             statement.setInt(1,this.invoice.getId());
-            statement.setBoolean(2,true);
-            statement.setTimestamp(3, null);
-            statement.setString(4,null);
-            statement.setTime(5,null);
+            statement.setBoolean(2,this.invoice.getPaid());
+            statement.setString(3, null);
+            statement.setTime(4, (Time) this.invoice.getCreated_at());
+            statement.setString(5,null);
+            statement.setDate(6, (Date) this.invoice.getDeliveryDate());
 
             statement.execute();
             conn.close();
@@ -100,17 +93,18 @@ public class InvoiceDAO implements DAO<Invoice>{
     public void update(Invoice obj) {
         this.invoice = invoice;
         //TODO sql update schrijven
-        String sql = "UPDATE invoice SET paid=? , amount =? ,deliverydate=?, created_at=? WHERE invoice_id =?";
+        String sql = "UPDATE invoice SET paid=? , tax_id=? , created_at = ?, amount =? ,deliverydate=? WHERE invoice_id =?";
 
         try {
             Connection conn = Database.getInstance().getConnection();
 
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setInt(4,this.invoice.getId());
-            statement.setBoolean(1,true);
-            statement.setString(2 ,null);
-            statement.setTime(3, null);
+            statement.setBoolean(1,this.invoice.getPaid());
+            statement.setString(2,null);
+            statement.setTime(3 , (Time) this.invoice.getCreated_at());
+            statement.setString(4,null);
+            statement.setDate(5, (Date) this.invoice.getDeliveryDate());
 
             statement.executeUpdate();
             conn.close();
