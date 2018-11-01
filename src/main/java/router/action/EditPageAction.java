@@ -5,7 +5,9 @@ import router.Request;
 import router.Router;
 import router.factories.pages.EditPageFactory;
 import router.response.Response;
-
+/*
+Hier wordt de pagina getoont na het update.
+ */
 public class EditPageAction implements Action {
 
     private EditPageFactory factory;

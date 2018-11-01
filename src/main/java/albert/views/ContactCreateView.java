@@ -15,11 +15,13 @@ import javafx.scene.control.*;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ContactCreateView extends AnchorPane implements PageView {
 
     private final String resource = "/views/pages/ContactCreateView.fxml";
     private ContactController controller;
+    ArrayList<String> emails;
 
     private Contact contact;
 
@@ -32,10 +34,8 @@ public class ContactCreateView extends AnchorPane implements PageView {
     @FXML
     private TextField lastName;
 
-
     @FXML
     private TextField streetName;
-
 
     @FXML
     private TextField compagny;
@@ -92,12 +92,10 @@ public class ContactCreateView extends AnchorPane implements PageView {
 
     @FXML
     public void onClickSave(ActionEvent event){
-
         System.out.println("Click on Save");
-        contact = new Contact(firstName.getText(), lastName.getText(),houseNumber.getText(),telephone.getText(),postcode.getText(), email.getText(),website.getText(),description.getText(),streetName.getText(),place.getText());
-        controller.createObj(contact);
-
-        System.out.println(firstName.getText());
+        emails = new ArrayList<String>();
+        emails.add(email.getText());
+        controller.saveContact(firstName.getText(), lastName.getText(),houseNumber.getText(),telephone.getText(),postcode.getText(), emails,website.getText(),description.getText(),streetName.getText(),place.getText());
     }
 
     @FXML

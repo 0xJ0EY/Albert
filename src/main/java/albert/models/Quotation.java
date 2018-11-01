@@ -2,27 +2,14 @@ package albert.models;
 
 import java.util.Date;
 
-public class Invoice {
+public class Quotation {
 
     private int id;
     private String name;
     private Amount amount;
-    private String delivery;
-    private Boolean paid;
+    private String product;
+    private String description;
     private Date created_at;
-    private Date deliveryDate;
-
-    public Boolean getPaid() { return this.paid; }
-
-    public void setPaid() { this.paid = paid; }
-
-    public Date getCreated_at() { return  this.created_at; }
-
-    public void setCreated_at(Date created_at) { this.created_at = created_at; }
-
-    public Date getDeliveryDate() { return deliveryDate; }
-
-    public void setDeliveryDate(Date deliveryDate) { this.deliveryDate = deliveryDate; }
 
     public String getName() {
         return name;
@@ -32,17 +19,19 @@ public class Invoice {
         this.name = name;
     }
 
-    public String getDelivery() { return  this.delivery; }
-
-    public void setDelivery(String delivery) { this.delivery = delivery; }
-
-    public Amount getAmount() {
-        return amount;
-    }
+    public Amount getAmount() { return amount; }
 
     public void setAmount(Amount amount) {
         this.amount = amount;
     }
+
+    public String getProduct() { return this.product; }
+
+    public void setDelivery(String product) { this.product = product; }
+
+    public String getDescription() { return this.description; }
+
+    public void setDescription(String description) { this.description = description; }
 
     public Contact getContact() {
         return contact;
@@ -60,10 +49,7 @@ public class Invoice {
         this.bedragen = bedragen;
     }
 
-    public int getId() {
-
-        return id;
-    }
+    public int getId() { return id; }
 
     public void setId(int id) {
         this.id = id;
@@ -76,9 +62,9 @@ public class Invoice {
      *
      * @param name
      */
-    public Invoice(String name, Amount amount, String delivery) {
+    public Quotation(String name, Amount amount, String product) {
         this.name = name;
         this.amount = amount;
-        this.delivery = delivery;
+        this.product = product;
     }
 }

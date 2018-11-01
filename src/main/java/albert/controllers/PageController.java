@@ -6,6 +6,10 @@ import router.views.PageView;
 import router.Router;
 import table.Table;
 
+/*
+De abstracte klas Page controller zorgt voor de juiste view voor elk geslecteerd pagina
+ */
+
 public abstract class PageController implements Page {
 
     protected TemplateController template;
