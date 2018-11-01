@@ -10,22 +10,20 @@ import java.util.List;
 public class Project {
 
     private int id;
+
     private String name;
 
     private List<Invoice> invoiceList;
 
     private List<Quotation> quotationList;
 
+    private List<Expense> expenseList;
     private Contact contact;
 
-    private boolean done = false;
+    private String status = paidState.notPaid.toString();
 
-    private List<Expense> expenseList;
-
-
-
-    public Project(String name) {
-        this.name = name;
+    public Project(String name, String status) {
+        this.name = name; this.status = status;
     }
 
     public void setQuotationList(List<Quotation> quotationList) { this.quotationList = quotationList; }
@@ -52,13 +50,11 @@ public class Project {
         this.contact = contact;
     }
 
-    public boolean isDone() {
-        return done;
+    public String isDone() {
+        return status;
     }
 
-    public void setDone(boolean done) {
-        this.done = done;
-    }
+    public void setStatus(String status) { this.status = status; }
 
     public List<Expense> getExpenseList() {
         return expenseList;
@@ -73,10 +69,10 @@ public class Project {
     }
 
     public String getName() {
-        return null;
+        return this.name;
     }
 
     public int getId() {
-        return 0;
+        return this.id;
     }
 }

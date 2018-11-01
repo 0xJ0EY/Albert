@@ -9,7 +9,6 @@ import database.Database;
 public class InvoiceDAO implements DAO<Invoice>{
     private Invoice invoice;
 
-
     @Override
     public ArrayList<Invoice> getAll() {
         String sql = "SELECT * FROM invoice";
@@ -74,7 +73,7 @@ public class InvoiceDAO implements DAO<Invoice>{
             PreparedStatement statement = conn.prepareStatement(sql);
 
             statement.setInt(1,this.invoice.getId());
-            statement.setBoolean(2,this.invoice.getPaid());
+            statement.setString(2,this.invoice.getPaid());
             statement.setString(3, null);
             statement.setTime(4, (Time) this.invoice.getCreated_at());
             statement.setString(5,null);
@@ -100,7 +99,7 @@ public class InvoiceDAO implements DAO<Invoice>{
 
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setBoolean(1,this.invoice.getPaid());
+            statement.setString(1,this.invoice.getPaid());
             statement.setString(2,null);
             statement.setTime(3 , (Time) this.invoice.getCreated_at());
             statement.setString(4,null);
