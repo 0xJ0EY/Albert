@@ -17,7 +17,7 @@ CREATE TABLE invoice
     tax_id integer,
     project_id integer,
     created_at TIMESTAMP,
-    amount integer,
+    amount_id integer,
     deliverydate TIMESTAMP
 );
 
@@ -59,9 +59,8 @@ CREATE TABLE amount
 (
     amount_id BIGSERIAL PRIMARY KEY,
     hours integer,
-    amount integer.
+    price integer,
     contact_id integer
-    amount integer
 );
 
 CREATE TABLE contact
@@ -92,7 +91,7 @@ ADD CONSTRAINT fk_invoiceproject fOREIGN KEY (project_id)
 REFERENCES project(project_id);
 
 ALTER TABLE invoice
-ADD CONSTRAINT fk_invoiceproject fOREIGN KEY (tax_id)
+ADD CONSTRAINT fk_invoicetax fOREIGN KEY (tax_id)
 REFERENCES tax(tax_id);
 
 ALTER TABLE quotation
@@ -114,6 +113,3 @@ REFERENCES contact(contact_id);
 ALTER TABLE amount
 ADD CONSTRAINT fk_amountcontact FOREIGN KEY (contact_id)
 REFERENCES contact(contact_id);
-
-
-
