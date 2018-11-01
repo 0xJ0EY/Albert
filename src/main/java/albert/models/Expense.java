@@ -7,6 +7,8 @@ public class Expense {
     private int id;
     private double price;
     private String name;
+    private String description;
+    private Date created_at;
 
     public void setId(int id) {
         this.id = id;
@@ -20,13 +22,14 @@ public class Expense {
         this.name = name;
     }
 
-    private String description;
-    private Date created_at;
 
-    public Expense(double price, String description, Date created_at) {
+
+    public Expense(double price, String description, Date created_at,String name) {
         this.price = price;
         this.description = description;
         this.created_at = created_at;
+        this.name=name;
+
     }
 
     public double getPrice() {
@@ -48,4 +51,7 @@ public class Expense {
     public int getId() { return this.id; }
 
     public Date getCreated_at() { return this.created_at; }
+
+
+
 }

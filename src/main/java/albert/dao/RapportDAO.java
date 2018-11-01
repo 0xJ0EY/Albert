@@ -1,23 +1,16 @@
 package albert.dao;
 
-import albert.models.Tax;
+import albert.models.Rapportage;
 import database.Database;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
-public class TaxDAO implements DAO<Tax> {
-
-    private Tax tax;
-
+public class RapportDAO implements DAO {
     @Override
     public ArrayList getAll() {
-        String sql = "SELECT * FROM customer";
-        ArrayList<Tax> taxArrayList = null;
-
+        String sql = "SELECT * FROM report";
+        ArrayList<Rapportage> reportArrayList = null;
         try {
             Connection conn = Database.getInstance().getConnection();
 
@@ -26,9 +19,8 @@ public class TaxDAO implements DAO<Tax> {
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()){
-
-                Tax tax = (Tax) extractFromResultSet(rs);
-                taxArrayList.add(tax);
+                Rapportage report = (Rapportage) extractFromResultSet(rs);
+                reportArrayList.add(report);
             }
 
             conn.close();
@@ -36,14 +28,13 @@ public class TaxDAO implements DAO<Tax> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        return taxArrayList;
+        return reportArrayList;
     }
 
-
+    private Rapportage report;
     @Override
-    public Tax loadById(long id) {
-        String sql = "SELECT * FROM tax WHERE tax_id= ?";
+    public Object loadById(long id) {
+        String sql = "SELECT * FROM report WHERE report_id= ?";
         try {
             Connection conn = Database.getInstance().getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
@@ -62,22 +53,24 @@ public class TaxDAO implements DAO<Tax> {
             ex.printStackTrace();
         }
 
-        return tax;
+        return report;
     }
 
     @Override
-    public void create(Tax obj) {
-        this.tax = tax;
+    public void create(Object obj) {
+        this.report = report;
         //TODO sql insert schrijven
-        String sql = "INSERT INTO tax VALUES ( name=?, percentage=?);";
+        String sql = "INSERT INTO report VALUES (report_id=?, naam=? , end_date =?, start_date=?);";
 
         try {
             Connection conn = Database.getInstance().getConnection();
 
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setString(1,this.tax.getName());
-            statement.setInt(2,this.tax.getPercentage());
+            statement.setInt(1,this.report.getId());
+            statement.setString(2,this.report.getName());
+            statement.setDate(3, (Date) this.report.getStartDate());
+            statement.setDate(4, (Date) this.report.getEndDate());
 
 
             statement.execute();
@@ -86,27 +79,24 @@ public class TaxDAO implements DAO<Tax> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("Tax added");
+        System.out.println("Report added");
+
     }
 
     @Override
-    public void update(Tax obj) {
-        this.tax = obj;
+    public void update(Object obj) {
+        this.report = report;
         //TODO sql update schrijven
-        String sql = "UPDATE tax SET ( name=?, percentage=? )WHERE tax_id =?";
-
+        String sql = "UPDATE report SET ( naam=? , end_date =?, start_date=? )WHERE report_id =?";
 
         try {
             Connection conn = Database.getInstance().getConnection();
 
             PreparedStatement statement = conn.prepareStatement(sql);
 
-
-            statement.setString(1,this.tax.getName());
-            statement.setInt(2,this.tax.getPercentage());
-            statement.setInt(3,this.tax.getId());
-
-
+            statement.setString(1,this.report.getName());
+            statement.setDate(2,(Date) this.report.getEndDate());
+            statement.setDate(3,(Date) this.report.getStartDate());
 
             statement.executeUpdate();
             conn.close();
@@ -114,23 +104,20 @@ public class TaxDAO implements DAO<Tax> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        System.out.println("tax Updated");
+        System.out.println("Report Updated");
     }
 
     @Override
-    public void delete(Tax obj) {
-        this.tax = tax;
-
+    public void delete(Object obj) {
+        this.report = report;
         //TODO sql delete schrijven
-        String sql = "DELETE FROM tax WHERE tax_id =?";
+        String sql = "DELETE FROM report WHERE report_id =?";
         try {
             Connection conn = Database.getInstance().getConnection();
 
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setInt(1, this.tax.getId());
-
+            statement.setInt(1,this.report.getId());
 
             statement.execute();
             conn.close();
@@ -138,16 +125,11 @@ public class TaxDAO implements DAO<Tax> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("Tax deleted");
-
-
+        System.out.println("report deleted");
     }
 
     @Override
-    public Tax extractFromResultSet(ResultSet rs) throws SQLException {
+    public Object extractFromResultSet(ResultSet rs) throws SQLException {
         return null;
-
-
     }
-
 }

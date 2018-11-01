@@ -10,12 +10,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ContactDAO implements DAO {
+public class ContactDAO implements DAO<Contact> {
     private Contact contact;
 
     @Override
     public ArrayList getAll() {
-        String sql = "SELECT * FROM customer";
+        String sql = "SELECT * FROM contact";
         ArrayList<Contact> contactArrayList = null;
         try {
             Connection conn = Database.getInstance().getConnection();
@@ -38,10 +38,10 @@ public class ContactDAO implements DAO {
     }
 
     @Override
-    public Object loadById(long id) {
+    public Contact loadById(long id) {
         Contact contact = null;
 
-        String sql = "SELECT * FROM customer WHERE id = ?";
+        String sql = "SELECT * FROM contact WHERE contact_id = ?";
 
         try {
             Connection conn = Database.getInstance().getConnection();
@@ -68,19 +68,19 @@ public class ContactDAO implements DAO {
 
 
     @Override
-    public void create(Object contact) {
+    public void create(Contact contact) {
 
-        this.contact= (Contact)contact;
+        this.contact= (Contact) contact;
+
         //TODO sql insert schrijven
         String sql = "INSERT INTO contact VALUES (?,?,?,?,?,?,?,?,?,?,?);";
-        
 
-
-        try {
+         try {
 
                 Connection conn = Database.getInstance().getConnection();
 
                 PreparedStatement statement = conn.prepareStatement(sql);
+
                 statement.setString(1, this.contact.getFirstName());
                 statement.setString(2, this.contact.getLastName());
                 statement.setString(3, this.contact.getTelephoneNumber());
@@ -93,7 +93,6 @@ public class ContactDAO implements DAO {
                 statement.setString(10, this.contact.getBeschrijving());
                //TODO project later koppelenj niet bij create
                 // statement.setInt(11, this.contact.getProject().getId());
-
 
 
                 statement.execute();
@@ -111,27 +110,26 @@ public class ContactDAO implements DAO {
     }
 
     @Override
-    public void update(Object obj) {
+    public void update(Contact obj) {
 
         this.contact=contact;
 
-        String sql = "UPDATE customer SET f_name=? , l_name=?, tel_number =?, email_address =?, postal_code=? , street_name =?,house_nr =? WHERE customer_id = ?";
-
-
+        String sql = "UPDATE contact SET first_name=?,last_name=?,tel_number=?,postal_code=?,street_name=?,house_number=?,created_at=?,website=?,description=? WHERE contact_id = ?";
 
         try {
 
                 Connection conn = Database.getInstance().getConnection();
-
                 PreparedStatement statement = conn.prepareStatement(sql);
+
                 statement.setString(1, this.contact.getFirstName());
                 statement.setString(2, this.contact.getLastName());
                 statement.setString(3, this.contact.getTelephoneNumber());
                 statement.setString(4, this.contact.getPostcode());
                 statement.setString(5, this.contact.getStraatnaam());
                 statement.setString(6, this.contact.getHouseNumber());
-                statement.executeUpdate();
 
+
+                statement.executeUpdate();
 
                 conn.close();
 
@@ -143,11 +141,11 @@ public class ContactDAO implements DAO {
     }
 
     @Override
-    public  void delete(Object contact) {
-        this.contact = (Contact) contact;
+    public  void delete(Contact contact) {
+        this.contact = contact;
 
 
-            String sql = "DELETE FROM customer WHERE id = ?";
+            String sql = "DELETE FROM contact WHERE contact_id = ?";
 
             try {
 

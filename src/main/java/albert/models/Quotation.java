@@ -1,5 +1,6 @@
 package albert.models;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Quotation {
@@ -79,5 +80,13 @@ public class Quotation {
 
     public void setProject(Project project) {
         this.project = project;
+    }
+
+    public Timestamp getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(Date created_at) {
+        this.created_at = created_at;
     }
 }

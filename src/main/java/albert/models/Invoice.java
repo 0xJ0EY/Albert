@@ -1,8 +1,10 @@
 package albert.models;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Invoice {
+
 
     private int id;
     private String name;
@@ -22,6 +24,7 @@ public class Invoice {
         this.tax = tax;
     }
 
+
     public String getPaid() { return this.paid; }
 
     public void setPaid(String paid) { this.paid = paid; }
@@ -30,7 +33,7 @@ public class Invoice {
 
     public void setCreated_at(Date created_at) { this.created_at = created_at; }
 
-    public Date getDeliveryDate() { return deliveryDate; }
+    public Timestamp getDeliveryDate() { return deliveryDate; }
 
     public void setDeliveryDate(Date deliveryDate) { this.deliveryDate = deliveryDate; }
 
@@ -99,4 +102,5 @@ public class Invoice {
     public void setProject(Project project) {
         this.project = project;
     }
+
 }

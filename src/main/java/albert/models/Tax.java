@@ -14,7 +14,6 @@ public class Tax {
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -28,5 +27,6 @@ public class Tax {
     public String getName() { return this.name; }
 
     public int getPercentage() { return this.percentage; }
+
 
 }

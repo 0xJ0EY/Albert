@@ -40,7 +40,7 @@ public class Contact {
         this.created_at = created_at;
     }
 
-    private Project project;
+    private ArrayList<Project> project;
 
     public ArrayList<ContactEmail> getEmail() {
         return email;
@@ -175,11 +175,11 @@ public class Contact {
         return this.id;
     }
 
-    public Project getProject() {
+    public ArrayList<Project> getProject() {
         return project;
     }
 
-    public void setProject(Project project) {
+    public void setProject(ArrayList<Project> project) {
         this.project = project;
     }
 }
