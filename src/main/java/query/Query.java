@@ -3,13 +3,12 @@ package query;
 import database.Database;
 import query.builders.QueryBuilder;
 import query.exceptions.DatabaseException;
+import query.selects.Select;
 
 import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Query implements Cloneable, Serializable {
 
@@ -25,8 +24,8 @@ public class Query implements Cloneable, Serializable {
         this.queryBuilder.table(table);
     }
 
-    public Query select(String key, Object type) {
-        this.queryBuilder.select(key, type);
+    public Query select(String key) {
+        this.queryBuilder.select(key);
         return this;
     }
 
@@ -148,18 +147,22 @@ public class Query implements Cloneable, Serializable {
         if (rs == null)
             return new ArrayList<>();
 
-        // TODO: Find auto length
+        ArrayList<Select> selected = this.queryBuilder.getSelected();
+
         int dataLength = this.queryBuilder.getSelected().size();
 
         ArrayList<Record> records = new ArrayList<>();
-        ArrayList<Object> objects;
+        HashMap<String, Object> objects;
 
         while (rs.next()) {
 
-            objects = new ArrayList<>();
+            objects = new HashMap<>();
 
             for (int i = 0; i < dataLength; i++) {
-                objects.add(rs.getObject(i + 1));
+                objects.put(
+                    selected.get(i).getKey(),
+                    rs.getObject(i + 1
+                ));
             }
 
             records.add(new Record(objects));

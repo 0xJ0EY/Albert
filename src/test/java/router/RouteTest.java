@@ -52,7 +52,7 @@ public class RouteTest {
 
     @Test
     void projectsTest() {
-        Response response = this.router.navigate("projects/1/");
+        Response response = this.router.navigate("projects/");
 
         assertTrue(response instanceof ViewResponse);
     }

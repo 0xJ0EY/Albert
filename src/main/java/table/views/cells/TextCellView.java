@@ -1,21 +1,23 @@
 package table.views.cells;
 
+import config.Config;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Priority;
-import table.Cell;
+import table.cells.Cell;
+import table.cells.TextCell;
 import table.exceptions.ViewNotFoundException;
 import table.views.CellView;
 
-public class TextCellView extends AnchorPane implements CellView<String> {
+public class TextCellView extends AnchorPane implements CellView {
 
     @FXML
     private Label label;
 
     private final String resource = "/views/table/cells/TextCellView.fxml";
-    private Cell value;
+    private TextCell controller;
 
     @Override
     public void load() {
@@ -33,9 +35,10 @@ public class TextCellView extends AnchorPane implements CellView<String> {
 
     @Override
     public void update() {
-        String name = this.value.getObject().toString();
 
-        this.label.setText(name);
+        Object value = this.controller.getValue();
+
+        this.label.setText(value != null ? value.toString() : Config.get("table", "settings.empty"));
     }
 
     @Override
@@ -45,12 +48,7 @@ public class TextCellView extends AnchorPane implements CellView<String> {
 
     @Override
     public void setCell(Cell cell) {
-        this.value = cell;
-    }
-
-    @Override
-    public boolean match(Object object) {
-        return true;
+        this.controller = (TextCell) cell;
     }
 
     @Override
