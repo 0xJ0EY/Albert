@@ -1,5 +1,7 @@
 
-Button {
+Button,
+.button,
+.pagination_btn {
     -fx-background-color: linear-gradient(#fefefe, #f1f1f1);
     -fx-cursor: hand;
     -fx-background-insets: 0 0 -1 0,0,1;
@@ -18,7 +20,9 @@ Button FontAwesomeIconView{
     -fx-fill: #4d4d4d;
 }
 
-Button:hover {
+Button:hover,
+.button:hover,
+.pagination_btn:hover {
     -fx-background-color: linear-gradient(#f2f2f2, #f1f1f1);;
 }
 
