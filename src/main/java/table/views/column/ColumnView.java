@@ -30,7 +30,8 @@ public class ColumnView extends VBox {
 
     public void update() {
 
-        HBox.setHgrow(this, this.cell.getView().getPriority());
+        // TODO: Refactor
+        HBox.setHgrow(this, this.cell.getCell().getView().getPriority());
 
     }
 

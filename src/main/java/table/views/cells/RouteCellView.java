@@ -1,21 +1,24 @@
 package table.views.cells;
 
+import config.Config;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Priority;
-import table.Cell;
+import table.cells.Cell;
+import table.cells.RouteCell;
+import table.cells.TextCell;
 import table.exceptions.ViewNotFoundException;
 import table.views.CellView;
 
-public class IntCellView extends AnchorPane implements CellView<Integer> {
+public class RouteCellView extends AnchorPane implements CellView {
 
     @FXML
     private Label label;
 
-    private final String resource = "/views/table/cells/IntCellView.fxml";
-    private Cell value;
+    private final String resource = "/views/table/cells/RouteCellView.fxml";
+    private RouteCell controller;
 
     @Override
     public void load() {
@@ -33,9 +36,10 @@ public class IntCellView extends AnchorPane implements CellView<Integer> {
 
     @Override
     public void update() {
-        int value = (int) this.value.getObject();
 
-        label.setText(Integer.toString(value));
+        Object value = this.controller.getValue();
+
+        this.label.setText(value != null ? value.toString() : Config.get("table", "settings.empty"));
     }
 
     @Override
@@ -45,17 +49,17 @@ public class IntCellView extends AnchorPane implements CellView<Integer> {
 
     @Override
     public void setCell(Cell cell) {
-        this.value = cell;
-    }
-
-    @Override
-    public boolean match(Object object) {
-        return object.getClass() == Integer.class;
+        this.controller = (RouteCell) cell;
     }
 
     @Override
     public AnchorPane render() {
         return this;
+    }
+
+    @FXML
+    public void onClickCell() {
+        this.controller.nav();
     }
 
 }
