@@ -22,6 +22,6 @@ public interface DAO<T> {
     public void delete(T obj);
 
     // Extract the results to an object
-    public ArrayList<Object> extractFromResultSet(ResultSet rs) throws SQLException;
+    public Object extractFromResultSet(ResultSet rs) throws SQLException;
 
 }

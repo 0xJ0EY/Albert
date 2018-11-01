@@ -25,7 +25,7 @@ public class ContactDAO implements DAO {
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()){
-                this.contact = (Contact)extractFromResultSet(rs);
+                this.contact = extractFromResultSet(rs);
                 contactArrayList.add(contact);
             }
 
@@ -166,8 +166,8 @@ public class ContactDAO implements DAO {
         }
 
     @Override
-    public ArrayList<Object> extractFromResultSet(ResultSet rs) throws SQLException {
-
+    public Contact extractFromResultSet(ResultSet rs) throws SQLException {
+return null;
     }
 
 }

@@ -147,11 +147,9 @@ public class InvoiceDAO implements DAO<Invoice>{
     }
 
     @Override
-    public ArrayList<Invoice> extractFromResultSet(ResultSet rs) throws SQLException {
+    public Invoice extractFromResultSet(ResultSet rs) throws SQLException {
         return null;
     }
 
-    public List<Invoice> getByProject(Project project) {
-        return null;
-    }
+
 }

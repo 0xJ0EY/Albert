@@ -33,7 +33,7 @@ public class Contact {
     private Date created_at;
 
     public java.sql.Date getCreated_at() {
-        return created_at;
+        return (java.sql.Date) created_at;
     }
 
     public void setCreated_at(Date created_at) {
