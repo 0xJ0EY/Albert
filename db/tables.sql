@@ -47,6 +47,7 @@ CREATE TABLE expense
     expense_id BIGSERIAL PRIMARY KEY,
     price numeric(2),
     created_at TIMESTAMP,
+    description varchar,
     name varchar
 );
 
@@ -54,7 +55,8 @@ CREATE TABLE amount
 (
     amount_id integer PRIMARY KEY,
     hours integer,
-    amount integer
+    amount integer.
+    contact_id integer
 );
 
 CREATE TABLE contact
@@ -66,6 +68,7 @@ CREATE TABLE contact
     postal_code varchar,
     street_name varchar,
     house_number varchar,
+    city varchar,
     created_at TIMESTAMP,
     website varchar,
     description varchar,
@@ -102,6 +105,10 @@ REFERENCES amount(amount_id);
 
 ALTER TABLE contact_email
 ADD CONSTRAINT fk_contactemails FOREIGN KEY (contact_id)
+REFERENCES contact(contact_id);
+
+ALTER TABLE amount
+ADD CONSTRAINT fk_amountcontact FOREIGN KEY (contact_id)
 REFERENCES contact(contact_id);
 
 
