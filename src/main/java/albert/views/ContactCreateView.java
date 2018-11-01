@@ -89,8 +89,13 @@ public class ContactCreateView extends AnchorPane implements PageView {
     }
 
     @FXML
-    public void clickOnSave(ActionEvent event){
+    public void onClickSave(ActionEvent event){
         System.out.println("Click on Save");
         controller.saveContact(firstName.getText(), lastName.getText(),houseNumber.getText(),telephone.getText(),postcode.getText(), email.getText(),website.getText(),description.getText(),streetName.getText(),place.getText());
+    }
+
+    @FXML
+    public void onClickBack(){
+        controller.getRouter().nav("contacts/1");
     }
 }

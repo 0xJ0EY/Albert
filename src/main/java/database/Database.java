@@ -15,11 +15,11 @@ public class Database {
 
     private static final String JDBC_DRIVER = "org.postgresql.Driver";
     private static final String JDBC_CONN_URL = "jdbc:postgresql://"
-            + Config.get("config", "database.hostname") + "/"
-            + Config.get("config", "database.database");
+            + Config.get("database", "server.hostname") + "/"
+            + Config.get("database", "server.database");
 
-    private static final String JDBC_USER = Config.get("config", "database.username");
-    private static final String JDBC_PASS = Config.get("config", "database.password");
+    private static final String JDBC_USER = Config.get("database", "server.username");
+    private static final String JDBC_PASS = Config.get("database", "server.password");
 
     private ComboPooledDataSource comboPooledDataSource;
 
