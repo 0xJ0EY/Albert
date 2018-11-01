@@ -12,6 +12,8 @@ public class NextButton extends Button {
 
         this.setDisable(maxPage <= page);
 
+        this.setText(">");
+
         this.page = page;
         this.controller = table;
 

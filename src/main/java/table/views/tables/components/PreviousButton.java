@@ -12,6 +12,8 @@ public class PreviousButton extends Button {
 
         this.setDisable(minPage >= page);
 
+        this.setText("<");
+
         this.page = page;
         this.controller = table;
 

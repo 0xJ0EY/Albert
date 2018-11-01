@@ -13,7 +13,7 @@
             <Text fx:id="status" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
          </children>
       </HBox>
-        <HBox fx:id="paginationContainer" prefHeight="20.0" prefWidth="255.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+        <HBox fx:id="paginationContainer" alignment="CENTER_RIGHT" prefHeight="20.0" prefWidth="255.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
         <HBox fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
         <Text fx:id="description" layoutX="14.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="# van de # regels" AnchorPane.bottomAnchor="2.5" AnchorPane.leftAnchor="10.0" />
       <AnchorPane prefHeight="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
