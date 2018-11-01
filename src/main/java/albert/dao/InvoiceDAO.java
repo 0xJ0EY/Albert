@@ -44,7 +44,7 @@ public class InvoiceDAO implements DAO<Invoice>{
     @Override
     public Invoice loadById(long id) {
 
-        String sql = "SELECT * FROM invocie WHERE id = ?";
+        String sql = "SELECT * FROM invoice WHERE id = ?";
 
         try {
             Connection conn = Database.getInstance().getConnection();
@@ -73,7 +73,7 @@ public class InvoiceDAO implements DAO<Invoice>{
 
     @Override
     public void create(Invoice obj) {
-    this.invoice = invoice;
+    this.invoice = obj;
         //TODO sql insert schrijven
         String sql = "INSERT INTO invoice VALUES (invoice_id=?, paid=? ,created_at= ?, amount=?, deliverydate=?);";
 
@@ -85,10 +85,10 @@ public class InvoiceDAO implements DAO<Invoice>{
             PreparedStatement statement = conn.prepareStatement(sql);
 
             statement.setInt(1,this.invoice.getId());
-            statement.setBoolean(2,true);
-            statement.setTimestamp(3, null);
-            statement.setString(4,null);
-            statement.setTime(5,null);
+            statement.setBoolean(2,this.invoice.getPaid());
+            statement.setTimestamp(3, this.invoice.getCreated_at());
+            statement.setInt(4,this.invoice.getAmount().getId());
+            statement.setTimestamp(5,this.invoice.getDeliveryDate();
 
             statement.execute();
             conn.close();
@@ -101,7 +101,7 @@ public class InvoiceDAO implements DAO<Invoice>{
     
     @Override
     public void update(Invoice obj) {
-        this.invoice = invoice;
+        this.invoice = obj;
         //TODO sql update schrijven
         String sql = "UPDATE invoice SET paid=? , amount =? ,deliverydate=?, created_at=? WHERE invoice_id =?";
 
@@ -110,10 +110,11 @@ public class InvoiceDAO implements DAO<Invoice>{
 
             PreparedStatement statement = conn.prepareStatement(sql);
 
+
+            statement.setBoolean(1,this.invoice.getPaid());
+            statement.setString(2 ,this.invoice.getAmount());
+            statement.setTimestamp(3, this.invoice.getDeliveryDate());
             statement.setInt(4,this.invoice.getId());
-            statement.setBoolean(1,true);
-            statement.setString(2 ,null);
-            statement.setTime(3, null);
 
             statement.executeUpdate();
             conn.close();
