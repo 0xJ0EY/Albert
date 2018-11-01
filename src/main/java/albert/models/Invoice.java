@@ -10,14 +10,27 @@ public class Invoice {
     private String name;
     private Amount amount;
     private String delivery;
-    private Boolean paid;
+    private String paid;
     private Date created_at;
     private Date deliveryDate;
+
     private String dateNow;
 
-    public Boolean getPaid() { return this.paid; }
+    private Project project;
+    private Tax tax;
 
-    public void setPaid() { this.paid = paid; }
+
+    public Tax getTax() {
+        return tax;
+    }
+
+    public void setTax(Tax tax) {
+        this.tax = tax;
+    }
+
+    public String getPaid() { return this.paid; }
+
+    public void setPaid(String paid) { this.paid = paid; }
 
     public Date getCreated_at() { return  this.created_at; }
 
@@ -85,16 +98,12 @@ public class Invoice {
         this.delivery = delivery;
     }
 
-    public double getAmountPrice() { return amount.getPrice(); }
+    public Project getProject() {
+        return project;
+    }
 
-    public double getAmountHours() { return amount.getHours(); }
+    public void setProject(Project project) {
+        this.project = project;
 
-    public String getAmountContactName() { return amount.getContact(); }
-
-    public String getCurrentDate() {
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = new Date();
-        String dateNow =dateFormat.format(date);
-        return dateNow;
     }
 }

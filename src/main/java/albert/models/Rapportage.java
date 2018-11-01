@@ -1,9 +1,36 @@
 package albert.models;
 
+import java.util.Date;
+
 public class Rapportage {
 
     private String name;
     private int id;
+    private Date startDate;
+    private Date endDate;
+    private Invoice invoice;
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Invoice getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
+    }
+
+    public Expense getExpense() {
+        return expense;
+    }
+
+    public void setExpense(Expense expense) {
+        this.expense = expense;
+    }
+
+    private Expense expense;
 
     public void setName(String name) { this.name = name;   }
 
@@ -14,4 +41,12 @@ public class Rapportage {
     public int getId() {
         return this.id;
     }
+
+    public Date getStartDate() { return startDate; }
+
+    public void setStartDate(Date startDate) { this.startDate = startDate; }
+
+    public Date getEndDate() { return endDate; }
+
+    public void setEndDate(Date endDate) { this.endDate = endDate; }
 }

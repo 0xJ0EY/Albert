@@ -5,13 +5,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+
 import albert.models.Invoice;
+import albert.models.Project;
 import database.Database;
-import org.apache.commons.lang.ObjectUtils;
 
 
 public class InvoiceDAO implements DAO<Invoice>{
     private Invoice invoice;
+
 
     @Override
     public ArrayList<Invoice> getAll() {
@@ -148,4 +151,6 @@ public class InvoiceDAO implements DAO<Invoice>{
     public Invoice extractFromResultSet(ResultSet rs) throws SQLException {
         return null;
     }
+
+
 }

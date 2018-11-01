@@ -1,5 +1,6 @@
 package albert.dao;
 
+import albert.models.Invoice;
 import albert.models.Project;
 import database.Database;
 
@@ -146,10 +147,12 @@ public class ProjectDAO implements DAO<Project> {
 
     @Override
     public Project extractFromResultSet(ResultSet rs) throws SQLException {
-//        Project project = new Project(
-//                rs.getString("name")
-//        );
-        //TODO add all columns
+
+        Project project = new Project(
+                rs.getString("name"), rs.getString("done").toString()
+        );
+
+
 
         project.setId(rs.getInt("id"));
 

@@ -10,6 +10,11 @@ public class Quotation {
     private String product;
     private String description;
     private Date created_at;
+    private Project project;
+
+    public void setProduct(String product) {
+        this.product = product;
+    }
 
     public String getName() {
         return name;
@@ -66,5 +71,13 @@ public class Quotation {
         this.name = name;
         this.amount = amount;
         this.product = product;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 }

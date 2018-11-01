@@ -1,14 +1,15 @@
 package albert.dao;
 
+import albert.models.Expense;
 import albert.models.Invoice;
-import albert.models.Quotation;
+import albert.models.Project;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
-public class QuotationDAO implements DAO{
-    private Quotation quotation;
-
+public class ExpenseDAO implements DAO{
     @Override
     public ArrayList getAll() {
         return null;
@@ -19,18 +20,8 @@ public class QuotationDAO implements DAO{
         return null;
     }
 
-
     @Override
-    public void create(Object quotation) {
-        //TODO sql insert schrijven
-        String sql = "";
-        this.quotation = (Quotation) quotation;
-        System.out.println("Contact added");
-
-
-    }
-
-    public void update(Object o, String[] params) {
+    public void create(Object obj) {
 
     }
 
@@ -46,6 +37,9 @@ public class QuotationDAO implements DAO{
 
     @Override
     public ArrayList<Invoice> extractFromResultSet(ResultSet rs) throws SQLException {
+        return null;
+    }
+    public List<Expense> getByProject(Project project){
         return null;
     }
 }

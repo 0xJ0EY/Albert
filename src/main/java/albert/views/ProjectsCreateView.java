@@ -6,6 +6,7 @@ import albert.models.Project;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import router.views.PageView;
 import javafx.fxml.FXMLLoader;
@@ -24,10 +25,10 @@ public class ProjectsCreateView extends AnchorPane implements PageView {
     private Button klant;
 
     @FXML
-    private TextField afgerondJa;
+    private RadioButton afgerondJa;
 
     @FXML
-    private TextField afgerondNee;
+    private RadioButton afgerondNee;
 
     @FXML
     private TextField beschrijving;
@@ -65,7 +66,9 @@ public class ProjectsCreateView extends AnchorPane implements PageView {
     @FXML
     public void clickOnSave(ActionEvent event){
         System.out.println("Click on Save");
-        controller.saveProject(name.getText(), false);
+
+        controller.saveProject(name.getText(), afgerondJa.isSelected());
+
     }
 
 

@@ -1,7 +1,7 @@
 package albert.dao;
 
 import albert.models.Contact;
-import albert.models.Project;
+import albert.models.Invoice;
 import database.Database;
 
 import java.sql.Connection;
@@ -25,7 +25,7 @@ public class ContactDAO implements DAO {
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()){
-                this.contact = (Contact)extractFromResultSet(rs);
+                this.contact = extractFromResultSet(rs);
                 contactArrayList.add(contact);
             }
 
@@ -72,27 +72,33 @@ public class ContactDAO implements DAO {
 
         this.contact= (Contact)contact;
         //TODO sql insert schrijven
-        String sql = "INSERT INTO customer VALUES (?,?,?,?,?,?,?,?,?,?);";
+        String sql = "INSERT INTO contact VALUES (?,?,?,?,?,?,?,?,?,?,?);";
         
 
 
         try {
-            for(int i=0;i<((Contact) contact).getEmail().size(); i++) {
+
                 Connection conn = Database.getInstance().getConnection();
 
                 PreparedStatement statement = conn.prepareStatement(sql);
-                statement.setInt(1, this.contact.getId());
-                statement.setString(2, this.contact.getFirstName());
-                statement.setString(3, this.contact.getLastName());
-                statement.setString(4, this.contact.getTelephoneNumber());
-                statement.setString(5, this.contact.getEmail().get(i));
-                statement.setString(6, this.contact.getPostcode());
-                statement.setString(7, this.contact.getStraatnaam());
-                statement.setString(8, this.contact.getHouseNumber());
+                statement.setString(1, this.contact.getFirstName());
+                statement.setString(2, this.contact.getLastName());
+                statement.setString(3, this.contact.getTelephoneNumber());
+                statement.setString(4, this.contact.getPostcode());
+                statement.setString(5, this.contact.getStraatnaam());
+                statement.setString(6, this.contact.getHouseNumber());
+                statement.setString(7, this.contact.getWoonplaats());
+                statement.setDate(8, this.contact.getCreated_at());
+                statement.setString(9, this.contact.getWebsite());
+                statement.setString(10, this.contact.getBeschrijving());
+               //TODO project later koppelenj niet bij create
+                // statement.setInt(11, this.contact.getProject().getId());
+
+
 
                 statement.execute();
                 conn.close();
-            }
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -114,22 +120,21 @@ public class ContactDAO implements DAO {
 
 
         try {
-            for(int i=0; i<contact.getEmail().size(); i++) {
+
                 Connection conn = Database.getInstance().getConnection();
 
                 PreparedStatement statement = conn.prepareStatement(sql);
                 statement.setString(1, this.contact.getFirstName());
                 statement.setString(2, this.contact.getLastName());
                 statement.setString(3, this.contact.getTelephoneNumber());
-                statement.setString(4, this.contact.getEmail().get(i));
-                statement.setString(5, this.contact.getPostcode());
-                statement.setString(6, this.contact.getStraatnaam());
-                statement.setString(7, this.contact.getHouseNumber());
+                statement.setString(4, this.contact.getPostcode());
+                statement.setString(5, this.contact.getStraatnaam());
+                statement.setString(6, this.contact.getHouseNumber());
                 statement.executeUpdate();
 
 
                 conn.close();
-            }
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -161,7 +166,8 @@ public class ContactDAO implements DAO {
         }
 
     @Override
-    public Object extractFromResultSet(ResultSet rs) throws SQLException {
-        return null;
+    public Contact extractFromResultSet(ResultSet rs) throws SQLException {
+return null;
     }
+
 }

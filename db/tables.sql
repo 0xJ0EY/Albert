@@ -2,6 +2,10 @@ CREATE TABLE project
 (
     project_id BIGSERIAL PRIMARY KEY,
     name VARCHAR,
+    invoice_id integer,
+    contact_id integer,
+    expense_id integer,
+    quotation_id integer,
     created_at TIMESTAMP,
     done BOOLEAN DEFAULT FALSE
 );
@@ -13,7 +17,7 @@ CREATE TABLE invoice
     tax_id integer,
     project_id integer,
     created_at TIMESTAMP,
-    amount integer,
+    amount_id integer,
     deliverydate TIMESTAMP
 );
 
@@ -47,14 +51,16 @@ CREATE TABLE expense
     expense_id BIGSERIAL PRIMARY KEY,
     price numeric(2),
     created_at TIMESTAMP,
+    description varchar,
     name varchar
 );
 
 CREATE TABLE amount
 (
-    amount_id integer PRIMARY KEY,
+    amount_id BIGSERIAL PRIMARY KEY,
     hours integer,
-    amount integer
+    price integer,
+    contact_id integer
 );
 
 CREATE TABLE contact
@@ -66,6 +72,7 @@ CREATE TABLE contact
     postal_code varchar,
     street_name varchar,
     house_number varchar,
+    city varchar,
     created_at TIMESTAMP,
     website varchar,
     description varchar,
@@ -84,7 +91,7 @@ ADD CONSTRAINT fk_invoiceproject fOREIGN KEY (project_id)
 REFERENCES project(project_id);
 
 ALTER TABLE invoice
-ADD CONSTRAINT fk_invoiceproject fOREIGN KEY (tax_id)
+ADD CONSTRAINT fk_invoicetax fOREIGN KEY (tax_id)
 REFERENCES tax(tax_id);
 
 ALTER TABLE quotation
@@ -95,7 +102,6 @@ ALTER TABLE contact
 ADD CONSTRAINT fk_contactproject fOREIGN KEY (project_id)
 REFERENCES project(project_id);
 
-
 ALTER TABLE quotation
 ADD CONSTRAINT fk_quotationamount FOREIGN KEY (amount_id)
 REFERENCES amount(amount_id);
@@ -104,7 +110,6 @@ ALTER TABLE contact_email
 ADD CONSTRAINT fk_contactemails FOREIGN KEY (contact_id)
 REFERENCES contact(contact_id);
 
-
-
-
-
+ALTER TABLE amount
+ADD CONSTRAINT fk_amountcontact FOREIGN KEY (contact_id)
+REFERENCES contact(contact_id);
