@@ -8,13 +8,13 @@ public class Invoice {
     private String name;
     private Amount amount;
     private String delivery;
-    private Boolean paid;
+    private String paid;
     private Date created_at;
     private Date deliveryDate;
 
-    public Boolean getPaid() { return this.paid; }
+    public String getPaid() { return this.paid; }
 
-    public void setPaid() { this.paid = paid; }
+    public void setPaid(String paid) { this.paid = paid; }
 
     public Date getCreated_at() { return  this.created_at; }
 

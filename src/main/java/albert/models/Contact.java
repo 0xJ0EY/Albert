@@ -55,7 +55,7 @@ public class Contact {
      * @param woonplaats
      */
     public Contact(String firstName, String lastName, String housenumber, String telephoneNumber, String postcode, ArrayList<String> email, String website, String beschrijving, String straatnaam, String woonplaats) {
-        this.name = firstName + lastName;
+        this.name = firstName + " " +lastName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.telephoneNumber = telephoneNumber;
