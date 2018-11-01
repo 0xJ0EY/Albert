@@ -45,6 +45,7 @@ public class ContactController extends PageController implements OverviewPage, D
      *
      * @return
      */
+
     public Table getOverviewTable(){
         Table table = new Table(
                 new DatabaseStrategy(Query.table("contact")),

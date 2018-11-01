@@ -64,6 +64,7 @@ public class ProjectsView extends AnchorPane implements PageView {
     }
 
     public void onClickNewProject(){
-        controller.getRouter().nav("projects/edit/{project}");
+
+        controller.getRouter().nav("projects/create/{project}");
     }
 }

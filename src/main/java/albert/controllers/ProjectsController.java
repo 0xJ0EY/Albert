@@ -59,7 +59,7 @@ public class ProjectsController extends PageController implements OverviewPage, 
 
         return  table;
     }
-
+  
     @Override
     public Response overview(Request request) {
         return new ViewResponse(this);

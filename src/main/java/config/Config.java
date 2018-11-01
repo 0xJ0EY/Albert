@@ -21,7 +21,6 @@ public class Config {
 
     private Config() {
         this.configManager.initialize();
-
     }
 
     public void addConfig(ConfigStrategy config, String name) {

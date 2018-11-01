@@ -54,6 +54,7 @@ public class ContactsView extends AnchorPane implements PageView {
         AnchorPane.setBottomAnchor(view, 0.0);
 
         this.overviewTable.getChildren().add(view);
+
     }
 
     @Override

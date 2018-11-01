@@ -3,6 +3,7 @@ package albert.views;
 import albert.controllers.PageController;
 import albert.controllers.ProjectsController;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -26,6 +27,9 @@ public class ProjectsEditView extends AnchorPane implements PageView {
 
     @FXML
     private RadioButton afgerondNee;
+
+    @FXML
+    private CheckBox isDone;
 
     @FXML
     private TextArea beschrijving;
@@ -61,15 +65,15 @@ public class ProjectsEditView extends AnchorPane implements PageView {
     }
 
     @FXML
-    public void onClickCancel(){
+    public void onClickSave() {
+        controller.saveProject(naam.getText(), isDone.isSelected());
+
 
     }
 
     @FXML
-    public void onClickSave() {
-        controller.saveProject(naam.getText(), afgerondJa.isSelected());
-
+    public void onClickCancel() {
+        controller.getRouter().nav("projects/1/");
     }
-
 
 }
