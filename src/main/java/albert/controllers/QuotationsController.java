@@ -4,6 +4,7 @@ import albert.dao.QuotationDAO;
 import albert.models.Amount;
 import albert.models.Quotation;
 import router.Request;
+import router.pages.CreatePage;
 import router.pages.DetailPage;
 import router.pages.EditPage;
 import router.pages.OverviewPage;
@@ -13,7 +14,7 @@ import router.templates.TemplateController;
 import router.views.PageView;
 
 
-public class QuotationsController extends PageController implements OverviewPage, DetailPage, EditPage {
+public class QuotationsController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
     Amount amount;
     Quotation quotation;
 
@@ -48,6 +49,11 @@ public class QuotationsController extends PageController implements OverviewPage
 
     @Override
     public Response edit(Request request) {
+        return new ViewResponse(this);
+    }
+
+    @Override
+    public Response create(Request request) {
         return new ViewResponse(this);
     }
 }

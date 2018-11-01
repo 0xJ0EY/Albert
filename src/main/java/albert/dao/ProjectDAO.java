@@ -74,20 +74,16 @@ public class ProjectDAO implements DAO<Project> {
 
         this.project = project;
         //TODO sql insert schrijven
-        String sql = "INSERT INTO project VALUES (project_id=?, naam=? ,invoice_id=?, contact_id=?, expense_id=?, quotation_id=?, created_at= ?, done =?);";
+        String sql = "INSERT INTO project(name, created_at, done) VALUES (?,?,?);";
 
         try {
             Connection conn = Database.getInstance().getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setInt(1,this.project.getId());
-            statement.setString(2,this.project.getName());
-            statement.setString(3,null);
-            statement.setString(4,null);
-            statement.setString(5,null);
-            statement.setString(6,null);
-            statement.setTimestamp(7,null);
-            statement.setBoolean(8,false);
+            statement.setString(1,this.project.getName());
+            statement.setTimestamp(2,this.project.getCreated_at());
+            statement.setBoolean(3, this.project.getDone());
+
 
             statement.execute();
             conn.close();
@@ -129,7 +125,7 @@ public class ProjectDAO implements DAO<Project> {
 
     @Override
     public void delete(Project obj) {
-        this.project = project;
+        this.project = obj;
         //TODO sql delete schrijven
         String sql = "DELETE FROM project WHERE project_id =?";
         try {

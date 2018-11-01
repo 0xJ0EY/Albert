@@ -6,6 +6,7 @@ import albert.models.PaidState;
 import query.Query;
 import albert.dao.ProjectDAO;
 import albert.models.Project;
+import router.pages.CreatePage;
 import router.pages.EditPage;
 import router.pages.OverviewPage;
 import router.templates.TemplateController;
@@ -21,7 +22,7 @@ import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
 
-public class ProjectsController extends PageController implements OverviewPage, DetailPage, EditPage {
+public class ProjectsController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
 
     ProjectDAO dao = new ProjectDAO();
     ContactDAO contactDAO = new ContactDAO();
@@ -48,7 +49,7 @@ public class ProjectsController extends PageController implements OverviewPage, 
                 new TextCellFactory())
         );
 
-        table.addCol(new Column("project_naam",
+        table.addCol(new Column("name",
                 new LeftHeaderViewFactory("Naam"),
                 new TextCellFactory())
         );
@@ -58,7 +59,7 @@ public class ProjectsController extends PageController implements OverviewPage, 
                 new TextCellFactory())
         );
 
-        table.addCol(new Column("finished::text",
+        table.addCol(new Column("done::text",
                 new LeftHeaderViewFactory("Afgerond"),
                 new TextCellFactory())
         );
@@ -95,4 +96,9 @@ public class ProjectsController extends PageController implements OverviewPage, 
         dao.update(project);
     }
 
+    @Override
+    public Response create(Request request) {
+        return new ViewResponse(this);
+
+    }
 }

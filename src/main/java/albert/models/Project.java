@@ -1,6 +1,8 @@
 package albert.models;
 
 
+import java.sql.Timestamp;
+
 /**
  *
  */
@@ -13,6 +15,10 @@ public class Project {
     private Contact contact;
 
     private String status = PaidState.notPaid.toString();
+
+    private Timestamp created_at;
+
+    private Boolean done;
 
     public void setId(int id) {
         this.id = id;
@@ -56,5 +62,17 @@ public class Project {
 
     public int getId() {
         return this.id;
+    }
+
+    public Timestamp getCreated_at() {
+        return created_at;
+    }
+
+    public Boolean getDone() {
+        return done;
+    }
+
+    public void setDone(Boolean done) {
+        this.done = done;
     }
 }

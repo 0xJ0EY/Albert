@@ -2,6 +2,7 @@ package albert.views;
 
 import albert.controllers.PageController;
 import albert.controllers.ProjectsController;
+import router.pages.CreatePage;
 import router.views.PageView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +16,7 @@ import java.io.IOException;
 Hier wordt de prrojects geladen
  */
 
-public class ProjectsView extends AnchorPane implements PageView {
+public class ProjectsView extends AnchorPane implements PageView  {
 
     private final String resource = "/views/pages/Projects.fxml";
     private ProjectsController controller;

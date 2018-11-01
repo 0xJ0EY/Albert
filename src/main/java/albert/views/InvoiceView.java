@@ -61,18 +61,9 @@ public class InvoiceView extends AnchorPane implements PageView {
         return this;
     }
 
-    public void onClickSearch(){
-
-    }
-    public void clickOnEdit(){
-
+    @FXML
+    public void onClickAddInvoice(){
+        controller.getRouter().nav("invoices/edit/{invoice}");
     }
 
-    public void clickOnDelete(){
-
-    }
-
-    public void clickOnPdf(){
-
-    }
 }

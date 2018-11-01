@@ -61,8 +61,8 @@ public class InvoiceEditView extends AnchorPane implements PageView {
     }
 
     @FXML
-    public void onClickButton() {
-        this.controller.getRouter().nav("home/");
+    public void onClickBack() {
+        this.controller.getRouter().nav("invoices/");
     }
 
     @FXML
