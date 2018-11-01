@@ -91,6 +91,6 @@ public class ContactsEditView extends AnchorPane implements PageView {
     }
 
     @FXML
-    public void onClickBack(ActionEvent event){ controller.getRouter().nav("contacts/1"); }
+    public void onClickBack(ActionEvent event){ controller.getRouter().nav("contacts/details/{contacts}/"); }
 
 }

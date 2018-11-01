@@ -43,64 +43,64 @@ public class ContactController extends PageController implements OverviewPage, D
      *
      * @return
      */
-    public Table getOverviewTable(){
-        Table table = new Table(
-                new DatabaseStrategy(Query.table("customer")),
-                new SearchTableView()
-        );
-
-        table.addCol(new Column("customer_id::text",
-                new LeftHeaderViewFactory("Contact ID"),
-                new TextCellViewFactory())
-        );
-
-        table.addCol(new Column("f_name",
-                new LeftHeaderViewFactory("Voornaam"),
-                new TextCellViewFactory())
-        );
-
-        table.addCol(new Column("b_name",
-                new LeftHeaderViewFactory("Achternaam"),
-                new TextCellViewFactory())
-        );
-
-        table.addCol(new Column("tel_number::text",
-                new LeftHeaderViewFactory("Telefoonnummer"),
-                new TextCellViewFactory())
-        );
-
-        table.addCol(new Column("email_address::text",
-                new LeftHeaderViewFactory("E-Mail adres"),
-                new TextCellViewFactory())
-        );
-
-        table.addCol(new Column("postal_code::text",
-                new LeftHeaderViewFactory("Postcode"),
-                new TextCellViewFactory())
-        );
-
-        table.addCol(new Column("street_name::text",
-                new LeftHeaderViewFactory("Straatnaam"),
-                new TextCellViewFactory())
-        );
-
-        table.addCol(new Column("house_nr::text",
-                new LeftHeaderViewFactory("Huisnummer"),
-                new TextCellViewFactory())
-        );
-
-        table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
-                new LeftHeaderViewFactory("Aangemaakt op"),
-                new TextCellViewFactory())
-        );
-
-        table.addCol(new Column("TO_CHAR(updated_at, 'DD-MM-YYYY')",
-                new LeftHeaderViewFactory("Aangepast op"),
-                new TextCellViewFactory())
-        );
-
-        return  table;
-    }
+//    public Table getOverviewTable(){
+//        Table table = new Table(
+//                new DatabaseStrategy(Query.table("customer")),
+//                new SearchTableView()
+//        );
+//
+//        table.addCol(new Column("customer_id::text",
+//                new LeftHeaderViewFactory("Contact ID"),
+//                new TextCellViewFactory())
+//        );
+//
+//        table.addCol(new Column("f_name",
+//                new LeftHeaderViewFactory("Voornaam"),
+//                new TextCellViewFactory())
+//        );
+//
+//        table.addCol(new Column("b_name",
+//                new LeftHeaderViewFactory("Achternaam"),
+//                new TextCellViewFactory())
+//        );
+//
+//        table.addCol(new Column("tel_number::text",
+//                new LeftHeaderViewFactory("Telefoonnummer"),
+//                new TextCellViewFactory())
+//        );
+//
+//        table.addCol(new Column("email_address::text",
+//                new LeftHeaderViewFactory("E-Mail adres"),
+//                new TextCellViewFactory())
+//        );
+//
+//        table.addCol(new Column("postal_code::text",
+//                new LeftHeaderViewFactory("Postcode"),
+//                new TextCellViewFactory())
+//        );
+//
+//        table.addCol(new Column("street_name::text",
+//                new LeftHeaderViewFactory("Straatnaam"),
+//                new TextCellViewFactory())
+//        );
+//
+//        table.addCol(new Column("house_nr::text",
+//                new LeftHeaderViewFactory("Huisnummer"),
+//                new TextCellViewFactory())
+//        );
+//
+//        table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
+//                new LeftHeaderViewFactory("Aangemaakt op"),
+//                new TextCellViewFactory())
+//        );
+//
+//        table.addCol(new Column("TO_CHAR(updated_at, 'DD-MM-YYYY')",
+//                new LeftHeaderViewFactory("Aangepast op"),
+//                new TextCellViewFactory())
+//        );
+//
+//        return  table;
+//    }
 
     @Override
     public Response overview(Request request) {

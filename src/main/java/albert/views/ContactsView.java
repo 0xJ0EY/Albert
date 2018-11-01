@@ -38,13 +38,13 @@ public class ContactsView extends AnchorPane implements PageView {
 
     @Override
     public void update() {
-        Table table = controller.getOverviewTable();
-
-        table.update();
-
-        TableView tableView = table.getView();
-
-        this.overviewTable.getChildren().add(tableView.render());
+//        Table table = controller.getOverviewTable();
+//
+//        table.update();
+//
+//        TableView tableView = table.getView();
+//
+//        this.overviewTable.getChildren().add(tableView.render());
     }
 
     @Override

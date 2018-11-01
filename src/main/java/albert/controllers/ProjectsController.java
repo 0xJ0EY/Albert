@@ -31,34 +31,34 @@ public class ProjectsController extends PageController implements OverviewPage, 
         super(view, template);
     }
 
-    public Table getOverviewTable(){
-        Table table = new Table(
-                new DatabaseStrategy(Query.table("project")),
-                new SearchTableView()
-        );
-
-        table.addCol(new Column("project_id::text",
-                new LeftHeaderViewFactory("Project ID"),
-                new TextCellViewFactory())
-        );
-
-        table.addCol(new Column("project_naam",
-                new LeftHeaderViewFactory("Naam"),
-                new TextCellViewFactory())
-        );
-
-        table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
-                new LeftHeaderViewFactory("Aangemaakt op"),
-                new TextCellViewFactory())
-        );
-
-        table.addCol(new Column("finished::text",
-                new LeftHeaderViewFactory("Afgerond"),
-                new TextCellViewFactory())
-        );
-
-        return  table;
-    }
+//    public Table getOverviewTable(){
+//        Table table = new Table(
+//                new DatabaseStrategy(Query.table("project")),
+//                new SearchTableView()
+//        );
+//
+//        table.addCol(new Column("project_id::text",
+//                new LeftHeaderViewFactory("Project ID"),
+//                new TextCellViewFactory())
+//        );
+//
+//        table.addCol(new Column("project_naam",
+//                new LeftHeaderViewFactory("Naam"),
+//                new TextCellViewFactory())
+//        );
+//
+//        table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
+//                new LeftHeaderViewFactory("Aangemaakt op"),
+//                new TextCellViewFactory())
+//        );
+//
+//        table.addCol(new Column("finished::text",
+//                new LeftHeaderViewFactory("Afgerond"),
+//                new TextCellViewFactory())
+//        );
+//
+//        return  table;
+//    }
 
     @Override
     public Response overview(Request request) {
