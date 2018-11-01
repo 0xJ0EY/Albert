@@ -70,10 +70,11 @@ public class ContactDAO implements DAO<Contact> {
     @Override
     public void create(Contact contact) {
 
-        this.contact= (Contact) contact;
+        this.contact= contact;
 
         //TODO sql insert schrijven
-        String sql = "INSERT INTO contact VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+        String sql = "INSERT INTO contact(first_name, last_name, tel_number, postal_code, street_name, house_number, city, created_at, website, description)" +
+                "VALUES (?,?,?,?,?,?,?,?,?,?);";
 
          try {
 
@@ -83,19 +84,20 @@ public class ContactDAO implements DAO<Contact> {
 
                 statement.setString(1, this.contact.getFirstName());
                 statement.setString(2, this.contact.getLastName());
-                statement.setString(3, this.contact.getTelephoneNumber());
+                statement.setInt(3, this.contact.getTelephoneNumber());
                 statement.setString(4, this.contact.getPostcode());
                 statement.setString(5, this.contact.getStraatnaam());
                 statement.setString(6, this.contact.getHouseNumber());
                 statement.setString(7, this.contact.getWoonplaats());
-                statement.setDate(8, this.contact.getCreated_at());
+                statement.setTimestamp(8, this.contact.getCreated_at());
                 statement.setString(9, this.contact.getWebsite());
                 statement.setString(10, this.contact.getBeschrijving());
                //TODO project later koppelenj niet bij create
                 // statement.setInt(11, this.contact.getProject().getId());
 
 
-                statement.execute();
+
+                statement.executeQuery();
                 conn.close();
 
 
@@ -105,9 +107,6 @@ public class ContactDAO implements DAO<Contact> {
         System.out.println("Contact added");
     }
 
-    public void update(Object o, String[] params) {
-
-    }
 
     @Override
     public void update(Contact obj) {
@@ -123,7 +122,7 @@ public class ContactDAO implements DAO<Contact> {
 
                 statement.setString(1, this.contact.getFirstName());
                 statement.setString(2, this.contact.getLastName());
-                statement.setString(3, this.contact.getTelephoneNumber());
+                statement.setInt(3, this.contact.getTelephoneNumber());
                 statement.setString(4, this.contact.getPostcode());
                 statement.setString(5, this.contact.getStraatnaam());
                 statement.setString(6, this.contact.getHouseNumber());

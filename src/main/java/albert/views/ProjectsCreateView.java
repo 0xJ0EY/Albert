@@ -2,31 +2,32 @@ package albert.views;
 
 import albert.controllers.PageController;
 import albert.controllers.ProjectsController;
-import router.pages.CreatePage;
-import router.views.PageView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import table.Table;
-import table.views.TableView;
+import router.views.PageView;
 
-import java.awt.*;
-import java.io.IOException;
-/*
-Hier wordt de prrojects geladen
- */
+public class ProjectsCreateView extends AnchorPane implements PageView {
 
-public class ProjectsView extends AnchorPane implements PageView  {
-
-    private final String resource = "/views/pages/Projects.fxml";
+    private final String resource = "/views/pages/ProjectEditView.fxml";
     private ProjectsController controller;
 
     @FXML
-    private AnchorPane overviewTable;
+    private TextField naam;
 
     @FXML
-    private Button editButton;
+    private TextField klant;
 
+    @FXML
+    private CheckBox isDone;
+
+    @FXML
+    private TextArea beschrijving;
+
+    @FXML
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
@@ -36,22 +37,14 @@ public class ProjectsView extends AnchorPane implements PageView  {
 
         try {
             loader.load();
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
     @Override
     public void update() {
-        Table table = controller.getOverviewTable();
 
-        table.fetch();
-
-        table.update();
-
-        TableView tableView = table.getView();
-
-        this.overviewTable.getChildren().add(tableView.render());
     }
 
     @Override
@@ -64,8 +57,16 @@ public class ProjectsView extends AnchorPane implements PageView  {
         return this;
     }
 
-    public void onClickNewProject(){
+    @FXML
+    public void onClickSave() {
+        controller.saveProject(naam.getText(), isDone.isSelected());
 
-        controller.getRouter().nav("projects/create/{project}");
+
     }
+
+    @FXML
+    public void onClickCancel() {
+        controller.getRouter().nav("projects/1/");
+    }
+
 }
