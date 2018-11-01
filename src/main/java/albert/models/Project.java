@@ -1,8 +1,12 @@
 package albert.models;
 
 
+
 import java.util.List;
 
+/**
+ *
+ */
 public class Project {
 
     private int id;
@@ -10,20 +14,23 @@ public class Project {
 
     private List<Invoice> invoiceList;
 
+    private List<Quotation> quotationList;
 
-    private List<Contact> contactList;
+    private Contact contact;
 
     private boolean done = false;
 
     private List<Expense> expenseList;
 
-    /**
-     *
-     * @param name
-     */
+
+
     public Project(String name) {
         this.name = name;
     }
+
+    public void setQuotationList(List<Quotation> quotationList) { this.quotationList = quotationList; }
+
+    public List<Quotation> getQuotationList() { return quotationList; }
 
     public void setId(int id) {
         this.id = id;
@@ -37,13 +44,12 @@ public class Project {
         this.invoiceList = invoiceList;
     }
 
-
-    public List<Contact> getContactList() {
-        return contactList;
+    public Contact getContact() {
+        return contact;
     }
 
-    public void setContactList(List<Contact> contactList) {
-        this.contactList = contactList;
+    public void setContactList(Contact contact) {
+        this.contact = contact;
     }
 
     public boolean isDone() {
@@ -61,8 +67,6 @@ public class Project {
     public void setExpenseList(List<Expense> expenseList) {
         this.expenseList = expenseList;
     }
-
-
 
     public void setName(String name) {
             this.name = name;

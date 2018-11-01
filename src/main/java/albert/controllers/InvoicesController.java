@@ -1,5 +1,8 @@
 package albert.controllers;
 
+import albert.dao.InvoiceDAO;
+import albert.models.Amount;
+import albert.models.Invoice;
 import query.Query;
 import router.Request;
 import router.pages.DetailPage;
@@ -16,10 +19,12 @@ import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
 
-import java.io.IOException;
 
+public class InvoicesController extends PageController implements OverviewPage, DetailPage, EditPage {
+    private InvoiceDAO dao = new InvoiceDAO();
+    private Amount amount;
+    private Invoice invoice;
 
-public class InvoicesController extends PageController implements OverviewPage, DetailPage, EditPage, CreateObject {
 
     public InvoicesController(PageView view, TemplateController template) {
         super(view, template);
@@ -59,6 +64,22 @@ public class InvoicesController extends PageController implements OverviewPage, 
         return  table;
     }
 
+    public void saveInvoice(String name, String price, String hours, String contact, String delivery) {
+        amount = new Amount(new Double(price), new Double(hours), contact);
+        invoice = new Invoice(name, amount, delivery);
+        dao.create(invoice);
+    }
+
+    public void deleteInvoice() {
+        dao.delete(invoice);
+    }
+
+    public void editInvoice(String name, String price, String hours, String contact, String delivery) {
+        amount = new Amount(new Double(price), new Double(hours), contact);
+        invoice = new Invoice(name, amount, delivery);
+        dao.update(invoice);
+    }
+
     @Override
     public Response overview(Request request) {
         return new ViewResponse(this);
@@ -73,10 +94,5 @@ public class InvoicesController extends PageController implements OverviewPage, 
     @Override
     public Response edit(Request request) {
         return new ViewResponse(this);
-    }
-
-    @Override
-    public void createObj(Object obj) {
-
     }
 }

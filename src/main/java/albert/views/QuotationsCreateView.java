@@ -1,37 +1,37 @@
 package albert.views;
 
 import albert.controllers.PageController;
-import albert.controllers.ProjectsController;
-import albert.models.Project;
+import albert.controllers.QuotationsController;
+import albert.models.Amount;
+import albert.models.Quotation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import router.views.PageView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
-public class ProjectsCreateView extends AnchorPane implements PageView {
+public class QuotationsCreateView extends AnchorPane implements PageView {
 
-    private final String resource = "/views/pages/ProjectEditView.fxml";
-    private ProjectsController controller;
-    private Project project;
-
-    @FXML
-    private TextField name;
+    private final String resource = "/views/pages/QuotationsCreateView.fxml";
+    private QuotationsController controller;
+    private Quotation quotation;
+    private Amount amount;
 
     @FXML
-    private Button klant;
+    private TextField naamBar;
 
     @FXML
-    private TextField afgerondJa;
+    private TextField hourBar;
 
     @FXML
-    private TextField afgerondNee;
+    private TextField priceBar;
 
     @FXML
-    private TextField beschrijving;
+    private TextField contactBar;
 
+    @FXML
+    private TextField delivery;
 
     @Override
     public void load() {
@@ -54,7 +54,7 @@ public class ProjectsCreateView extends AnchorPane implements PageView {
 
     @Override
     public void setController(PageController controller) {
-        this.controller = (ProjectsController)controller;
+        this.controller = (QuotationsController) controller;
     }
 
     @Override
@@ -65,8 +65,6 @@ public class ProjectsCreateView extends AnchorPane implements PageView {
     @FXML
     public void clickOnSave(ActionEvent event){
         System.out.println("Click on Save");
-        controller.saveProject(name.getText());
+        controller.saveQuotation(naamBar.getText(), priceBar.getText(), hourBar.getText(), contactBar.getText(), delivery.getText());
     }
-
-
 }
