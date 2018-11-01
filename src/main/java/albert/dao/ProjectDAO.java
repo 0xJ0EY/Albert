@@ -83,9 +83,11 @@ public class ProjectDAO implements DAO<Project> {
     @Override
     public Project extractFromResultSet(ResultSet rs) throws SQLException {
         Project project = new Project(
-                rs.getInt("id"), rs.getString("name")
+                rs.getString("name")
         );
         //TODO add all columns
+
+        project.setId(rs.getInt("id"));
 
         return project;
     }

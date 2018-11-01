@@ -1,6 +1,9 @@
 package albert.views;
 
 import albert.controllers.PageController;
+import albert.controllers.ProjectsController;
+import albert.models.Project;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -8,48 +11,28 @@ import router.views.PageView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
-public class ContactsEditView extends AnchorPane implements PageView {
+public class ProjectsCreateView extends AnchorPane implements PageView {
 
-    private final String resource = "/views/pages/ContactEditView.fxml";
-    private PageController controller;
-
-    @FXML
-    private TextField firstName;
+    private final String resource = "/views/pages/ProjectEditView.fxml";
+    private ProjectsController controller;
+    private Project project;
 
     @FXML
-    private Button saveButton;
+    private TextField name;
 
     @FXML
-    private TextField lastName;
-
-
-    @FXML
-    private TextField streetName;
-
+    private Button klant;
 
     @FXML
-    private TextField compagny;
+    private TextField afgerondJa;
 
     @FXML
-    private TextField houseNumber;
+    private TextField afgerondNee;
 
     @FXML
-    private TextField postcode;
+    private TextField beschrijving;
 
-    @FXML
-    private TextField place;
 
-    @FXML
-    private TextField website;
-
-    @FXML
-    private TextField description;
-
-    @FXML
-    private TextField telephone;
-
-    @FXML
-    private TextField email;
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
@@ -71,7 +54,7 @@ public class ContactsEditView extends AnchorPane implements PageView {
 
     @Override
     public void setController(PageController controller) {
-        this.controller = controller;
+        this.controller = (ProjectsController)controller;
     }
 
     @Override
@@ -80,8 +63,12 @@ public class ContactsEditView extends AnchorPane implements PageView {
     }
 
     @FXML
-    public void onClickBack(){
-        controller.getRouter().nav("contacts/1");
+    public void clickOnSave(ActionEvent event){
+        System.out.println("Click on Save");
+        project = new Project(name.getText());
+        System.out.println(name.getText());
+        controller.createObj(project);
     }
+
 
 }

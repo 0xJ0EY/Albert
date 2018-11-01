@@ -18,12 +18,10 @@ public class Project {
     private List<Expense> expenseList;
 
     /**
-     * 
-     * @param id
+     *
      * @param name
      */
-    public Project(int id, String name) {
-        this.id = id;
+    public Project(String name) {
         this.name = name;
     }
 
