@@ -1,6 +1,7 @@
 package albert.views;
 
 import albert.controllers.PageController;
+import albert.controllers.ProjectsController;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
@@ -12,7 +13,7 @@ import javafx.scene.layout.AnchorPane;
 public class ProjectsEditView extends AnchorPane implements PageView {
 
     private final String resource = "/views/pages/ProjectEditView.fxml";
-    private PageController controller;
+    private ProjectsController controller;
 
     @FXML
     private TextField naam;
@@ -25,7 +26,6 @@ public class ProjectsEditView extends AnchorPane implements PageView {
 
     @FXML
     private RadioButton afgerondNee;
-
 
     @FXML
     private TextArea beschrijving;
@@ -52,7 +52,7 @@ public class ProjectsEditView extends AnchorPane implements PageView {
 
     @Override
     public void setController(PageController controller) {
-        this.controller = controller;
+        this.controller = (ProjectsController)controller;
     }
 
     @Override
@@ -60,12 +60,14 @@ public class ProjectsEditView extends AnchorPane implements PageView {
         return this;
     }
 
+    @FXML
     public void onClickCancel(){
 
     }
 
-    public void onClickEdit(){
-
+    @FXML
+    public void onClickSave() {
+        controller.saveProject(naam.getText(), afgerondJa.isSelected());
 
     }
 
