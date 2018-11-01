@@ -6,7 +6,9 @@ import config.Config;
 import java.beans.PropertyVetoException;
 import java.sql.Connection;
 import java.sql.SQLException;
-
+/*
+De klas database zorgt dat de app is gekopeld met dbms, waar de data wordt opgeslagen.
+ */
 public class Database {
 
     private static Database instance;

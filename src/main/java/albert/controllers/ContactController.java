@@ -21,9 +21,19 @@ import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
 import table.views.tables.components.TableButton;
 
-public class ContactController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage, CreateObject {
+import java.util.ArrayList;
+
+public class ContactController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
 
     private ContactDAO dao = new ContactDAO();
+
+    private Contact contact;
+
+    /**
+     *
+     * @param view
+     * @param template
+     */
     public ContactController(
             PageView view,
             TemplateController template
@@ -31,29 +41,28 @@ public class ContactController extends PageController implements OverviewPage, D
         super(view, template);
     }
 
+    /**
+     *
+     * @return
+     */
     public Table getOverviewTable(){
         Table table = new Table(
-                new DatabaseStrategy(Query.table("customer")),
+                new DatabaseStrategy(Query.table("contact")),
                 new SearchTableView()
         );
 
-        table.addCol(new Column("f_name",
+        table.addCol(new Column("first_name",
                 new LeftHeaderViewFactory("Voornaam"),
-                new RouteCellFactory("invoices/detail/{customer_id}/", this))
+                new RouteCellFactory("invoices/detail/{contact_id}/", this))
         );
 
-        table.addCol(new Column("b_name",
+        table.addCol(new Column("last_name",
                 new LeftHeaderViewFactory("Achternaam"),
                 new TextCellFactory())
         );
 
         table.addCol(new Column("tel_number::text",
                 new LeftHeaderViewFactory("Telefoonnummer"),
-                new TextCellFactory())
-        );
-
-        table.addCol(new Column("email_address::text",
-                new LeftHeaderViewFactory("E-Mail adres"),
                 new TextCellFactory())
         );
 
@@ -67,18 +76,13 @@ public class ContactController extends PageController implements OverviewPage, D
                 new TextCellFactory())
         );
 
-        table.addCol(new Column("house_nr::text",
+        table.addCol(new Column("house_number::text",
                 new LeftHeaderViewFactory("Huisnummer"),
                 new TextCellFactory())
         );
 
         table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
                 new LeftHeaderViewFactory("Aangemaakt op"),
-                new TextCellFactory())
-        );
-
-        table.addCol(new Column("TO_CHAR(updated_at, 'DD-MM-YYYY')",
-                new LeftHeaderViewFactory("Aangepast op"),
                 new TextCellFactory())
         );
 
@@ -109,9 +113,57 @@ public class ContactController extends PageController implements OverviewPage, D
 
         return new ViewResponse(this);
     }
-    
-    @Override
-    public void createObj(Object obj) {
-        dao.create((Contact)obj);
+
+    /**
+     *
+     * @param firstName
+     * @param lastName
+     * @param houseNumber
+     * @param telephone
+     * @param postcode
+     * @param email
+     * @param website
+     * @param description
+     * @param streetName
+     * @param place
+     */
+    public void saveContact(
+            String firstName,
+            String lastName,
+            String houseNumber,
+            String telephone,
+            String postcode,
+            ArrayList<String> email,
+            String website,
+            String description,
+            String streetName,
+            String place
+    ) {
+        contact = new Contact(firstName,  lastName,  houseNumber,  telephone,  postcode,  email,  website,  description,  streetName,  place);
+        dao.create(contact);
+    }
+
+    /**
+     *
+     * @param firstName
+     * @param lastName
+     * @param houseNumber
+     * @param telephone
+     * @param postcode
+     * @param email
+     * @param website
+     * @param description
+     * @param streetName
+     * @param place
+     */
+    public void editContact(String firstName, String lastName, String houseNumber, String telephone, String postcode, ArrayList<String> email, String website, String description, String streetName, String place){
+
+        contact= new Contact(firstName,  lastName,  houseNumber,  telephone,  postcode,  email,  website,  description,  streetName,  place);
+        dao.update(contact);
+    }
+
+    public void deleteContact(){
+        //contact = new Contact();
+        //dao.delete(contact);
     }
 }

@@ -8,6 +8,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+/*
+Hier wordt de contactView geladen.
+ */
 
 public class ContactDetailView extends AnchorPane implements PageView {
 

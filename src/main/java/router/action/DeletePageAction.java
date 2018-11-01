@@ -5,7 +5,9 @@ import router.Request;
 import router.Router;
 import router.factories.pages.DeletePageFactory;
 import router.response.Response;
-
+/*
+Hier wordt een page verwijderd, op basis van een request
+ */
 public class DeletePageAction implements Action {
 
     private DeletePageFactory factory;

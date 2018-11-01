@@ -11,6 +11,9 @@ import table.views.TableView;
 
 import java.awt.*;
 import java.io.IOException;
+/*
+Hier wordt de prrojects geladen
+ */
 
 public class ProjectsView extends AnchorPane implements PageView {
 
@@ -60,4 +63,7 @@ public class ProjectsView extends AnchorPane implements PageView {
         return this;
     }
 
+    public void onClickNewProject(){
+        controller.getRouter().nav("projects/edit/{project}");
+    }
 }

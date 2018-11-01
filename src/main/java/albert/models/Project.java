@@ -1,29 +1,34 @@
 package albert.models;
 
 
+
 import java.util.List;
 
+/**
+ *
+ */
 public class Project {
 
     private int id;
+
     private String name;
 
     private List<Invoice> invoiceList;
 
-
-    private List<Contact> contactList;
-
-    private boolean done = false;
+    private List<Quotation> quotationList;
 
     private List<Expense> expenseList;
+    private Contact contact;
 
-    /**
-     *
-     * @param name
-     */
-    public Project(String name) {
-        this.name = name;
+    private String status = paidState.notPaid.toString();
+
+    public Project(String name, String status) {
+        this.name = name; this.status = status;
     }
+
+    public void setQuotationList(List<Quotation> quotationList) { this.quotationList = quotationList; }
+
+    public List<Quotation> getQuotationList() { return quotationList; }
 
     public void setId(int id) {
         this.id = id;
@@ -37,22 +42,19 @@ public class Project {
         this.invoiceList = invoiceList;
     }
 
-
-    public List<Contact> getContactList() {
-        return contactList;
+    public Contact getContact() {
+        return contact;
     }
 
-    public void setContactList(List<Contact> contactList) {
-        this.contactList = contactList;
+    public void setContactList(Contact contact) {
+        this.contact = contact;
     }
 
-    public boolean isDone() {
-        return done;
+    public String isDone() {
+        return status;
     }
 
-    public void setDone(boolean done) {
-        this.done = done;
-    }
+    public void setStatus(String status) { this.status = status; }
 
     public List<Expense> getExpenseList() {
         return expenseList;
@@ -62,17 +64,15 @@ public class Project {
         this.expenseList = expenseList;
     }
 
-
-
     public void setName(String name) {
             this.name = name;
     }
 
     public String getName() {
-        return null;
+        return this.name;
     }
 
     public int getId() {
-        return 0;
+        return this.id;
     }
 }

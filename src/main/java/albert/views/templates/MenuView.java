@@ -162,4 +162,8 @@ public class MenuView extends AnchorPane implements TemplateView {
     public void clickOnSettings(){
         controller.getRouter().nav("settings/");
     }
+
+    public void clickOnQuotations(){
+        controller.getRouter().nav("quotations/");
+    }
 }
