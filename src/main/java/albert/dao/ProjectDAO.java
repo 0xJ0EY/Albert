@@ -129,7 +129,7 @@ public class ProjectDAO implements DAO<Project> {
 
     @Override
     public void delete(Project obj) {
-        this.project = project;
+        this.project = obj;
         //TODO sql delete schrijven
         String sql = "DELETE FROM project WHERE project_id =?";
         try {
