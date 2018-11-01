@@ -36,11 +36,6 @@ public class ContactController extends PageController implements OverviewPage, D
                 new SearchTableView()
         );
 
-//        table.addCol(new Column("customer_id::text",
-//                new LeftHeaderViewFactory("Contact ID"),
-//                new RouteCellFactory("/home/{customer_id}/"))
-//        );
-
         table.addCol(new Column("f_name",
                 new LeftHeaderViewFactory("Voornaam"),
                 new RouteCellFactory("invoices/detail/{customer_id}/", this))
@@ -86,7 +81,7 @@ public class ContactController extends PageController implements OverviewPage, D
                 new TextCellFactory())
         );
 
-        return  table;
+        return table;
     }
 
     @Override

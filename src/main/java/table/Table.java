@@ -1,6 +1,5 @@
 package table;
 
-import config.Config;
 import table.cells.Cell;
 import table.exceptions.IllegalTableChangeException;
 import table.exceptions.InvalidRowException;
@@ -11,8 +10,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Table {
-
-    private int amountRows = Integer.parseInt(Config.get("table", "settings.default_rows"));
 
     private DataStrategy strategy;
     private TableView view;
@@ -41,10 +38,6 @@ public class Table {
         this.view = view;
         this.view.setTable(this);
         this.view.load();
-    }
-
-    public void setRowsAmount(int amount) {
-        this.amountRows = amount;
     }
 
     public void fetch() {
@@ -149,6 +142,14 @@ public class Table {
 
     public TableView getView() {
         return this.view;
+    }
+
+    public void limit(int limit) {
+        this.strategy.setLimit(limit);
+    }
+
+    public int getLimit() {
+        return this.strategy.getLimit();
     }
 
 }

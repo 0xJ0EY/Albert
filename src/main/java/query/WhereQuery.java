@@ -1,8 +1,9 @@
 package query;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public interface WhereQuery {
+public interface WhereQuery extends Serializable {
 
     public WhereQuery where(String key, String operator, Object value);
 

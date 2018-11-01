@@ -10,9 +10,13 @@ public interface DataStrategy {
 
     public int getPage();
 
+    public int getLimit();
+
     public void setPage(int page);
 
     public void setTable(Table table);
+
+    public void setLimit(int limit);
 
     public Table getTable();
 

@@ -147,11 +147,9 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
 
     private void createPreviousButton() {
 
-
         PreviousButton button = new PreviousButton(1, this.table.getPage(), this.table);
 
         this.paginationContainer.getChildren().add(button);
-
 
     }
 
@@ -168,8 +166,9 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
         int left = Math.min(page - minPage, maxConfigSide);
         int right = Math.min(maxPage - page, maxConfigSide);
 
-        int leftOffset = left + (maxConfigSide - right);
-        int rightOffset = right + (maxConfigSide - left);
+        int leftOffset = Math.min(left + (maxConfigSide - right), page - minPage);
+        int rightOffset = Math.min(right + (maxConfigSide - left), maxPage - page);
+
 
         for (int start = page - leftOffset; start <= page + rightOffset; start++) {
             PaginationButton button = new PaginationButton(Integer.toString(start), start, this.table);

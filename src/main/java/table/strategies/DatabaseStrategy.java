@@ -70,7 +70,7 @@ public class DatabaseStrategy implements DataStrategy {
     private void fetchRows() {
         Query searchQuery = this.baseQuery;
 
-        // Set limit and offset
+        // Set setLimit and offset
         searchQuery
             .clearSelect()
             .limit(this.limit)
@@ -144,5 +144,15 @@ public class DatabaseStrategy implements DataStrategy {
             return query;
         });
 
+    }
+
+    @Override
+    public void setLimit(int limit) {
+        this.limit = limit;
+    }
+
+    @Override
+    public int getLimit() {
+        return this.limit;
     }
 }
