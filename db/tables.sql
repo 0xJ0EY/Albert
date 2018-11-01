@@ -2,6 +2,10 @@ CREATE TABLE project
 (
     project_id BIGSERIAL PRIMARY KEY,
     name VARCHAR,
+    invoice_id integer,
+    contact_id integer,
+    expense_id integer,
+    quotation_id integer,
     created_at TIMESTAMP,
     done BOOLEAN DEFAULT FALSE
 );
@@ -53,10 +57,11 @@ CREATE TABLE expense
 
 CREATE TABLE amount
 (
-    amount_id integer PRIMARY KEY,
+    amount_id BIGSERIAL PRIMARY KEY,
     hours integer,
     amount integer.
     contact_id integer
+    amount integer
 );
 
 CREATE TABLE contact
@@ -98,7 +103,6 @@ ALTER TABLE contact
 ADD CONSTRAINT fk_contactproject fOREIGN KEY (project_id)
 REFERENCES project(project_id);
 
-
 ALTER TABLE quotation
 ADD CONSTRAINT fk_quotationamount FOREIGN KEY (amount_id)
 REFERENCES amount(amount_id);
@@ -110,8 +114,6 @@ REFERENCES contact(contact_id);
 ALTER TABLE amount
 ADD CONSTRAINT fk_amountcontact FOREIGN KEY (contact_id)
 REFERENCES contact(contact_id);
-
-
 
 
 

@@ -18,7 +18,6 @@ public class Project {
     private List<Quotation> quotationList;
 
     private List<Expense> expenseList;
-
     private Contact contact;
 
     private String status = paidState.notPaid.toString();
