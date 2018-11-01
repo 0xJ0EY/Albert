@@ -10,7 +10,7 @@ public class Quotation {
     private Amount amount;
     private String product;
     private String description;
-    private Date created_at;
+    private Timestamp created_at;
     private Project project;
 
     public void setProduct(String product) {
@@ -86,7 +86,7 @@ public class Quotation {
         return created_at;
     }
 
-    public void setCreated_at(Date created_at) {
+    public void setCreated_at(Timestamp created_at) {
         this.created_at = created_at;
     }
 }

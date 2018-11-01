@@ -11,8 +11,8 @@ public class Invoice {
     private Amount amount;
     private String delivery;
     private String paid;
-    private Date created_at;
-    private Date deliveryDate;
+    private Timestamp created_at;
+    private Timestamp deliveryDate;
     private Project project;
     private Tax tax;
 
@@ -31,11 +31,11 @@ public class Invoice {
 
     public Date getCreated_at() { return  this.created_at; }
 
-    public void setCreated_at(Date created_at) { this.created_at = created_at; }
+    public void setCreated_at(Timestamp created_at) { this.created_at = created_at; }
 
     public Timestamp getDeliveryDate() { return deliveryDate; }
 
-    public void setDeliveryDate(Date deliveryDate) { this.deliveryDate = deliveryDate; }
+    public void setDeliveryDate(Timestamp deliveryDate) { this.deliveryDate = deliveryDate; }
 
     public String getName() {
         return name;

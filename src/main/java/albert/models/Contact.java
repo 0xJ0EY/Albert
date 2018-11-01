@@ -74,13 +74,12 @@ public class Contact {
      * @param straatnaam
      * @param woonplaats
      */
-    public Contact(String firstName, String lastName, String housenumber, String telephoneNumber, String postcode,ArrayList<String> email, String website, String beschrijving, String straatnaam, String woonplaats) {
+    public Contact(String firstName, String lastName, String housenumber, String telephoneNumber, String postcode,ArrayList<ContactEmail>email, String website, String beschrijving, String straatnaam, String woonplaats) {
         this.name = firstName + " " +lastName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.telephoneNumber = telephoneNumber;
         this.postcode = postcode;
-        //TODO fix email connection wiith contactemail
         this.website = website;
         this.beschrijving = beschrijving;
         this.straatnaam = straatnaam;
