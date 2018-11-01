@@ -6,6 +6,20 @@ public class Expense {
 
     private int id;
     private double price;
+    private String name;
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     private String description;
     private Date created_at;
 

@@ -8,6 +8,29 @@ public class Rapportage {
     private int id;
     private Date startDate;
     private Date endDate;
+    private Invoice invoice;
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Invoice getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
+    }
+
+    public Expense getExpense() {
+        return expense;
+    }
+
+    public void setExpense(Expense expense) {
+        this.expense = expense;
+    }
+
+    private Expense expense;
 
     public void setName(String name) { this.name = name;   }
 

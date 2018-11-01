@@ -11,6 +11,16 @@ public class Invoice {
     private String paid;
     private Date created_at;
     private Date deliveryDate;
+    private Project project;
+    private Tax tax;
+
+    public Tax getTax() {
+        return tax;
+    }
+
+    public void setTax(Tax tax) {
+        this.tax = tax;
+    }
 
     public String getPaid() { return this.paid; }
 
@@ -80,5 +90,13 @@ public class Invoice {
         this.name = name;
         this.amount = amount;
         this.delivery = delivery;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 }

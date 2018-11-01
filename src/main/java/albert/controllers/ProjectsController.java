@@ -1,6 +1,8 @@
 package albert.controllers;
 
-import albert.models.paidState;
+import albert.dao.ContactDAO;
+import albert.dao.*;
+import albert.models.PaidState;
 import query.Query;
 import albert.dao.ProjectDAO;
 import albert.models.Project;
@@ -22,8 +24,12 @@ import table.views.tables.SearchTableView;
 public class ProjectsController extends PageController implements OverviewPage, DetailPage, EditPage {
 
     ProjectDAO dao = new ProjectDAO();
+    ContactDAO contactDAO = new ContactDAO();
+    ExpenseDAO expenseDAO = new ExpenseDAO();
+    InvoiceDAO invoiceDAO  = new InvoiceDAO();
+
     Project project;
-    paidState paidState1;
+    PaidState paidState1;
     public ProjectsController(
             PageView view,
             TemplateController template
@@ -76,9 +82,17 @@ public class ProjectsController extends PageController implements OverviewPage, 
     }
 
     public void saveProject(String name, Boolean done){
-        String status = paidState.notPaid.toString();
-        if(done = true) { status = paidState.paid.toString();}
+        String status = PaidState.notPaid.toString();
+        if(done = true) { status = PaidState.paid.toString();}
         project = new Project(name, status);
+
+
+        dao.create(project);
+    }
+
+    public void editProject(){
+
+        dao.update(project);
     }
 
 }
