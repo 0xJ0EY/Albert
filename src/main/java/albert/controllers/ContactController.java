@@ -2,6 +2,7 @@ package albert.controllers;
 
 import albert.dao.ContactDAO;
 import albert.models.Contact;
+import albert.models.ContactEmail;
 import query.Query;
 import router.pages.CreatePage;
 import router.pages.EditPage;
@@ -28,6 +29,7 @@ public class ContactController extends PageController implements OverviewPage, D
     private ContactDAO dao = new ContactDAO();
 
     private Contact contact;
+    private ContactEmail ContactEmail;
 
     /**
      *
@@ -128,19 +130,16 @@ public class ContactController extends PageController implements OverviewPage, D
      * @param streetName
      * @param place
      */
-    public void saveContact(
-            String firstName,
-            String lastName,
-            String houseNumber,
-            String telephone,
-            String postcode,
-            ArrayList<String> email,
-            String website,
-            String description,
-            String streetName,
-            String place
-    ) {
-        contact = new Contact(firstName,  lastName,  houseNumber,  telephone,  postcode,  email,  website,  description,  streetName,  place);
+    public void saveContact(String firstName, String lastName, String houseNumber, String telephone, String postcode, ArrayList<String> email, String website, String description, String streetName, String place) {
+
+        ArrayList<ContactEmail> contactEmails=null;
+        for(int i= 0; i < email.size();i++){
+            ContactEmail contactEmail= new ContactEmail(email.get(i));
+            contactEmails.add(contactEmail);
+        }
+
+
+        contact = new Contact(firstName,  lastName,  houseNumber,  telephone,  postcode,  contactEmails,  website,  description,  streetName,  place);
         dao.create(contact);
     }
 
@@ -159,7 +158,12 @@ public class ContactController extends PageController implements OverviewPage, D
      */
     public void editContact(String firstName, String lastName, String houseNumber, String telephone, String postcode, ArrayList<String> email, String website, String description, String streetName, String place){
 
-        contact= new Contact(firstName,  lastName,  houseNumber,  telephone,  postcode,  email,  website,  description,  streetName,  place);
+        ArrayList<ContactEmail> contactEmails=null;
+        for(int i= 0; i < email.size();i++){
+            ContactEmail contactEmail= new ContactEmail(email.get(i));
+            contactEmails.add(contactEmail);
+        }
+        contact= new Contact(firstName,  lastName,  houseNumber,  telephone,  postcode,contactEmails,  website,  description,  streetName,  place);
         dao.update(contact);
     }
 

@@ -1,6 +1,6 @@
 package albert.models;
 
-public enum paidState {
+public enum PaidState {
     paid {
         public String toString() {
             return "Betaald";

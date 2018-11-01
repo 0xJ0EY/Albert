@@ -4,6 +4,15 @@ public class Amount {
     private double price;
     private double hours;
     private String contact;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Amount(double price, double hours, String contact) {
         this.price = price;

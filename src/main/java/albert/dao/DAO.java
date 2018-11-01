@@ -1,14 +1,14 @@
 package albert.dao;
 
-import albert.models.Contact;
-import albert.models.Project;
+import albert.models.Invoice;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/*
-Dit DAO klas zorgt voor het omgaan met de data, zodat de gebruiker create, update, delete ,load kan deon.
+/**
+ * Interface for standard mehtods for an dao
+ * @param <T>
  */
 public interface DAO<T> {
 
@@ -23,6 +23,6 @@ public interface DAO<T> {
     public void delete(T obj);
 
     // Extract the results to an object
-    public T extractFromResultSet(ResultSet rs) throws SQLException;
+    public Object extractFromResultSet(ResultSet rs) throws SQLException;
 
 }

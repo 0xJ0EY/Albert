@@ -1,5 +1,6 @@
 package albert.dao;
 
+import albert.models.Invoice;
 import albert.models.Project;
 import database.Database;
 
@@ -144,7 +145,7 @@ public class ProjectDAO implements DAO<Project> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("project deleted");
+        System.out.println("Project deleted");
     }
 
     @Override
@@ -152,7 +153,7 @@ public class ProjectDAO implements DAO<Project> {
         Project project = new Project(
                 rs.getString("name"), rs.getString("done").toString()
         );
-        //TODO add all columns
+
 
         project.setId(rs.getInt("id"));
 

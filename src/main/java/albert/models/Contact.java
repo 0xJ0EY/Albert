@@ -2,6 +2,7 @@ package albert.models;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Contact {
 
@@ -17,7 +18,7 @@ public class Contact {
 
     private String postcode;
 
-    private ArrayList<String> email;
+    private ArrayList<ContactEmail> email;
 
     private String website;
 
@@ -29,7 +30,26 @@ public class Contact {
 
     private String woonplaats;
 
-    private String created_at;
+    private Date created_at;
+
+    public java.sql.Date getCreated_at() {
+        return (java.sql.Date) created_at;
+    }
+
+    public void setCreated_at(Date created_at) {
+        this.created_at = created_at;
+    }
+
+    private ArrayList<Project> project;
+
+    public ArrayList<ContactEmail> getEmail() {
+        return email;
+    }
+
+    public void setEmail(ArrayList<ContactEmail> email) {
+        this.email = email;
+    }
+
 
     /**
      *
@@ -54,13 +74,12 @@ public class Contact {
      * @param straatnaam
      * @param woonplaats
      */
-    public Contact(String firstName, String lastName, String housenumber, String telephoneNumber, String postcode, ArrayList<String> email, String website, String beschrijving, String straatnaam, String woonplaats) {
+    public Contact(String firstName, String lastName, String housenumber, String telephoneNumber, String postcode,ArrayList<ContactEmail>email, String website, String beschrijving, String straatnaam, String woonplaats) {
         this.name = firstName + " " +lastName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.telephoneNumber = telephoneNumber;
         this.postcode = postcode;
-        this.email = email;
         this.website = website;
         this.beschrijving = beschrijving;
         this.straatnaam = straatnaam;
@@ -112,13 +131,6 @@ public class Contact {
         this.postcode = postcode;
     }
 
-    public ArrayList<String> getEmail() {
-        return email;
-    }
-
-    public void setEmail(ArrayList<String> email) {
-        this.email = email;
-    }
 
     public String getWebsite() {
         return website;
@@ -162,4 +174,11 @@ public class Contact {
         return this.id;
     }
 
+    public ArrayList<Project> getProject() {
+        return project;
+    }
+
+    public void setProject(ArrayList<Project> project) {
+        this.project = project;
+    }
 }

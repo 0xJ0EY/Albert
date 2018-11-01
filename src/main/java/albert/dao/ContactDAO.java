@@ -1,7 +1,7 @@
 package albert.dao;
 
 import albert.models.Contact;
-import albert.models.Project;
+import albert.models.Invoice;
 import database.Database;
 
 import java.sql.Connection;
@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ContactDAO implements DAO {
+public class ContactDAO implements DAO<Contact> {
     private Contact contact;
 
     @Override
@@ -25,7 +25,7 @@ public class ContactDAO implements DAO {
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()){
-                this.contact = (Contact)extractFromResultSet(rs);
+                this.contact = extractFromResultSet(rs);
                 contactArrayList.add(contact);
             }
 
@@ -38,7 +38,7 @@ public class ContactDAO implements DAO {
     }
 
     @Override
-    public Object loadById(long id) {
+    public Contact loadById(long id) {
         Contact contact = null;
 
         String sql = "SELECT * FROM contact WHERE contact_id = ?";
@@ -68,31 +68,36 @@ public class ContactDAO implements DAO {
 
 
     @Override
-    public void create(Object contact) {
+    public void create(Contact contact) {
 
         this.contact= (Contact) contact;
-        //TODO sql insert schrijven
-        String sql = "INSERT INTO contact VALUES (contact_id=?,first_name=?,last_name=?,tel_number=?,postal_code=?,street_name=?,house_number=?,created_at=?,website=?,description=?);";
 
-        try {
-            for(int i=0;i<((Contact) contact).getEmail().size(); i++) {
+        //TODO sql insert schrijven
+        String sql = "INSERT INTO contact VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+
+         try {
+
                 Connection conn = Database.getInstance().getConnection();
 
                 PreparedStatement statement = conn.prepareStatement(sql);
-                statement.setInt(1, this.contact.getId());
-                statement.setString(2, this.contact.getFirstName());
-                statement.setString(3, this.contact.getLastName());
-                statement.setString(4, this.contact.getTelephoneNumber());
-                statement.setString(5, this.contact.getPostcode());
-                statement.setString(6, this.contact.getStraatnaam());
-                statement.setString(7,this.contact.getHouseNumber());
-                statement.setTimestamp(8,null);
+
+                statement.setString(1, this.contact.getFirstName());
+                statement.setString(2, this.contact.getLastName());
+                statement.setString(3, this.contact.getTelephoneNumber());
+                statement.setString(4, this.contact.getPostcode());
+                statement.setString(5, this.contact.getStraatnaam());
+                statement.setString(6, this.contact.getHouseNumber());
+                statement.setString(7, this.contact.getWoonplaats());
+                statement.setDate(8, this.contact.getCreated_at());
                 statement.setString(9, this.contact.getWebsite());
-                statement.setString(10,this.contact.getBeschrijving());
+                statement.setString(10, this.contact.getBeschrijving());
+               //TODO project later koppelenj niet bij create
+                // statement.setInt(11, this.contact.getProject().getId());
+
 
                 statement.execute();
                 conn.close();
-            }
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -105,32 +110,29 @@ public class ContactDAO implements DAO {
     }
 
     @Override
-    public void update(Object obj) {
+    public void update(Contact obj) {
 
         this.contact=contact;
 
         String sql = "UPDATE contact SET first_name=?,last_name=?,tel_number=?,postal_code=?,street_name=?,house_number=?,created_at=?,website=?,description=? WHERE contact_id = ?";
 
         try {
-            for(int i=0; i<contact.getEmail().size(); i++) {
+
                 Connection conn = Database.getInstance().getConnection();
                 PreparedStatement statement = conn.prepareStatement(sql);
 
                 statement.setString(1, this.contact.getFirstName());
                 statement.setString(2, this.contact.getLastName());
                 statement.setString(3, this.contact.getTelephoneNumber());
-                statement.setString(5, this.contact.getPostcode());
-                statement.setString(6, this.contact.getStraatnaam());
-                statement.setString(7, this.contact.getHouseNumber());
-                statement.setTimestamp(8,null);
-                statement.setString(9,this.contact.getWebsite());
-                statement.setString(10,this.contact.getBeschrijving());
-                statement.setString(4, this.contact.getEmail().get(i));
+                statement.setString(4, this.contact.getPostcode());
+                statement.setString(5, this.contact.getStraatnaam());
+                statement.setString(6, this.contact.getHouseNumber());
+
 
                 statement.executeUpdate();
 
                 conn.close();
-            }
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -139,8 +141,8 @@ public class ContactDAO implements DAO {
     }
 
     @Override
-    public  void delete(Object contact) {
-        this.contact = (Contact) contact;
+    public  void delete(Contact contact) {
+        this.contact = contact;
 
 
             String sql = "DELETE FROM contact WHERE contact_id = ?";
@@ -162,7 +164,8 @@ public class ContactDAO implements DAO {
         }
 
     @Override
-    public Object extractFromResultSet(ResultSet rs) throws SQLException {
-        return null;
+    public Contact extractFromResultSet(ResultSet rs) throws SQLException {
+return null;
     }
+
 }
