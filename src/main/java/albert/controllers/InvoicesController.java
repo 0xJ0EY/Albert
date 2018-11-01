@@ -5,6 +5,7 @@ import albert.models.Amount;
 import albert.models.Invoice;
 import query.Query;
 import router.Request;
+import router.pages.CreatePage;
 import router.pages.DetailPage;
 import router.pages.EditPage;
 import router.pages.OverviewPage;
@@ -20,7 +21,7 @@ import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
 
 
-public class InvoicesController extends PageController implements OverviewPage, DetailPage, EditPage {
+public class InvoicesController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
     private InvoiceDAO dao = new InvoiceDAO();
     private Amount amount;
     private Invoice invoice;
@@ -92,6 +93,11 @@ public class InvoicesController extends PageController implements OverviewPage, 
 
     @Override
     public Response edit(Request request) {
+        return new ViewResponse(this);
+    }
+
+    @Override
+    public Response create(Request request) {
         return new ViewResponse(this);
     }
 }
