@@ -23,11 +23,6 @@ public class Client extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> a9d9b9cc89e76f9ed6a5f8532974d860d1ad1e96
             this.stage = stage;
 
             // Set application title

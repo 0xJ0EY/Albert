@@ -77,20 +77,22 @@ public class ContactDAO implements DAO {
 
 
         try {
-            Connection conn = Database.getInstance().getConnection();
+            for(int i=0;i<((Contact) contact).getEmail().size(); i++) {
+                Connection conn = Database.getInstance().getConnection();
 
-            PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setInt(1, this.contact.getId());
-            statement.setString(2,this.contact.getFirstName());
-            statement.setString(3,this.contact.getLastName());
-            statement.setString(4,this.contact.getTelephoneNumber());
-            statement.setString(5,this.contact.getEmail());
-            statement.setString(6,this.contact.getPostcode());
-            statement.setString(7,this.contact.getStraatnaam());
-            statement.setString(8,this.contact.getHouseNumber());
+                PreparedStatement statement = conn.prepareStatement(sql);
+                statement.setInt(1, this.contact.getId());
+                statement.setString(2, this.contact.getFirstName());
+                statement.setString(3, this.contact.getLastName());
+                statement.setString(4, this.contact.getTelephoneNumber());
+                statement.setString(5, this.contact.getEmail().get(i));
+                statement.setString(6, this.contact.getPostcode());
+                statement.setString(7, this.contact.getStraatnaam());
+                statement.setString(8, this.contact.getHouseNumber());
 
-            statement.execute();
-            conn.close();
+                statement.execute();
+                conn.close();
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -112,20 +114,22 @@ public class ContactDAO implements DAO {
 
 
         try {
-            Connection conn = Database.getInstance().getConnection();
+            for(int i=0; i<contact.getEmail().size(); i++) {
+                Connection conn = Database.getInstance().getConnection();
 
-            PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1,this.contact.getFirstName());
-            statement.setString(2,this.contact.getLastName());
-            statement.setString(3,this.contact.getTelephoneNumber());
-            statement.setString(4,this.contact.getEmail());
-            statement.setString(5,this.contact.getPostcode());
-            statement.setString(6,this.contact.getStraatnaam());
-            statement.setString(7,this.contact.getHouseNumber());
-            statement.executeUpdate();
+                PreparedStatement statement = conn.prepareStatement(sql);
+                statement.setString(1, this.contact.getFirstName());
+                statement.setString(2, this.contact.getLastName());
+                statement.setString(3, this.contact.getTelephoneNumber());
+                statement.setString(4, this.contact.getEmail().get(i));
+                statement.setString(5, this.contact.getPostcode());
+                statement.setString(6, this.contact.getStraatnaam());
+                statement.setString(7, this.contact.getHouseNumber());
+                statement.executeUpdate();
 
 
-            conn.close();
+                conn.close();
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();

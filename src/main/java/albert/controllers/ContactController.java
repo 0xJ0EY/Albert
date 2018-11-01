@@ -19,6 +19,8 @@ import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
 
+import java.util.ArrayList;
+
 public class ContactController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
 
     private ContactDAO dao = new ContactDAO();
@@ -134,7 +136,7 @@ public class ContactController extends PageController implements OverviewPage, D
      * @param streetName
      * @param place
      */
-    public void saveContact(String firstName, String lastName, String houseNumber, String telephone, String postcode, String email, String website, String description, String streetName, String place) {
+    public void saveContact(String firstName, String lastName, String houseNumber, String telephone, String postcode, ArrayList<String> email, String website, String description, String streetName, String place) {
         contact = new Contact(firstName,  lastName,  houseNumber,  telephone,  postcode,  email,  website,  description,  streetName,  place);
         dao.create(contact);
     }
@@ -152,7 +154,7 @@ public class ContactController extends PageController implements OverviewPage, D
      * @param streetName
      * @param place
      */
-    public void editContact(String firstName, String lastName, String houseNumber, String telephone, String postcode, String email, String website, String description, String streetName, String place){
+    public void editContact(String firstName, String lastName, String houseNumber, String telephone, String postcode, ArrayList<String> email, String website, String description, String streetName, String place){
 
         contact= new Contact(firstName,  lastName,  houseNumber,  telephone,  postcode,  email,  website,  description,  streetName,  place);
         dao.update(contact);
