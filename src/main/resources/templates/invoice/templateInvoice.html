@@ -3,17 +3,47 @@
 <html>
 
     <head>
+        <title>Invoice PDF</title>
         <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" media="all"  href="css/pdf/invoice.css" />
+
     </head>
 
     <body>
+
+
+
     <p>
-        afbeelding
-        <img src="images/albertimages/albertico.png" />
+    <table>
+        <tr>
+            <th>&emsp;&emsp;&emsp;&emsp;&emsp;</th>
+            <th><img src="images/logo.jpg" /></th>
+            <th>[[${data.getName()}]]</th>
+        </tr>
+        <tr>
+            <th></th>
+            <th>
+                <table border="1">
+                    <tr>
+                        <th>&emsp;Afleverdatum&emsp;</th>
+                        <th>&emsp;Omschrijving&emsp;</th>
+                        <th>&emsp;Bedrag in euro&emsp;</th>
+                    </tr>
+                    <tr>
+                        <td>01/11/2018</td>
+                        <td>Infographic</td>
+                        <td>[[${data.getAmountPrice()}]]</td>
+                    </tr>
+                </table>
+                </th>
+                <th></th>
+            </tr>
+        </table>
 
     </p>
-        [[${data.getName()}]]
-        <div data-src="logo.jpg"></div>
+
+
+
     </body>
 
 </html>

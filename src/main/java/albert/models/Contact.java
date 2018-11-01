@@ -31,6 +31,7 @@ public class Contact {
 
     private String created_at;
 
+    private String company;
     /**
      *
      * @param firstName
@@ -39,6 +40,17 @@ public class Contact {
     public Contact(String firstName, String lastName){
         this.firstName= firstName;
         this.lastName = lastName;
+    }
+
+    //invoice constructor
+    public Contact(String company, String firstName, String lastName, String straatnaam, String houseNumber, String postcode, String woonplaats) {
+        this.company = company;
+        this.firstName= firstName;
+        this.lastName = lastName;
+        this.straatnaam = straatnaam;
+        this.houseNumber = houseNumber;
+        this.postcode = postcode;
+        this.woonplaats = woonplaats;
     }
 
     /**

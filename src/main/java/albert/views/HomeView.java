@@ -2,6 +2,9 @@ package albert.views;
 
 import albert.controllers.HomeController;
 import albert.controllers.PageController;
+import albert.models.Amount;
+import albert.models.Contact;
+import com.itextpdf.text.DocumentException;
 import javafx.fxml.FXML;
 import albert.models.Invoice;
 import albert.services.PdfService;
@@ -52,7 +55,20 @@ public class HomeView extends AnchorPane implements PageView {
 
 
     public void clickOnInvoices(){
-        controller.getRouter().nav("invoices/1");
+       // controller.getRouter().nav("invoices/1");
+        Contact contact = new Contact("HeinekenBV", "Henk", "Jandeberg", "Zoeterwoudeweg", "15", "2254BB", "Zoeterwoude Rijndijk");
+        Amount amount = new Amount(20.0, 20.0, "Henk Jandeberg");
+
+        Invoice invoice = new Invoice("Factuur 4522", amount, "inforgraphic");
+
+        try {
+            PdfService.getInstance().generateInvoicePdf(invoice);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+
     }
 
 

@@ -30,39 +30,39 @@ public class InvoicesController extends PageController implements OverviewPage, 
         super(view, template);
     }
 
-    public Table getOverviewTable(){
-        Table table = new Table(
-                new DatabaseStrategy(Query.table("invoice")),
-                new SearchTableView()
-        );
-
-        table.addCol(new Column("invoice_id::text",
-                new LeftHeaderViewFactory("Invoice ID"),
-                new TextCellViewFactory())
-        );
-
-        table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
-                new LeftHeaderViewFactory("Aangemaakt op"),
-                new TextCellViewFactory())
-        );
-
-        table.addCol(new Column("TO_CHAR(deliverydate, 'DD-MM-YYYY')",
-                new LeftHeaderViewFactory("Afleverdatum"),
-                new TextCellViewFactory())
-        );
-
-        table.addCol(new Column("amount::text",
-                new LeftHeaderViewFactory("Bedrag"),
-                new TextCellViewFactory())
-        );
-
-        table.addCol(new Column("paid::text",
-                new LeftHeaderViewFactory("Betaald"),
-                new TextCellViewFactory())
-        );
-
-        return  table;
-    }
+//    public Table getOverviewTable(){
+//        Table table = new Table(
+//                new DatabaseStrategy(Query.table("invoice")),
+//                new SearchTableView()
+//        );
+//
+//        table.addCol(new Column("invoice_id::text",
+//                new LeftHeaderViewFactory("Invoice ID"),
+//                new TextCellViewFactory())
+//        );
+//
+//        table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
+//                new LeftHeaderViewFactory("Aangemaakt op"),
+//                new TextCellViewFactory())
+//        );
+//
+//        table.addCol(new Column("TO_CHAR(deliverydate, 'DD-MM-YYYY')",
+//                new LeftHeaderViewFactory("Afleverdatum"),
+//                new TextCellViewFactory())
+//        );
+//
+//        table.addCol(new Column("amount::text",
+//                new LeftHeaderViewFactory("Bedrag"),
+//                new TextCellViewFactory())
+//        );
+//
+//        table.addCol(new Column("paid::text",
+//                new LeftHeaderViewFactory("Betaald"),
+//                new TextCellViewFactory())
+//        );
+//
+//        return  table;
+//    }
 
     public void saveInvoice(String name, String price, String hours, String contact, String delivery) {
         amount = new Amount(new Double(price), new Double(hours), contact);

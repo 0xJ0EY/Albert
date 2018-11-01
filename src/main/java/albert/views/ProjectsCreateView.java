@@ -65,7 +65,7 @@ public class ProjectsCreateView extends AnchorPane implements PageView {
     @FXML
     public void clickOnSave(ActionEvent event){
         System.out.println("Click on Save");
-        controller.saveProject(name.getText());
+        controller.saveProject(name.getText(), false);
     }
 
 

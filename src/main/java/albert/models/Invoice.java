@@ -81,4 +81,6 @@ public class Invoice {
         this.amount = amount;
         this.delivery = delivery;
     }
+
+    public double getAmountPrice() { return amount.getPrice(); }
 }
