@@ -15,6 +15,7 @@ import database.Database;
 public class InvoiceDAO implements DAO<Invoice>{
     private Invoice invoice;
 
+
     @Override
     public ArrayList<Invoice> getAll() {
         String sql = "SELECT * FROM invoice";
