@@ -7,11 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import albert.models.Invoice;
 import database.Database;
-import org.apache.commons.lang.ObjectUtils;
 
 
 public class InvoiceDAO implements DAO<Invoice>{
     private Invoice invoice;
+
 
     @Override
     public ArrayList<Invoice> getAll() {
