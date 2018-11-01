@@ -23,7 +23,7 @@
       </AnchorPane>
       <ScrollPane fx:id="tableContainer" fitToWidth="true" layoutY="30.0" style="-fx-fit-to-width: true;" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
          <content>
-              <HBox fx:id="container" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: red;" />
+              <HBox fx:id="container" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
          </content>
       </ScrollPane>
       <HBox alignment="CENTER_LEFT" layoutY="360.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0">
