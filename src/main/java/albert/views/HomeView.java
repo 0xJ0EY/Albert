@@ -57,7 +57,7 @@ public class HomeView extends AnchorPane implements PageView {
     public void clickOnInvoices(){
        // controller.getRouter().nav("invoices/1");
         Contact contact = new Contact("HeinekenBV", "Henk", "Jandeberg", "Zoeterwoudeweg", "15", "2254BB", "Zoeterwoude Rijndijk");
-        Amount amount = new Amount(20.0, 20.0, "Henk Jandeberg");
+        Amount amount = new Amount(1600.32, 15.0, "Henk Jandeberg");
 
         Invoice invoice = new Invoice("Factuur 4522", amount, "inforgraphic");
 

@@ -1,5 +1,7 @@
 package albert.models;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Invoice {
@@ -11,6 +13,7 @@ public class Invoice {
     private Boolean paid;
     private Date created_at;
     private Date deliveryDate;
+    private String dateNow;
 
     public Boolean getPaid() { return this.paid; }
 
@@ -83,4 +86,15 @@ public class Invoice {
     }
 
     public double getAmountPrice() { return amount.getPrice(); }
+
+    public double getAmountHours() { return amount.getHours(); }
+
+    public String getAmountContactName() { return amount.getContact(); }
+
+    public String getCurrentDate() {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        String dateNow =dateFormat.format(date);
+        return dateNow;
+    }
 }
