@@ -20,6 +20,7 @@
          <children>
             <TextField fx:id="searchField" onAction="#onClickSearch" promptText="Search" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="0.0" />
             <Button mnemonicParsing="false" onAction="#onClickSearch" text="Zoeken" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <HBox fx:id="buttonContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="300.0" />
          </children>
       </AnchorPane>
     </children>

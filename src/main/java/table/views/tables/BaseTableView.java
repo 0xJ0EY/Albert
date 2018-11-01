@@ -2,6 +2,7 @@ package table.views.tables;
 
 import config.Config;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import table.Column;
@@ -30,6 +31,9 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
 
     @FXML
     protected HBox paginationContainer;
+
+    @FXML
+    protected HBox buttonContainer;
 
     @FXML
     protected Text description;
@@ -64,6 +68,9 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
 
         // Create pagination
         this.createPagination();
+
+        // Create buttons
+        this.createButtons();
 
         // Hide table if the status is loaded and we have more then 0 rows
         if (this.table.isLoaded() && this.table.getTotalRows() > 0)
@@ -129,7 +136,7 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
 
     }
 
-    private synchronized void createRows() {
+    private void createRows() {
 
         // Based on a row
         ArrayList<Row> rows = this.table.getData();
@@ -207,6 +214,15 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
                 button.getStyleClass().add("selected");
 
             this.paginationContainer.getChildren().add(button);
+        }
+
+    }
+
+    public void createButtons() {
+        this.buttonContainer.getChildren().clear();
+
+        for (Button button : this.table.getButtons()) {
+            this.buttonContainer.getChildren().add(button);
         }
 
     }

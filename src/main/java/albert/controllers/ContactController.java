@@ -19,6 +19,7 @@ import table.factories.cells.TextCellFactory;
 import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
+import table.views.tables.components.TableButton;
 
 public class ContactController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage, CreateObject {
 
@@ -80,6 +81,10 @@ public class ContactController extends PageController implements OverviewPage, D
                 new LeftHeaderViewFactory("Aangepast op"),
                 new TextCellFactory())
         );
+
+        table.addButton(new TableButton("Toevoegen", () -> {
+            this.router.nav("home/");
+        }));
 
         return table;
     }

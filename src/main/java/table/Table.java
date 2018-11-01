@@ -6,6 +6,7 @@ import table.exceptions.IllegalTableChangeException;
 import table.exceptions.InvalidRowException;
 import table.strategies.DataStrategy;
 import table.views.TableView;
+import table.views.tables.components.TableButton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,6 +22,7 @@ public class Table {
     private int currentRows = 0;
     private int totalRows = 0;
 
+    private ArrayList<TableButton> buttons = new ArrayList<TableButton>();
     private ArrayList<Column> cols = new ArrayList<Column>();
     private ArrayList<Row> data = new ArrayList<Row>();
 
@@ -55,6 +57,14 @@ public class Table {
 
         this.dataRunnable = new DataRunnable(this.strategy);
         this.dataRunnable.start();
+    }
+
+    public ArrayList<TableButton> getButtons() {
+        return this.buttons;
+    }
+
+    public void addButton(TableButton button) {
+        this.buttons.add(button);
     }
 
     public void addCol(Column col) {
