@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 /*
 Hier wordt de contactView geladen.
@@ -48,5 +49,11 @@ public class ContactDetailView extends AnchorPane implements PageView {
     @Override
     public AnchorPane render() {
         return this;
+    }
+
+    @FXML
+    public void onClickEdit(ActionEvent event) {
+        //TODO: put in right page here
+        controller.getRouter().nav("contacts/edit/{contact}");
     }
 }

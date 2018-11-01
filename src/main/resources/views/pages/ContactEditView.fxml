@@ -15,7 +15,7 @@
    <children>
       <VBox prefHeight="630.0" prefWidth="1020.0" spacing="15.0">
          <children>
-            <Label text="Contact Toevoegen">
+            <Label text="Contact Veranderen">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
