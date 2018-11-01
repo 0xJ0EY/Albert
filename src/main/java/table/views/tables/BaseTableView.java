@@ -3,6 +3,7 @@ package table.views.tables;
 import config.Config;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import table.Column;
@@ -27,6 +28,9 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
     protected ArrayList<ColumnView> columns = new ArrayList<>();
 
     @FXML
+    protected ScrollPane tableContainer;
+
+    @FXML
     protected HBox container;
 
     @FXML
@@ -49,10 +53,26 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
     @Override
     public void update() {
 
+        // Update overlay text
         this.updateOverlay();
+
+        // Show the overlay
+        this.showOverlay();
+
+        // Scroll up
+        this.scrollUp();
+
+        // Create pagination
+        this.createPagination();
+
+        // Create buttons
+        this.createButtons();
 
         // Create cells
         this.createColumns();
+
+        // Update the text below
+        this.updateText();
 
         // Create headers
         this.createHeaders();
@@ -63,19 +83,14 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
         // Actually render the table to the view
         this.updateTable();
 
-        // Update the text below
-        this.updateText();
-
-        // Create pagination
-        this.createPagination();
-
-        // Create buttons
-        this.createButtons();
-
         // Hide table if the status is loaded and we have more then 0 rows
         if (this.table.isLoaded() && this.table.getTotalRows() > 0)
             this.hideOverlay();
 
+    }
+
+    private void scrollUp() {
+        this.tableContainer.setVvalue(0);
     }
 
     private void updateOverlay() {
@@ -89,6 +104,10 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
         }
 
         this.status.setText(status);
+    }
+
+    private void showOverlay() {
+        this.overlay.setVisible(true);
     }
 
     private void hideOverlay() {

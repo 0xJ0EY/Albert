@@ -14,7 +14,7 @@ public class PaginationButton extends Button {
         this.controller = table;
 
         this.getStyleClass().add("pagination_btn");
-        
+
         this.setOnAction(evt -> {
             this.controller.navigate(this.page);
         });

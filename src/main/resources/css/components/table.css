@@ -23,9 +23,11 @@
 }
 
 .pagination_btn {
-    -fx-text-fill: red;
+    -fx-padding: 3 8 3 8;
 }
 
 .pagination_btn.selected {
-    -fx-text-fill: blue;
+    -fx-background-color: linear-gradient(#29b4fe, #1fa8f1);
+    -fx-text-fill: #fefefe;
+
 }
