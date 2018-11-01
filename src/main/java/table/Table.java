@@ -1,5 +1,6 @@
 package table;
 
+import javafx.application.Platform;
 import table.cells.Cell;
 import table.exceptions.IllegalTableChangeException;
 import table.exceptions.InvalidRowException;
@@ -14,6 +15,9 @@ public class Table {
     private DataStrategy strategy;
     private TableView view;
 
+    private DataRunnable dataRunnable;
+
+    private boolean loaded = false;
     private int currentRows = 0;
     private int totalRows = 0;
 
@@ -43,9 +47,14 @@ public class Table {
     public void fetch() {
         // Clear old data set
         this.data = new ArrayList<>();
+        this.loaded = false;
 
         // Fetch new data set
-        this.strategy.fetch();
+        if (this.dataRunnable != null)
+            this.dataRunnable.interrupt();
+
+        this.dataRunnable = new DataRunnable(this.strategy);
+        this.dataRunnable.start();
     }
 
     public void addCol(Column col) {
@@ -120,6 +129,9 @@ public class Table {
 
     public void navigate(int page) {
         this.strategy.setPage(page);
+
+        this.fetch();
+
         this.update();
     }
 
@@ -130,13 +142,18 @@ public class Table {
         this.navigate(1);
     }
 
+    public void loaded() {
+        this.loaded = true;
+    }
+
+    public boolean isLoaded() {
+        return loaded;
+    }
+
     public void update() {
 
-        // Fetch data
-        this.fetch();
-
         // Update view
-        this.view.update();
+        Platform.runLater(() -> this.view.update());
 
     }
 

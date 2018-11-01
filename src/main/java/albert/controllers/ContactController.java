@@ -43,7 +43,7 @@ public class ContactController extends PageController implements OverviewPage, D
 
         table.addCol(new Column("b_name",
                 new LeftHeaderViewFactory("Achternaam"),
-                new TextCellFactory ())
+                new TextCellFactory())
         );
 
         table.addCol(new Column("tel_number::text",

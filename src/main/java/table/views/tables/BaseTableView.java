@@ -34,10 +34,18 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
     @FXML
     protected Text description;
 
+    @FXML
+    protected HBox overlay;
+
+    @FXML
+    protected Text status;
+
     public abstract void load();
 
     @Override
     public void update() {
+
+        this.updateOverlay();
 
         // Create cells
         this.createColumns();
@@ -57,6 +65,27 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
         // Create pagination
         this.createPagination();
 
+        // Hide table if the status is loaded and we have more then 0 rows
+        if (this.table.isLoaded() && this.table.getTotalRows() > 0)
+            this.hideOverlay();
+
+    }
+
+    private void updateOverlay() {
+        String status;
+
+        if (this.table.isLoaded()) {
+            status = Config.get("table", "text.table_no_data");
+
+        } else {
+            status = Config.get("table", "text.table_loading");
+        }
+
+        this.status.setText(status);
+    }
+
+    private void hideOverlay() {
+        this.overlay.setVisible(false);
     }
 
 
@@ -100,7 +129,7 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
 
     }
 
-    private void createRows() {
+    private synchronized void createRows() {
 
         // Based on a row
         ArrayList<Row> rows = this.table.getData();

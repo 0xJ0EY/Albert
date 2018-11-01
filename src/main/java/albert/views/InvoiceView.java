@@ -42,6 +42,8 @@ public class InvoiceView extends AnchorPane implements PageView {
     public void update() {
         Table table = controller.getOverviewTable();
 
+        table.fetch();
+
         table.update();
 
         TableView tableView = table.getView();

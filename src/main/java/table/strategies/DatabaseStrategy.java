@@ -65,6 +65,10 @@ public class DatabaseStrategy implements DataStrategy {
 
         this.currentRows();
 
+        this.table.loaded();
+
+        this.table.update();
+
     }
 
     private void fetchRows() {
