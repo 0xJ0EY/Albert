@@ -100,6 +100,6 @@ public class ContactCreateView extends AnchorPane implements PageView {
 
     @FXML
     public void onClickBack(){
-        controller.getRouter().nav("contacts/1");
+        controller.getRouter().nav("contacts/");
     }
 }

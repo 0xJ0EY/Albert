@@ -22,6 +22,7 @@ import router.factories.pages.projects.ProjectsCreatePageFactory;
 import router.factories.pages.projects.ProjectsDetailPageFactory;
 import router.factories.pages.projects.ProjectsEditPageFactory;
 import router.factories.pages.projects.ProjectsPageFactory;
+import router.factories.pages.rapports.RapportsCreatePageFactory;
 import router.factories.pages.rapports.RapportsDetailPageFactory;
 import router.factories.pages.rapports.RapportsEditPageFactory;
 import router.factories.pages.rapports.RapportsPageFactory;
@@ -44,26 +45,26 @@ public class RouteFactoryBuilder {
         map.put(new Route("projects/"), new OverviewPageAction(new ProjectsPageFactory()));
         map.put(new Route("projects/details/{project}/"), new DetailPageAction(new ProjectsDetailPageFactory()));
         map.put(new Route("projects/edit/{project}/"), new EditPageAction(new ProjectsEditPageFactory()));
-        map.put(new Route("projects/create/{project}"), new CreatePageAction(new ProjectsCreatePageFactory()));
+        map.put(new Route("projects/create/"), new CreatePageAction(new ProjectsCreatePageFactory()));
 
         //Contacts
         map.put(new Route("contacts/"), new OverviewPageAction(new ContactPageFactory()));
         map.put(new Route("contacts/details/{contacts}/"), new DetailPageAction(new ContactDetailPageFactory()));
         map.put(new Route("contacts/edit/{contacts}/"), new EditPageAction(new ContactEditPageFactory()));
-        map.put(new Route("contacts/create/{contact}"), new CreatePageAction(new ContactCreatePageFactory()));
+        map.put(new Route("contacts/create/"), new CreatePageAction(new ContactCreatePageFactory()));
 
         //Invoices
         map.put(new Route("invoices/"), new OverviewPageAction(new InvoicePageFactory()));
         map.put(new Route("invoices/edit/{invoice}/"), new EditPageAction(new InvoiceEditPageFactory()));
         map.put(new Route("invoices/detail/{invoice}/"), new DetailPageAction(new InvoiceDetailPageFactory()));
-        map.put(new Route("invoices/create/{invoice}"), new CreatePageAction(new InvoiceCreatePageFactory()));
+        map.put(new Route("invoices/create/"), new CreatePageAction(new InvoiceCreatePageFactory()));
 
 
         //Quotations
         map.put(new Route("quotations/"), new OverviewPageAction(new QuotationsPageFactory()));
         map.put(new Route("quotations/edit/{quotation}/"), new EditPageAction(new QuotationsEditPageFactory()));
         map.put(new Route("quotations/detail/{quotation}/"), new DetailPageAction(new QuotationsDetailPageFactory()));
-        map.put(new Route("quotations/create/{quotation}"), new CreatePageAction(new QuotationsCreatePageFactory()));
+        map.put(new Route("quotations/create/"), new CreatePageAction(new QuotationsCreatePageFactory()));
 
 
 
@@ -71,6 +72,7 @@ public class RouteFactoryBuilder {
         map.put(new Route("reports/"), new OverviewPageAction(new RapportsPageFactory()));
         map.put(new Route("reports/edit/{rapport}/"), new EditPageAction(new RapportsEditPageFactory()));
         map.put(new Route("reports/detail/{rapport}/"), new DetailPageAction(new RapportsDetailPageFactory()));
+        map.put(new Route("reports/create/"), new CreatePageAction(new RapportsCreatePageFactory()));
 
 
         //Settings

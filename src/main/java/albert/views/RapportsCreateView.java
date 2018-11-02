@@ -1,17 +1,18 @@
 package albert.views;
 
 import albert.controllers.PageController;
+import albert.controllers.RapportsController;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import router.views.PageView;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+import router.views.PageView;
 
-public class RapportsEditView extends AnchorPane implements PageView {
+public class RapportsCreateView extends AnchorPane implements PageView {
 
     private final String resource = "/views/pages/RapportsEdit.fxml";
-    private PageController controller;
+    private RapportsController controller;
 
     @FXML
     private TextField QuarterYear;
@@ -55,7 +56,7 @@ public class RapportsEditView extends AnchorPane implements PageView {
 
     @Override
     public void setController(PageController controller) {
-        this.controller = controller;
+        this.controller =(RapportsController) controller;
     }
 
     @Override
@@ -65,7 +66,7 @@ public class RapportsEditView extends AnchorPane implements PageView {
 
     @FXML
     public void onClickBack() {
-        this.controller.getRouter().nav("reports/detail/{rapport}/");
+        this.controller.getRouter().nav("reports/");
     }
 
     @FXML

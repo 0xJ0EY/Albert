@@ -57,7 +57,7 @@ public class ContactController extends PageController implements OverviewPage, D
 
         table.addCol(new Column("first_name",
                 new LeftHeaderViewFactory("Voornaam"),
-                new RouteCellFactory("invoices/detail/{contact_id}/", this))
+                new RouteCellFactory("contacts/details/{contact_id}/", this))
         );
 
         table.addCol(new Column("last_name",

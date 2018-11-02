@@ -53,7 +53,7 @@ public class RapportsView extends AnchorPane implements PageView {
     @FXML
     public void onClickAddReport() {
 
-        this.controller.getRouter().nav("quotations/detail/{quotation}/");
+        this.controller.getRouter().nav("reports/create");
 
     }
 }

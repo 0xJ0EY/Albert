@@ -52,8 +52,12 @@ public class ContactDetailView extends AnchorPane implements PageView {
     }
 
     @FXML
-    public void onClickEdit(ActionEvent event) {
-        //TODO: put in right page here
+    public void onClickEdit() {
         controller.getRouter().nav("contacts/edit/{contact}");
+    }
+
+    @FXML
+    public void onClickBack(){
+        controller.getRouter().nav("contacts/");
     }
 }
