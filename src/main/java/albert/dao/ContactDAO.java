@@ -109,7 +109,7 @@ public class ContactDAO implements DAO<Contact> {
     @Override
     public void update(Contact obj) {
 
-        this.contact=contact;
+        this.contact=obj;
 
         String sql = "UPDATE contact SET first_name=?,last_name=?,tel_number=?,postal_code=?,street_name=?,house_number=?,created_at=?,website=?,description=? WHERE contact_id = ?";
 

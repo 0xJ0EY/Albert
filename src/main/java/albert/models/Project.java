@@ -16,6 +16,10 @@ public class Project {
     private Boolean done;
     private Contact contact;
 
+    public Project() {
+
+    }
+
     public Contact getContact() { return contact; }
 
     public void setContact(Contact contact) { this.contact = contact; }
