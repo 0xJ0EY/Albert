@@ -7,14 +7,17 @@ public class Invoice {
 
 
     private int id;
-    private String name;
     private Amount amount;
     private String paid;
     private Timestamp created_at;
     private Timestamp deliveryDate;
-    private Project project;
+    private int project;
     private Tax tax;
 
+    public Invoice(String paid, Timestamp deliveryDate) {
+        this.amount = amount;
+
+    }
     public Tax getTax() {
         return tax;
     }
@@ -36,13 +39,6 @@ public class Invoice {
 
     public void setDeliveryDate(Timestamp deliveryDate) { this.deliveryDate = deliveryDate; }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public Amount getAmount() {
         return amount;
@@ -52,21 +48,6 @@ public class Invoice {
         this.amount = amount;
     }
 
-    public Contact getContact() {
-        return contact;
-    }
-
-    public void setContact(Contact contact) {
-        this.contact = contact;
-    }
-
-    public Amount getBedragen() {
-        return bedragen;
-    }
-
-    public void setBedragen(Amount bedragen) {
-        this.bedragen = bedragen;
-    }
 
     public int getId() {
 
@@ -77,20 +58,11 @@ public class Invoice {
         this.id = id;
     }
 
-    private Contact contact;
-    private Amount bedragen;
-
-
-    public Invoice(String paid, Timestamp deliveryDate) {
-        this.amount = amount;
-
-    }
-
-    public Project getProject() {
+    public int getProject() {
         return project;
     }
 
-    public void setProject(Project project) {
+    public void setProject(int project) {
         this.project = project;
     }
 

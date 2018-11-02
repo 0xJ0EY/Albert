@@ -43,13 +43,13 @@ public class Contact {
      * @param housenumber
      * @param telephoneNumber
      * @param postcode
-
+     * @param email
      * @param website
      * @param beschrijving
      * @param straatnaam
      * @param woonplaats
      */
-    public Contact(String firstName, String lastName, String housenumber, String telephoneNumber, String postcode, String website, String beschrijving, String straatnaam, String woonplaats, Timestamp created_at) {
+    public Contact(String firstName, String lastName, String housenumber, String telephoneNumber, String postcode,ArrayList<ContactEmail>email, String website, String beschrijving, String straatnaam, String woonplaats, Timestamp created_at) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.telephoneNumber = Integer.valueOf(telephoneNumber);
@@ -61,7 +61,15 @@ public class Contact {
         this.woonplaats = woonplaats;
         this.created_at= created_at;
     }
-
+    /**
+     *
+     * @param firstName
+     * @param lastName
+     */
+    public Contact(String firstName, String lastName){
+        this.firstName= firstName;
+        this.lastName = lastName;
+    }
     public Timestamp getCreated_at() {
         return created_at;
     }
@@ -79,18 +87,6 @@ public class Contact {
     public void setEmail(ArrayList<ContactEmail> email) {
         this.email = email;
     }
-
-
-    /**
-     *
-     * @param firstName
-     * @param lastName
-     */
-    public Contact(String firstName, String lastName){
-        this.firstName= firstName;
-        this.lastName = lastName;
-    }
-
 
     public String getHouseNumber() {
         return houseNumber;
@@ -168,6 +164,7 @@ public class Contact {
     public void setWoonplaats(String woonplaats) {
         this.woonplaats = woonplaats;
     }
+
 
     public int getId() {
         return this.id;
