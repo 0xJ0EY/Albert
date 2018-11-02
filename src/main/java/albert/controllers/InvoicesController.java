@@ -60,8 +60,8 @@ public class InvoicesController extends PageController implements OverviewPage, 
     }
 
     public void saveInvoice(String name, String price, String hours, String contact, String delivery) {
-        amount = new Amount(new Double(price), new Double(hours), contact);
-        invoice = new Invoice(name, amount, delivery);
+        //amount = new Amount(new Double(price), new Double(hours), contact);
+        //invoice = new Invoice(name, amount, delivery);
         dao.create(invoice);
     }
 
@@ -71,7 +71,7 @@ public class InvoicesController extends PageController implements OverviewPage, 
 
     public void editInvoice(String name, String price, String hours, String contact, String delivery) {
         amount = new Amount(new Double(price), new Double(hours), contact);
-        invoice = new Invoice(name, amount, delivery);
+        //invoice = new Invoice(name, amount, delivery);
         dao.update(invoice);
     }
 
