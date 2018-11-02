@@ -13,12 +13,9 @@ public class Invoice {
     private String paid;
     private Date created_at;
     private Date deliveryDate;
-
     private String dateNow;
-
     private Project project;
     private Tax tax;
-
 
     public Tax getTax() {
         return tax;
@@ -105,5 +102,14 @@ public class Invoice {
     public void setProject(Project project) {
         this.project = project;
 
+    }
+    public double getAmountHours() { return amount.getHours(); }
+
+    public double getAmountPrice() { return amount.getPrice(); }
+
+    public String getCurrentDate() {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        return dateFormat.format(date).toString();
     }
 }

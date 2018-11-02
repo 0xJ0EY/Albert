@@ -1,5 +1,6 @@
 package albert.services;
 
+import albert.models.Contact;
 import albert.models.Invoice;
 import albert.models.Rapportage;
 import com.itextpdf.text.DocumentException;
@@ -50,7 +51,10 @@ public class PdfService {
         templateEngine.setTemplateResolver(templateResolver);
 
         Context context = new Context();
+        Contact contact = invoice.getProject().getContact();
+        context.setVariable("contact", contact);
         context.setVariable("data", invoice);
+
 
 
         String renderedHtmlContent = templateEngine.process("templateInvoice", context);

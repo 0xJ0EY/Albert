@@ -5,6 +5,7 @@ public class Amount {
     private double price;
     private double hours;
     private Contact contact;
+    private double Bcost;
 
     public int getId() {
         return id;
@@ -28,9 +29,9 @@ public class Amount {
 
     }
 
+    public double getBcost() { return this.Bcost; }
 
-
-
+    public void setBcost(Double Bcost) { this.Bcost = Bcost; }
 
     public double getPrice() {
         return price;

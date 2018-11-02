@@ -1,5 +1,6 @@
 package albert.views;
 
+import albert.controllers.InvoicesController;
 import albert.controllers.PageController;
 import javafx.scene.control.CheckBox;
 import router.views.PageView;
@@ -8,11 +9,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
 import java.awt.*;
+import java.text.ParseException;
 
 public class InvoiceDetailView extends AnchorPane implements PageView {
 
     private final String resource = "/views/pages/InvoiceDetailView.fxml";
-    private PageController controller;
+    private InvoicesController controller;
 
     @FXML
     private CheckBox vink;
@@ -38,7 +40,7 @@ public class InvoiceDetailView extends AnchorPane implements PageView {
 
     @Override
     public void setController(PageController controller) {
-        this.controller = controller;
+        this.controller = (InvoicesController)controller;
     }
 
     @Override
@@ -48,5 +50,11 @@ public class InvoiceDetailView extends AnchorPane implements PageView {
 
     @FXML
     public void onClickEdit() {
+
+    }
+
+    @FXML
+    public void onClickGeneratePDF() throws ParseException {
+        controller.generatePdf();
     }
 }
