@@ -25,6 +25,7 @@ public class PdfService {
     private String resources;
     private String template_path;
     private String output;
+    private FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.pdf)", "*.pdf");
 
     public static PdfService getInstance() {
         if (instance == null)
@@ -69,6 +70,7 @@ public class PdfService {
         renderer.layout();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save Pdf");
+        fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showSaveDialog(stage);
 
         OutputStream outputStream = new FileOutputStream(file.getAbsoluteFile());
@@ -108,6 +110,7 @@ public class PdfService {
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save Pdf");
+        fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showSaveDialog(stage);
 
         OutputStream outputStream = new FileOutputStream(file.getAbsoluteFile());
@@ -129,6 +132,8 @@ public class PdfService {
         tidy.parseDOM(inputStream, outputStream);
         return outputStream.toString(UTF_8);
     }
+
+
 
 
 }
