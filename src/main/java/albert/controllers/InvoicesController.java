@@ -17,6 +17,7 @@ import router.templates.TemplateController;
 import router.views.PageView;
 import table.Column;
 import table.Table;
+import table.factories.cells.RouteCellFactory;
 import table.factories.cells.TextCellFactory;
 import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
@@ -32,6 +33,8 @@ public class InvoicesController extends PageController implements OverviewPage, 
     private Amount amount;
     private Invoice invoice;
 
+    private Request request;
+
     public InvoicesController(PageView view, TemplateController template) {
         super(view, template);
     }
@@ -44,7 +47,7 @@ public class InvoicesController extends PageController implements OverviewPage, 
 
         table.addCol(new Column("invoice_id::text",
                 new LeftHeaderViewFactory("Invoice ID"),
-                new TextCellFactory())
+                new RouteCellFactory("invoices/detail/{invoice_id}/", this))
         );
 
         table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
@@ -85,22 +88,35 @@ public class InvoicesController extends PageController implements OverviewPage, 
 
     @Override
     public Response overview(Request request) {
+        this.request = request;
         return new ViewResponse(this);
     }
 
     @Override
     public Response detail(Request request) {
+        this.request = request;
         return new ViewResponse(this);
     }
 
 
     @Override
     public Response edit(Request request) {
+        this.request = request;
         return new ViewResponse(this);
     }
 
     @Override
     public Response create(Request request) {
+        this.request = request;
         return new ViewResponse(this);
     }
+
+    public void setInvoice(int id) {
+        this.invoice = dao.loadById(id);
+    }
+
+    public Request getRequest() {
+        return request;
+    }
+
 }

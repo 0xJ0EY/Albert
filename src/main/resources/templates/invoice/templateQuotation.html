@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Invoice PDF</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" media="all"  href="css/pdf/invoice.css" />
+
+    </head>
+    <body>
+    <style>
+        #dataTable tr td {
+        border-top: 0px solid; border-bottom: 0px solid;
+        }
+
+    </style>
+
+    <div style="width: 100%; height: 10%;" id="header">
+        <div style="float: left; width:50%; height:100%;">
+            <img style="width:50%; height:60%;" src="images/logo.jpg" />
+        </div>
+        <div style="float: right; width: 50%; height:100%;">
+            <ul style="list-style-type: none; margin-top:20%;">
+                <li>[[${data.getCurrentDate()}]]</li>
+                <li>[[${contact.getStraatnaam()}]] [[${contact.getHouseNumber()}]]</li>
+                <li>[[${contact.getPostcode()}]] [[${contact.getWoonplaats()}]]</li>
+                <li><b>Datum:</b>[[${data.getCurrentDate()}]]</li>
+                <li><b>Factuur Nr.</b> [[${data.getId()}]]</li>
+            </ul>
+        </div>
+        <div id="content">
+            <div id="content-header" style="width:100%; height: 65%;">
+                <h2 style="width:100%; text-align: center; margin-top:10%;">Offerte</h2>
+            </div>
+                <table id="dataTable" align="center"; border="1" style="height: 400px;">
+                    <tr>
+                        <th>Afleverdatum</th>
+                        <th>Omschrijving</th>
+                        <th>Uren gewerkt</th>
+                        <th>Bedrag</th>
+                    </tr>
+                    <tr>
+                        <td>1/11/2018</td>
+                        <td>Infographic</td>
+                        <td>[[${data.getAmountHours()}]]</td>
+                        <td> &euro;[[${data.getAmountPrice()}]]</td>
+                    </tr>
+                    <tr height="300px;">
+                        <td><br></td>
+                        <td><br>[[${data.getTax().getName}]] [[${data.getTax().getPercentage}]]% <br><br> Totaal te voldoen</td>
+                        <td><br></td>
+                        <td><br> &euro;[[${data.getTax().getTaxPart()}]] <br><br> &euro;[[${data.getAmount.getBcost()}]] </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td >gaarne bij betaling het<br>
+                            faktuurnummer vermelden.<br>
+                            Betaling binnen 30 dagen op<br>
+                            NL59INGB0007627426<br>
+                            t.n.v. Loek Weijts te Leiderdorp.<br>
+                            btw nr. NL820979983B01</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+
+            <div style="width: 20%; height: 100px; margin-left:175px;">
+                <h6>
+                    Lid van Bno: Beroepsvereniging<br>
+                    nederlandse ontwerpers te<br>
+                    amsterdam. KvK nr.: 27347916 te Leiden
+                </h6>
+            </div>
+        </div>
+    </div>
+
+
+    </body>
+
+</html>

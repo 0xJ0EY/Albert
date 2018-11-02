@@ -14,7 +14,7 @@
    <children>
       <VBox layoutX="107.0" layoutY="102.0" prefHeight="427.0" prefWidth="806.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rapportage aanpassen">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rapportage maken">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

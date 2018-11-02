@@ -12,6 +12,11 @@ public class Quotation {
     private String description;
     private Timestamp created_at;
     private Project project;
+    private int expectedHours;
+
+    public int getExpectedHours() { return expectedHours; }
+
+    public void setExpectedHours(int expectedHours) { this.expectedHours = expectedHours; }
 
     public void setProduct(String product) {
         this.product = product;

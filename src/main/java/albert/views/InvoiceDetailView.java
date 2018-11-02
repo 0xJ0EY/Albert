@@ -50,11 +50,17 @@ public class InvoiceDetailView extends AnchorPane implements PageView {
 
     @FXML
     public void onClickEdit() {
-
     }
 
     @FXML
-    public void onClickGeneratePDF() throws ParseException {
+    public void onClickGeneratePdf() throws ParseException {
+        int invoiceId = Integer.parseInt(this.controller.getRequest().getParameter("invoice"));
+        controller.setInvoice(invoiceId);
         controller.getInvoice().generatePdf();
+    }
+
+    @FXML
+    public void onClickBack() {
+        controller.getRouter().nav("invoices/");
     }
 }

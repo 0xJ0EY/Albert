@@ -94,16 +94,6 @@ public class Invoice {
     private Contact contact;
     private Amount bedragen;
 
-    /**
-     *
-     * @param name
-     */
-    public Invoice(String name, Amount amount, String delivery) {
-        this.name = name;
-        this.amount = amount;
-        this.delivery = delivery;
-    }
-
     public Project getProject() {
         return project;
     }
@@ -123,20 +113,6 @@ public class Invoice {
     }
 
     public void generatePdf() throws ParseException {
-        //TODO: put invoice as parameter
-        Tax tax = new Tax("btw", 21);
-        Project project = new Project("Sander`s project", "open");
-        Contact contact = new Contact("HeinekenBV", "Henk", "Jandeberg", "Zoeterwoudeweg", "15", "2254BB", "Leiden");
-        Amount amount = new Amount(831.51, 15.0, "Henk Jandeberg");
-        project.setContactList(contact);
-
-//        this = new Invoice("Factuur 4522", amount, "infographic");
-        this.setName("Factuur 4522");
-        this.setAmount(amount);
-        this.setDelivery("infographic");
-        this.setId(5);
-        this.setProject(project);
-        this.setTax(tax);
         this.getTax().setTaxPart(this.calculateTax(this));
         String value = df.format(this.getTax().getTaxPart()+this.getAmount().getPrice());
         this.getAmount().setBcost((Double)df.parse(value));

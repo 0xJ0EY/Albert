@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import albert.models.Contact;
 import albert.models.Invoice;
 import albert.models.Project;
 import database.Database;
@@ -41,7 +42,7 @@ public class InvoiceDAO implements DAO<Invoice>{
     @Override
     public Invoice loadById(long id) {
 
-        String sql = "SELECT * FROM invoice WHERE id = ?";
+        String sql = "SELECT * FROM invoice WHERE invoice_id = ?";
 
         try {
             Connection conn = Database.getInstance().getConnection();
@@ -148,7 +149,10 @@ public class InvoiceDAO implements DAO<Invoice>{
 
     @Override
     public Invoice extractFromResultSet(ResultSet rs) throws SQLException {
-        return null;
+        Invoice invoice = new Invoice();
+        invoice.setDelivery(rs.getTimestamp("deliverydate").toString());
+   //     invoice.setAmount();
+        return invoice;
     }
 
 
