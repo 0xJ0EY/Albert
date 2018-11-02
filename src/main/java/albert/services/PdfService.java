@@ -107,10 +107,12 @@ public class PdfService {
         renderer.layout();
 
         FileChooser fileChooser = new FileChooser();
+
         fileChooser.setTitle("Save Pdf");
         File file = fileChooser.showSaveDialog(stage);
 
         OutputStream outputStream = new FileOutputStream(file.getAbsoluteFile());
+
         renderer.createPDF(outputStream);
         outputStream.close();
         return true;

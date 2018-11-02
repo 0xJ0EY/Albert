@@ -8,5 +8,9 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="lib10" level="project" />
+    <orderEntry type="library" name="Gradle: org.thymeleaf:thymeleaf:3.0.6.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: org.xhtmlrenderer:flying-saucer-pdf-itext5:9.1.6" level="project" />
+    <orderEntry type="library" name="Gradle: net.sf.jtidy:jtidy:r938" level="project" />
+    <orderEntry type="library" name="Gradle: com.itextpdf:itextpdf:5.5.11" level="project" />
   </component>
 </module>

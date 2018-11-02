@@ -151,7 +151,14 @@ public class ExpenseDAO implements DAO<Expense>{
 
     @Override
     public Expense extractFromResultSet(ResultSet rs) throws SQLException {
-return  null;
+
+        Expense expense = new Expense(
+                rs.getDouble("price"),
+        rs.getString("description"),
+        rs.getTimestamp("created_at"),
+        rs.getString("name")
+        );
+        return expense;
     }
 
 

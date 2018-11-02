@@ -1,5 +1,6 @@
 package albert.models;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Expense {
@@ -8,8 +9,15 @@ public class Expense {
     private double price;
     private String name;
     private String description;
-    private Date created_at;
+    private Timestamp created_at;
 
+    public Expense(double price, String description, Timestamp created_at, String name) {
+        this.price = price;
+        this.description = description;
+        this.created_at = created_at;
+        this.name=name;
+
+    }
     public void setId(int id) {
         this.id = id;
     }
@@ -20,16 +28,6 @@ public class Expense {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-
-
-    public Expense(double price, String description, Date created_at,String name) {
-        this.price = price;
-        this.description = description;
-        this.created_at = created_at;
-        this.name=name;
-
     }
 
     public double getPrice() {
