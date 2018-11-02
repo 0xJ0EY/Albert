@@ -122,7 +122,7 @@
                         <Font size="12.0" />
                      </font>
                      <graphic>
-                        <FontAwesomeIconView glyphName="FILE" size="14.0" />
+                        <FontAwesomeIconView glyphName="FILE" />
                      </graphic>
                   </Button>
                   <Button mnemonicParsing="false" onAction="#onClickEdit" prefHeight="25.0" prefWidth="95.0" text="Aanpassen">

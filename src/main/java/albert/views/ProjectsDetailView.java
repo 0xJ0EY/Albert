@@ -18,19 +18,13 @@ public class ProjectsDetailView extends AnchorPane implements PageView {
     private PageController controller;
 
     @FXML
-    private TextField searchBarQuotation;
+    private AnchorPane quotationOverviewTable;
 
     @FXML
-    private TextField searchBarInvoice;
+    private AnchorPane invoiceOverviewTable;
 
     @FXML
-    private TextField searchBarCosts;
-
-    @FXML
-    private Button projectEdit;
-
-    @FXML
-    private Button projectDelete;
+    private AnchorPane expenseOverviewTable;
 
     @Override
     public void load() {
@@ -59,5 +53,30 @@ public class ProjectsDetailView extends AnchorPane implements PageView {
     @Override
     public AnchorPane render() {
         return this;
+    }
+
+    @FXML
+    public void onClickBack(){
+        controller.getRouter().nav("projects/");
+    }
+
+    @FXML
+    public void onClickEdit() {
+        controller.getRouter().nav("projects/edit/{project}/");
+    }
+
+    @FXML
+    public void onClickAddQuotation() {
+        controller.getRouter().nav("quotations/create/");
+    }
+
+    @FXML
+    public void onClickAddInvoice() {
+        controller.getRouter().nav("invoices/create/");
+    }
+    @FXML
+
+    public void onClickAddExpense() {
+        controller.getRouter().nav("projects/edit/{project}/");
     }
 }

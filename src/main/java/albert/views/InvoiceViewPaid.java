@@ -40,7 +40,7 @@ public class InvoiceViewPaid extends AnchorPane implements PageView {
 
     @Override
     public void update() {
-        Table table = controller.getOverviewTable();
+        Table table = controller.getPaidOverviewTable();
 
         table.fetch();
 

@@ -37,6 +37,7 @@ CREATE TABLE quotation
     amount_id integer,
     created_at TIMESTAMP,
     project_id integer
+    hours_expected integer,
 );
 
 CREATE TABLE report
