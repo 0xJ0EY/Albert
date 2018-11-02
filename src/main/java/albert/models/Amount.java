@@ -3,7 +3,7 @@ package albert.models;
 public class Amount {
     private double price;
     private double hours;
-    private String contact;
+    private int contact;
     private int id;
 
     public int getId() {
@@ -14,18 +14,18 @@ public class Amount {
         this.id = id;
     }
 
-    public Amount(double price, double hours, String contact) {
+    public Amount(double price, double hours, int contact) {
         this.price = price;
         this.hours = hours;
         this.contact = contact;
     }
 
 
-    public String getContact() {
+    public int getContact() {
         return contact;
     }
 
-    public void setContact(String contact) {
+    public void setContact(int contact) {
         this.contact = contact;
     }
 

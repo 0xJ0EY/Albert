@@ -69,7 +69,7 @@ public class TaxDAO implements DAO<Tax> {
     public void create(Tax obj) {
         this.tax = tax;
         //TODO sql insert schrijven
-        String sql = "INSERT INTO tax VALUES ( name=?, percentage=?);";
+        String sql = "INSERT INTO tax VALUES( name=?, percentage=?);";
 
         try {
             Connection conn = Database.getInstance().getConnection();
@@ -93,7 +93,7 @@ public class TaxDAO implements DAO<Tax> {
     public void update(Tax obj) {
         this.tax = obj;
         //TODO sql update schrijven
-        String sql = "UPDATE tax SET ( name=?, percentage=? )WHERE tax_id =?";
+        String sql = "UPDATE tax SET  name=?, percentage=? WHERE tax_id =?";
 
 
         try {
@@ -145,9 +145,12 @@ public class TaxDAO implements DAO<Tax> {
 
     @Override
     public Tax extractFromResultSet(ResultSet rs) throws SQLException {
-        return null;
+        Tax tax = new Tax(
+                rs.getString("name"),
+                rs.getInt("percentage")
+        );
 
-
+return tax;
     }
 
 }

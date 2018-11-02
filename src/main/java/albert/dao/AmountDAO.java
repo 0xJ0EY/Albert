@@ -72,7 +72,7 @@ public class AmountDAO implements DAO<Amount> {
                 statement.setInt(1,this.amount.getId());
                 statement.setDouble(2,this.amount.getHours());
                 statement.setDouble(3,this.amount.getPrice());
-                statement.setString(4,this.amount.getContact());
+                statement.setInt(4,this.amount.getContact());
 
                 statement.execute();
 
@@ -97,7 +97,7 @@ public class AmountDAO implements DAO<Amount> {
 
             statement.setDouble(1,this.amount.getHours());
             statement.setDouble(2,this.amount.getPrice());
-            statement.setString(3, this.amount.getContact());
+            statement.setInt(3, this.amount.getContact());
 
             statement.executeUpdate();
             conn.close();
@@ -131,7 +131,12 @@ public class AmountDAO implements DAO<Amount> {
     }
 
     @Override
-    public Object extractFromResultSet(ResultSet rs) throws SQLException {
-        return null;
+    public Amount extractFromResultSet(ResultSet rs) throws SQLException {
+        Amount amount = new Amount(
+                rs.getDouble("price"),
+                rs.getDouble("hours"),
+                rs.getInt("contact_id")
+        );
+        return amount;
     }
 }

@@ -145,6 +145,12 @@ public class QuotationDAO implements DAO{
 
     @Override
     public Quotation extractFromResultSet(ResultSet rs) throws SQLException {
-        return null;
+        Quotation quotation = new Quotation(
+                rs.getString("name"),
+                rs.getString("product"),
+                rs.getString("description"),
+                rs.getTimestamp("created_at")
+        );
+        return quotation;
     }
 }

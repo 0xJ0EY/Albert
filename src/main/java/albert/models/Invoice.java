@@ -9,7 +9,6 @@ public class Invoice {
     private int id;
     private String name;
     private Amount amount;
-    private String delivery;
     private String paid;
     private Timestamp created_at;
     private Timestamp deliveryDate;
@@ -44,10 +43,6 @@ public class Invoice {
     public void setName(String name) {
         this.name = name;
     }
-
-    public String getDelivery() { return  this.delivery; }
-
-    public void setDelivery(String delivery) { this.delivery = delivery; }
 
     public Amount getAmount() {
         return amount;
@@ -85,14 +80,10 @@ public class Invoice {
     private Contact contact;
     private Amount bedragen;
 
-    /**
-     *
-     * @param name
-     */
-    public Invoice(String name, Amount amount, String delivery) {
-        this.name = name;
+
+    public Invoice(String paid, Timestamp deliveryDate) {
         this.amount = amount;
-        this.delivery = delivery;
+
     }
 
     public Project getProject() {

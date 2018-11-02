@@ -148,7 +148,12 @@ public class InvoiceDAO implements DAO<Invoice>{
 
     @Override
     public Invoice extractFromResultSet(ResultSet rs) throws SQLException {
-        return null;
+        Invoice invoice = new Invoice(
+                rs.getString("paid"),
+                rs.getTimestamp("deliverydate")
+        );
+
+                return invoice;
     }
 
 
