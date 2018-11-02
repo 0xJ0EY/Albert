@@ -1,5 +1,6 @@
 package albert.controllers;
 
+import query.Query;
 import router.pages.OverviewPage;
 import router.templates.TemplateController;
 import router.pages.DetailPage;
