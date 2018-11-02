@@ -1,30 +1,28 @@
 package albert.views;
 
-import albert.controllers.InvoicesController;
 import albert.controllers.PageController;
-import albert.models.*;
-import albert.services.PdfService;
-import com.itextpdf.text.DocumentException;
+import albert.controllers.ProjectsController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import router.views.PageView;
 import table.Table;
 import table.views.TableView;
 
+import java.awt.*;
 import java.io.IOException;
+/*
+Hier wordt de prrojects geladen
+ */
 
-public class InvoiceView extends AnchorPane implements PageView {
+public class ProjectsDoneView extends AnchorPane implements PageView  {
 
-    private final String resource = "/views/pages/InvoiceView.fxml";
-    private InvoicesController controller;
+    private final String resource = "/views/pages/ProjectsDone.fxml";
+    private ProjectsController controller;
 
     @FXML
     private AnchorPane overviewTable;
 
-    @FXML
-    private TextField searchform;
 
     @Override
     public void load() {
@@ -39,7 +37,6 @@ public class InvoiceView extends AnchorPane implements PageView {
             ex.printStackTrace();
         }
     }
-
 
     @Override
     public void update() {
@@ -56,7 +53,7 @@ public class InvoiceView extends AnchorPane implements PageView {
 
     @Override
     public void setController(PageController controller) {
-        this.controller = (InvoicesController)controller;
+        this.controller = (ProjectsController)controller;
     }
 
     @Override
@@ -64,15 +61,13 @@ public class InvoiceView extends AnchorPane implements PageView {
         return this;
     }
 
-    @FXML
-    public void onClickAddInvoice(){
-        controller.getRouter().nav("invoices/edit/{invoice}");
+    public void onClickNewProject(){
+
+        controller.getRouter().nav("projects/create/");
     }
 
-
     @FXML
-    public void onClickPaid(){
-        controller.getRouter().nav("invoicespaid/");
+    public void onClickOngoing(){
+        controller.getRouter().nav("projects/");
     }
-
 }

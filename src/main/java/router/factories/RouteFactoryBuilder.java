@@ -14,14 +14,8 @@ import router.factories.pages.contacts.ContactDetailPageFactory;
 import router.factories.pages.contacts.ContactEditPageFactory;
 import router.factories.pages.contacts.ContactPageFactory;
 import router.factories.pages.home.HomePageFactory;
-import router.factories.pages.invoices.InvoiceCreatePageFactory;
-import router.factories.pages.invoices.InvoiceDetailPageFactory;
-import router.factories.pages.invoices.InvoiceEditPageFactory;
-import router.factories.pages.invoices.InvoicePageFactory;
-import router.factories.pages.projects.ProjectsCreatePageFactory;
-import router.factories.pages.projects.ProjectsDetailPageFactory;
-import router.factories.pages.projects.ProjectsEditPageFactory;
-import router.factories.pages.projects.ProjectsPageFactory;
+import router.factories.pages.invoices.*;
+import router.factories.pages.projects.*;
 import router.factories.pages.rapports.RapportsCreatePageFactory;
 import router.factories.pages.rapports.RapportsDetailPageFactory;
 import router.factories.pages.rapports.RapportsEditPageFactory;
@@ -43,6 +37,7 @@ public class RouteFactoryBuilder {
 
         // Projects
         map.put(new Route("projects/"), new OverviewPageAction(new ProjectsPageFactory()));
+        map.put(new Route("projectsdone/"), new OverviewPageAction(new ProjectsDonePageFactory()));
         map.put(new Route("projects/details/{project}/"), new DetailPageAction(new ProjectsDetailPageFactory()));
         map.put(new Route("projects/edit/{project}/"), new EditPageAction(new ProjectsEditPageFactory()));
         map.put(new Route("projects/create/"), new CreatePageAction(new ProjectsCreatePageFactory()));
@@ -55,6 +50,7 @@ public class RouteFactoryBuilder {
 
         //Invoices
         map.put(new Route("invoices/"), new OverviewPageAction(new InvoicePageFactory()));
+        map.put(new Route("invoicespaid/"), new OverviewPageAction(new InvoicePaidPageFactory()));
         map.put(new Route("invoices/edit/{invoice}/"), new EditPageAction(new InvoiceEditPageFactory()));
         map.put(new Route("invoices/detail/{invoice}/"), new DetailPageAction(new InvoiceDetailPageFactory()));
         map.put(new Route("invoices/create/"), new CreatePageAction(new InvoiceCreatePageFactory()));
