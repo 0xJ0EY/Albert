@@ -151,9 +151,8 @@ public class ProjectDAO implements DAO<Project> {
                 rs.getString("name"), rs.getString("done").toString()
         );
 
-
-
         project.setId(rs.getInt("id"));
+
 
         return project;
     }

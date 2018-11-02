@@ -14,9 +14,7 @@ import java.util.Date;
 public class Invoice {
 
     private int id;
-    private String name;
     private Amount amount;
-    private String delivery;
     private String paid;
     private String dateNow;
     private Timestamp created_at;
@@ -24,6 +22,11 @@ public class Invoice {
     private Project project;
     private Tax tax;
     DecimalFormat df=new DecimalFormat("0.00");
+
+    public Invoice(String paid, Timestamp deliveryDate) {
+        this.amount = amount;
+    }
+    public Invoice(){};
 
     public Tax getTax() {
         return tax;
@@ -46,17 +49,6 @@ public class Invoice {
 
     public void setDeliveryDate(Timestamp deliveryDate) { this.deliveryDate = deliveryDate; }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDelivery() { return  this.delivery; }
-
-    public void setDelivery(String delivery) { this.delivery = delivery; }
 
     public Amount getAmount() {
         return amount;
@@ -66,21 +58,6 @@ public class Invoice {
         this.amount = amount;
     }
 
-    public Contact getContact() {
-        return contact;
-    }
-
-    public void setContact(Contact contact) {
-        this.contact = contact;
-    }
-
-    public Amount getBedragen() {
-        return bedragen;
-    }
-
-    public void setBedragen(Amount bedragen) {
-        this.bedragen = bedragen;
-    }
 
     public int getId() {
 

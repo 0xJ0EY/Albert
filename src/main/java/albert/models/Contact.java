@@ -11,7 +11,6 @@ import java.util.Date;
 
 public class Contact {
 
-    private String name;
 
     private int id;
 
@@ -37,11 +36,23 @@ public class Contact {
 
     private Timestamp created_at;
 
+
+    /**
+     *
+     * @param firstName
+     * @param lastName
+     */
+    public Contact(String firstName, String lastName){
+        this.firstName= firstName;
+        this.lastName = lastName;
+    }
+
+    public Contact() {
+
+    }
+
     public Timestamp getCreated_at() {
         return created_at;
-
-
-
     }
 
     public void setCreated_at(Timestamp created_at) {
@@ -58,69 +69,6 @@ public class Contact {
         this.email = email;
     }
 
-
-    private String company;
-    /**
-     *
-     * @param firstName
-     * @param lastName
-     */
-    public Contact(String firstName, String lastName){
-        this.firstName= firstName;
-        this.lastName = lastName;
-    }
-
-    //invoice constructor
-    public Contact(String company, String firstName, String lastName, String straatnaam, String houseNumber, String postcode, String woonplaats) {
-        this.company = company;
-        this.firstName= firstName;
-        this.lastName = lastName;
-        this.straatnaam = straatnaam;
-        this.houseNumber = houseNumber;
-        this.postcode = postcode;
-        this.woonplaats = woonplaats;
-    }
-
-    /**
-     *
-     * @param firstName
-     * @param lastName
-     * @param housenumber
-     * @param telephoneNumber
-     * @param postcode
-     * @param email
-     * @param website
-     * @param beschrijving
-     * @param straatnaam
-     * @param woonplaats
-     */
-    public Contact(String firstName, String lastName, String housenumber, String telephoneNumber, String postcode,ArrayList<ContactEmail>email, String website, String beschrijving, String straatnaam, String woonplaats, Timestamp created_at) {
-        this.name = firstName + " " +lastName;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.telephoneNumber = Integer.valueOf(telephoneNumber);
-        this.postcode = postcode;
-        this.website = website;
-        this.beschrijving = beschrijving;
-        this.straatnaam = straatnaam;
-        this.houseNumber = housenumber;
-        this.woonplaats = woonplaats;
-        this.created_at= created_at;
-    }
-
-    public Contact(String firstName, String lastName, String housenumber, String telephoneNumber, String postcode,ArrayList<ContactEmail>email, String website, String beschrijving, String straatnaam, String woonplaats) {
-        this.name = firstName + " " + lastName;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.telephoneNumber = Integer.valueOf(telephoneNumber);
-        this.postcode = postcode;
-        this.website = website;
-        this.beschrijving = beschrijving;
-        this.straatnaam = straatnaam;
-        this.houseNumber = housenumber;
-        this.woonplaats = woonplaats;
-
-    }
     public String getHouseNumber() {
         return houseNumber;
     }
@@ -198,11 +146,6 @@ public class Contact {
         this.woonplaats = woonplaats;
     }
 
-    public void setName(String name) { this.name = name; }
-
-    public String getName() {
-        return this.name;
-    }
 
     public int getId() {
         return this.id;

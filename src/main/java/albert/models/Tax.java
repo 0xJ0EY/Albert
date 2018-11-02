@@ -11,6 +11,7 @@ public class Tax {
         this.name = name;
         this.percentage = percentage; }
 
+
     public int getId() {
         return id;
     }

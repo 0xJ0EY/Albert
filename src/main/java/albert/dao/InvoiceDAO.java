@@ -150,8 +150,8 @@ public class InvoiceDAO implements DAO<Invoice>{
     @Override
     public Invoice extractFromResultSet(ResultSet rs) throws SQLException {
         Invoice invoice = new Invoice();
-        invoice.setDelivery(rs.getTimestamp("deliverydate").toString());
-   //     invoice.setAmount();
+        invoice.setPaid(rs.getString("paid"));
+        invoice.setDeliveryDate(rs.getTimestamp("deliverydate"));
         return invoice;
     }
 

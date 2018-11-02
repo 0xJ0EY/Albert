@@ -5,6 +5,7 @@ import albert.models.Invoice;
 import albert.models.Quotation;
 import albert.models.Rapportage;
 import com.itextpdf.text.DocumentException;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
@@ -152,7 +153,13 @@ public class PdfService {
         renderer.setDocumentFromString(xHtml, baseUrl);
         renderer.layout();
 
-        OutputStream outputStream = new FileOutputStream("src/main/resources/rapportage.pdf");
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("save pdf");
+
+        File file = fileChooser.showSaveDialog(stage);
+
+        OutputStream outputStream = new FileOutputStream(file.getAbsoluteFile());
+
         renderer.createPDF(outputStream);
         outputStream.close();
         return true;

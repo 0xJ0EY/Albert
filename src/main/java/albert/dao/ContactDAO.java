@@ -162,7 +162,18 @@ public class ContactDAO implements DAO<Contact> {
 
     @Override
     public Contact extractFromResultSet(ResultSet rs) throws SQLException {
-return null;
+        Contact contact = new Contact();
+                contact.setFirstName(rs.getString("first_name"));
+                contact.setLastName(rs.getString("last_name"));
+                contact.setPostcode(rs.getString("postal_code"));
+                contact.setWebsite(rs.getString("website"));
+                contact.setBeschrijving(rs.getString("description"));
+                contact.setStraatnaam(rs.getString("street_name"));
+                contact.setHouseNumber(rs.getString("house_number"));
+                contact.setWoonplaats(rs.getString("city"));
+                contact.setCreated_at(rs.getTimestamp("created_at"));
+
+        return contact;
     }
 
 }
