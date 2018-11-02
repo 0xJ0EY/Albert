@@ -24,9 +24,9 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </BorderPane.margin>
                      <top>
-                        <VBox prefHeight="60.0" prefWidth="340.0" BorderPane.alignment="CENTER">
+                        <VBox prefHeight="0.0" prefWidth="490.0" BorderPane.alignment="CENTER">
                            <children>
-                              <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                              <HBox alignment="TOP_RIGHT" prefHeight="6.0" prefWidth="490.0">
                                  <children>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Onkosten">
                                        <HBox.margin>
@@ -49,6 +49,9 @@
                            </children>
                         </VBox>
                      </top>
+                     <center>
+                        <AnchorPane fx:id="expenseOverviewTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                     </center>
                   </BorderPane>
                </center>
             </BorderPane>
@@ -59,9 +62,9 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </BorderPane.margin>
                      <top>
-                        <VBox prefHeight="60.0" prefWidth="340.0" BorderPane.alignment="CENTER">
+                        <VBox prefHeight="15.0" prefWidth="490.0" BorderPane.alignment="CENTER">
                            <children>
-                              <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                              <HBox alignment="TOP_RIGHT" prefHeight="18.0" prefWidth="490.0">
                                  <children>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Facturen">
                                        <HBox.margin>
@@ -84,32 +87,22 @@
                            </children>
                         </VBox>
                      </top>
+                     <center>
+                        <AnchorPane fx:id="invoiceOverviewtable" prefHeight="283.0" prefWidth="490.0" BorderPane.alignment="CENTER" />
+                     </center>
                   </BorderPane>
                </center>
             </BorderPane>
             <BorderPane layoutX="510.0" prefHeight="315.0" prefWidth="510.0">
-               <top>
-                  <HBox alignment="TOP_RIGHT" prefHeight="25.0" prefWidth="255.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <Button mnemonicParsing="false" onAction="#onClickBack" prefWidth="125.0" text="Terug">
-                           <graphic>
-                              <FontAwesomeIconView glyphName="CLOSE" size="14.0" translateY="1.0" />
-                           </graphic></Button>
-                     </children>
-                     <BorderPane.margin>
-                        <Insets right="10.0" top="5.0" />
-                     </BorderPane.margin>
-                  </HBox>
-               </top>
                <center>
                   <BorderPane prefHeight="174.0" prefWidth="340.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
                      </BorderPane.margin>
                      <top>
-                        <VBox prefHeight="60.0" prefWidth="340.0" BorderPane.alignment="CENTER">
+                        <VBox prefHeight="17.0" prefWidth="490.0" BorderPane.alignment="CENTER">
                            <children>
-                              <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                              <HBox alignment="TOP_RIGHT" prefHeight="22.0" prefWidth="490.0">
                                  <children>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Offertes">
                                        <HBox.margin>
@@ -127,8 +120,33 @@
                            </children>
                         </VBox>
                      </top>
+                     <center>
+                        <AnchorPane fx:id="quotationOverviewTable" prefHeight="245.0" prefWidth="490.0" BorderPane.alignment="CENTER" />
+                     </center>
                   </BorderPane>
                </center>
+               <top>
+                  <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="468.0" spacing="20.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#onClickBack" prefHeight="25.0" prefWidth="80.0" text="Terug" textFill="#2c2a2a">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIconView glyphName="CLOSE" size="14.0" />
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#onClickEdit" prefHeight="25.0" prefWidth="95.0" text="Aanpassen">
+                           <graphic>
+                              <FontAwesomeIconView glyphName="PENCIL" size="14.0" />
+                           </graphic>
+                        </Button>
+                     </children>
+                     <BorderPane.margin>
+                        <Insets left="10.0" />
+                     </BorderPane.margin>
+                  </HBox>
+               </top>
             </BorderPane>
             <BorderPane prefHeight="315.0" prefWidth="510.0">
                <center>
