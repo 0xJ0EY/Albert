@@ -65,8 +65,8 @@ public class ProjectsCreateView extends AnchorPane implements PageView {
     }
 
     @FXML
-    public void onClickCancel() {
-        controller.getRouter().nav("projects/1/");
+    public void onClickBack() {
+        controller.getRouter().nav("projects/");
     }
 
 }

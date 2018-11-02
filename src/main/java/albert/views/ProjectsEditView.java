@@ -3,10 +3,7 @@ package albert.views;
 import albert.controllers.PageController;
 import albert.controllers.ProjectsController;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import router.views.PageView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -27,6 +24,8 @@ public class ProjectsEditView extends AnchorPane implements PageView {
 
     @FXML
     private TextArea beschrijving;
+
+    private ChoiceBox contactDropBox;
 
     @FXML
     @Override
@@ -66,8 +65,8 @@ public class ProjectsEditView extends AnchorPane implements PageView {
     }
 
     @FXML
-    public void onClickCancel() {
-        controller.getRouter().nav("projects/1/");
+    public void onClickBack() {
+        controller.getRouter().nav("projects/");
     }
 
 }

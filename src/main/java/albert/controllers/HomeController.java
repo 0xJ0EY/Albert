@@ -11,8 +11,6 @@ import table.Table;
 
 public class HomeController extends PageController implements OverviewPage, DetailPage {
 
-    private Table overviewTable;
-
     public HomeController(
             PageView view,
             TemplateController template
@@ -30,7 +28,4 @@ public class HomeController extends PageController implements OverviewPage, Deta
         return new ViewResponse(this);
     }
 
-    public Table getOverviewTable() {
-        return this.overviewTable;
-    }
 }
