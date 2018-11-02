@@ -16,8 +16,9 @@ public class Invoice {
 
     public Invoice(String paid, Timestamp deliveryDate) {
         this.amount = amount;
-
     }
+    public Invoice(){};
+
     public Tax getTax() {
         return tax;
     }

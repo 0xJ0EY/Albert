@@ -36,31 +36,7 @@ public class Contact {
 
     private Timestamp created_at;
 
-    /**
-     *
-     * @param firstName
-     * @param lastName
-     * @param housenumber
-     * @param telephoneNumber
-     * @param postcode
-     * @param email
-     * @param website
-     * @param beschrijving
-     * @param straatnaam
-     * @param woonplaats
-     */
-    public Contact(String firstName, String lastName, String housenumber, String telephoneNumber, String postcode,ArrayList<ContactEmail>email, String website, String beschrijving, String straatnaam, String woonplaats, Timestamp created_at) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.telephoneNumber = Integer.valueOf(telephoneNumber);
-        this.postcode = postcode;
-        this.website = website;
-        this.beschrijving = beschrijving;
-        this.straatnaam = straatnaam;
-        this.houseNumber = housenumber;
-        this.woonplaats = woonplaats;
-        this.created_at= created_at;
-    }
+
     /**
      *
      * @param firstName
@@ -70,6 +46,11 @@ public class Contact {
         this.firstName= firstName;
         this.lastName = lastName;
     }
+
+    public Contact() {
+
+    }
+
     public Timestamp getCreated_at() {
         return created_at;
     }

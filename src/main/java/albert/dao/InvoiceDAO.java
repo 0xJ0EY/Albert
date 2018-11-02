@@ -81,7 +81,7 @@ public class InvoiceDAO implements DAO<Invoice>{
 
             statement.setString(2,this.invoice.getPaid());
             statement.setInt(3, this.invoice.getTax().getId());
-            statement.setInt(4,  this.invoice.getProject().getId());
+            statement.setInt(4,  this.invoice.getProject());
             statement.setInt(5,this.invoice.getAmount().getId());
             statement.setTime(6,(Time) this.invoice.getCreated_at());
             statement.setTimestamp(7, this.invoice.getDeliveryDate());
@@ -109,7 +109,7 @@ public class InvoiceDAO implements DAO<Invoice>{
 
             statement.setString(1,this.invoice.getPaid());
             statement.setInt(2, this.invoice.getTax().getId());
-            statement.setInt(3, this.invoice.getProject().getId());
+            statement.setInt(3, this.invoice.getProject());
             statement.setInt(4 ,this.invoice.getAmount().getId());
             statement.setTimestamp(4, this.invoice.getDeliveryDate());
             statement.setInt(4,this.invoice.getId());
@@ -148,12 +148,10 @@ public class InvoiceDAO implements DAO<Invoice>{
 
     @Override
     public Invoice extractFromResultSet(ResultSet rs) throws SQLException {
-        Invoice invoice = new Invoice(
-                rs.getString("paid"),
-                rs.getTimestamp("deliverydate")
-        );
-
-                return invoice;
+        Invoice invoice = new Invoice();
+        invoice.setPaid(rs.getString("paid"));
+        invoice.setDeliveryDate(rs.getTimestamp("deliverydate"));
+        return invoice;
     }
 
 
