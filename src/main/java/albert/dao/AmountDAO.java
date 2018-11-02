@@ -34,8 +34,6 @@ public class AmountDAO implements DAO<Amount> {
 
     @Override
     public Amount loadById(long id) {
-         Amount amount = null;
-
         String sql = "SELECT * FROM amount WHERE amount_id = ?";
 
         try {
@@ -43,10 +41,9 @@ public class AmountDAO implements DAO<Amount> {
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setLong(1, id);
             ResultSet rs = statement.executeQuery();
-
             rs.next();
 
-            this.extractFromResultSet(rs);
+            amount = this.extractFromResultSet(rs);
 
 
             conn.close();

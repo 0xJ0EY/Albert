@@ -125,7 +125,7 @@
                         <FontAwesomeIconView glyphName="FILE" />
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#onClickEdit" prefHeight="25.0" prefWidth="95.0" text="Aanpassen">
+                  <Button mnemonicParsing="false" onAction="#onClickEdit" prefHeight="31.0" prefWidth="111.0" text="Aanpassen">
                      <graphic>
                         <FontAwesomeIconView glyphName="PENCIL" size="14.0" />
                      </graphic>

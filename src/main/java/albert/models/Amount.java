@@ -3,6 +3,7 @@ package albert.models;
 public class Amount {
     private double price;
     private double hours;
+    private double Bcost;
     private int contact;
     private int id;
 
@@ -23,6 +24,9 @@ public class Amount {
         this.contact = contact;
     }
 
+    public double getBcost() { return this.Bcost; }
+
+    public void setBcost(Double Bcost) { this.Bcost = Bcost; }
 
     public int getContact() {
         return contact;
@@ -43,7 +47,5 @@ public class Amount {
     public double getHours() { return this.hours; }
 
     public void setHours(double hours) { this.hours = hours; }
-
-
 
 }

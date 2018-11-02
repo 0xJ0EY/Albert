@@ -5,11 +5,11 @@ public class Tax {
     private int id;
     private int percentage;
     private String name;
+    private double taxPart;
 
     public Tax(String name, int percentage) {
         this.name = name;
-        this.percentage = percentage;
-    }
+        this.percentage = percentage; }
 
 
     public int getId() {
@@ -29,5 +29,8 @@ public class Tax {
 
     public int getPercentage() { return this.percentage; }
 
+    public Double getTaxPart() { return this.taxPart; }
+
+    public void setTaxPart(double taxPart) { this.taxPart = taxPart; }
 
 }

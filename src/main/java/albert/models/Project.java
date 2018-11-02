@@ -14,7 +14,11 @@ public class Project {
     private String status = PaidState.notPaid.toString();
     private Timestamp created_at;
     private Boolean done;
+    private Contact contact;
 
+    public Contact getContact() { return contact; }
+
+    public void setContact(Contact contact) { this.contact = contact; }
 
     public Project(String name, String status) {
         this.name = name; this.status = status;

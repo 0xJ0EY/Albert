@@ -48,12 +48,10 @@ public class TaxDAO implements DAO<Tax> {
             Connection conn = Database.getInstance().getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setLong(1, id);
-
             ResultSet rs = statement.executeQuery();
-
             rs.next();
 
-            this.extractFromResultSet(rs);
+            tax = this.extractFromResultSet(rs);
 
 
             conn.close();
