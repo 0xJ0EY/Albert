@@ -33,7 +33,7 @@
                                           <Insets right="20.0" top="5.0" />
                                        </HBox.margin>
                                     </Text>
-                                    <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="120.0" text="Toevoegen">
+                                    <Button mnemonicParsing="false" onAction="#onClickAddExpense" prefHeight="0.0" prefWidth="120.0" text="Toevoegen">
                                        <graphic>
                                           <FontAwesomeIconView glyphName="PLUS" translateY="2.0" />
                                        </graphic>
@@ -71,7 +71,7 @@
                                           <Insets right="20.0" top="5.0" />
                                        </HBox.margin>
                                     </Text>
-                                    <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="120.0" text="Toevoegen">
+                                    <Button mnemonicParsing="false" onAction="#onClickAddInvoice" prefHeight="0.0" prefWidth="120.0" text="Toevoegen">
                                        <graphic>
                                           <FontAwesomeIconView glyphName="PLUS" translateY="2.0" />
                                        </graphic>
@@ -102,13 +102,13 @@
                      <top>
                         <VBox prefHeight="17.0" prefWidth="490.0" BorderPane.alignment="CENTER">
                            <children>
-                              <HBox alignment="TOP_RIGHT" prefHeight="22.0" prefWidth="490.0">
+                              <HBox alignment="TOP_RIGHT" prefHeight="42.0" prefWidth="490.0">
                                  <children>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Offertes">
                                        <HBox.margin>
                                           <Insets right="20.0" top="5.0" />
                                        </HBox.margin></Text>
-                                    <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="120.0" text="Toevoegen">
+                                    <Button mnemonicParsing="false" onAction="#onClickAddQuotation" prefHeight="0.0" prefWidth="120.0" text="Toevoegen">
                                        <graphic>
                                           <FontAwesomeIconView glyphName="PLUS" translateY="2.0" />
                                        </graphic>
