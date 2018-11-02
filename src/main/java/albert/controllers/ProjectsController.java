@@ -2,7 +2,7 @@ package albert.controllers;
 
 import albert.dao.ContactDAO;
 import albert.dao.*;
-import albert.models.PaidState;
+import albert.models.Contact;
 import query.Query;
 import albert.dao.ProjectDAO;
 import albert.models.Project;
@@ -17,20 +17,21 @@ import router.response.Response;
 import router.response.ViewResponse;
 import table.Column;
 import table.Table;
+import table.factories.cells.RouteCellFactory;
 import table.factories.cells.TextCellFactory;
 import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
 
+import java.util.ArrayList;
+
 public class ProjectsController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
 
-    ProjectDAO dao = new ProjectDAO();
-    ContactDAO contactDAO = new ContactDAO();
-    ExpenseDAO expenseDAO = new ExpenseDAO();
-    InvoiceDAO invoiceDAO  = new InvoiceDAO();
+    private ProjectDAO projectDAO = new ProjectDAO();
+    private ContactDAO contactDAO = new ContactDAO();
+    private ExpenseDAO expenseDAO = new ExpenseDAO();
+    private InvoiceDAO invoiceDAO  = new InvoiceDAO();
 
-    Project project;
-    PaidState paidState1;
     public ProjectsController(
             PageView view,
             TemplateController template
@@ -44,23 +45,13 @@ public class ProjectsController extends PageController implements OverviewPage, 
                 new SearchTableView()
         );
 
-        table.addCol(new Column("project_id::text",
-                new LeftHeaderViewFactory("Project ID"),
-                new TextCellFactory())
-        );
-
         table.addCol(new Column("name",
                 new LeftHeaderViewFactory("Naam"),
-                new TextCellFactory())
+                new RouteCellFactory("projects/edit/{project_id}/", this))
         );
 
         table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
                 new LeftHeaderViewFactory("Aangemaakt op"),
-                new TextCellFactory())
-        );
-
-        table.addCol(new Column("done::text",
-                new LeftHeaderViewFactory("Afgerond"),
                 new TextCellFactory())
         );
 
@@ -82,18 +73,16 @@ public class ProjectsController extends PageController implements OverviewPage, 
         return new ViewResponse(this);
     }
 
-    public void saveProject(String name, Boolean done){
-        String status = PaidState.notPaid.toString();
-        if(done = true) { status = PaidState.paid.toString();}
-        project = new Project(name, status);
-
-
-        dao.create(project);
+    public ArrayList<Contact> getContacts() {
+        return this.contactDAO.getAll();
     }
 
-    public void editProject(){
+    public void saveProject(Project project){
+        this.projectDAO.create(project);
+    }
 
-        dao.update(project);
+    public void editProject(Project project){
+        this.projectDAO.update(project);
     }
 
     @Override

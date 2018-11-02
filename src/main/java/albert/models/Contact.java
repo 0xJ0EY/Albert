@@ -2,12 +2,7 @@ package albert.models;
 
 
 import java.sql.Timestamp;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 public class Contact {
 
@@ -19,29 +14,27 @@ public class Contact {
 
     private String lastName;
 
-    private int telephoneNumber;
+    private String telephoneNumber;
 
-    private String postcode;
+    private String postalCode;
 
-    private ArrayList<ContactEmail> email;
+    private ArrayList<ContactEmail> emails;
+    private ArrayList<ContactPhoneNumber> phoneNumbers;
 
     private String website;
 
-    private String beschrijving;
+    private String description;
 
-    private String straatnaam;
+    private String streetName;
 
     private String houseNumber;
 
-    private String woonplaats;
+    private String city;
 
     private Timestamp created_at;
 
     public Timestamp getCreated_at() {
         return created_at;
-
-
-
     }
 
     public void setCreated_at(Timestamp created_at) {
@@ -51,64 +44,21 @@ public class Contact {
     private ArrayList<Project> project;
 
     public ArrayList<ContactEmail> getEmail() {
-        return email;
+        return this.emails;
     }
 
-    public void setEmail(ArrayList<ContactEmail> email) {
-        this.email = email;
+    public ArrayList<ContactPhoneNumber> getPhoneNumbers() {
+        return phoneNumbers;
     }
 
-
-    /**
-     *
-     * @param firstName
-     * @param lastName
-     */
-    public Contact(String firstName, String lastName){
-        this.firstName= firstName;
-        this.lastName = lastName;
+    public void setEmails(ArrayList<ContactEmail> email) {
+        this.emails = email;
     }
 
-    /**
-     *
-     * @param firstName
-     * @param lastName
-     * @param housenumber
-     * @param telephoneNumber
-     * @param postcode
-     * @param email
-     * @param website
-     * @param beschrijving
-     * @param straatnaam
-     * @param woonplaats
-     */
-    public Contact(String firstName, String lastName, String housenumber, String telephoneNumber, String postcode,ArrayList<ContactEmail>email, String website, String beschrijving, String straatnaam, String woonplaats, Timestamp created_at) {
-        this.name = firstName + " " +lastName;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.telephoneNumber = Integer.valueOf(telephoneNumber);
-        this.postcode = postcode;
-        this.website = website;
-        this.beschrijving = beschrijving;
-        this.straatnaam = straatnaam;
-        this.houseNumber = housenumber;
-        this.woonplaats = woonplaats;
-        this.created_at= created_at;
+    public void setPhoneNumbers(ArrayList<ContactPhoneNumber> phoneNumbers) {
+        this.phoneNumbers = phoneNumbers;
     }
 
-    public Contact(String firstName, String lastName, String housenumber, String telephoneNumber, String postcode,ArrayList<ContactEmail>email, String website, String beschrijving, String straatnaam, String woonplaats) {
-        this.name = firstName + " " + lastName;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.telephoneNumber = Integer.valueOf(telephoneNumber);
-        this.postcode = postcode;
-        this.website = website;
-        this.beschrijving = beschrijving;
-        this.straatnaam = straatnaam;
-        this.houseNumber = housenumber;
-        this.woonplaats = woonplaats;
-
-    }
     public String getHouseNumber() {
         return houseNumber;
     }
@@ -137,20 +87,20 @@ public class Contact {
         this.lastName = lastName;
     }
 
-    public int getTelephoneNumber() {
+    public String getTelephoneNumber() {
         return telephoneNumber;
     }
 
-    public void setTelephoneNumber(int telephoneNumber) {
+    public void setTelephoneNumber(String telephoneNumber) {
         this.telephoneNumber = telephoneNumber;
     }
 
-    public String getPostcode() {
-        return postcode;
+    public String getPostalCode() {
+        return postalCode;
     }
 
-    public void setPostcode(String postcode) {
-        this.postcode = postcode;
+    public void setPostalCode(String postal_code) {
+        this.postalCode = postal_code;
     }
 
 
@@ -162,28 +112,28 @@ public class Contact {
         this.website = website;
     }
 
-    public String getBeschrijving() {
-        return beschrijving;
+    public String getDescription() {
+        return description;
     }
 
-    public void setBeschrijving(String beschrijving) {
-        this.beschrijving = beschrijving;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getStraatnaam() {
-        return straatnaam;
+    public String getStreetName() {
+        return streetName;
     }
 
-    public void setStraatnaam(String straatnaam) {
-        this.straatnaam = straatnaam;
+    public void setStreetName(String streetName) {
+        this.streetName = streetName;
     }
 
-    public String getWoonplaats() {
-        return woonplaats;
+    public String getCity() {
+        return city;
     }
 
-    public void setWoonplaats(String woonplaats) {
-        this.woonplaats = woonplaats;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public void setName(String name) { this.name = name; }

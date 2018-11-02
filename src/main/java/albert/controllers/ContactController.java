@@ -134,10 +134,6 @@ public class ContactController extends PageController implements OverviewPage, D
     public void saveContact(String firstName, String lastName, String houseNumber, String telephone, String postcode, ArrayList<String> email, String website, String description, String streetName, String place) {
 
         ArrayList<ContactEmail> contactEmails= new ArrayList<ContactEmail>();
-        for(int i= 0; i < email.size();i++){
-            ContactEmail contactEmail= new ContactEmail(email.get(i));
-            contactEmails.add(contactEmail);
-        }
 
 
         Calendar calendar = Calendar.getInstance();
@@ -145,7 +141,7 @@ public class ContactController extends PageController implements OverviewPage, D
         java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
 
 
-        contact = new Contact(firstName,  lastName,  houseNumber,  telephone,  postcode,  contactEmails,  website,  description,  streetName,  place,currentTimestamp );
+//        contact = new Contact(firstName,  lastName,  houseNumber,  telephone,  postcode,  contactEmails,  website,  description,  streetName,  place,currentTimestamp );
         dao.create(contact);
     }
 
@@ -165,11 +161,7 @@ public class ContactController extends PageController implements OverviewPage, D
     public void editContact(String firstName, String lastName, String houseNumber, String telephone, String postcode, ArrayList<String> email, String website, String description, String streetName, String place){
 
         ArrayList<ContactEmail> contactEmails=null;
-        for(int i= 0; i < email.size();i++){
-            ContactEmail contactEmail= new ContactEmail(email.get(i));
-            contactEmails.add(contactEmail);
-        }
-        contact= new Contact(firstName,  lastName,  houseNumber,  telephone,  postcode,contactEmails,  website,  description,  streetName,  place);
+//        contact= new Contact(firstName,  lastName,  houseNumber,  telephone,  postcode,contactEmails,  website,  description,  streetName,  place);
         dao.update(contact);
     }
 

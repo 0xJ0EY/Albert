@@ -14,8 +14,8 @@ public class TaxDAO implements DAO<Tax> {
     private Tax tax;
 
     @Override
-    public ArrayList getAll() {
-        String sql = "SELECT * FROM customer";
+    public ArrayList<Tax> getAll() {
+        String sql = "SELECT * FROM tax";
         ArrayList<Tax> taxArrayList = null;
 
         try {
@@ -26,8 +26,7 @@ public class TaxDAO implements DAO<Tax> {
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()){
-
-                Tax tax = (Tax) extractFromResultSet(rs);
+                Tax tax = this.extractFromResultSet(rs);
                 taxArrayList.add(tax);
             }
 
@@ -120,10 +119,9 @@ public class TaxDAO implements DAO<Tax> {
 
     @Override
     public void delete(Tax obj) {
-        this.tax = tax;
 
-        //TODO sql delete schrijven
         String sql = "DELETE FROM tax WHERE tax_id =?";
+
         try {
             Connection conn = Database.getInstance().getConnection();
 
@@ -131,23 +129,24 @@ public class TaxDAO implements DAO<Tax> {
 
             statement.setInt(1, this.tax.getId());
 
-
             statement.execute();
             conn.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("Tax deleted");
-
 
     }
 
     @Override
     public Tax extractFromResultSet(ResultSet rs) throws SQLException {
-        return null;
+        Tax tax = new Tax();
 
+        tax.setId(rs.getInt("tax_id"));
+        tax.setName(rs.getString("name"));
+        tax.setPercentage(rs.getInt("percentage"));
 
+        return tax;
     }
 
 }

@@ -2,10 +2,7 @@ CREATE TABLE project
 (
     project_id BIGSERIAL PRIMARY KEY,
     name VARCHAR,
-    invoice_id integer,
     contact_id integer,
-    expense_id integer,
-    quotation_id integer,
     created_at TIMESTAMP,
     done BOOLEAN DEFAULT FALSE
 );
@@ -68,7 +65,6 @@ CREATE TABLE contact
     contact_id BIGSERIAL PRIMARY KEY,
     first_name varchar,
     last_name varchar,
-    tel_number integer,
     postal_code varchar,
     street_name varchar,
     house_number varchar,
@@ -85,6 +81,22 @@ CREATE TABLE contact_email
     contact_id integer,
     email_address varchar
 );
+
+-- auto-generated definition
+CREATE TABLE contact_phone
+(
+  id           BIGSERIAL NOT NULL
+    CONSTRAINT contact_phone_pkey
+    PRIMARY KEY,
+  phone_number VARCHAR(20),
+  contact_id   BIGINT
+    CONSTRAINT fk_contact_phone
+    REFERENCES contact
+    ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE UNIQUE INDEX contact_phone_id_uindex
+  ON contact_phone (id);
 
 ALTER TABLE invoice
 ADD CONSTRAINT fk_invoiceproject fOREIGN KEY (project_id)

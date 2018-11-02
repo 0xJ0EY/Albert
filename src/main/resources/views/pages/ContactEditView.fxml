@@ -71,7 +71,7 @@
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="postcode" prefHeight="25.0" prefWidth="146.0" />
+                        <TextField fx:id="postal_code" prefHeight="25.0" prefWidth="146.0" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Woonplaats">
                            <font>
                               <Font size="14.0" />

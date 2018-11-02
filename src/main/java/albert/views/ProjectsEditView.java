@@ -59,7 +59,7 @@ public class ProjectsEditView extends AnchorPane implements PageView {
 
     @FXML
     public void onClickSave() {
-        controller.saveProject(naam.getText(), isDone.isSelected());
+//        controller.saveProject(naam.getText(), isDone.isSelected());
 
 
     }

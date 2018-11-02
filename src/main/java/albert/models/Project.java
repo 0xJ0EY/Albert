@@ -14,58 +14,52 @@ public class Project {
 
     private Contact contact;
 
-    private String status = PaidState.notPaid.toString();
+    private PaidState status = PaidState.NOT_PAID;
 
     private Timestamp created_at;
 
     private Boolean done;
 
+    private Tax tax;
+
+    public int getId() {
+        return id;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
 
-    public Project(String name, String status) {
-        this.name = name; this.status = status;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Contact getContact() {
         return contact;
     }
 
-    public void setContactList(Contact contact) {
-        this.contact = contact;
-    }
-
-    public String isDone() {
-        return status;
-    }
-
-    public void setStatus(String status) { this.status = status; }
-
-
-
-    public void setName(String name) {
-            this.name = name;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
     public void setContact(Contact contact) {
         this.contact = contact;
     }
 
-    public String getStatus() {
+    public PaidState getStatus() {
         return status;
     }
 
-    public int getId() {
-        return this.id;
+    public void setStatus(PaidState status) {
+        this.status = status;
     }
 
     public Timestamp getCreated_at() {
         return created_at;
+    }
+
+    public void setCreated_at(Timestamp created_at) {
+        this.created_at = created_at;
     }
 
     public Boolean getDone() {
@@ -75,4 +69,13 @@ public class Project {
     public void setDone(Boolean done) {
         this.done = done;
     }
+
+    public Tax getTax() {
+        return tax;
+    }
+
+    public void setTax(Tax tax) {
+        this.tax = tax;
+    }
+
 }
