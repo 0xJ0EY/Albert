@@ -46,7 +46,16 @@ public class RapportsDetailView extends AnchorPane implements PageView {
     }
 
     @FXML
-    public void onClickButton() {
-        this.controller.getRouter().nav("home/");
+    public void onClickBack() {
+        this.controller.getRouter().nav("reports/");
+    }
+
+    @FXML
+    public void onClickSave() {
+
+    }
+
+    public void onClickGeneratePdf(){
+
     }
 }
