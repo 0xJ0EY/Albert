@@ -1,6 +1,7 @@
 package albert.views;
 
 import albert.controllers.PageController;
+import albert.controllers.RapportsController;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import router.views.PageView;
@@ -11,7 +12,7 @@ import javafx.scene.layout.AnchorPane;
 public class RapportsDetailView extends AnchorPane implements PageView {
 
     private final String resource = "/views/pages/RapportsDetail.fxml";
-    private PageController controller;
+    private RapportsController controller;
 
     @FXML
     private Button editButton;
@@ -37,7 +38,7 @@ public class RapportsDetailView extends AnchorPane implements PageView {
 
     @Override
     public void setController(PageController controller) {
-        this.controller = controller;
+        this.controller =(RapportsController) controller;
     }
 
     @Override

@@ -34,8 +34,6 @@ public class AmountDAO implements DAO<Amount> {
 
     @Override
     public Amount loadById(long id) {
-         Amount amount = null;
-
         String sql = "SELECT * FROM amount WHERE amount_id = ?";
 
         try {
@@ -43,10 +41,9 @@ public class AmountDAO implements DAO<Amount> {
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setLong(1, id);
             ResultSet rs = statement.executeQuery();
-
             rs.next();
 
-            this.extractFromResultSet(rs);
+            amount = this.extractFromResultSet(rs);
 
 
             conn.close();
@@ -72,7 +69,7 @@ public class AmountDAO implements DAO<Amount> {
                 statement.setInt(1,this.amount.getId());
                 statement.setDouble(2,this.amount.getHours());
                 statement.setDouble(3,this.amount.getPrice());
-                statement.setString(4,this.amount.getContact());
+                statement.setInt(4,this.amount.getContact());
 
                 statement.execute();
 
@@ -97,7 +94,7 @@ public class AmountDAO implements DAO<Amount> {
 
             statement.setDouble(1,this.amount.getHours());
             statement.setDouble(2,this.amount.getPrice());
-            statement.setString(3, this.amount.getContact());
+            statement.setInt(3, this.amount.getContact());
 
             statement.executeUpdate();
             conn.close();
@@ -131,7 +128,12 @@ public class AmountDAO implements DAO<Amount> {
     }
 
     @Override
-    public Object extractFromResultSet(ResultSet rs) throws SQLException {
-        return null;
+    public Amount extractFromResultSet(ResultSet rs) throws SQLException {
+        Amount amount = new Amount(
+                rs.getDouble("price"),
+                rs.getDouble("hours"),
+                rs.getInt("contact_id")
+        );
+        return amount;
     }
 }

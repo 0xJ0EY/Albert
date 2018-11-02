@@ -2,8 +2,10 @@ package albert.dao;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
+import albert.models.Contact;
 import albert.models.Invoice;
 import albert.models.Project;
 import database.Database;
@@ -11,6 +13,9 @@ import database.Database;
 
 public class InvoiceDAO implements DAO<Invoice>{
     private Invoice invoice;
+    private AmountDAO daoAmount = new AmountDAO();
+    private TaxDAO daoTax = new TaxDAO();
+    private ProjectDAO daoProject = new ProjectDAO();
 
 
     @Override
@@ -41,18 +46,16 @@ public class InvoiceDAO implements DAO<Invoice>{
     @Override
     public Invoice loadById(long id) {
 
-        String sql = "SELECT * FROM invoice WHERE id = ?";
+        String sql = "SELECT * FROM invoice WHERE invoice_id = ?";
 
         try {
             Connection conn = Database.getInstance().getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setLong(1, id);
-
             ResultSet rs = statement.executeQuery();
-
             rs.next();
 
-            this.extractFromResultSet(rs);
+            invoice = this.extractFromResultSet(rs);
 
 
             conn.close();
@@ -148,7 +151,14 @@ public class InvoiceDAO implements DAO<Invoice>{
 
     @Override
     public Invoice extractFromResultSet(ResultSet rs) throws SQLException {
-        return null;
+        Invoice invoice = new Invoice();
+        invoice.setPaid(rs.getString("paid"));
+        invoice.setDeliveryDate(rs.getTimestamp("deliverydate"));
+        invoice.setAmount(daoAmount.loadById(rs.getInt("amount_id")));
+        invoice.setDeliveryDate(rs.getTimestamp("deliverydate"));
+        invoice.setTax(daoTax.loadById(rs.getInt("tax_id")));
+        invoice.setProject(daoProject.loadById(rs.getInt("project_id")));
+        return invoice;
     }
 
 

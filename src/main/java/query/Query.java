@@ -73,6 +73,26 @@ public class Query implements Cloneable, Serializable {
         return this;
     }
 
+    public Query join(String table, String key, String operator, String value) {
+        this.queryBuilder.join(table, key, operator, value);
+        return this;
+    }
+
+    public Query leftJoin(String table, String key, String operator, String value) {
+        this.queryBuilder.join(table, key, operator, value);
+        return this;
+    }
+
+    public Query rightJoin(String table, String key, String operator, String value) {
+        this.queryBuilder.join(table, key, operator, value);
+        return this;
+    }
+
+    public Query groupBy(String value) {
+        this.queryBuilder.groupBy(value);
+        return this;
+    }
+
     public Query limit(int limit) {
 
         this.queryBuilder.limit(limit);

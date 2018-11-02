@@ -2,9 +2,6 @@ package albert.views;
 
 import albert.controllers.InvoicesController;
 import albert.controllers.PageController;
-import albert.models.*;
-import albert.services.PdfService;
-import com.itextpdf.text.DocumentException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
@@ -15,9 +12,9 @@ import table.views.TableView;
 
 import java.io.IOException;
 
-public class InvoiceView extends AnchorPane implements PageView {
+public class InvoiceViewPaid extends AnchorPane implements PageView {
 
-    private final String resource = "/views/pages/InvoiceView.fxml";
+    private final String resource = "/views/pages/InvoiceViewPaid.fxml";
     private InvoicesController controller;
 
     @FXML
@@ -43,7 +40,7 @@ public class InvoiceView extends AnchorPane implements PageView {
 
     @Override
     public void update() {
-        Table table = controller.getOverviewTable();
+        Table table = controller.getPaidOverviewTable();
 
         table.fetch();
 
@@ -69,10 +66,8 @@ public class InvoiceView extends AnchorPane implements PageView {
         controller.getRouter().nav("invoices/edit/{invoice}");
     }
 
-
     @FXML
-    public void onClickPaid(){
-        controller.getRouter().nav("invoicespaid/");
+    public void onClickNotPaid(){
+        controller.getRouter().nav("invoices/");
     }
-
 }

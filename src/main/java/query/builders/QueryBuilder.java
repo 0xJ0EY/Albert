@@ -8,26 +8,21 @@ import java.util.ArrayList;
 public class QueryBuilder implements
         SelectQueryBuilderInterface,
         WhereQueryBuilderInterface,
+        JoinQueryBuilderInterface,
         TableQueryBuilderInterface,
+        GroupByQueryBuilderInterface,
         LimitQueryBuilderInterface,
         OffsetQueryBuilderInterface {
 
     private SelectQueryBuilder selectQueryBuilder = new SelectQueryBuilder();
     private TableQueryBuilder tableQueryBuilder = new TableQueryBuilder();
+    private JoinQueryBuilder joinQueryBuilder = new JoinQueryBuilder();
     private WhereQueryBuilder whereQueryBuilder = new WhereQueryBuilder();
+    private GroupByQueryBuilder groupByQueryBuilder = new GroupByQueryBuilder();
     private LimitQueryBuilder limitQueryBuilder = new LimitQueryBuilder();
     private OffsetQueryBuilder offsetQueryBuilder = new OffsetQueryBuilder();
 
     public QueryBuilder() {}
-
-    // Copy constructor
-    public QueryBuilder(QueryBuilder qb) {
-        this.selectQueryBuilder = qb.selectQueryBuilder;
-        this.tableQueryBuilder = qb.tableQueryBuilder;
-        this.whereQueryBuilder = qb.whereQueryBuilder;
-        this.limitQueryBuilder = qb.limitQueryBuilder;
-        this.offsetQueryBuilder = qb.offsetQueryBuilder;
-    }
 
     @Override
     public void select(String key) {
@@ -70,6 +65,21 @@ public class QueryBuilder implements
     }
 
     @Override
+    public void join(String table, String key, String operator, String value) {
+        this.joinQueryBuilder.join(table, key, operator, value);
+    }
+
+    @Override
+    public void leftJoin(String table, String key, String operator, String value) {
+        this.joinQueryBuilder.leftJoin(table, key, operator, value);
+    }
+
+    @Override
+    public void rightJoin(String table, String key, String operator, String value) {
+        this.joinQueryBuilder.rightJoin(table, key, operator, value);
+    }
+
+    @Override
     public void clearWhere() {
         this.whereQueryBuilder.clearWhere();
     }
@@ -82,6 +92,11 @@ public class QueryBuilder implements
     @Override
     public void clearLimit() {
         this.limitQueryBuilder.clearLimit();
+    }
+
+    @Override
+    public void groupBy(String value) {
+        this.groupByQueryBuilder.groupBy(value);
     }
 
     @Override
@@ -103,12 +118,16 @@ public class QueryBuilder implements
 
         query.append(this.tableQueryBuilder.build());
 
+        query.append(this.joinQueryBuilder.build());
+
         String where = this.whereQueryBuilder.build();
 
         if (where.length() > 0) {
             query.append(" WHERE ");
             query.append(where);
         }
+
+        query.append(this.groupByQueryBuilder.build());
 
         query.append(this.limitQueryBuilder.build());
 

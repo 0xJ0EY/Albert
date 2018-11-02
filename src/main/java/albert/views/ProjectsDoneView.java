@@ -4,30 +4,26 @@ import albert.controllers.PageController;
 import albert.controllers.ProjectsController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import router.views.PageView;
+import table.Table;
+import table.views.TableView;
 
-public class ProjectsCreateView extends AnchorPane implements PageView {
+import java.awt.*;
+import java.io.IOException;
+/*
+Hier wordt de prrojects geladen
+ */
 
-    private final String resource = "/views/pages/ProjectEditView.fxml";
+public class ProjectsDoneView extends AnchorPane implements PageView  {
+
+    private final String resource = "/views/pages/ProjectsDone.fxml";
     private ProjectsController controller;
 
     @FXML
-    private TextField naam;
+    private AnchorPane overviewTable;
 
-    @FXML
-    private TextField klant;
 
-    @FXML
-    private CheckBox isDone;
-
-    @FXML
-    private TextArea beschrijving;
-
-    @FXML
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
@@ -37,14 +33,22 @@ public class ProjectsCreateView extends AnchorPane implements PageView {
 
         try {
             loader.load();
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
 
     @Override
     public void update() {
+        Table table = controller.getDoneOverviewTable();
 
+        table.fetch();
+
+        table.update();
+
+        TableView tableView = table.getView();
+
+        this.overviewTable.getChildren().add(tableView.render());
     }
 
     @Override
@@ -57,14 +61,13 @@ public class ProjectsCreateView extends AnchorPane implements PageView {
         return this;
     }
 
-    @FXML
-    public void onClickSave() {
-        controller.saveProject(naam.getText(), isDone.isSelected());
+    public void onClickNewProject(){
+
+        controller.getRouter().nav("projects/create/");
     }
 
     @FXML
-    public void onClickBack() {
+    public void onClickOngoing(){
         controller.getRouter().nav("projects/");
     }
-
 }

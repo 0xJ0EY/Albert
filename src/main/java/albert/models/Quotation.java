@@ -12,7 +12,27 @@ public class Quotation {
     private String description;
     private Timestamp created_at;
     private Project project;
+    private int expectedHours;
 
+    public int getExpectedHours() { return expectedHours; }
+
+    public void setExpectedHours(int expectedHours) { this.expectedHours = expectedHours; }
+
+    /**
+     *
+     * @param name
+     */
+    public Quotation(String name, Amount amount, String product) {
+        this.name = name;
+        this.amount = amount;
+        this.product = product;
+    }
+    public Quotation(String name, String product, String description, Timestamp created_at) {
+        this.name = name;
+        this.product = product;
+        this.description = description;
+        this.created_at = created_at;
+    }
     public void setProduct(String product) {
         this.product = product;
     }
@@ -39,40 +59,15 @@ public class Quotation {
 
     public void setDescription(String description) { this.description = description; }
 
-    public Contact getContact() {
-        return contact;
-    }
-
-    public void setContact(Contact contact) {
-        this.contact = contact;
-    }
-
-    public Amount getBedragen() {
-        return bedragen;
-    }
-
-    public void setBedragen(Amount bedragen) {
-        this.bedragen = bedragen;
-    }
-
     public int getId() { return id; }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    private Contact contact;
-    private Amount bedragen;
 
-    /**
-     *
-     * @param name
-     */
-    public Quotation(String name, Amount amount, String product) {
-        this.name = name;
-        this.amount = amount;
-        this.product = product;
-    }
+
+
 
     public Project getProject() {
         return project;

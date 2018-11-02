@@ -2,8 +2,8 @@ package albert.views;
 
 import albert.controllers.HomeController;
 import albert.controllers.PageController;
-import javafx.fxml.FXML;
-import albert.models.Invoice;
+import albert.models.*;
+import com.itextpdf.text.DocumentException;
 import albert.services.PdfService;
 import router.views.PageView;
 import javafx.fxml.FXMLLoader;
