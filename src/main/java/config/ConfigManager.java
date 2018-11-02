@@ -115,17 +115,29 @@ public class ConfigManager {
     private void loadConfigFiles() {
 
         // TODO: Auto import via factory?
+
+        // General config
         IniStrategy configStrategy = new IniStrategy();
 
         configStrategy.load(ROOT, "config.ini");
 
         this.config.addConfig(configStrategy, "config");
 
+
+        // Database
         IniStrategy databaseStrategy = new IniStrategy();
 
         databaseStrategy.load(ROOT, "database.ini");
 
         this.config.addConfig(databaseStrategy, "database");
+
+
+        // Table
+        IniStrategy tableStrategy = new IniStrategy();
+
+        tableStrategy.load(ROOT, "table.ini");
+
+        this.config.addConfig(tableStrategy, "table");
     }
 
     private String toConfigName(String env) {

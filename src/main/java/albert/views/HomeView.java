@@ -33,6 +33,13 @@ public class HomeView extends AnchorPane implements PageView {
 
     @Override
     public void update() {
+
+        this.controller.getTemplate().addAction("Projects", () -> controller.getRouter().nav("projects/"));
+
+        this.controller.getTemplate().addAction("Invoices", () -> controller.getRouter().nav("invoices/"));
+
+        this.controller.getTemplate().addAction("Reports", () -> controller.getRouter().nav("reports/"));
+
     }
 
     @Override
@@ -47,18 +54,17 @@ public class HomeView extends AnchorPane implements PageView {
 
 
     public void clickOnProjects(){
-        controller.getRouter().nav("projects/1/");
+        controller.getRouter().nav("projects/");
     }
 
 
     public void clickOnInvoices(){
-       controller.getRouter().nav("invoices/detail/1");
-
+        controller.getRouter().nav("invoices/");
     }
 
 
     public void clickOnReports(){
-        controller.getRouter().nav("reports/1");
+        controller.getRouter().nav("reports/");
     }
 
 

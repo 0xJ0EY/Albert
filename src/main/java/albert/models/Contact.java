@@ -1,7 +1,12 @@
 package albert.models;
 
 
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Contact {
@@ -14,7 +19,7 @@ public class Contact {
 
     private String lastName;
 
-    private String telephoneNumber;
+    private int telephoneNumber;
 
     private String postcode;
 
@@ -30,17 +35,20 @@ public class Contact {
 
     private String woonplaats;
 
-    private Date created_at;
+    private Timestamp created_at;
 
-    public java.sql.Date getCreated_at() {
-        return (java.sql.Date) created_at;
+    public Timestamp getCreated_at() {
+        return created_at;
+
+
+
     }
 
-    public void setCreated_at(Date created_at) {
+    public void setCreated_at(Timestamp created_at) {
         this.created_at = created_at;
     }
 
-    private Project project;
+    private ArrayList<Project> project;
 
     public ArrayList<ContactEmail> getEmail() {
         return email;
@@ -86,20 +94,33 @@ public class Contact {
      * @param straatnaam
      * @param woonplaats
      */
-    public Contact(String firstName, String lastName, String housenumber, String telephoneNumber, String postcode,ArrayList<String> email, String website, String beschrijving, String straatnaam, String woonplaats) {
+    public Contact(String firstName, String lastName, String housenumber, String telephoneNumber, String postcode,ArrayList<ContactEmail>email, String website, String beschrijving, String straatnaam, String woonplaats, Timestamp created_at) {
         this.name = firstName + " " +lastName;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.telephoneNumber = telephoneNumber;
+        this.telephoneNumber = Integer.valueOf(telephoneNumber);
         this.postcode = postcode;
-        //TODO fix email connection wiith contactemail
         this.website = website;
         this.beschrijving = beschrijving;
         this.straatnaam = straatnaam;
         this.houseNumber = housenumber;
         this.woonplaats = woonplaats;
+        this.created_at= created_at;
     }
 
+    public Contact(String firstName, String lastName, String housenumber, String telephoneNumber, String postcode,ArrayList<ContactEmail>email, String website, String beschrijving, String straatnaam, String woonplaats) {
+        this.name = firstName + " " + lastName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.telephoneNumber = Integer.valueOf(telephoneNumber);
+        this.postcode = postcode;
+        this.website = website;
+        this.beschrijving = beschrijving;
+        this.straatnaam = straatnaam;
+        this.houseNumber = housenumber;
+        this.woonplaats = woonplaats;
+
+    }
     public String getHouseNumber() {
         return houseNumber;
     }
@@ -128,11 +149,11 @@ public class Contact {
         this.lastName = lastName;
     }
 
-    public String getTelephoneNumber() {
+    public int getTelephoneNumber() {
         return telephoneNumber;
     }
 
-    public void setTelephoneNumber(String telephoneNumber) {
+    public void setTelephoneNumber(int telephoneNumber) {
         this.telephoneNumber = telephoneNumber;
     }
 
@@ -187,11 +208,11 @@ public class Contact {
         return this.id;
     }
 
-    public Project getProject() {
+    public ArrayList<Project> getProject() {
         return project;
     }
 
-    public void setProject(Project project) {
+    public void setProject(ArrayList<Project> project) {
         this.project = project;
     }
 }

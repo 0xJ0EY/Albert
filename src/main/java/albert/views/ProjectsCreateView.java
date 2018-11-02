@@ -2,38 +2,32 @@ package albert.views;
 
 import albert.controllers.PageController;
 import albert.controllers.ProjectsController;
-import albert.models.Project;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import router.views.PageView;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import router.views.PageView;
 
 public class ProjectsCreateView extends AnchorPane implements PageView {
 
     private final String resource = "/views/pages/ProjectEditView.fxml";
     private ProjectsController controller;
-    private Project project;
 
     @FXML
-    private TextField name;
+    private TextField naam;
 
     @FXML
-    private Button klant;
+    private TextField klant;
 
     @FXML
-    private RadioButton afgerondJa;
+    private CheckBox isDone;
 
     @FXML
-    private RadioButton afgerondNee;
+    private TextArea beschrijving;
 
     @FXML
-    private TextField beschrijving;
-
-
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
@@ -64,12 +58,13 @@ public class ProjectsCreateView extends AnchorPane implements PageView {
     }
 
     @FXML
-    public void clickOnSave(ActionEvent event){
-        System.out.println("Click on Save");
-
-        controller.saveProject(name.getText(), afgerondJa.isSelected());
-
+    public void onClickSave() {
+        controller.saveProject(naam.getText(), isDone.isSelected());
     }
 
+    @FXML
+    public void onClickBack() {
+        controller.getRouter().nav("projects/");
+    }
 
 }

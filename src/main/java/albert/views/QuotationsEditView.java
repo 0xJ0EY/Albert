@@ -1,6 +1,7 @@
 package albert.views;
 
 import albert.controllers.PageController;
+import albert.controllers.QuotationsController;
 import javafx.scene.control.TextField;
 import router.views.PageView;
 import javafx.fxml.FXML;
@@ -10,7 +11,7 @@ import javafx.scene.layout.AnchorPane;
 public class QuotationsEditView extends AnchorPane implements PageView {
 
     private final String resource = "/views/pages/QuotationsEditView.fxml";
-    private PageController controller;
+    private QuotationsController controller;
 
     @FXML
     private TextField naamBar;
@@ -46,7 +47,7 @@ public class QuotationsEditView extends AnchorPane implements PageView {
 
     @Override
     public void setController(PageController controller) {
-        this.controller = controller;
+        this.controller =(QuotationsController) controller;
     }
 
     @Override
@@ -55,7 +56,12 @@ public class QuotationsEditView extends AnchorPane implements PageView {
     }
 
     @FXML
-    public void onClickButton() {
-        this.controller.getRouter().nav("home/");
+    public void onClickBack() {
+        this.controller.getRouter().nav("quotations/");
+    }
+
+    @FXML
+    public void onClickSave() {
+
     }
 }

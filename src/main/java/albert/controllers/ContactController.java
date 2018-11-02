@@ -2,6 +2,7 @@ package albert.controllers;
 
 import albert.dao.ContactDAO;
 import albert.models.Contact;
+import albert.models.ContactEmail;
 import query.Query;
 import router.pages.CreatePage;
 import router.pages.EditPage;
@@ -14,18 +15,22 @@ import router.response.Response;
 import router.response.ViewResponse;
 import table.Column;
 import table.Table;
-import table.factories.cells.TextCellViewFactory;
+import table.factories.cells.RouteCellFactory;
+import table.factories.cells.TextCellFactory;
 import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
+import table.views.tables.components.TableButton;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class ContactController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
 
     private ContactDAO dao = new ContactDAO();
 
     private Contact contact;
+    private ContactEmail ContactEmail;
 
     /**
      *
@@ -43,63 +48,53 @@ public class ContactController extends PageController implements OverviewPage, D
      *
      * @return
      */
+
     public Table getOverviewTable(){
         Table table = new Table(
-                new DatabaseStrategy(Query.table("customer")),
+                new DatabaseStrategy(Query.table("contact")),
                 new SearchTableView()
         );
 
-        table.addCol(new Column("customer_id::text",
-                new LeftHeaderViewFactory("Contact ID"),
-                new TextCellViewFactory())
-        );
-
-        table.addCol(new Column("f_name",
+        table.addCol(new Column("first_name",
                 new LeftHeaderViewFactory("Voornaam"),
-                new TextCellViewFactory())
+                new RouteCellFactory("contacts/details/{contact_id}/", this))
         );
 
-        table.addCol(new Column("b_name",
+        table.addCol(new Column("last_name",
                 new LeftHeaderViewFactory("Achternaam"),
-                new TextCellViewFactory())
+                new TextCellFactory())
         );
 
         table.addCol(new Column("tel_number::text",
                 new LeftHeaderViewFactory("Telefoonnummer"),
-                new TextCellViewFactory())
-        );
-
-        table.addCol(new Column("email_address::text",
-                new LeftHeaderViewFactory("E-Mail adres"),
-                new TextCellViewFactory())
+                new TextCellFactory())
         );
 
         table.addCol(new Column("postal_code::text",
                 new LeftHeaderViewFactory("Postcode"),
-                new TextCellViewFactory())
+                new TextCellFactory())
         );
 
         table.addCol(new Column("street_name::text",
                 new LeftHeaderViewFactory("Straatnaam"),
-                new TextCellViewFactory())
+                new TextCellFactory())
         );
 
-        table.addCol(new Column("house_nr::text",
+        table.addCol(new Column("house_number::text",
                 new LeftHeaderViewFactory("Huisnummer"),
-                new TextCellViewFactory())
+                new TextCellFactory())
         );
 
         table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
                 new LeftHeaderViewFactory("Aangemaakt op"),
-                new TextCellViewFactory())
+                new TextCellFactory())
         );
 
-        table.addCol(new Column("TO_CHAR(updated_at, 'DD-MM-YYYY')",
-                new LeftHeaderViewFactory("Aangepast op"),
-                new TextCellViewFactory())
-        );
+        table.addButton(new TableButton("Toevoegen", () -> {
+            this.router.nav("home/");
+        }));
 
-        return  table;
+        return table;
     }
 
     @Override
@@ -137,7 +132,20 @@ public class ContactController extends PageController implements OverviewPage, D
      * @param place
      */
     public void saveContact(String firstName, String lastName, String houseNumber, String telephone, String postcode, ArrayList<String> email, String website, String description, String streetName, String place) {
-        contact = new Contact(firstName,  lastName,  houseNumber,  telephone,  postcode,  email,  website,  description,  streetName,  place);
+
+        ArrayList<ContactEmail> contactEmails= new ArrayList<ContactEmail>();
+        for(int i= 0; i < email.size();i++){
+            ContactEmail contactEmail= new ContactEmail(email.get(i));
+            contactEmails.add(contactEmail);
+        }
+
+
+        Calendar calendar = Calendar.getInstance();
+        java.util.Date now = calendar.getTime();
+        java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
+
+
+        contact = new Contact(firstName,  lastName,  houseNumber,  telephone,  postcode,  contactEmails,  website,  description,  streetName,  place,currentTimestamp );
         dao.create(contact);
     }
 
@@ -156,7 +164,12 @@ public class ContactController extends PageController implements OverviewPage, D
      */
     public void editContact(String firstName, String lastName, String houseNumber, String telephone, String postcode, ArrayList<String> email, String website, String description, String streetName, String place){
 
-        contact= new Contact(firstName,  lastName,  houseNumber,  telephone,  postcode,  email,  website,  description,  streetName,  place);
+        ArrayList<ContactEmail> contactEmails=null;
+        for(int i= 0; i < email.size();i++){
+            ContactEmail contactEmail= new ContactEmail(email.get(i));
+            contactEmails.add(contactEmail);
+        }
+        contact= new Contact(firstName,  lastName,  houseNumber,  telephone,  postcode,contactEmails,  website,  description,  streetName,  place);
         dao.update(contact);
     }
 

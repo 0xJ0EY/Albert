@@ -6,8 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/*
-Dit DAO klas zorgt voor het omgaan met de data, zodat de gebruiker create, update, delete ,load kan deon.
+/**
+ * Interface for standard mehtods for an dao
+ * @param <T>
  */
 public interface DAO<T> {
 

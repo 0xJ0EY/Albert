@@ -9,3 +9,25 @@
 .table .odd {
     -fx-background-color: #ffffff;
 }
+
+.nav_button {
+    -fx-cursor: hand;
+}
+
+.nav_button VBox Label {
+    -fx-text-fill: #6CB0E5;
+}
+
+.nav_button:hover VBox Label {
+    -fx-text-fill: #4d739a;
+}
+
+.pagination_btn {
+    -fx-padding: 3 8 3 8;
+}
+
+.pagination_btn.selected {
+    -fx-background-color: linear-gradient(#29b4fe, #1fa8f1);
+    -fx-text-fill: #fefefe;
+
+}

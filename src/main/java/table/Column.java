@@ -1,28 +1,30 @@
 package table;
 
-import table.factories.cells.CellViewFactory;
+import table.cells.Cell;
+import table.factories.cells.CellFactory;
 import table.factories.header.HeaderViewFactory;
-import table.views.CellView;
 import table.views.HeaderView;
+
+import java.util.ArrayList;
 
 public class Column {
 
     private String databaseColumn;
     private HeaderViewFactory headerViewFactory;
-    private CellViewFactory viewFactory;
+    private CellFactory cellFactory;
 
     public Column(
         String databaseColumn,
         HeaderViewFactory headerViewFactory,
-        CellViewFactory viewFactory
+        CellFactory cellFactory
     ) {
         this.databaseColumn = databaseColumn;
         this.headerViewFactory = headerViewFactory;
-        this.viewFactory = viewFactory;
+        this.cellFactory = cellFactory;
     }
 
-    public CellView getView() {
-        return this.viewFactory.create();
+    public Cell getCell() {
+        return this.cellFactory.create();
     }
 
     public HeaderView getHeaderView() {
@@ -30,10 +32,23 @@ public class Column {
     }
 
     public boolean match(Object object) {
-        return this.getView().match(object);
+        // TODO: Refactor
+
+        return true;
+//        return this.getView().match(object);
     }
 
     public String getDatabaseColumn() {
         return databaseColumn;
+    }
+
+    public ArrayList<String> getRequiredDatabaseColumns() {
+        ArrayList<String> list = new ArrayList<>();
+
+        list.add(this.getDatabaseColumn());
+
+        list.addAll(this.getCell().getExtraColumns());
+
+        return list;
     }
 }

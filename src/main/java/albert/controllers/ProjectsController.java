@@ -6,6 +6,7 @@ import albert.models.PaidState;
 import query.Query;
 import albert.dao.ProjectDAO;
 import albert.models.Project;
+import router.pages.CreatePage;
 import router.pages.EditPage;
 import router.pages.OverviewPage;
 import router.templates.TemplateController;
@@ -16,12 +17,12 @@ import router.response.Response;
 import router.response.ViewResponse;
 import table.Column;
 import table.Table;
-import table.factories.cells.TextCellViewFactory;
+import table.factories.cells.TextCellFactory;
 import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
 
-public class ProjectsController extends PageController implements OverviewPage, DetailPage, EditPage {
+public class ProjectsController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
 
     ProjectDAO dao = new ProjectDAO();
     ContactDAO contactDAO = new ContactDAO();
@@ -45,27 +46,27 @@ public class ProjectsController extends PageController implements OverviewPage, 
 
         table.addCol(new Column("project_id::text",
                 new LeftHeaderViewFactory("Project ID"),
-                new TextCellViewFactory())
+                new TextCellFactory())
         );
 
-        table.addCol(new Column("project_naam",
+        table.addCol(new Column("name",
                 new LeftHeaderViewFactory("Naam"),
-                new TextCellViewFactory())
+                new TextCellFactory())
         );
 
         table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
                 new LeftHeaderViewFactory("Aangemaakt op"),
-                new TextCellViewFactory())
+                new TextCellFactory())
         );
 
-        table.addCol(new Column("finished::text",
+        table.addCol(new Column("done::text",
                 new LeftHeaderViewFactory("Afgerond"),
-                new TextCellViewFactory())
+                new TextCellFactory())
         );
 
         return  table;
     }
-
+  
     @Override
     public Response overview(Request request) {
         return new ViewResponse(this);
@@ -95,4 +96,9 @@ public class ProjectsController extends PageController implements OverviewPage, 
         dao.update(project);
     }
 
+    @Override
+    public Response create(Request request) {
+        return new ViewResponse(this);
+
+    }
 }

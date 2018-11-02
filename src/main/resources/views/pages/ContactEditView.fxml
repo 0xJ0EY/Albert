@@ -11,16 +11,16 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<fx:root style="-fx-background-color: white;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="630.0" prefWidth="1020.0" style="-fx-background-color: f2f2f2;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox prefHeight="630.0" prefWidth="1020.0" spacing="15.0">
+      <VBox layoutX="104.0" layoutY="78.0" prefHeight="474.0" prefWidth="803.0" spacing="15.0">
          <children>
-            <Label text="Contact Toevoegen">
+            <Label text="Contact Aanpassen">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <VBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="305.0" prefWidth="1020.0" style="-fx-background-color: white;">
+            <VBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="305.0" prefWidth="1020.0" style="-fx-background-color: f2f2f2;">
                <children>
                   <HBox alignment="BASELINE_LEFT" prefHeight="31.0" prefWidth="1020.0" spacing="10.0">
                      <children>

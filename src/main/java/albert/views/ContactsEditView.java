@@ -9,6 +9,7 @@ import router.views.PageView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 public class ContactsEditView extends AnchorPane implements PageView {
@@ -83,15 +84,14 @@ public class ContactsEditView extends AnchorPane implements PageView {
         return this;
     }
 
-    public void onClickSave(){
+    public void onClickSave(ActionEvent event){
         emails = new ArrayList<String>();
         emails.add(email.getText());
         controller.saveContact(firstName.getText(), lastName.getText(),houseNumber.getText(),telephone.getText(),postcode.getText(),emails ,website.getText(),description.getText(),streetName.getText(),place.getText());
     }
 
     @FXML
-    public void onClickBack(){
-        controller.getRouter().nav("contacts/1");
-    }
+    public void onClickBack(){ controller.getRouter().nav("contacts/"); }
+
 
 }

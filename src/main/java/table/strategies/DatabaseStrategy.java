@@ -9,6 +9,7 @@ import query.Record;
 import table.enumerations.OrderBy;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class DatabaseStrategy implements DataStrategy {
 
@@ -17,11 +18,11 @@ public class DatabaseStrategy implements DataStrategy {
 
     private Table table;
 
-    private int page;
+    private int page = 1;
     private int total = 0;
 
     private int offset = 0;
-    private int limit = Integer.parseInt(Config.get("database", "settings.default_rows"));
+    private int limit = Integer.parseInt(Config.get("table", "settings.default_rows"));
 
     public DatabaseStrategy(Query query) {
         this.baseQuery = (Query) SerializationUtils.clone(query);
@@ -31,6 +32,11 @@ public class DatabaseStrategy implements DataStrategy {
     @Override
     public int getMaxPage() {
         return (int) Math.ceil((double) this.total / this.limit);
+    }
+
+    @Override
+    public int getPage() {
+        return this.page;
     }
 
     @Override
@@ -59,12 +65,16 @@ public class DatabaseStrategy implements DataStrategy {
 
         this.currentRows();
 
+        this.table.loaded();
+
+        this.table.update();
+
     }
 
     private void fetchRows() {
         Query searchQuery = this.baseQuery;
 
-        // Set limit and offset
+        // Set setLimit and offset
         searchQuery
             .clearSelect()
             .limit(this.limit)
@@ -74,14 +84,21 @@ public class DatabaseStrategy implements DataStrategy {
         // Build select statements
         ArrayList<Column> columns = this.table.getCols();
 
+
+        HashSet<String> cols = new HashSet<>();
+
         for (Column column : columns) {
-            searchQuery.select(column.getDatabaseColumn(), String.class);
+            cols.addAll(column.getRequiredDatabaseColumns());
+        }
+
+        for (String col : cols) {
+            searchQuery.select(col);
         }
 
         ArrayList<Record> records = searchQuery.fetch();
 
         for (Record record : records) {
-            this.table.addRow(record.getObjects().toArray());
+            this.table.addRow(record.getValues());
         }
     }
 
@@ -95,7 +112,7 @@ public class DatabaseStrategy implements DataStrategy {
             .clearOffset()
         ;
 
-        countQuery.select("COUNT(*)", Integer.class);
+        countQuery.select("COUNT(*)");
 
         Record record = countQuery.fetch().get(0);
 
@@ -131,5 +148,15 @@ public class DatabaseStrategy implements DataStrategy {
             return query;
         });
 
+    }
+
+    @Override
+    public void setLimit(int limit) {
+        this.limit = limit;
+    }
+
+    @Override
+    public int getLimit() {
+        return this.limit;
     }
 }

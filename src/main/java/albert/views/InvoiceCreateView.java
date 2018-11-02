@@ -67,8 +67,11 @@ public class InvoiceCreateView extends AnchorPane implements PageView {
     }
 
     @FXML
-    public void clickOnSave(ActionEvent event){
+    public void onClickSave(ActionEvent event){
         System.out.println("Click on Save");
         controller.saveInvoice(name.getText(), price.getText(), hours.getText(), contact.getText(), delivery.getText());
     }
+
+    @FXML
+    public void onClickBack(ActionEvent event) { controller.getRouter().nav("invoice/1");   }
 }

@@ -2,28 +2,33 @@ package table.views.tables;
 
 import config.Config;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import table.Column;
 import table.Row;
 import table.Table;
-import table.Cell;
-import table.exceptions.ViewNotFoundException;
+import table.cells.Cell;
 import table.views.CellView;
 import table.views.HeaderView;
 import table.views.TableView;
 import table.views.column.ColumnView;
+import table.views.tables.components.NextButton;
+import table.views.tables.components.PaginationButton;
+import table.views.tables.components.PreviousButton;
 
 import java.util.ArrayList;
 
 public abstract class BaseTableView extends AnchorPane implements TableView {
 
     protected Table table;
-    protected final String descriptionContent = Config.get("database", "text.description");
+    protected final String descriptionContent = Config.get("table", "text.description");
 
     protected ArrayList<ColumnView> columns = new ArrayList<>();
+
+    @FXML
+    protected ScrollPane tableContainer;
 
     @FXML
     protected HBox container;
@@ -32,15 +37,42 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
     protected HBox paginationContainer;
 
     @FXML
+    protected HBox buttonContainer;
+
+    @FXML
     protected Text description;
+
+    @FXML
+    protected HBox overlay;
+
+    @FXML
+    protected Text status;
 
     public abstract void load();
 
     @Override
     public void update() {
 
+        // Update overlay text
+        this.updateOverlay();
+
+        // Show the overlay
+        this.showOverlay();
+
+        // Scroll up
+        this.scrollUp();
+
+        // Create pagination
+        this.createPagination();
+
+        // Create buttons
+        this.createButtons();
+
         // Create cells
         this.createColumns();
+
+        // Update the text below
+        this.updateText();
 
         // Create headers
         this.createHeaders();
@@ -51,12 +83,35 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
         // Actually render the table to the view
         this.updateTable();
 
-        // Update the text below
-        this.updateText();
+        // Hide table if the status is loaded and we have more then 0 rows
+        if (this.table.isLoaded() && this.table.getTotalRows() > 0)
+            this.hideOverlay();
 
-        // Create pagination
-        this.createPagination();
+    }
 
+    private void scrollUp() {
+        this.tableContainer.setVvalue(0);
+    }
+
+    private void updateOverlay() {
+        String status;
+
+        if (this.table.isLoaded()) {
+            status = Config.get("table", "text.table_no_data");
+
+        } else {
+            status = Config.get("table", "text.table_loading");
+        }
+
+        this.status.setText(status);
+    }
+
+    private void showOverlay() {
+        this.overlay.setVisible(true);
+    }
+
+    private void hideOverlay() {
+        this.overlay.setVisible(false);
     }
 
 
@@ -114,9 +169,9 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
 
             ArrayList<Cell> values = row.getCells();
 
-            for (Cell value : values) {
+            for (Cell cell : values) {
 
-                CellView view = value.getView();
+                CellView view = cell.getView();
 
                 view.load();
 
@@ -137,6 +192,8 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
 
     private void createPagination() {
 
+        this.paginationContainer.getChildren().clear();
+
         this.createPreviousButton();
         this.createPageNumberButtons();
         this.createNextButton();
@@ -145,26 +202,55 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
 
     private void createPreviousButton() {
 
+        PreviousButton button = new PreviousButton(1, this.table.getPage(), this.table);
+
+        this.paginationContainer.getChildren().add(button);
+
     }
 
     private void createPageNumberButtons() {
 
         int minPage = 1;
         int maxPage = this.table.getMaxPage();
+        int maxConfigPage = Integer.valueOf(Config.get("table", "settings.default_page_count"));
 
-        this.paginationContainer.getChildren().clear();
+        int maxConfigSide = (int) Math.ceil((maxConfigPage - 1) / 2);
 
-        for (int i = minPage; i <= maxPage; i++) {
+        int page = this.table.getPage();
 
-            PaginationButton nextButton = new PaginationButton(Integer.toString(i), i, this.table);
+        int left = Math.min(page - minPage, maxConfigSide);
+        int right = Math.min(maxPage - page, maxConfigSide);
+
+        int leftOffset = Math.min(left + (maxConfigSide - right), page - minPage);
+        int rightOffset = Math.min(right + (maxConfigSide - left), maxPage - page);
 
 
-            this.paginationContainer.getChildren().add(nextButton);
+        for (int start = page - leftOffset; start <= page + rightOffset; start++) {
+            PaginationButton button = new PaginationButton(Integer.toString(start), start, this.table);
+
+            // Add selected tag
+            if (start == page)
+                button.getStyleClass().add("selected");
+
+            this.paginationContainer.getChildren().add(button);
+        }
+
+    }
+
+    public void createButtons() {
+        this.buttonContainer.getChildren().clear();
+
+        for (Button button : this.table.getButtons()) {
+            this.buttonContainer.getChildren().add(button);
         }
 
     }
 
     private void createNextButton() {
+
+        NextButton button = new NextButton(this.table.getMaxPage(), this.table.getPage(), this.table);
+
+        this.paginationContainer.getChildren().add(button);
 
     }
 

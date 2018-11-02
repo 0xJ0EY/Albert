@@ -2,7 +2,7 @@ package albert.models;
 
 public class Tax {
 
-    private String id;
+    private int id;
     private int percentage;
     private String name;
     private double taxPart;
@@ -11,11 +11,10 @@ public class Tax {
         this.name = name;
         this.percentage = percentage; }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
-
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

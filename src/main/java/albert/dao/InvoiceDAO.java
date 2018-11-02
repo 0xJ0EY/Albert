@@ -1,9 +1,6 @@
 package albert.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,13 +41,11 @@ public class InvoiceDAO implements DAO<Invoice>{
     @Override
     public Invoice loadById(long id) {
 
-        String sql = "SELECT * FROM invocie WHERE id = ?";
+        String sql = "SELECT * FROM invoice WHERE id = ?";
 
         try {
             Connection conn = Database.getInstance().getConnection();
-
             PreparedStatement statement = conn.prepareStatement(sql);
-
             statement.setLong(1, id);
 
             ResultSet rs = statement.executeQuery();
@@ -73,11 +68,9 @@ public class InvoiceDAO implements DAO<Invoice>{
 
     @Override
     public void create(Invoice obj) {
-    this.invoice = invoice;
+    this.invoice = obj;
         //TODO sql insert schrijven
-        String sql = "INSERT INTO invoice VALUES (invoice_id=?, paid=? ,created_at= ?, amount=?, deliverydate=?);";
-
-
+        String sql = "INSERT INTO invoice VALUES (invoice_id=?, paid=? ,tax_id= ?,project_id=?, amount_id ,created_at=? , deliverydate=?);";
 
         try {
             Connection conn = Database.getInstance().getConnection();
@@ -85,10 +78,13 @@ public class InvoiceDAO implements DAO<Invoice>{
             PreparedStatement statement = conn.prepareStatement(sql);
 
             statement.setInt(1,this.invoice.getId());
-            statement.setBoolean(2,true);
-            statement.setTimestamp(3, null);
-            statement.setString(4,null);
-            statement.setTime(5,null);
+
+            statement.setString(2,this.invoice.getPaid());
+            statement.setInt(3, this.invoice.getTax().getId());
+            statement.setInt(4,  this.invoice.getProject().getId());
+            statement.setInt(5,this.invoice.getAmount().getId());
+            statement.setTime(6,(Time) this.invoice.getCreated_at());
+            statement.setTimestamp(7, this.invoice.getDeliveryDate());
 
             statement.execute();
             conn.close();
@@ -101,19 +97,22 @@ public class InvoiceDAO implements DAO<Invoice>{
     
     @Override
     public void update(Invoice obj) {
-        this.invoice = invoice;
+        this.invoice = obj;
         //TODO sql update schrijven
-        String sql = "UPDATE invoice SET paid=? , amount =? ,deliverydate=?, created_at=? WHERE invoice_id =?";
+        String sql = "UPDATE invoice SET ( paid=? ,tax_id= ?,project_id=?, amount_id=? ,created_at=? , deliverydate=?)WHERE invoice_id =?";
 
         try {
             Connection conn = Database.getInstance().getConnection();
 
             PreparedStatement statement = conn.prepareStatement(sql);
 
+
+            statement.setString(1,this.invoice.getPaid());
+            statement.setInt(2, this.invoice.getTax().getId());
+            statement.setInt(3, this.invoice.getProject().getId());
+            statement.setInt(4 ,this.invoice.getAmount().getId());
+            statement.setTimestamp(4, this.invoice.getDeliveryDate());
             statement.setInt(4,this.invoice.getId());
-            statement.setBoolean(1,true);
-            statement.setString(2 ,null);
-            statement.setTime(3, null);
 
             statement.executeUpdate();
             conn.close();
@@ -127,7 +126,7 @@ public class InvoiceDAO implements DAO<Invoice>{
 
     @Override
     public void delete(Invoice obj) {
-        this.invoice = invoice;
+        this.invoice = obj;
         //TODO sql delete schrijven
         String sql = "DELETE FROM invoice WHERE invoice_id =?";
         try {
