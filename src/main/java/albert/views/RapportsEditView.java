@@ -1,6 +1,7 @@
 package albert.views;
 
 import albert.controllers.PageController;
+import albert.controllers.RapportsController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -11,7 +12,7 @@ import javafx.scene.layout.AnchorPane;
 public class RapportsEditView extends AnchorPane implements PageView {
 
     private final String resource = "/views/pages/RapportsEdit.fxml";
-    private PageController controller;
+    private RapportsController controller;
 
     @FXML
     private TextField QuarterYear;
@@ -55,7 +56,7 @@ public class RapportsEditView extends AnchorPane implements PageView {
 
     @Override
     public void setController(PageController controller) {
-        this.controller = controller;
+        this.controller =(RapportsController) controller;
     }
 
     @Override

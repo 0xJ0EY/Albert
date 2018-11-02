@@ -24,12 +24,12 @@
             </Label>
             <HBox prefHeight="27.0" prefWidth="239.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="86.0" prefWidth="99.0" style="-fx-background-color: white;">
+                  <VBox onMouseClicked="#onClickOngoing" prefHeight="86.0" prefWidth="99.0" style="-fx-background-color: dedede; -fx-alignment: CENTER;">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lopend" wrappingWidth="58.22607421875" />
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" onMouseClicked="#onClickDone" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: dedede;">
+                  <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white; -fx-alignment: CENTER;">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Afgerond" wrappingWidth="58.22607421875" />
                      </children>

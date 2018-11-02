@@ -2,11 +2,10 @@ package albert.views;
 
 import albert.controllers.PageController;
 import albert.controllers.ProjectsController;
-import router.pages.CreatePage;
-import router.views.PageView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+import router.views.PageView;
 import table.Table;
 import table.views.TableView;
 
@@ -16,16 +15,14 @@ import java.io.IOException;
 Hier wordt de prrojects geladen
  */
 
-public class ProjectsView extends AnchorPane implements PageView  {
+public class ProjectsDoneView extends AnchorPane implements PageView  {
 
-    private final String resource = "/views/pages/Projects.fxml";
+    private final String resource = "/views/pages/ProjectsDone.fxml";
     private ProjectsController controller;
 
     @FXML
     private AnchorPane overviewTable;
 
-    @FXML
-    private Button editButton;
 
     @Override
     public void load() {
@@ -70,7 +67,7 @@ public class ProjectsView extends AnchorPane implements PageView  {
     }
 
     @FXML
-    public void onClickDone(){
-        controller.getRouter().nav("projectsdone/");
+    public void onClickOngoing(){
+        controller.getRouter().nav("projects/");
     }
 }

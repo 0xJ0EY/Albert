@@ -1,31 +1,27 @@
 package albert.views;
 
+import albert.controllers.InvoicesController;
 import albert.controllers.PageController;
-import albert.controllers.ProjectsController;
-import router.pages.CreatePage;
-import router.views.PageView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import router.views.PageView;
 import table.Table;
 import table.views.TableView;
 
-import java.awt.*;
 import java.io.IOException;
-/*
-Hier wordt de prrojects geladen
- */
 
-public class ProjectsView extends AnchorPane implements PageView  {
+public class InvoiceViewPaid extends AnchorPane implements PageView {
 
-    private final String resource = "/views/pages/Projects.fxml";
-    private ProjectsController controller;
+    private final String resource = "/views/pages/InvoiceViewPaid.fxml";
+    private InvoicesController controller;
 
     @FXML
     private AnchorPane overviewTable;
 
     @FXML
-    private Button editButton;
+    private TextField searchform;
 
     @Override
     public void load() {
@@ -40,6 +36,7 @@ public class ProjectsView extends AnchorPane implements PageView  {
             ex.printStackTrace();
         }
     }
+
 
     @Override
     public void update() {
@@ -56,7 +53,7 @@ public class ProjectsView extends AnchorPane implements PageView  {
 
     @Override
     public void setController(PageController controller) {
-        this.controller = (ProjectsController)controller;
+        this.controller = (InvoicesController)controller;
     }
 
     @Override
@@ -64,13 +61,13 @@ public class ProjectsView extends AnchorPane implements PageView  {
         return this;
     }
 
-    public void onClickNewProject(){
-
-        controller.getRouter().nav("projects/create/");
+    @FXML
+    public void onClickAddInvoice(){
+        controller.getRouter().nav("invoices/edit/{invoice}");
     }
 
     @FXML
-    public void onClickDone(){
-        controller.getRouter().nav("projectsdone/");
+    public void onClickNotPaid(){
+        controller.getRouter().nav("invoices/");
     }
 }

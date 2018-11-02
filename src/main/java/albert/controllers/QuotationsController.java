@@ -3,6 +3,7 @@ package albert.controllers;
 import albert.dao.QuotationDAO;
 import albert.models.Amount;
 import albert.models.Quotation;
+import query.Query;
 import router.Request;
 import router.pages.CreatePage;
 import router.pages.DetailPage;
@@ -12,6 +13,14 @@ import router.response.Response;
 import router.response.ViewResponse;
 import router.templates.TemplateController;
 import router.views.PageView;
+import table.Column;
+import table.Table;
+import table.factories.cells.RouteCellFactory;
+import table.factories.cells.TextCellFactory;
+import table.factories.header.LeftHeaderViewFactory;
+import table.strategies.DatabaseStrategy;
+import table.views.tables.SearchTableView;
+import table.views.tables.components.TableButton;
 
 
 public class QuotationsController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
@@ -22,6 +31,40 @@ public class QuotationsController extends PageController implements OverviewPage
 
     public QuotationsController(PageView view, TemplateController template) {
         super(view, template);
+    }
+
+    public Table getOverviewTable(){
+        Table table = new Table(
+                new DatabaseStrategy(Query.table("quotation")),
+                new SearchTableView()
+        );
+
+        table.addCol(new Column("name",
+                new LeftHeaderViewFactory("Voornaam"),
+                new RouteCellFactory("contacts/details/{quotation_id}/", this))
+        );
+
+        table.addCol(new Column("description",
+                new LeftHeaderViewFactory("Beschrijving"),
+                new TextCellFactory())
+        );
+
+        table.addCol(new Column("product",
+                new LeftHeaderViewFactory("Product"),
+                new TextCellFactory())
+        );
+
+        table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
+                new LeftHeaderViewFactory("Aangemaakt op"),
+                new TextCellFactory())
+        );
+
+        table.addCol(new Column("hours_expected::text",
+                new LeftHeaderViewFactory("Verwachte uren"),
+                new TextCellFactory())
+        );
+
+        return table;
     }
 
     public void saveQuotation(String name, String price, String hour, String contact, String delivery) {
