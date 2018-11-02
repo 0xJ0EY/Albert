@@ -90,7 +90,7 @@ public class Invoice {
     }
 
     public void generatePdf() throws ParseException {
-        this.getTax().setTaxPart(this.calculateTax(this));
+        this.getTax().setTaxPart(this.calculateTax());
         String value = df.format(this.getTax().getTaxPart()+this.getAmount().getPrice());
         this.getAmount().setBcost((Double)df.parse(value));
 
@@ -103,9 +103,9 @@ public class Invoice {
         }
     }
 
-    public double calculateTax(Invoice invoice) {
-        double taxPart = invoice.getAmountPrice() * (new Double(invoice.getTax().getPercentage()) / 100);
-        taxPart = Math.round(taxPart * 100.0) / 100.0;
+    public double calculateTax() {
+        double taxPart = this.getAmount().getPrice() * (new Double(this.getTax().getPercentage()) / 100);
+        taxPart = Math.round(taxPart * 100.00) / 100.00;
         return taxPart;
     }
 

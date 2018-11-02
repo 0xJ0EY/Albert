@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class ProjectDAO implements DAO<Project> {
 
+    ContactDAO daoContact = new ContactDAO();
 
     @Override
     public ArrayList<Project> getAll() {
@@ -56,7 +57,7 @@ public class ProjectDAO implements DAO<Project> {
 
             rs.next();
 
-            this.extractFromResultSet(rs);
+            project = this.extractFromResultSet(rs);
 
 
             conn.close();
@@ -151,7 +152,8 @@ public class ProjectDAO implements DAO<Project> {
                 rs.getString("name"), rs.getString("done").toString()
         );
 
-        project.setId(rs.getInt("id"));
+        project.setId(rs.getInt("project_id"));
+        project.setContact(daoContact.loadById(rs.getInt("contact_id")));
 
 
         return project;

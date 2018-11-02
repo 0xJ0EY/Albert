@@ -54,7 +54,7 @@ public class ContactDAO implements DAO<Contact> {
 
             rs.next();
 
-            this.extractFromResultSet(rs);
+            contact= this.extractFromResultSet(rs);
 
 
             conn.close();
