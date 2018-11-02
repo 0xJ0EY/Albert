@@ -7,7 +7,7 @@ import database.Database;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class QuotationDAO implements DAO{
+public class QuotationDAO implements DAO<Quotation>{
 
     private Quotation quotation;
     @Override
@@ -36,7 +36,7 @@ public class QuotationDAO implements DAO{
     }
 
     @Override
-    public Object loadById(long id) {
+    public Quotation loadById(long id) {
         String sql = "SELECT * FROM quotation WHERE quotation_id= ?";
         try {
             Connection conn = Database.getInstance().getConnection();
@@ -62,8 +62,8 @@ public class QuotationDAO implements DAO{
 
 
     @Override
-    public void create(Object quotation) {
-        this.quotation = (Quotation) quotation;
+    public void create(Quotation quotation) {
+        this.quotation = quotation;
         //TODO sql insert schrijven
         String sql = "INSERT INTO quotation VALUES (quotation_id=?, name = ? ,description =?, product=?, amount_id=?,created_at=?, project_id=?);";
 
@@ -96,7 +96,7 @@ public class QuotationDAO implements DAO{
     }
 
     @Override
-    public void update(Object obj) {
+    public void update(Quotation quotation) {
         this.quotation = quotation;
         //TODO sql update schrijven
         String sql = "UPDATE quotation SET ( name = ? ,description =?, product=?, amount_id=?,created_at=?, project_id=?)WHERE quotation_id =?";
@@ -123,7 +123,7 @@ public class QuotationDAO implements DAO{
     }
 
     @Override
-    public void delete(Object obj) {
+    public void delete(Quotation quotation) {
         this.quotation = quotation;
         //TODO sql delete schrijven
         String sql = "DELETE FROM quotation WHERE quotation_id =?";

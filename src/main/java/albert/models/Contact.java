@@ -36,6 +36,7 @@ public class Contact {
 
     private Timestamp created_at;
 
+    private ArrayList<Project> project;
 
     /**
      *
@@ -58,8 +59,6 @@ public class Contact {
     public void setCreated_at(Timestamp created_at) {
         this.created_at = created_at;
     }
-
-    private ArrayList<Project> project;
 
     public ArrayList<ContactEmail> getEmail() {
         return email;
