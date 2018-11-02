@@ -48,5 +48,17 @@ public class InvoiceDetailView extends AnchorPane implements PageView {
 
     @FXML
     public void onClickEdit() {
+        controller.getRouter().nav("invoices/edit/{invoice}/");
     }
+
+    @FXML
+    public void onClickBack() {
+        controller.getRouter().nav("invoices/");
+    }
+
+    public void onClickgeneratePDF(){
+
+    }
+
+
 }

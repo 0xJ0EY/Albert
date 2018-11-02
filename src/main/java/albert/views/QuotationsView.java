@@ -57,7 +57,7 @@ public class QuotationsView extends AnchorPane implements PageView {
     @FXML
     public void onClickAddQuotation() {
 
-        this.controller.getRouter().nav("quotations/edit/{quotation}/");
+        this.controller.getRouter().nav("quotations/create/");
 
     }
 
