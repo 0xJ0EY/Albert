@@ -31,7 +31,6 @@ public class InvoicesController extends PageController implements OverviewPage, 
     private InvoiceDAO dao = new InvoiceDAO();
     private Amount amount;
     private Invoice invoice;
-    DecimalFormat df=new DecimalFormat("0.00");
 
     public InvoicesController(PageView view, TemplateController template) {
         super(view, template);
@@ -82,6 +81,8 @@ public class InvoicesController extends PageController implements OverviewPage, 
         dao.update(invoice);
     }
 
+    public Invoice getInvoice() { return this.invoice; }
+
     @Override
     public Response overview(Request request) {
         return new ViewResponse(this);
@@ -96,37 +97,6 @@ public class InvoicesController extends PageController implements OverviewPage, 
     @Override
     public Response edit(Request request) {
         return new ViewResponse(this);
-    }
-
-    public void generatePdf() throws ParseException {
-        //TODO: put invoice as parameter
-        Tax tax = new Tax("btw", 21);
-        Project project = new Project("Sander`s project", "open");
-        Contact contact = new Contact("HeinekenBV", "Henk", "Jandeberg", "Zoeterwoudeweg", "15", "2254BB", "Leiden");
-        Amount amount = new Amount(831.51, 15.0, "Henk Jandeberg");
-        project.setContactList(contact);
-
-        invoice = new Invoice("Factuur 4522", amount, "infographic");
-        invoice.setId(5);
-        invoice.setProject(project);
-        invoice.setTax(tax);
-        invoice.getTax().setTaxPart(this.calculateTax(this.invoice));
-        String value = df.format(invoice.getTax().getTaxPart()+invoice.getAmount().getPrice());
-        invoice.getAmount().setBcost((Double)df.parse(value));
-
-        try {
-            PdfService.getInstance().generateInvoicePdf(invoice);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (DocumentException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public double calculateTax(Invoice invoice) {
-        double taxPart = invoice.getAmountPrice() * (new Double(invoice.getTax().getPercentage()) / 100);
-        taxPart = Math.round(taxPart * 100.0) / 100.0;
-        return taxPart;
     }
 
     @Override

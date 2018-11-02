@@ -1,6 +1,12 @@
 package albert.models;
 
+import albert.services.PdfService;
+import com.itextpdf.text.DocumentException;
+
+import java.io.IOException;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -17,6 +23,7 @@ public class Invoice {
     private Timestamp deliveryDate;
     private Project project;
     private Tax tax;
+    DecimalFormat df=new DecimalFormat("0.00");
 
     public Tax getTax() {
         return tax;
@@ -113,6 +120,40 @@ public class Invoice {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
         return dateFormat.format(date).toString();
+    }
+
+    public void generatePdf() throws ParseException {
+        //TODO: put invoice as parameter
+        Tax tax = new Tax("btw", 21);
+        Project project = new Project("Sander`s project", "open");
+        Contact contact = new Contact("HeinekenBV", "Henk", "Jandeberg", "Zoeterwoudeweg", "15", "2254BB", "Leiden");
+        Amount amount = new Amount(831.51, 15.0, "Henk Jandeberg");
+        project.setContactList(contact);
+
+//        this = new Invoice("Factuur 4522", amount, "infographic");
+        this.setName("Factuur 4522");
+        this.setAmount(amount);
+        this.setDelivery("infographic");
+        this.setId(5);
+        this.setProject(project);
+        this.setTax(tax);
+        this.getTax().setTaxPart(this.calculateTax(this));
+        String value = df.format(this.getTax().getTaxPart()+this.getAmount().getPrice());
+        this.getAmount().setBcost((Double)df.parse(value));
+
+        try {
+            PdfService.getInstance().generateInvoicePdf(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public double calculateTax(Invoice invoice) {
+        double taxPart = invoice.getAmountPrice() * (new Double(invoice.getTax().getPercentage()) / 100);
+        taxPart = Math.round(taxPart * 100.0) / 100.0;
+        return taxPart;
     }
 
 }

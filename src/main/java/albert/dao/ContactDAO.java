@@ -95,8 +95,6 @@ public class ContactDAO implements DAO<Contact> {
                //TODO project later koppelenj niet bij create
                 // statement.setInt(11, this.contact.getProject().getId());
 
-
-
                 statement.executeQuery();
                 conn.close();
 
