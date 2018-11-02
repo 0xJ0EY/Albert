@@ -27,7 +27,7 @@ public class PdfService {
     private String resources;
     private String template_path;
     private String output;
-    private FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.pdf)", "*.pdf");
+    private FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("(*.pdf)", "*.pdf");
 
     public static PdfService getInstance() {
         if (instance == null)
@@ -54,8 +54,8 @@ public class PdfService {
         templateEngine.setTemplateResolver(templateResolver);
 
         Context context = new Context();
-        Contact contact = invoice.getProject().getContact();
-        context.setVariable("contact", contact);
+        //Contact contact = invoice.getProject().getContact();
+        //context.setVariable("contact", contact);
         context.setVariable("data", invoice);
 
 
