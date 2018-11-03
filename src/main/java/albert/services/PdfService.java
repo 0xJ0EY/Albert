@@ -1,6 +1,8 @@
 package albert.services;
 
+import albert.models.Contact;
 import albert.models.Invoice;
+import albert.models.Quotation;
 import albert.models.Rapportage;
 import com.itextpdf.text.DocumentException;
 import javafx.stage.FileChooser;
@@ -51,7 +53,10 @@ public class PdfService {
         templateEngine.setTemplateResolver(templateResolver);
 
         Context context = new Context();
+        Contact contact = invoice.getProject().getContact();
+        context.setVariable("contact", contact);
         context.setVariable("data", invoice);
+
 
 
         String renderedHtmlContent = templateEngine.process("templateInvoice", context);
@@ -67,13 +72,61 @@ public class PdfService {
                 .toString();
         renderer.setDocumentFromString(xHtml, baseUrl);
         renderer.layout();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Pdf");
+        File file = fileChooser.showSaveDialog(stage);
 
-        OutputStream outputStream = new FileOutputStream("src/main/resources/invoice.pdf");
+        OutputStream outputStream = new FileOutputStream(file.getAbsoluteFile());
         renderer.createPDF(outputStream);
         outputStream.close();
         return true;
 
     }
+
+    /**
+     * Pdf will be generated in the folder resources
+     * @param quotation
+     * @throws IOException
+     * @throws DocumentException
+     */
+    public boolean generateQuotationPdf(Quotation quotation) throws IOException, DocumentException {
+
+        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+        templateResolver.setPrefix("templates/invoice/");
+        templateResolver.setSuffix(".html");
+        templateResolver.setTemplateMode(HTML);
+        templateResolver.setCharacterEncoding(UTF_8);
+
+        TemplateEngine templateEngine = new TemplateEngine();
+        templateEngine.setTemplateResolver(templateResolver);
+
+        Context context = new Context();
+        Contact contact = quotation.getProject().getContact();
+        context.setVariable("contact", contact);
+        context.setVariable("data", quotation);
+
+
+
+        String renderedHtmlContent = templateEngine.process("templateQuotation", context);
+        String xHtml = convertToXhtml(renderedHtmlContent);
+
+        ITextRenderer renderer = new ITextRenderer();
+
+        String baseUrl = FileSystems
+                .getDefault()
+                .getPath("src", "main", "resources","/")
+                .toUri()
+                .toURL()
+                .toString();
+        renderer.setDocumentFromString(xHtml, baseUrl);
+        renderer.layout();
+
+        OutputStream outputStream = new FileOutputStream("src/main/resources/quotation.pdf");
+        renderer.createPDF(outputStream);
+        outputStream.close();
+        return true;
+    }
+
     private boolean generateRepports(Rapportage rapportage) throws IOException, DocumentException {
 
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
@@ -104,8 +157,8 @@ public class PdfService {
         renderer.layout();
 
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("save pdf");
 
+        fileChooser.setTitle("Save Pdf");
         File file = fileChooser.showSaveDialog(stage);
 
         OutputStream outputStream = new FileOutputStream(file.getAbsoluteFile());

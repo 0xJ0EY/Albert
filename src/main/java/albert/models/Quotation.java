@@ -12,7 +12,11 @@ public class Quotation {
     private String description;
     private Timestamp created_at;
     private Project project;
-    private Amount bedragen;
+    private int expectedHours;
+
+    public int getExpectedHours() { return expectedHours; }
+
+    public void setExpectedHours(int expectedHours) { this.expectedHours = expectedHours; }
 
     /**
      *
@@ -54,16 +58,6 @@ public class Quotation {
     public String getDescription() { return this.description; }
 
     public void setDescription(String description) { this.description = description; }
-
-
-
-    public Amount getBedragen() {
-        return bedragen;
-    }
-
-    public void setBedragen(Amount bedragen) {
-        this.bedragen = bedragen;
-    }
 
     public int getId() { return id; }
 

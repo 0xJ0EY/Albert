@@ -1,8 +1,10 @@
 package albert.controllers;
 
 import albert.dao.InvoiceDAO;
-import albert.models.Amount;
-import albert.models.Invoice;
+import albert.models.*;
+import albert.services.PdfService;
+import com.itextpdf.text.DocumentException;
+import javafx.fxml.FXML;
 import query.Query;
 import router.Request;
 import router.pages.CreatePage;
@@ -15,16 +17,23 @@ import router.templates.TemplateController;
 import router.views.PageView;
 import table.Column;
 import table.Table;
+import table.factories.cells.RouteCellFactory;
 import table.factories.cells.TextCellFactory;
 import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
+
+import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.ParseException;
 
 
 public class InvoicesController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
     private InvoiceDAO dao = new InvoiceDAO();
     private Amount amount;
     private Invoice invoice;
+
+    private Request request;
 
     public InvoicesController(PageView view, TemplateController template) {
         super(view, template);
@@ -38,7 +47,7 @@ public class InvoicesController extends PageController implements OverviewPage, 
 
         table.addCol(new Column("invoice_id::text",
                 new LeftHeaderViewFactory("Invoice ID"),
-                new TextCellFactory())
+                new RouteCellFactory("invoices/detail/{invoice_id}/", this))
         );
 
         table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
@@ -104,24 +113,39 @@ public class InvoicesController extends PageController implements OverviewPage, 
         dao.update(invoice);
     }
 
+    public Invoice getInvoice() { return this.invoice; }
+
     @Override
     public Response overview(Request request) {
+        this.request = request;
         return new ViewResponse(this);
     }
 
     @Override
     public Response detail(Request request) {
+        this.request = request;
         return new ViewResponse(this);
     }
 
 
     @Override
     public Response edit(Request request) {
+        this.request = request;
         return new ViewResponse(this);
     }
 
     @Override
     public Response create(Request request) {
+        this.request = request;
         return new ViewResponse(this);
     }
+
+    public void setInvoice(int id) {
+        this.invoice = dao.loadById(id);
+    }
+
+    public Request getRequest() {
+        return request;
+    }
+
 }

@@ -54,7 +54,7 @@ public class ContactDAO implements DAO<Contact> {
 
             rs.next();
 
-            this.extractFromResultSet(rs);
+            contact= this.extractFromResultSet(rs);
 
 
             conn.close();
@@ -94,8 +94,6 @@ public class ContactDAO implements DAO<Contact> {
                 statement.setString(10, this.contact.getBeschrijving());
                //TODO project later koppelenj niet bij create
                 // statement.setInt(11, this.contact.getProject().getId());
-
-
 
                 statement.executeQuery();
                 conn.close();
