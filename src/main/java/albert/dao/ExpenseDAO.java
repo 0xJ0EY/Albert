@@ -14,7 +14,7 @@ import database.Database;
 import java.sql.*;
 import java.util.ArrayList;
 
-
+//DONE
 public class ExpenseDAO implements DAO<Expense>{
 
     private Expense expense;
