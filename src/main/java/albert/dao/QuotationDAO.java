@@ -10,7 +10,6 @@ import java.util.ArrayList;
 public class QuotationDAO implements DAO<Quotation>{
 
     private Quotation quotation;
-    private ProjectDAO projectDAO = new ProjectDAO();
     private AmountDAO amountDAO = new AmountDAO();
     @Override
     public ArrayList getAll() {
@@ -153,7 +152,7 @@ public class QuotationDAO implements DAO<Quotation>{
         );
         quotation.setExpectedHours(rs.getInt("hours_expected"));
         quotation.setAmount(amountDAO.loadById(rs.getInt("amount_id")));
-        quotation.setProject(projectDAO.loadById(rs.getInt("project_id")));
+
 
         return quotation;
     }
