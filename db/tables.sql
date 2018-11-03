@@ -36,8 +36,8 @@ CREATE TABLE quotation
     product VARCHAR,
     amount_id integer,
     created_at TIMESTAMP,
-    project_id integer
-    hours_expected integer,
+    project_id integer,
+    hours_expected integer
 );
 
 CREATE TABLE report
@@ -69,7 +69,7 @@ CREATE TABLE contact
     contact_id BIGSERIAL PRIMARY KEY,
     first_name varchar,
     last_name varchar,
-    tel_number integer,
+    tel_number varchar,
     postal_code varchar,
     street_name varchar,
     house_number varchar,
