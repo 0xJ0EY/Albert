@@ -1,22 +1,23 @@
 package albert.views;
 
+import albert.controllers.ExpenseController;
 import albert.controllers.PageController;
 import albert.controllers.RapportsController;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import router.views.PageView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import router.views.PageView;
 import table.Table;
 import table.views.TableView;
 
 import java.io.IOException;
 
-public class RapportsView extends AnchorPane implements PageView {
+public class ExpenseView extends AnchorPane implements PageView {
 
-    private final String resource = "/views/pages/RapportsView.fxml";
-    private RapportsController controller;
+    private final String resource = "/views/pages/ExpenseView.fxml";
+    private ExpenseController controller;
 
     @FXML
     private AnchorPane overviewTable;
@@ -63,7 +64,7 @@ public class RapportsView extends AnchorPane implements PageView {
 
     @Override
     public void setController(PageController controller) {
-        this.controller =(RapportsController) controller;
+        this.controller =(ExpenseController) controller;
     }
 
     @Override
@@ -72,16 +73,13 @@ public class RapportsView extends AnchorPane implements PageView {
     }
 
     @FXML
-    public void onClickAddReport() {
+    public void onClickAddExpense() {
 
-        this.controller.getRouter().nav("reports/create");
+        this.controller.getRouter().nav("expenses/create/");
 
     }
 
-    @FXML
-    public void onClickExpenses() {
-
-        this.controller.getRouter().nav("expenses/");
-
+    public void onClickBack(){
+        this.controller.getRouter().nav("reports/");
     }
 }

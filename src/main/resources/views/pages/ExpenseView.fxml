@@ -17,7 +17,7 @@
    <children>
       <VBox layoutY="2.0" prefHeight="630.0" prefWidth="1020.0">
          <children>
-            <Label text="Rapportages">
+            <Label text="Onkosten">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -32,14 +32,14 @@
             </AnchorPane>
             <HBox prefHeight="46.0" prefWidth="1020.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onClickAddReport" prefHeight="34.0" prefWidth="136.0" text="Nieuw Rapport">
+                  <Button mnemonicParsing="false" onAction="#onClickBack" prefHeight="34.0" prefWidth="109.0" text="Terug">
                      <graphic>
-                        <FontAwesomeIconView glyphName="PLUS" size="14.0" />
+                        <FontAwesomeIconView glyphName="CLOSE" size="14.0" />
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#onClickExpenses" prefHeight="34.0" prefWidth="136.0" text="Onkosten">
+                  <Button mnemonicParsing="false" onAction="#onClickAddExpense" prefHeight="34.0" prefWidth="136.0" text="Nieuwe Onkost">
                      <graphic>
-                        <FontAwesomeIconView glyphName="EURO" size="14.0" />
+                        <FontAwesomeIconView glyphName="PLUS" size="14.0" />
                      </graphic>
                   </Button>
                </children>

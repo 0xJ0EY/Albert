@@ -13,6 +13,10 @@ import router.factories.pages.contacts.ContactCreatePageFactory;
 import router.factories.pages.contacts.ContactDetailPageFactory;
 import router.factories.pages.contacts.ContactEditPageFactory;
 import router.factories.pages.contacts.ContactPageFactory;
+import router.factories.pages.expenses.ExpenseCreatePageFactory;
+import router.factories.pages.expenses.ExpenseDetailPageFactory;
+import router.factories.pages.expenses.ExpenseEditPageFactory;
+import router.factories.pages.expenses.ExpensePageFactory;
 import router.factories.pages.home.HomePageFactory;
 import router.factories.pages.invoices.*;
 import router.factories.pages.projects.*;
@@ -62,6 +66,11 @@ public class RouteFactoryBuilder {
         map.put(new Route("quotations/detail/{quotation}/"), new DetailPageAction(new QuotationsDetailPageFactory()));
         map.put(new Route("quotations/create/"), new CreatePageAction(new QuotationsCreatePageFactory()));
 
+        //Expenses
+        map.put(new Route("expenses/"), new OverviewPageAction(new ExpensePageFactory()));
+        map.put(new Route("expenses/edit/{expense}/"), new EditPageAction(new ExpenseEditPageFactory()));
+        map.put(new Route("expenses/detail/{expense}/"), new DetailPageAction(new ExpenseDetailPageFactory()));
+        map.put(new Route("expenses/create/"), new CreatePageAction(new ExpenseCreatePageFactory()));
 
 
         //Reports
