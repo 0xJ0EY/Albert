@@ -29,7 +29,7 @@ public class DAOTest {
 
     @BeforeEach
     void setupEach() {
-        this.router = new Router(null);
+
     }
 
     @Test

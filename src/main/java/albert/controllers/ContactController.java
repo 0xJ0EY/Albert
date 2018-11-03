@@ -145,7 +145,18 @@ public class ContactController extends PageController implements OverviewPage, D
         java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
 
 
-        //contact = new Contact(firstName,  lastName,  houseNumber,  telephone,  postcode,  contactEmails,  website,  description,  streetName,  place,currentTimestamp );
+        contact = new Contact();
+        contact.setFirstName(firstName);
+        contact.setLastName(lastName);
+        contact.setHouseNumber(houseNumber);;
+        contact.setTelephoneNumber(telephone);
+        contact.setPostcode(postcode);
+        contact.setEmail(contactEmails);
+        contact.setWebsite(website);
+        contact.setBeschrijving(description);
+        contact.setStraatnaam(streetName);
+        contact.setWoonplaats(place);
+        contact.setCreated_at(currentTimestamp);
         dao.create(contact);
     }
 
@@ -169,8 +180,20 @@ public class ContactController extends PageController implements OverviewPage, D
             ContactEmail contactEmail= new ContactEmail(email.get(i));
             contactEmails.add(contactEmail);
         }
-       // contact= new Contact(firstName,  lastName,  houseNumber,  telephone,  postcode,contactEmails,  website,  description,  streetName,  place);
-       // dao.update(contact);
+
+       contact= new Contact();
+        contact = new Contact();
+        contact.setFirstName(firstName);
+        contact.setLastName(lastName);
+        contact.setHouseNumber(houseNumber);;
+        contact.setTelephoneNumber(telephone);
+        contact.setPostcode(postcode);
+        contact.setEmail(contactEmails);
+        contact.setWebsite(website);
+        contact.setBeschrijving(description);
+        contact.setStraatnaam(streetName);
+        contact.setWoonplaats(place);
+       dao.update(contact);
     }
 
     public void deleteContact(){

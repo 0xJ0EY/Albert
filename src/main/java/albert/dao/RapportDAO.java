@@ -8,7 +8,7 @@ import java.util.ArrayList;
 //NAKIJKEN
 public class RapportDAO implements DAO<Rapportage> {
 
-    private Rapportage rapportage;
+    private Rapportage report;
     @Override
     public ArrayList getAll() {
         String sql = "SELECT * FROM report";
@@ -21,8 +21,8 @@ public class RapportDAO implements DAO<Rapportage> {
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()){
-                rapportage =  extractFromResultSet(rs);
-                reportArrayList.add(rapportage);
+                report =  extractFromResultSet(rs);
+                reportArrayList.add(report);
             }
 
             conn.close();
@@ -33,7 +33,7 @@ public class RapportDAO implements DAO<Rapportage> {
         return reportArrayList;
     }
 
-    private Rapportage report;
+
     @Override
     public Rapportage loadById(long id) {
         String sql = "SELECT * FROM report WHERE report_id= ?";
@@ -46,7 +46,7 @@ public class RapportDAO implements DAO<Rapportage> {
 
             rs.next();
 
-            rapportage = this.extractFromResultSet(rs);
+            report = this.extractFromResultSet(rs);
 
 
             conn.close();
@@ -59,7 +59,7 @@ public class RapportDAO implements DAO<Rapportage> {
     }
 
     @Override
-    public void create(Rapportage obj) {
+    public void create(Rapportage report) {
         this.report = report;
         //TODO sql insert schrijven
         String sql = "INSERT INTO report VALUES (report_id=?, naam=? , end_date =?, start_date=?);";
@@ -110,7 +110,7 @@ public class RapportDAO implements DAO<Rapportage> {
     }
 
     @Override
-    public void delete(Rapportage obj) {
+    public void delete(Rapportage report) {
         this.report = report;
         //TODO sql delete schrijven
         String sql = "DELETE FROM report WHERE report_id =?";
@@ -132,6 +132,10 @@ public class RapportDAO implements DAO<Rapportage> {
 
     @Override
     public Rapportage extractFromResultSet(ResultSet rs) throws SQLException {
-        return null;
+        Rapportage report = new Rapportage();
+        report.setEndDate(rs.getTimestamp("end_date"));
+        report.setStartDate(rs.getTimestamp("start_date"));
+        //TODO new objects toevoegen
+        return report;
     }
 }

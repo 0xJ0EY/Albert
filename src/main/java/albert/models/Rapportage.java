@@ -10,6 +10,7 @@ public class Rapportage {
     private Timestamp startDate;
     private Timestamp endDate;
     private Invoice invoice;
+    private Expense expense;
 
     public void setId(int id) {
         this.id = id;
@@ -31,7 +32,6 @@ public class Rapportage {
         this.expense = expense;
     }
 
-    private Expense expense;
 
     public void setName(String name) { this.name = name;   }
 

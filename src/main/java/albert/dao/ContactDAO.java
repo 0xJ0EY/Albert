@@ -84,7 +84,7 @@ public class ContactDAO implements DAO<Contact> {
 
                 statement.setString(1, this.contact.getFirstName());
                 statement.setString(2, this.contact.getLastName());
-                statement.setInt(3, this.contact.getTelephoneNumber());
+                statement.setString(3, this.contact.getTelephoneNumber());
                 statement.setString(4, this.contact.getPostcode());
                 statement.setString(5, this.contact.getStraatnaam());
                 statement.setString(6, this.contact.getHouseNumber());
@@ -120,7 +120,7 @@ public class ContactDAO implements DAO<Contact> {
 
                 statement.setString(1, this.contact.getFirstName());
                 statement.setString(2, this.contact.getLastName());
-                statement.setInt(3, this.contact.getTelephoneNumber());
+                statement.setString(3, this.contact.getTelephoneNumber());
                 statement.setString(4, this.contact.getPostcode());
                 statement.setString(5, this.contact.getStraatnaam());
                 statement.setString(6, this.contact.getHouseNumber());
