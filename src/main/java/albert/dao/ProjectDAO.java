@@ -10,13 +10,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-//DONE
+
 public class ProjectDAO implements DAO<Project> {
 
     private ContactDAO daoContact = new ContactDAO();
     private ExpenseDAO expenseDAO = new ExpenseDAO();
     private QuotationDAO quotationDAO = new QuotationDAO();
     private InvoiceDAO invoiceDAO = new InvoiceDAO();
+    private Project project;
 
 
     @Override
@@ -72,14 +73,14 @@ public class ProjectDAO implements DAO<Project> {
 
         return project;
     }
-    private Project project;
+
 
     @Override
     public void create(Project project) {
 
         this.project = project;
         //TODO sql insert schrijven
-        String sql = "INSERT INTO project(name, created_at, done) VALUES (?,?,?);";
+        String sql = "INSERT INTO project(name, created_at, done, contact_id) VALUES (?,?,?,?);";
 
         try {
             Connection conn = Database.getInstance().getConnection();
@@ -88,6 +89,7 @@ public class ProjectDAO implements DAO<Project> {
             statement.setString(1,this.project.getName());
             statement.setTimestamp(2,this.project.getCreated_at());
             statement.setBoolean(3, this.project.getDone());
+            statement.setInt(4,this.project.getContact().getId());
 
 
             statement.execute();

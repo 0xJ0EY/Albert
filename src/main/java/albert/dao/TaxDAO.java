@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-//DONE
+
 public class TaxDAO implements DAO<Tax> {
 
     private Tax tax;

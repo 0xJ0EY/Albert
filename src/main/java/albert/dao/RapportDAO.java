@@ -5,7 +5,7 @@ import database.Database;
 
 import java.sql.*;
 import java.util.ArrayList;
-//NAKIJKEN
+
 public class RapportDAO implements DAO<Rapportage> {
 
     private Rapportage report;
@@ -135,7 +135,6 @@ public class RapportDAO implements DAO<Rapportage> {
         Rapportage report = new Rapportage();
         report.setEndDate(rs.getTimestamp("end_date"));
         report.setStartDate(rs.getTimestamp("start_date"));
-        //TODO new objects toevoegen
         return report;
     }
 }

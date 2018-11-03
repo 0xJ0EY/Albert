@@ -10,6 +10,8 @@ import java.util.ArrayList;
 public class QuotationDAO implements DAO<Quotation>{
 
     private Quotation quotation;
+    private ProjectDAO projectDAO = new ProjectDAO();
+    private AmountDAO amountDAO = new AmountDAO();
     @Override
     public ArrayList getAll() {
 
@@ -47,7 +49,7 @@ public class QuotationDAO implements DAO<Quotation>{
 
             rs.next();
 
-            this.extractFromResultSet(rs);
+            quotation= this.extractFromResultSet(rs);
 
 
             conn.close();
@@ -65,20 +67,21 @@ public class QuotationDAO implements DAO<Quotation>{
     public void create(Quotation quotation) {
         this.quotation = quotation;
         //TODO sql insert schrijven
-        String sql = "INSERT INTO quotation VALUES (quotation_id=?, name = ? ,description =?, product=?, amount_id=?,created_at=?, project_id=?);";
+        String sql = "INSERT INTO quotation(name, description,product, amount_id, created_at, project_id, hours_expected) VALUES (?,?,?,?,?,?,?);";
 
         try {
             Connection conn = Database.getInstance().getConnection();
 
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setInt(1,this.quotation.getId());
-            statement.setString(2,this.quotation.getName());
-            statement.setString(3, this.quotation.getDescription());
-            statement.setString(4,  this.quotation.getProduct());
-            statement.setInt(5,this.quotation.getAmount().getId());
-            statement.setTimestamp(6,this.quotation.getCreated_at());
-            statement.setInt(7,this.quotation.getProject().getId());
+
+            statement.setString(1,this.quotation.getName());
+            statement.setString(2, this.quotation.getDescription());
+            statement.setString(3,  this.quotation.getProduct());
+            statement.setInt(4,this.quotation.getAmount().getId());
+            statement.setTimestamp(5,this.quotation.getCreated_at());
+            statement.setInt(6,this.quotation.getProject().getId());
+            statement.setInt(7,this.quotation.getExpectedHours());
 
             statement.execute();
             conn.close();
@@ -88,10 +91,6 @@ public class QuotationDAO implements DAO<Quotation>{
         }
         System.out.println("Quotation added");
 
-
-    }
-
-    public void update(Object o, String[] params) {
 
     }
 
@@ -112,6 +111,7 @@ public class QuotationDAO implements DAO<Quotation>{
             statement.setInt(4,this.quotation.getAmount().getId());
             statement.setTimestamp(5,this.quotation.getCreated_at());
             statement.setInt(6,this.quotation.getProject().getId());
+            statement.setInt(6,this.quotation.getId());
 
             statement.executeUpdate();
             conn.close();
@@ -151,6 +151,10 @@ public class QuotationDAO implements DAO<Quotation>{
                 rs.getString("description"),
                 rs.getTimestamp("created_at")
         );
+        quotation.setExpectedHours(rs.getInt("hours_expected"));
+        quotation.setAmount(amountDAO.loadById(rs.getInt("amount_id")));
+        quotation.setProject(projectDAO.loadById(rs.getInt("project_id")));
+
         return quotation;
     }
 }
