@@ -18,32 +18,37 @@ import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
 
-public class RapportsController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
+public class ExpenseController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
 
 
-    public RapportsController(PageView view, TemplateController template) {
+    public ExpenseController(PageView view, TemplateController template) {
 
         super(view, template);
     }
 
     public Table getOverviewTable(){
         Table table = new Table(
-                new DatabaseStrategy(Query.table("report")),
+                new DatabaseStrategy(Query.table("expense")),
                 new SearchTableView()
         );
 
-        table.addCol(new Column("report_id",
-                new LeftHeaderViewFactory("ID"),
-                new RouteCellFactory("contacts/details/{report_id}/", this))
+        table.addCol(new Column("name",
+                new LeftHeaderViewFactory("Naam"),
+                new RouteCellFactory("expenses/details/{expense_id}/", this))
         );
 
-        table.addCol(new Column("TO_CHAR(start_date, 'DD-MM-YYYY')",
-                new LeftHeaderViewFactory("Begindatum"),
+        table.addCol(new Column("price::text",
+                new LeftHeaderViewFactory("Bedrag"),
                 new TextCellFactory())
         );
 
-        table.addCol(new Column("TO_CHAR(end_date, 'DD-MM-YYYY')",
-                new LeftHeaderViewFactory("Einddatum"),
+        table.addCol(new Column("description",
+                new LeftHeaderViewFactory("Beschrijving"),
+                new TextCellFactory())
+        );
+
+        table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
+                new LeftHeaderViewFactory("Aangemaakt op"),
                 new TextCellFactory())
         );
 
