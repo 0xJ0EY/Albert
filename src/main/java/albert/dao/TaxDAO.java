@@ -27,7 +27,7 @@ public class TaxDAO implements DAO<Tax> {
 
             while (rs.next()){
 
-                Tax tax = (Tax) extractFromResultSet(rs);
+                tax= extractFromResultSet(rs);
                 taxArrayList.add(tax);
             }
 
@@ -67,7 +67,7 @@ public class TaxDAO implements DAO<Tax> {
     public void create(Tax obj) {
         this.tax = tax;
         //TODO sql insert schrijven
-        String sql = "INSERT INTO tax VALUES( name=?, percentage=?);";
+        String sql = "INSERT INTO tax(name, percentage) VALUES(?,?);";
 
         try {
             Connection conn = Database.getInstance().getConnection();
@@ -88,8 +88,8 @@ public class TaxDAO implements DAO<Tax> {
     }
 
     @Override
-    public void update(Tax obj) {
-        this.tax = obj;
+    public void update(Tax tax) {
+        this.tax = tax;
         //TODO sql update schrijven
         String sql = "UPDATE tax SET  name=?, percentage=? WHERE tax_id =?";
 
@@ -143,10 +143,11 @@ public class TaxDAO implements DAO<Tax> {
 
     @Override
     public Tax extractFromResultSet(ResultSet rs) throws SQLException {
-        Tax tax = new Tax(
-                rs.getString("name"),
-                rs.getInt("percentage")
-        );
+        Tax tax = new Tax();
+
+        tax.setId(rs.getInt("tax_id"));
+        tax.setName(rs.getString("name"));
+        tax.setPercentage(rs.getInt("percentage"));
 
 return tax;
     }

@@ -6,7 +6,9 @@ import database.Database;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class RapportDAO implements DAO {
+public class RapportDAO implements DAO<Rapportage> {
+
+    private Rapportage report;
     @Override
     public ArrayList getAll() {
         String sql = "SELECT * FROM report";
@@ -19,7 +21,7 @@ public class RapportDAO implements DAO {
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()){
-                Rapportage report = (Rapportage) extractFromResultSet(rs);
+                report =  extractFromResultSet(rs);
                 reportArrayList.add(report);
             }
 
@@ -31,9 +33,9 @@ public class RapportDAO implements DAO {
         return reportArrayList;
     }
 
-    private Rapportage report;
+
     @Override
-    public Object loadById(long id) {
+    public Rapportage loadById(long id) {
         String sql = "SELECT * FROM report WHERE report_id= ?";
         try {
             Connection conn = Database.getInstance().getConnection();
@@ -44,7 +46,7 @@ public class RapportDAO implements DAO {
 
             rs.next();
 
-            this.extractFromResultSet(rs);
+            report = this.extractFromResultSet(rs);
 
 
             conn.close();
@@ -57,7 +59,7 @@ public class RapportDAO implements DAO {
     }
 
     @Override
-    public void create(Object obj) {
+    public void create(Rapportage report) {
         this.report = report;
         //TODO sql insert schrijven
         String sql = "INSERT INTO report VALUES (report_id=?, naam=? , end_date =?, start_date=?);";
@@ -69,8 +71,8 @@ public class RapportDAO implements DAO {
 
             statement.setInt(1,this.report.getId());
             statement.setString(2,this.report.getName());
-            statement.setDate(3, (Date) this.report.getStartDate());
-            statement.setDate(4, (Date) this.report.getEndDate());
+            statement.setTimestamp(3, this.report.getStartDate());
+            statement.setTimestamp(4, this.report.getEndDate());
 
 
             statement.execute();
@@ -84,7 +86,7 @@ public class RapportDAO implements DAO {
     }
 
     @Override
-    public void update(Object obj) {
+    public void update(Rapportage report) {
         this.report = report;
         //TODO sql update schrijven
         String sql = "UPDATE report SET ( naam=? , end_date =?, start_date=? )WHERE report_id =?";
@@ -95,8 +97,8 @@ public class RapportDAO implements DAO {
             PreparedStatement statement = conn.prepareStatement(sql);
 
             statement.setString(1,this.report.getName());
-            statement.setDate(2,(Date) this.report.getEndDate());
-            statement.setDate(3,(Date) this.report.getStartDate());
+            statement.setTimestamp(2,this.report.getEndDate());
+            statement.setTimestamp(3,this.report.getStartDate());
 
             statement.executeUpdate();
             conn.close();
@@ -108,7 +110,7 @@ public class RapportDAO implements DAO {
     }
 
     @Override
-    public void delete(Object obj) {
+    public void delete(Rapportage report) {
         this.report = report;
         //TODO sql delete schrijven
         String sql = "DELETE FROM report WHERE report_id =?";
@@ -129,7 +131,10 @@ public class RapportDAO implements DAO {
     }
 
     @Override
-    public Object extractFromResultSet(ResultSet rs) throws SQLException {
-        return null;
+    public Rapportage extractFromResultSet(ResultSet rs) throws SQLException {
+        Rapportage report = new Rapportage();
+        report.setEndDate(rs.getTimestamp("end_date"));
+        report.setStartDate(rs.getTimestamp("start_date"));
+        return report;
     }
 }
