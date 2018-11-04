@@ -27,13 +27,7 @@ import java.util.Calendar;
 
 public class ContactController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
 
-    private ContactDAO dao = new ContactDAO();
-
-    private Contact contact;
-    private ContactEmail ContactEmail;
-
     /**
-     *
      * @param view
      * @param template
      */
@@ -45,11 +39,10 @@ public class ContactController extends PageController implements OverviewPage, D
     }
 
     /**
-     *
      * @return
      */
 
-    public Table getOverviewTable(){
+    public Table getOverviewTable() {
         Table table = new Table(
                 new DatabaseStrategy(Query.table("contact")),
                 new SearchTableView()
@@ -92,6 +85,59 @@ public class ContactController extends PageController implements OverviewPage, D
         return table;
     }
 
+    public Table getOverviewEmails(Contact contact) {
+        Table table = new Table(
+                new DatabaseStrategy(
+                    Query.table("contact")
+                        .where("contact_id", "=", contact.getId())
+                ),
+                new SearchTableView()
+        );
+
+        table.addCol(new Column("email_address",
+            new LeftHeaderViewFactory("E-mail"),
+            new TextCellFactory())
+        );
+
+        return table;
+    }
+
+    public Table getOverviewPhoneNumbers(Contact contact) {
+        Table table = new Table(
+                new DatabaseStrategy(
+                    Query.table("contact")
+                        .where("contact_id", "=", contact.getId())
+                ),
+                new SearchTableView()
+        );
+
+        return table;
+    }
+
+    public Table getEditableEmails(Contact contact) {
+        Table table = new Table(
+                new DatabaseStrategy(
+                    Query.table("contact")
+                        .where("contact_id", "=", contact.getId())
+                ),
+                new SearchTableView()
+        );
+
+        return table;
+    }
+
+    public Table getEditablePhoneNumbers(Contact contact) {
+        Table table = new Table(
+                new DatabaseStrategy(
+                    Query.table("contact")
+                        .where("contact_id", "=", contact.getId())
+                ),
+                new SearchTableView()
+        );
+
+        return table;
+    }
+
     @Override
     public Response overview(Request request) {
         return new ViewResponse(this);
@@ -113,55 +159,19 @@ public class ContactController extends PageController implements OverviewPage, D
         return new ViewResponse(this);
     }
 
-    /**
-     *
-     * @param firstName
-     * @param lastName
-     * @param houseNumber
-     * @param telephone
-     * @param postcode
-     * @param email
-     * @param website
-     * @param description
-     * @param streetName
-     * @param place
-     */
-    public void saveContact(String firstName, String lastName, String houseNumber, String telephone, String postcode, ArrayList<String> email, String website, String description, String streetName, String place) {
-
-        ArrayList<ContactEmail> contactEmails= new ArrayList<ContactEmail>();
-
-
-        Calendar calendar = Calendar.getInstance();
-        java.util.Date now = calendar.getTime();
-        java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
-
-
-//        contact = new Contact(firstName,  lastName,  houseNumber,  telephone,  postcode,  contactEmails,  website,  description,  streetName,  place,currentTimestamp );
+    public void createContact(Contact contact) {
+        ContactDAO dao = new ContactDAO();
         dao.create(contact);
     }
 
-    /**
-     *
-     * @param firstName
-     * @param lastName
-     * @param houseNumber
-     * @param telephone
-     * @param postcode
-     * @param email
-     * @param website
-     * @param description
-     * @param streetName
-     * @param place
-     */
-    public void editContact(String firstName, String lastName, String houseNumber, String telephone, String postcode, ArrayList<String> email, String website, String description, String streetName, String place){
-
-        ArrayList<ContactEmail> contactEmails=null;
-//        contact= new Contact(firstName,  lastName,  houseNumber,  telephone,  postcode,contactEmails,  website,  description,  streetName,  place);
+    public void updateContact(Contact contact) {
+        ContactDAO dao = new ContactDAO();
         dao.update(contact);
     }
 
-    public void deleteContact(){
-        //contact = new Contact();
-        //dao.delete(contact);
+    public void deleteContact(Contact contact) {
+        ContactDAO dao = new ContactDAO();
+        dao.delete(contact);
     }
+
 }

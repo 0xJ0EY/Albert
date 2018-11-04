@@ -87,7 +87,7 @@ public class ContactsEditView extends AnchorPane implements PageView {
     public void onClickSave(ActionEvent event){
         emails = new ArrayList<String>();
         emails.add(email.getText());
-        controller.saveContact(firstName.getText(), lastName.getText(),houseNumber.getText(),telephone.getText(),postcode.getText(),emails ,website.getText(),description.getText(),streetName.getText(),place.getText());
+//        controller.saveContact(firstName.getText(), lastName.getText(),houseNumber.getText(),telephone.getText(),postcode.getText(),emails ,website.getText(),description.getText(),streetName.getText(),place.getText());
     }
 
     @FXML
