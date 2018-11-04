@@ -6,6 +6,14 @@ public class ContactPhoneNumber {
     private Contact contact;
     private int id;
 
+
+    public ContactPhoneNumber() {
+    }
+
+    public ContactPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }

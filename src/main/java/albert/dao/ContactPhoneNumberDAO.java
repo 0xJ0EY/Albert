@@ -15,10 +15,12 @@ import java.util.Set;
 
 public class ContactPhoneNumberDAO {
 
+    private static final int NEW_PHONE_NUMBER_ID = 0;
+
     private final String SELECT_QUERY = "SELECT * FROM contact_phone WHERE contact_id = ?;";
     private final String INSERT_QUERY = "INSERT INTO contact_phone (phone_number, contact_id) VALUES (?, ?);";
-    private final String UPDATE_QUERY = "UPDATE contact_phone SET phone_number = ? WHERE phone_id = ?;";
-    private final String DELETE_QUERY = "DELETE contact_phone WHERE phone_id = ?";
+    private final String UPDATE_QUERY = "UPDATE contact_phone SET phone_number = ? WHERE id = ?;";
+    private final String DELETE_QUERY = "DELETE FROM contact_phone WHERE id = ?;";
 
     public ArrayList<ContactPhoneNumber> loadContactPhoneNumbers(Contact contact) {
         ArrayList<ContactPhoneNumber> phoneNumberSave = new ArrayList<>();
@@ -37,7 +39,7 @@ public class ContactPhoneNumberDAO {
             while (rs.next()) {
                 contactPhoneNumber = new ContactPhoneNumber();
 
-                contactPhoneNumber.setId(rs.getInt("phone_id"));
+                contactPhoneNumber.setId(rs.getInt("id"));
                 contactPhoneNumber.setPhoneNumber(rs.getString("phone_number"));
                 contactPhoneNumber.setContact(contact);
 
@@ -56,55 +58,110 @@ public class ContactPhoneNumberDAO {
 
 
     public void updatePhoneNumbers(Contact contact) {
-        ArrayList<ContactPhoneNumber> oldPhoneNumbers = this.loadContactPhoneNumbers(contact);
-        Set<Integer> oldNumbers = new HashSet<>();
-
-        for (ContactPhoneNumber contactPhone : oldPhoneNumbers) {
-            oldNumbers.add(contactPhone.getId());
-
-        }
-
         ArrayList<ContactPhoneNumber> newPhoneNumbers = contact.getPhoneNumbers();
+        HashMap<Integer, ContactPhoneNumber> oldPhoneNumbers = new HashMap<>();
 
+        for (ContactPhoneNumber number : this.loadContactPhoneNumbers(contact)) {
+            number.setContact(contact);
+            oldPhoneNumbers.put(number.getId(), number);
+        }
 
         ArrayList<ContactPhoneNumber> insertNumbers = new ArrayList<>();
         ArrayList<ContactPhoneNumber> updateNumbers = new ArrayList<>();
 
         for (ContactPhoneNumber number : newPhoneNumbers) {
 
-//            if (number.getId() == 0) {
-//                insertNumbers.add(number);
-//                continue;
-//            }
-//
-//            if ()
+            // New numbers don't have an id yet, so just add them to the insert ArrayList
+            if (number.getId() == NEW_PHONE_NUMBER_ID) {
+                insertNumbers.add(number);
+            }
 
+            //
+            if (oldPhoneNumbers.get(number.getId()) != null) {
+                updateNumbers.add(number);
+                oldPhoneNumbers.remove(number.getId());
+            }
 
         }
 
-//        ArrayList<ContactPhoneNumber> updateNumbers=  new ArrayList<>();
-//        ArrayList<Integer>
+        ArrayList<ContactPhoneNumber> deleteNumbers = new ArrayList<>(oldPhoneNumbers.values());
 
+        // Insert phone numbers
+        for (ContactPhoneNumber number : insertNumbers)
+            this.insertPhoneNumber(number);
 
+        // Update phone numbers
+        for (ContactPhoneNumber number : updateNumbers)
+            this.updatePhoneNumber(number);
 
-
-
-
-
-
+        // Delete old phone numbers
+        for (ContactPhoneNumber number : deleteNumbers)
+            this.deletePhoneNumber(number);
     }
 
     private void insertPhoneNumber(ContactPhoneNumber phoneNumber) {
+
+        try {
+            Connection conn = Database.getInstance().getConnection();
+            PreparedStatement statement = conn.prepareStatement(this.INSERT_QUERY);
+
+            int i = 0;
+
+            statement.setString(++i, phoneNumber.getPhoneNumber());
+            statement.setInt(++i, phoneNumber.getContact().getId());
+
+            statement.executeUpdate();
+
+            statement.close();
+            conn.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
 
     private void updatePhoneNumber(ContactPhoneNumber phoneNumber) {
 
+        try {
+            Connection conn = Database.getInstance().getConnection();
+            PreparedStatement statement = conn.prepareStatement(this.UPDATE_QUERY);
+
+            int i = 0;
+
+            statement.setString(++i, phoneNumber.getPhoneNumber());
+            statement.setInt(++i, phoneNumber.getId());
+
+            statement.executeUpdate();
+
+            statement.close();
+            conn.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
-    private void deletePhoneNumber(int phoneNumberId) {
+    private void deletePhoneNumber(ContactPhoneNumber phoneNumber) {
 
+        try {
+            Connection conn = Database.getInstance().getConnection();
+            PreparedStatement statement = conn.prepareStatement(this.DELETE_QUERY);
+
+            int i = 0;
+
+            statement.setInt(++i, phoneNumber.getId());
+
+            statement.executeUpdate();
+
+            statement.close();
+            conn.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

@@ -60,6 +60,8 @@ CREATE TABLE amount
     contact_id integer
 );
 
+DROP TABLE IF EXISTS contact;
+
 CREATE TABLE contact
 (
     contact_id BIGSERIAL PRIMARY KEY,
@@ -69,20 +71,30 @@ CREATE TABLE contact
     street_name varchar,
     house_number varchar,
     city varchar,
-    created_at TIMESTAMP,
     website varchar,
     description varchar,
-    project_id integer
+    created_at TIMESTAMP DEFAULT NOW()
 );
+
+DROP TABLE IF EXISTS contact_email;
 
 CREATE TABLE contact_email
 (
-    email_id BIGSERIAL PRIMARY KEY,
-    contact_id integer,
-    email_address varchar
+    id           BIGSERIAL NOT NULL
+        CONSTRAINT contact_email_pkey
+        PRIMARY KEY,
+    phone_number VARCHAR(255),
+    contact_id   BIGINT
+        CONSTRAINT fk_contact_email
+        REFERENCES contact
+        ON UPDATE CASCADE ON DELETE CASCADE
 );
 
--- auto-generated definition
+CREATE UNIQUE INDEX contact_email_id_uindex
+    ON contact_email (id);
+
+DROP TABLE IF EXISTS contact_phone;
+
 CREATE TABLE contact_phone
 (
   id           BIGSERIAL NOT NULL

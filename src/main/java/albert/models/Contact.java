@@ -9,28 +9,17 @@ public class Contact {
     private String name;
 
     private int id;
-
     private String firstName;
-
     private String lastName;
-
     private String telephoneNumber;
-
     private String postalCode;
-
-    private ArrayList<ContactEmail> emails;
-    private ArrayList<ContactPhoneNumber> phoneNumbers;
-
+    private ArrayList<ContactEmail> emails = new ArrayList<>();
+    private ArrayList<ContactPhoneNumber> phoneNumbers = new ArrayList<>();
     private String website;
-
     private String description;
-
     private String streetName;
-
     private String houseNumber;
-
     private String city;
-
     private Timestamp created_at;
 
     public Timestamp getCreated_at() {
@@ -43,7 +32,7 @@ public class Contact {
 
     private ArrayList<Project> project;
 
-    public ArrayList<ContactEmail> getEmail() {
+    public ArrayList<ContactEmail> getEmails() {
         return this.emails;
     }
 
@@ -55,8 +44,26 @@ public class Contact {
         this.emails = email;
     }
 
+    public void addEmail(ContactEmail email) {
+        email.setContact(this);
+        this.emails.add(email);
+    }
+
+    public void removeEmail(ContactEmail email) {
+        this.emails.remove(email);
+    }
+
     public void setPhoneNumbers(ArrayList<ContactPhoneNumber> phoneNumbers) {
         this.phoneNumbers = phoneNumbers;
+    }
+
+    public void addPhoneNumber(ContactPhoneNumber phoneNumber) {
+        phoneNumber.setContact(this);
+        this.phoneNumbers.add(phoneNumber);
+    }
+
+    public void removePhoneNumber(ContactPhoneNumber phoneNumber) {
+        this.phoneNumbers.remove(phoneNumber);
     }
 
     public String getHouseNumber() {

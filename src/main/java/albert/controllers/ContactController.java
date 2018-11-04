@@ -65,11 +65,6 @@ public class ContactController extends PageController implements OverviewPage, D
                 new TextCellFactory())
         );
 
-        table.addCol(new Column("tel_number::text",
-                new LeftHeaderViewFactory("Telefoonnummer"),
-                new TextCellFactory())
-        );
-
         table.addCol(new Column("postal_code::text",
                 new LeftHeaderViewFactory("Postcode"),
                 new TextCellFactory())
