@@ -2,12 +2,7 @@ package albert.models;
 
 
 import java.sql.Timestamp;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 public class Contact {
 
@@ -18,7 +13,7 @@ public class Contact {
 
     private String lastName;
 
-    private int telephoneNumber;
+    private String telephoneNumber;
 
     private String postcode;
 
@@ -36,6 +31,7 @@ public class Contact {
 
     private Timestamp created_at;
 
+    private ArrayList<Project> project;
 
     /**
      *
@@ -51,6 +47,8 @@ public class Contact {
 
     }
 
+
+
     public Timestamp getCreated_at() {
         return created_at;
     }
@@ -58,8 +56,6 @@ public class Contact {
     public void setCreated_at(Timestamp created_at) {
         this.created_at = created_at;
     }
-
-    private ArrayList<Project> project;
 
     public ArrayList<ContactEmail> getEmail() {
         return email;
@@ -97,11 +93,11 @@ public class Contact {
         this.lastName = lastName;
     }
 
-    public int getTelephoneNumber() {
+    public String getTelephoneNumber() {
         return telephoneNumber;
     }
 
-    public void setTelephoneNumber(int telephoneNumber) {
+    public void setTelephoneNumber(String telephoneNumber) {
         this.telephoneNumber = telephoneNumber;
     }
 

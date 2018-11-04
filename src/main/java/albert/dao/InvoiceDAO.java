@@ -15,7 +15,7 @@ public class InvoiceDAO implements DAO<Invoice>{
     private Invoice invoice;
     private AmountDAO daoAmount = new AmountDAO();
     private TaxDAO daoTax = new TaxDAO();
-    private ProjectDAO daoProject = new ProjectDAO();
+
 
 
     @Override
@@ -157,7 +157,6 @@ public class InvoiceDAO implements DAO<Invoice>{
         invoice.setAmount(daoAmount.loadById(rs.getInt("amount_id")));
         invoice.setDeliveryDate(rs.getTimestamp("deliverydate"));
         invoice.setTax(daoTax.loadById(rs.getInt("tax_id")));
-        invoice.setProject(daoProject.loadById(rs.getInt("project_id")));
         return invoice;
     }
 

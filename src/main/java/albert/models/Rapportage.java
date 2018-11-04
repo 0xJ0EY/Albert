@@ -1,14 +1,16 @@
 package albert.models;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Rapportage {
 
     private String name;
     private int id;
-    private Date startDate;
-    private Date endDate;
+    private Timestamp startDate;
+    private Timestamp endDate;
     private Invoice invoice;
+    private Expense expense;
 
     public void setId(int id) {
         this.id = id;
@@ -30,7 +32,6 @@ public class Rapportage {
         this.expense = expense;
     }
 
-    private Expense expense;
 
     public void setName(String name) { this.name = name;   }
 
@@ -42,11 +43,11 @@ public class Rapportage {
         return this.id;
     }
 
-    public Date getStartDate() { return startDate; }
+    public Timestamp getStartDate() { return startDate; }
 
-    public void setStartDate(Date startDate) { this.startDate = startDate; }
+    public void setStartDate(Timestamp startDate) { this.startDate = startDate; }
 
-    public Date getEndDate() { return endDate; }
+    public Timestamp getEndDate() { return endDate; }
 
-    public void setEndDate(Date endDate) { this.endDate = endDate; }
+    public void setEndDate(Timestamp endDate) { this.endDate = endDate; }
 }

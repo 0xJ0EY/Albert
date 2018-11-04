@@ -4,10 +4,14 @@ public class Amount {
     private double price;
     private double hours;
     private double Bcost;
-    private int contact;
+    private Contact contact;
     private int id;
 
     public Amount(Double price, Double hours, String contact) {
+    }
+
+    public Amount() {
+
     }
 
     public int getId() {
@@ -18,7 +22,7 @@ public class Amount {
         this.id = id;
     }
 
-    public Amount(double price, double hours, int contact) {
+    public Amount(double price, double hours, Contact contact) {
         this.price = price;
         this.hours = hours;
         this.contact = contact;
@@ -28,11 +32,11 @@ public class Amount {
 
     public void setBcost(Double Bcost) { this.Bcost = Bcost; }
 
-    public int getContact() {
+    public Contact getContact() {
         return contact;
     }
 
-    public void setContact(int contact) {
+    public void setContact(Contact contact) {
         this.contact = contact;
     }
 
@@ -48,4 +52,7 @@ public class Amount {
 
     public void setHours(double hours) { this.hours = hours; }
 
+    public void setBcost(double bcost) {
+        Bcost = bcost;
+    }
 }
