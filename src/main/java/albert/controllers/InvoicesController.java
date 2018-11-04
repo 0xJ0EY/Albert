@@ -41,7 +41,7 @@ public class InvoicesController extends PageController implements OverviewPage, 
 
     public Table getOverviewTable(){
         Table table = new Table(
-                new DatabaseStrategy(Query.table("invoice")),
+                new DatabaseStrategy(Query.table("invoice").where("paid", "=", "onbetaald")),
                 new SearchTableView()
         );
 
@@ -60,17 +60,17 @@ public class InvoicesController extends PageController implements OverviewPage, 
                 new TextCellFactory())
         );
 
-        table.addCol(new Column("paid::text",
-                new LeftHeaderViewFactory("Betaald"),
-                new TextCellFactory())
-        );
+//        table.addCol(new Column("paid::text",
+//                new LeftHeaderViewFactory("Betaald"),
+//                new TextCellFactory())
+//        );
 
         return  table;
     }
 
     public Table getPaidOverviewTable(){
         Table table = new Table(
-                new DatabaseStrategy(Query.table("invoice").where("paid", "=", "paid")),
+                new DatabaseStrategy(Query.table("invoice").where("paid", "=", "betaald")),
                 new SearchTableView()
         );
 
@@ -89,10 +89,10 @@ public class InvoicesController extends PageController implements OverviewPage, 
                 new TextCellFactory())
         );
 
-        table.addCol(new Column("paid::text",
-                new LeftHeaderViewFactory("Betaald"),
-                new TextCellFactory())
-        );
+//        table.addCol(new Column("paid::text",
+//                new LeftHeaderViewFactory("Betaald"),
+//                new TextCellFactory())
+//        );
 
         return  table;
     }

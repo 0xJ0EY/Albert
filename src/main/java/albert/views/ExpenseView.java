@@ -79,7 +79,4 @@ public class ExpenseView extends AnchorPane implements PageView {
 
     }
 
-    public void onClickBack(){
-        this.controller.getRouter().nav("reports/");
-    }
 }

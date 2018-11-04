@@ -32,11 +32,6 @@
             </AnchorPane>
             <HBox prefHeight="46.0" prefWidth="1020.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onClickBack" prefHeight="34.0" prefWidth="109.0" text="Terug">
-                     <graphic>
-                        <FontAwesomeIconView glyphName="CLOSE" size="14.0" />
-                     </graphic>
-                  </Button>
                   <Button mnemonicParsing="false" onAction="#onClickAddExpense" prefHeight="34.0" prefWidth="136.0" text="Nieuwe Onkost">
                      <graphic>
                         <FontAwesomeIconView glyphName="PLUS" size="14.0" />

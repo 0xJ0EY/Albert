@@ -15,26 +15,6 @@ public class ExpenseEditView extends AnchorPane implements PageView {
     private final String resource = "/views/pages/ExpenseEdit.fxml";
     private ExpenseController controller;
 
-    @FXML
-    private TextField QuarterYear;
-
-    @FXML
-    private TextField nettoBar;
-
-    @FXML
-    private TextField btwBar;
-
-    @FXML
-    private TextField brutoBar;
-
-    @FXML
-    private TextField amountBar;
-
-    @FXML
-    private TextField costBar;
-
-    @FXML
-    private Button editButton;
 
     @Override
     public void load() {

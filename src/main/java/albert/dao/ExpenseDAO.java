@@ -45,7 +45,6 @@ public class ExpenseDAO implements DAO<Expense>{
 
     @Override
     public Expense loadById(long id) {
-        Expense expense = null;
 
         String sql = ("SELECT * FROM expense WHERE expense_id = ?");
         try {
@@ -59,7 +58,7 @@ public class ExpenseDAO implements DAO<Expense>{
 
             rs.next();
 
-            this.extractFromResultSet(rs);
+            expense = this.extractFromResultSet(rs);
 
 
             conn.close();
@@ -145,14 +144,14 @@ public class ExpenseDAO implements DAO<Expense>{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("expendse deleted");
-
+        System.out.println("expense deleted");
     }
 
     @Override
     public Expense extractFromResultSet(ResultSet rs) throws SQLException {
 
         Expense expense = new Expense(
+                rs.getInt("expense_id"),
                 rs.getDouble("price"),
         rs.getString("description"),
         rs.getTimestamp("created_at"),
