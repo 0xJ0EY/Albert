@@ -4,7 +4,7 @@
     <head>
         <title>Invoice PDF</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" media="all"  href="css/pdf/invoiceId.css" />
+        <link rel="stylesheet" type="text/css" media="all"  href="css/pdf/rapportage.css" />
 
     </head>
     <body>
@@ -17,7 +17,8 @@
 
     <div style="width: 100%; height: 10%;" id="header">
         <div style="float: left; width:50%; height:100%;">
-            <img style="width:50%; height:60%;" src="images/logo.jpg" />
+            <p>Overzicht uitgaven</p>
+			<p>[[${data.getPeriod()}]]</p>
         </div>
         <div style="float: right; width: 50%; height:100%;">
             <ul style="list-style-type: none; margin-top:20%;">
@@ -30,15 +31,9 @@
         </div>
         <div id="content">
             <div id="content-header" style="width:100%; height: 65%;">
-                <h2 style="width:100%; text-align: center; margin-top:10%;">Offerte</h2>
+                <h2 style="width:100%; text-align: center; margin-top:10%;">Factuur</h2>
             </div>
                 <table id="dataTable" align="center"; border="1" style="height: 400px;">
-                    <tr>
-                        <th>Afleverdatum</th>
-                        <th>Omschrijving</th>
-                        <th>Uren gewerkt</th>
-                        <th>Bedrag</th>
-                    </tr>
                     <tr>
                         <td>1/11/2018</td>
                         <td>Infographic</td>

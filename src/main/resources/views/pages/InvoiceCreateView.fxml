@@ -25,7 +25,7 @@
             <HBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="821.0" style="-fx-background-color: #ededed;">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gekoppelde klant:" wrappingWidth="151.82421875" />
-                  <TextField fx:id="contact" />
+                  <TextField fx:id="contactId" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="821.0">

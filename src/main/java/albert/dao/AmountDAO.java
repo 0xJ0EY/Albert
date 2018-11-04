@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 public class AmountDAO implements DAO<Amount> {
 
-    private ContactDAO contactDAO = new ContactDAO();
     private Amount amount;
     @Override
     public ArrayList getAll() {
@@ -134,7 +133,6 @@ public class AmountDAO implements DAO<Amount> {
         Amount amount = new Amount();
         amount.setPrice(rs.getDouble("price"));
         amount.setHours(rs.getDouble("hours"));
-        amount.setContact(contactDAO.loadById(rs.getInt("contact_id")));
         return amount;
     }
 }
