@@ -7,11 +7,10 @@ public class Quotation {
 
     private int id;
     private String name;
-    //private Amount amount;
+    private Amount amount;
     private String product;
     private String description;
     private Timestamp created_at;
-    private int projectId;
     private Project project;
     private int expectedHours;
     private int expectedPrice;
@@ -47,11 +46,11 @@ public class Quotation {
         this.name = name;
     }
 
-//    public Amount getAmount() { return amount; }
-//
-//    public void setAmount(Amount amount) {
-//        this.amount = amount;
-//    }
+    public Amount getAmount() { return amount; }
+
+    public void setAmount(Amount amount) {
+        this.amount = amount;
+    }
 
 
     public int getExpectedPrice() {
@@ -76,9 +75,6 @@ public class Quotation {
         this.id = id;
     }
 
-    public int getProjectId() {return projectId; }
-
-    public void setProjectId(int projectId) {this.projectId = projectId;}
 
         public Project getProject() {
         return project;

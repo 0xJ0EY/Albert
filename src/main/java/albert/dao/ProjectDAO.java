@@ -1,6 +1,5 @@
 package albert.dao;
 
-import albert.models.Invoice;
 import albert.models.Project;
 import database.Database;
 
@@ -13,10 +12,6 @@ import java.util.ArrayList;
 
 public class ProjectDAO implements DAO<Project> {
 
-    private ContactDAO daoContact = new ContactDAO();
-    private ExpenseDAO expenseDAO = new ExpenseDAO();
-    private QuotationDAO quotationDAO = new QuotationDAO();
-    private InvoiceDAO invoiceDAO = new InvoiceDAO();
     private Project project;
 
 
@@ -45,7 +40,7 @@ public class ProjectDAO implements DAO<Project> {
         return projectArrayList;
     }
 
-        @Override
+    @Override
     public Project loadById(long id) {
         Project project = null;
 
@@ -80,7 +75,8 @@ public class ProjectDAO implements DAO<Project> {
 
         this.project = project;
         //TODO sql insert schrijven
-        String sql = "INSERT INTO project(name, created_at, done, contact_id) VALUES (?,?,?,?);";
+//        String sql = "INSERT INTO project(name, created_at, done, contact_id) VALUES (?,?,?,?);";
+        String sql = "INSERT INTO project(name, created_at, done) VALUES (?,?,?);";
 
         try {
             Connection conn = Database.getInstance().getConnection();
@@ -89,7 +85,7 @@ public class ProjectDAO implements DAO<Project> {
             statement.setString(1,this.project.getName());
             statement.setTimestamp(2,this.project.getCreated_at());
             statement.setBoolean(3, this.project.getDone());
-            statement.setInt(4,this.project.getContact().getId());
+            //           statement.setInt(4,this.project.getContactId().getId());
 
 
             statement.execute();
@@ -106,16 +102,21 @@ public class ProjectDAO implements DAO<Project> {
         this.project = project;
         //TODO sql update schrijven
         String sql = "UPDATE project SET(naam=? ,invoice_id=?, contact_id=?, expense_id=?, quotation_id=?, created_at= ?, done =? ) WHERE project_id =?";
+//        String sql = "UPDATE project SET(naam=?, done =? ) WHERE project_id =?";
         try {
             Connection conn = Database.getInstance().getConnection();
 
             PreparedStatement statement = conn.prepareStatement(sql);
 
+//            statement.setString(1,this.project.getName());
+//            statement.setBoolean(2,this.project.getDone());
+//            statement.setInt(3, this.project.getId());
+
             statement.setString(1,this.project.getName());
-            statement.setInt(2,this.project.getInvoice().getId());
-            statement.setInt(3,this.project.getContact().getId());
-            statement.setInt(4,this.project.getExpense().getId());
-            statement.setInt(5,this.project.getQuotation().getId());
+            statement.setInt(2,this.project.getInvoiceId());
+            statement.setInt(3,this.project.getContactId());
+            statement.setInt(4,this.project.getExpenseId());
+            statement.setInt(5,this.project.getQuotationId());
             statement.setTimestamp(6,this.project.getCreated_at());
             statement.setBoolean(7,this.project.getDone());
             statement.setInt(8, this.project.getId());
@@ -160,10 +161,11 @@ public class ProjectDAO implements DAO<Project> {
         );
 
         project.setId(rs.getInt("project_id"));
-        project.setExpense(expenseDAO.loadById(rs.getInt("expense_id")));
-        project.setQuotation(quotationDAO.loadById(rs.getInt("quotation_id")));
-        project.setInvoice(invoiceDAO.loadById(rs.getInt("invoice_id")));
-        project.setContact(daoContact.loadById(rs.getInt("contact_id")));
+        project.setExpenseId(rs.getInt("expense_id"));
+        project.setQuotationId(rs.getInt("quotation_id"));
+        project.setInvoiceId(rs.getInt("invoice_id"));
+        project.setContactId(rs.getInt("contact_id"));
+        project.setCreated_at(rs.getTimestamp("created_at"));
 
         return project;
     }
