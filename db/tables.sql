@@ -67,6 +67,7 @@ CREATE TABLE contact
     contact_id BIGSERIAL PRIMARY KEY,
     first_name varchar,
     last_name varchar,
+    company varchar,
     postal_code varchar,
     street_name varchar,
     house_number varchar,
@@ -83,7 +84,7 @@ CREATE TABLE contact_email
     id           BIGSERIAL NOT NULL
         CONSTRAINT contact_email_pkey
         PRIMARY KEY,
-    phone_number VARCHAR(255),
+    email_address VARCHAR(255),
     contact_id   BIGINT
         CONSTRAINT fk_contact_email
         REFERENCES contact

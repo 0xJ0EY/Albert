@@ -8,9 +8,10 @@ public class Contact {
 
     private String name;
 
-    private int id;
+    private int id = 0;
     private String firstName;
     private String lastName;
+    private String company;
     private String telephoneNumber;
     private String postalCode;
     private ArrayList<ContactEmail> emails = new ArrayList<>();
@@ -76,6 +77,14 @@ public class Contact {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
     }
 
     public String getFirstName() {

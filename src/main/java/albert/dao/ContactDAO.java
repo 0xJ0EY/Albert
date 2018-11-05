@@ -19,17 +19,19 @@ public class ContactDAO implements DAO<Contact> {
             "(\"contact_id\", " +
             "\"first_name\", " +
             "\"last_name\", " +
+            "\"company\", " +
             "\"postal_code\", " +
             "\"street_name\", " +
             "\"house_number\", " +
             "\"city\", " +
             "\"website\", " +
             "\"description\") " +
-            "VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?)";
+            "VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     private final String UPDATE_CONTACT_SQL = "UPDATE contact SET " +
             "first_name=?, " +
             "last_name=?, " +
+            "company=?, " +
             "postal_code=?, " +
             "street_name=?, " +
             "house_number=?, " +
@@ -84,6 +86,7 @@ public class ContactDAO implements DAO<Contact> {
             contact.setId(rs.getInt("contact_id"));
             contact.setFirstName(rs.getString("first_name"));
             contact.setLastName(rs.getString("last_name"));
+            contact.setCompany(rs.getString("company"));
             contact.setPostalCode(rs.getString("postal_code"));
             contact.setStreetName(rs.getString("street_name"));
             contact.setHouseNumber(rs.getString("house_number"));
@@ -118,6 +121,7 @@ public class ContactDAO implements DAO<Contact> {
 
             statement.setString(++i, contact.getFirstName());
             statement.setString(++i, contact.getLastName());
+            statement.setString(++i, contact.getCompany());
             statement.setString(++i, contact.getPostalCode());
             statement.setString(++i, contact.getStreetName());
             statement.setString(++i, contact.getHouseNumber());
@@ -155,6 +159,7 @@ public class ContactDAO implements DAO<Contact> {
 
             statement.setString(++i, contact.getFirstName());
             statement.setString(++i, contact.getLastName());
+            statement.setString(++i, contact.getCompany());
             statement.setString(++i, contact.getPostalCode());
             statement.setString(++i, contact.getStreetName());
             statement.setString(++i, contact.getHouseNumber());
@@ -180,9 +185,9 @@ public class ContactDAO implements DAO<Contact> {
     @Override
     public  void delete(Contact contact) {
 
-        // Remove all old phone numbers
+        // Remove all old phone numbers & emails
+        contact.setEmails(new ArrayList<>());
         contact.setPhoneNumbers(new ArrayList<>());
-        contactPhoneNumberDAO.updatePhoneNumbers(contact);
 
         try {
             Connection conn = Database.getInstance().getConnection();

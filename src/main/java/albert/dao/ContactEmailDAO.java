@@ -38,7 +38,7 @@ public class ContactEmailDAO {
             while (rs.next()) {
                 contactEmail = new ContactEmail();
 
-                contactEmail.setId(rs.getInt("email_id"));
+                contactEmail.setId(rs.getInt("id"));
                 contactEmail.setEmailAddress(rs.getString("email_address"));
                 contactEmail.setContact(contact);
 
@@ -62,8 +62,6 @@ public class ContactEmailDAO {
         HashMap<Integer, ContactEmail> oldEmails = new HashMap<>();
 
         for (ContactEmail email : this.loadContactEmails(contact)) {
-            System.out.println("email = " + email);
-
             email.setContact(contact);
             oldEmails.put(email.getId(), email);
         }
@@ -73,7 +71,7 @@ public class ContactEmailDAO {
 
         for (ContactEmail email : newEmails) {
 
-            System.out.println("email = " + email.getId());
+            email.setContact(contact);
 
             // New numbers don't have an id yet, so just add them to the insert ArrayList
             if (email.getId() == NEW_EMAIL_ID) {
@@ -88,10 +86,6 @@ public class ContactEmailDAO {
         }
 
         ArrayList<ContactEmail> delete = new ArrayList<>(oldEmails.values());
-
-        System.out.println("insert = " + insert);
-        System.out.println("update = " + update);
-        System.out.println("delete = " + delete);
 
         // Insert phone numbers
         for (ContactEmail email : insert)
