@@ -26,7 +26,7 @@ import java.util.Date;
 public class ExpenseController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
 
     Expense expense;
-    ExpenseDAO dao;
+    ExpenseDAO dao = new ExpenseDAO();
     private Request request;
 
 
@@ -66,21 +66,25 @@ public class ExpenseController extends PageController implements OverviewPage, D
 
     @Override
     public Response overview(Request request) {
+        this.request = request;
         return new ViewResponse(this);
     }
 
     @Override
     public Response detail(Request request) {
+        this.request = request;
         return new ViewResponse(this);
     }
 
     @Override
     public Response edit(Request request) {
+        this.request = request;
         return new ViewResponse(this);
     }
 
     @Override
     public Response create(Request request) {
+        this.request = request;
         return new ViewResponse(this);
     }
 
