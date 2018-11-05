@@ -23,7 +23,7 @@ public class ExpenseDetailView extends AnchorPane implements PageView {
     SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 
     @FXML
-    private Text name;
+    private Text Name;
 
     @FXML
     private Text Price;
@@ -73,14 +73,14 @@ public class ExpenseDetailView extends AnchorPane implements PageView {
 
     @FXML
     public void onClickEdit() {
+
         this.controller.getRouter().nav("expenses/edit/{expense}/");
     }
 
 
     public void fillForm(){
-        int expensese = Integer.parseInt(this.controller.getRequest().getParameter("expense"));
-        controller.setExpense(expensese);
-        name.setText(controller.getExpense().getName());
+        controller.setExpense(Integer.parseInt(this.controller.getRequest().getParameter("expense")));
+        Name.setText(controller.getExpense().getName());
         Price.setText(String.valueOf(controller.getExpense().getPrice()));
         NettoBedrag.setText(getNettoBedrag(controller.getExpense().getPrice()));
         DateCreated.setText(getDateString(controller.getExpense().getCreated_at()));

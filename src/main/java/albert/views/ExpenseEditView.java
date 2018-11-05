@@ -8,13 +8,34 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import router.views.PageView;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ExpenseEditView extends AnchorPane implements PageView {
 
     private final String resource = "/views/pages/ExpenseEdit.fxml";
     private ExpenseController controller;
+    SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 
+
+
+    @FXML
+    private TextField Name;
+
+    @FXML
+    private TextField Price;
+
+    @FXML
+    private Text NettoBedrag;
+
+    @FXML
+    private TextField DateCreated;
+
+    @FXML
+    private TextField Description;
 
     @Override
     public void load() {
@@ -32,8 +53,9 @@ public class ExpenseEditView extends AnchorPane implements PageView {
 
     @Override
     public void update() {
-
+        this.fillForm();
     }
+
 
     @Override
     public void setController(PageController controller) {
@@ -54,6 +76,22 @@ public class ExpenseEditView extends AnchorPane implements PageView {
     public void onClickSave() {
 
     }
+    public void fillForm(){
+        int expensese = Integer.parseInt(this.controller.getRequest().getParameter("expense"));
+        controller.setExpense(expensese);
+        Name.setText(controller.getExpense().getName());
+        Price.setText(String.valueOf(controller.getExpense().getPrice()));
+        NettoBedrag.setText(getNettoBedrag(controller.getExpense().getPrice()));
+        DateCreated.setText(getDateString(controller.getExpense().getCreated_at()));
+        Description.setText(controller.getExpense().getDescription());
+    }
 
+    public String getNettoBedrag(double bedrag){
+        return String.format( "%.2f", (bedrag * controller.getExpense().getBtw()));
+    }
+
+    public String getDateString(Date date){
+        return formatter.format(date);
+    }
 
 }
