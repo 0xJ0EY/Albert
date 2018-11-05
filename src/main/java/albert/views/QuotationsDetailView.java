@@ -61,7 +61,6 @@ public class QuotationsDetailView extends AnchorPane implements PageView {
 
     @FXML
     public void onClickGeneratePdf() throws ParseException {
-        System.out.println("G$EFWDWREFTHBGFVDCEF" + this.controller.getRequest().getParameter("quotation"));
         int invoiceId = Integer.parseInt(this.controller.getRequest().getParameter("quotation"));
         controller.setQuotation(invoiceId);
         controller.getQuotation().generatePdf();

@@ -72,23 +72,23 @@ public class InvoiceDAO implements DAO<Invoice>{
 
     @Override
     public void create(Invoice obj) {
-    this.invoice = obj;
+        this.invoice = obj;
         //TODO sql insert schrijven
-        String sql = "INSERT INTO invoice VALUES (invoice_id=?, paid=? ,tax_id= ?,project_id=?, amount_id ,created_at=? , deliverydate=?);";
+        String sql = "INSERT INTO invoice VALUES ( paid=? ,tax_id= ?,project_id=?, amount_id=? ,created_at=? , deliverydate=?);";
 
         try {
             Connection conn = Database.getInstance().getConnection();
 
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setInt(1,this.invoice.getId());
 
-            statement.setBoolean(2,this.invoice.getPaid());
-            statement.setInt(3, this.invoice.getTax().getId());
-            statement.setInt(4,  this.invoice.getProject().getId());
-            statement.setInt(5,this.invoice.getAmount().getId());
-            statement.setTimestamp(6,this.invoice.getCreated_at());
-            statement.setTimestamp(7, this.invoice.getDeliveryDate());
+
+            statement.setBoolean(1,this.invoice.getPaid());
+            statement.setInt(2, this.invoice.getTax().getId());
+            statement.setInt(3,  this.invoice.getProject().getId());
+            statement.setInt(4,this.invoice.getAmount().getId());
+            statement.setTimestamp(5, this.invoice.getCreated_at());
+            statement.setTimestamp(6, this.invoice.getDeliveryDate());
 
             statement.execute();
             conn.close();

@@ -15,41 +15,11 @@ public class Project {
     private Timestamp created_at;
     private Boolean done;
     private Contact contact;
-    private Invoice invoice;
-    private Expense expense;
-    private Quotation quotation;
-
-    public Project() {
-
-    }
-
-    public Expense getExpense() {
-        return expense;
-    }
-
-    public void setExpense(Expense expense) {
-        this.expense = expense;
-    }
-
-    public Quotation getQuotation() {
-        return quotation;
-    }
-
-    public void setQuotation(Quotation quotation) {
-        this.quotation = quotation;
-    }
-
-    public Invoice getInvoice() {
-        return invoice;
-    }
-
-    public void setInvoice(Invoice invoice) {
-        this.invoice = invoice;
-    }
 
     public Contact getContact() { return contact; }
 
-    public void setContact(Contact contact) { this.contact = contact; }
+    public void setContact(Contact contact) {this.contact = contact;
+    }
 
     public Project(String name, String status) {
         this.name = name; this.status = status;

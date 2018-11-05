@@ -154,9 +154,9 @@ public class ExpenseDAO implements DAO<Expense>{
 
         Expense expense = new Expense(
                 rs.getDouble("price"),
-        rs.getString("description"),
-        rs.getTimestamp("created_at"),
-        rs.getString("name")
+                rs.getString("description"),
+                rs.getTimestamp("created_at"),
+                rs.getString("name")
         );
         return expense;
     }

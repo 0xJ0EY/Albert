@@ -16,7 +16,7 @@ public class ContactDAO implements DAO<Contact> {
     @Override
     public ArrayList getAll() {
         String sql = "SELECT * FROM contact";
-        ArrayList<Contact> contactArrayList = null;
+        ArrayList<Contact> contactArrayList = new ArrayList<Contact>();
         try {
             Connection conn = Database.getInstance().getConnection();
 

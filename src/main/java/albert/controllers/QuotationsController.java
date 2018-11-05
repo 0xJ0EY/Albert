@@ -104,7 +104,7 @@ public class QuotationsController extends PageController implements OverviewPage
     }
 
     public void setQuotation(int id) {
-        this.quotation = (Quotation)dao.loadById(id);
+        this.quotation = dao.loadById(id);
     }
 
     public Quotation getQuotation() { return this.quotation; }

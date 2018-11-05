@@ -15,8 +15,8 @@ public class ProjectDAO implements DAO<Project> {
 
     private ContactDAO daoContact = new ContactDAO();
     private ExpenseDAO expenseDAO = new ExpenseDAO();
-//    private QuotationDAO quotationDAO = new QuotationDAO();
-//    private InvoiceDAO invoiceDAO = new InvoiceDAO();
+    private QuotationDAO quotationDAO = new QuotationDAO();
+    private InvoiceDAO invoiceDAO = new InvoiceDAO();
     private Project project;
 
 
@@ -24,7 +24,7 @@ public class ProjectDAO implements DAO<Project> {
     public ArrayList<Project> getAll() {
 
         String sql = "SELECT * FROM project";
-        ArrayList<Project> projectArrayList = null;
+        ArrayList<Project> projectArrayList = new ArrayList<Project>();
         try {
             Connection conn = Database.getInstance().getConnection();
 
@@ -33,8 +33,8 @@ public class ProjectDAO implements DAO<Project> {
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()){
-                Project project = extractFromResultSet(rs);
-                projectArrayList.add(project);
+                Project newProject = extractFromResultSet(rs);
+                projectArrayList.add(newProject);
             }
 
             conn.close();
@@ -161,8 +161,8 @@ public class ProjectDAO implements DAO<Project> {
         );
 
         project.setId(rs.getInt("project_id"));
-        project.setExpense(expenseDAO.loadById(rs.getInt("expense_id")));
-        project.setQuotation(daoQuot.loadById(rs.getInt("quotation_id")));
+   //     project.setExpense(expenseDAO.loadById(rs.getInt("expense_id")));
+    //    project.setQuotation(quotationDAO.loadById(rs.getInt("quotation_id")));
         project.setInvoice(daoInvoice.loadById(rs.getInt("invoice_id")));
         project.setContact(daoContact.loadById(rs.getInt("contact_id")));
 

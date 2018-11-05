@@ -3,10 +3,13 @@ package albert.views;
 import albert.controllers.InvoicesController;
 import albert.controllers.PageController;
 import albert.models.Amount;
+import albert.models.Contact;
 import albert.models.Invoice;
+import albert.models.Project;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import router.views.PageView;
@@ -15,6 +18,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.sql.Timestamp;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class InvoiceCreateView extends AnchorPane implements PageView {
@@ -34,7 +38,10 @@ public class InvoiceCreateView extends AnchorPane implements PageView {
     private TextField price;
 
     @FXML
-    private TextField project;
+    private ComboBox linkedProject;
+
+    @FXML
+    private ComboBox linkedContact;
 
     @FXML
     private TextField delivery;
@@ -58,11 +65,20 @@ public class InvoiceCreateView extends AnchorPane implements PageView {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+
     }
 
     @Override
     public void update() {
+        ArrayList<Project> projects = controller.getProjects();
+        for(int i=0; i<projects.size(); i++ ) {
+            linkedProject.getItems().add(projects.get(i).getName());
+        }
 
+        ArrayList<Contact> contacts = controller.getContacts();
+        for(int i=0; i<contacts.size(); i++ ) {
+            linkedContact.getItems().add(contacts.get(i).getFirstName() + " " + contacts.get(i).getLastName());
+        }
     }
 
     @Override
@@ -81,7 +97,15 @@ public class InvoiceCreateView extends AnchorPane implements PageView {
         Date date = Date.from(deliveryDate.getValue().atStartOfDay()
                 .atZone(ZoneId.systemDefault()).toInstant());
         Timestamp timeStamp = new Timestamp(date.getTime());
-        controller.createInvoice(price.getText(), hours.getText(), betaaldBox.isSelected(), timeStamp);
+
+        controller.createInvoice(price.getText(),
+                hours.getText(),
+                betaaldBox.isSelected(),
+                timeStamp,
+                controller.getProjectId(linkedProject.getValue().toString()));
+
+        controller.getRouter().nav("invoices/");
+
     }
 
     @FXML

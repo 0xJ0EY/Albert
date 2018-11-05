@@ -11,7 +11,7 @@ public class QuotationDAO implements DAO<Quotation>{
 
     private Quotation quotation;
     private AmountDAO daoAmount = new AmountDAO();
-//    private ProjectDAO daoProject = new ProjectDAO();
+    private ProjectDAO daoProject = new ProjectDAO();
     private AmountDAO amountDAO = new AmountDAO();
     @Override
     public ArrayList getAll() {
@@ -151,7 +151,7 @@ public class QuotationDAO implements DAO<Quotation>{
                 rs.getTimestamp("created_at")
         );
         quotation.setAmount(daoAmount.loadById(rs.getInt("amount_id")));
-   //     quotation.setProject(daoProject.loadById(rs.getInt("project_id")));
+        quotation.setProject(daoProject.loadById(rs.getInt("project_id")));
         quotation.setExpectedHours(rs.getInt("hours_expected"));
 
         return quotation;

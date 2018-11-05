@@ -73,7 +73,11 @@ public class PdfService {
         renderer.setDocumentFromString(xHtml, baseUrl);
         renderer.layout();
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Save Pdf");
+        FileChooser.ExtensionFilter extFilter =
+                new FileChooser.ExtensionFilter("PDF Bestand (*.pdf)", "*.pdf");
+        fileChooser.getExtensionFilters().add(extFilter);
+        fileChooser.setInitialFileName("NieuweFactuur");
+        fileChooser.setTitle("Factuur Exporteren");
         File file = fileChooser.showSaveDialog(stage);
 
         OutputStream outputStream = new FileOutputStream(file.getAbsoluteFile());
@@ -120,9 +124,10 @@ public class PdfService {
         renderer.setDocumentFromString(xHtml, baseUrl);
         renderer.layout();
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Save Pdf");
-        fileChooser.getExtensionFilters().add(
-                new FileChooser.ExtensionFilter("pdf file", ".pdf"));
+        fileChooser.setTitle("Offerte exporteren");
+        FileChooser.ExtensionFilter extFilter =
+                new FileChooser.ExtensionFilter("PDF Bestand (*.pdf)", "*.pdf");
+        fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showSaveDialog(stage);
 
         OutputStream outputStream = new FileOutputStream(file.getAbsoluteFile());

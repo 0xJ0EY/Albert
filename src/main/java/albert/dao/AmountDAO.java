@@ -63,7 +63,8 @@ public class AmountDAO implements DAO<Amount> {
 
         this.amount= obj;
         //TODO sql insert schrijven
-        String sql = "INSERT INTO amount VALUES (amount_id=?, hours=?, price=?,contact_id=?);";
+//        String sql = "INSERT INTO amount VALUES (amount_id=?, hours=?, price=?,contact_id=?);";
+        String sql = "INSERT INTO amount VALUES (?, ?, ?, ?);";
 
         try {
                 Connection conn = Database.getInstance().getConnection();

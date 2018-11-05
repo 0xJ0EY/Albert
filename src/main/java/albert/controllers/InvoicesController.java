@@ -1,6 +1,8 @@
 package albert.controllers;
 
+import albert.dao.ContactDAO;
 import albert.dao.InvoiceDAO;
+import albert.dao.ProjectDAO;
 import albert.models.*;
 import albert.services.PdfService;
 import com.itextpdf.text.DocumentException;
@@ -27,13 +29,15 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.ParseException;
+import java.util.ArrayList;
 
 
 public class InvoicesController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
     private InvoiceDAO dao = new InvoiceDAO();
+    private ProjectDAO daoProject = new ProjectDAO();
+    private ContactDAO daoContact = new ContactDAO();
     private Amount amount;
     private Invoice invoice;
-
     private Request request;
 
     public InvoicesController(PageView view, TemplateController template) {
@@ -42,7 +46,7 @@ public class InvoicesController extends PageController implements OverviewPage, 
 
     public Table getOverviewTable(){
         Table table = new Table(
-                new DatabaseStrategy(Query.table("invoice")),
+                new DatabaseStrategy(Query.table("invoice").where("paid", "=", "false")),
                 new SearchTableView()
         );
 
@@ -69,25 +73,30 @@ public class InvoicesController extends PageController implements OverviewPage, 
         return  table;
     }
 
-    public void createInvoice(String price, String hours, Boolean betaald, Timestamp deliveryDate) {
+    public void createInvoice(String price, String hours, Boolean betaald, Timestamp deliveryDate, int projectId) {
         amount = new Amount(new Double(price), new Double(hours));
         Tax tax = new Tax("btw", 21);
         invoice = new Invoice();
         invoice.setPaid(betaald);
         invoice.setDeliveryDate(deliveryDate);
+        invoice.setProject(daoProject.loadById(projectId));
         invoice.setTax(tax);
-
+        invoice.setAmount(amount);
+        invoice.setCreated_at(new Timestamp(System.currentTimeMillis()));
+        invoice.getAmount().setContact(daoContact.loadById(1));
+        //TODO: VERANDER REGEL HIERBOVEN NAAR NIET STATIC
+        dao.create(invoice);
     }
 
     public Table getPaidOverviewTable(){
         Table table = new Table(
-                new DatabaseStrategy(Query.table("invoice").where("paid", "=", "paid")),
+                new DatabaseStrategy(Query.table("invoice").where("paid", "=", "true")),
                 new SearchTableView()
         );
 
         table.addCol(new Column("invoice_id::text",
                 new LeftHeaderViewFactory("Invoice ID"),
-                new TextCellFactory())
+                new RouteCellFactory("invoices/detail/{invoice_id}/", this))
         );
 
         table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
@@ -153,6 +162,38 @@ public class InvoicesController extends PageController implements OverviewPage, 
 
     public Request getRequest() {
         return request;
+    }
+
+    public ArrayList<Project> getProjects() {
+        ArrayList<Project> projects = daoProject.getAll();
+        return projects;
+    }
+
+    public ArrayList<Contact> getContacts() {
+        ArrayList<Contact> contacts = daoContact.getAll();
+        return contacts;
+    }
+
+    public int getProjectId(String projectName) {
+        int projectId = 1;
+        ArrayList<Project> projects = this.getProjects();
+        for(int i=0; i<projects.size();i++) {
+            if(projects.get(i).getName().equals(projectName)) {
+                projectId = projects.get(i).getId();
+            }
+        }
+        return projectId;
+    }
+
+    public int getContactId(String contactName) {
+        int contactId = 1;
+        ArrayList<Contact> contacts = this.getContacts();
+        for(int i=0; i<contacts.size();i++) {
+            if(contacts.get(i).getFirstName().equals(contactName)) {
+                contactId = contacts.get(i).getId();
+            }
+        }
+        return contactId;
     }
 
 }
