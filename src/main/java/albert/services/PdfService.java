@@ -108,7 +108,9 @@ public class PdfService {
 
         Context context = new Context();
         int contact = quotation.getProject().getContactId();
-        context.setVariable("contact", contact);
+        Project project = projectDAO.loadById(quotation.getProject().getId());
+        Contact contactQ = contactDAO.loadById(project.getContactId());
+        context.setVariable("contact", contactQ);
         context.setVariable("data", quotation);
 
 

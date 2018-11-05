@@ -20,7 +20,6 @@ public class Invoice {
     private Timestamp created_at;
     private Timestamp deliveryDate;
     private Project project;
-    private Contact contact;
     private Amount bedragen;
     private Tax tax;
     DecimalFormat df = new DecimalFormat("0.00");

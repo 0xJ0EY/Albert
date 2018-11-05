@@ -102,12 +102,12 @@ public class InvoiceCreateView extends AnchorPane implements PageView {
                 hours.getText(),
                 betaaldBox.isSelected(),
                 timeStamp,
-                controller.getProjectId(linkedProject.getValue().toString()));
+                controller.getProjectIdFromName(linkedProject.getValue().toString()));
 
         controller.getRouter().nav("invoices/");
 
     }
 
     @FXML
-    public void onClickBack(ActionEvent event) { controller.getRouter().nav("invoice/1");   }
+    public void onClickBack(ActionEvent event) { controller.getRouter().nav("invoices/");   }
 }

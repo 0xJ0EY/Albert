@@ -155,7 +155,7 @@ public class QuotationDAO implements DAO<Quotation>{
                 rs.getTimestamp("created_at")
         );
         quotation.setId(rs.getInt("quotation_id"));
-        quotation.setExpectedHours(rs.getInt("hours_expected"));
+      //  quotation.setExpectedHours(rs.getInt("hours_expected"));
         quotation.setAmount(amountDAO.loadById(rs.getInt("amount_id")));
         quotation.setProject(projectDAO.loadById(rs.getInt("project_id")));
 

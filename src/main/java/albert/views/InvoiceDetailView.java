@@ -33,9 +33,6 @@ public class InvoiceDetailView extends AnchorPane implements PageView {
     private Text hours;
 
     @FXML
-    private Text naamKlant;
-
-    @FXML
     private Text btwPercentage;
 
     @FXML
@@ -98,7 +95,6 @@ public class InvoiceDetailView extends AnchorPane implements PageView {
     }
 
     public void setAttributes(Invoice invoice) {
-        naamKlant.setText(invoice.getProject().getContact().getFirstName() + " " + invoice.getProject().getContact().getLastName());
         paidBox.setSelected(invoice.getPaid());
         invoiceId.setText("" + invoice.getId());
         date.setText(dateFormat.format(invoice.getDeliveryDate()));

@@ -46,7 +46,7 @@ public class InvoicesController extends PageController implements OverviewPage, 
 
     public Table getOverviewTable(){
         Table table = new Table(
-                new DatabaseStrategy(Query.table("invoice").where("paid", "=", "onbetaald")),
+                new DatabaseStrategy(Query.table("invoice").where("paid", "=", "false")),
                 new SearchTableView()
         );
 
@@ -92,7 +92,7 @@ public class InvoicesController extends PageController implements OverviewPage, 
 
     public Table getPaidOverviewTable(){
         Table table = new Table(
-                new DatabaseStrategy(Query.table("invoice").where("paid", "=", "betaald")),
+                new DatabaseStrategy(Query.table("invoice").where("paid", "=", "true")),
                 new SearchTableView()
         );
 
@@ -182,7 +182,7 @@ public class InvoicesController extends PageController implements OverviewPage, 
         return contacts;
     }
 
-    public int getProjectId(String projectName) {
+    public int getProjectIdFromName(String projectName) {
         int projectId = 1;
         ArrayList<Project> projects = this.getProjects();
         for(int i=0; i<projects.size();i++) {
@@ -193,7 +193,7 @@ public class InvoicesController extends PageController implements OverviewPage, 
         return projectId;
     }
 
-    public int getContactId(String contactName) {
+    public int getContactIdFromName(String contactName) {
         int contactId = 1;
         ArrayList<Contact> contacts = this.getContacts();
         for(int i=0; i<contacts.size();i++) {

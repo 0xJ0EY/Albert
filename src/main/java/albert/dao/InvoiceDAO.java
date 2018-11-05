@@ -72,7 +72,7 @@ public class InvoiceDAO implements DAO<Invoice>{
     public void create(Invoice obj) {
         this.invoice = obj;
         //TODO sql insert schrijven
-        String sql = "INSERT INTO invoice VALUES ( paid=? ,tax_id= ?,project_id=?, amount_id=? ,created_at=? , deliverydate=?);";
+        String sql = "INSERT INTO invoice VALUES (paid= ? ,tax_id= ?,project_id=?, amount_id=? ,created_at=? , deliverydate=?);";
 
         try {
             Connection conn = Database.getInstance().getConnection();
@@ -80,7 +80,7 @@ public class InvoiceDAO implements DAO<Invoice>{
             PreparedStatement statement = conn.prepareStatement(sql);
 
 
-            statement.setBoolean(1,this.invoice.getPaid());
+            statement.setString(1,this.invoice.getPaid().toString());
             statement.setInt(2, this.invoice.getTax().getId());
             statement.setInt(3,  this.invoice.getProject().getId());
             statement.setInt(4,this.invoice.getAmount().getId());
