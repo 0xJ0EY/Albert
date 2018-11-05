@@ -104,7 +104,7 @@ public class ExpenseDAO implements DAO<Expense>{
 
         this.expense = obj;
         //TODO sql update schrijven
-        String sql = "UPDATE expense SET price =?, created_at =? , description =?, name=? WHERE expense_id=?)";
+        String sql = "UPDATE expense SET price =?, created_at =? , description =?, name=? WHERE expense_id=?";
         try {
             Connection conn = Database.getInstance().getConnection();
 
@@ -114,8 +114,9 @@ public class ExpenseDAO implements DAO<Expense>{
             statement.setTimestamp(2,this.expense.getCreated_at());
             statement.setString(3,this.expense.getDescription());
             statement.setString(4,this.expense.getName());
+            statement.setInt(5,this.expense.getId());
 
-            statement.executeUpdate();
+            statement.executeQuery();
             conn.close();
 
         } catch (SQLException e) {

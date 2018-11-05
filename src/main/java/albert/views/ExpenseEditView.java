@@ -2,10 +2,8 @@ package albert.views;
 
 import albert.controllers.ExpenseController;
 import albert.controllers.PageController;
-import albert.controllers.RapportsController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -74,11 +72,13 @@ public class ExpenseEditView extends AnchorPane implements PageView {
 
     @FXML
     public void onClickSave() {
+      int expenseID =Integer.parseInt(this.controller.getRequest().getParameter("expense"));
+      controller.editExpense(expenseID, Name.getText(), Double.parseDouble(Price.getText()), Description.getText());
+
 
     }
     public void fillForm(){
-        int expensese = Integer.parseInt(this.controller.getRequest().getParameter("expense"));
-        controller.setExpense(expensese);
+        controller.setExpense(Integer.parseInt(this.controller.getRequest().getParameter("expense")));
         Name.setText(controller.getExpense().getName());
         Price.setText(String.valueOf(controller.getExpense().getPrice()));
         NettoBedrag.setText(getNettoBedrag(controller.getExpense().getPrice()));
