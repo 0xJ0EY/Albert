@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import router.Router;
 import router.views.PageView;
 
 import java.text.DecimalFormat;
@@ -73,7 +74,6 @@ public class ExpenseDetailView extends AnchorPane implements PageView {
 
     @FXML
     public void onClickEdit() {
-
         this.controller.getRouter().nav("expenses/edit/{expense}/");
     }
 

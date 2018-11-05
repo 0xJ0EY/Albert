@@ -24,10 +24,11 @@ import table.views.tables.components.TableButton;
 
 
 public class QuotationsController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
-    Amount amount;
-    Quotation quotation;
 
+    private Amount amount;
+    private Quotation quotation;
     private QuotationDAO dao = new QuotationDAO();
+    private Request request;
 
     public QuotationsController(PageView view, TemplateController template) {
         super(view, template);
@@ -40,8 +41,8 @@ public class QuotationsController extends PageController implements OverviewPage
         );
 
         table.addCol(new Column("name",
-                new LeftHeaderViewFactory("Voornaam"),
-                new RouteCellFactory("contacts/details/{quotation_id}/", this))
+                new LeftHeaderViewFactory("Naam"),
+                new RouteCellFactory("quotations/detail/{quotation_id}/", this))
         );
 
         table.addCol(new Column("description",
@@ -67,6 +68,8 @@ public class QuotationsController extends PageController implements OverviewPage
         return table;
     }
 
+
+
     public void saveQuotation(String name, String price, String hour, String contact, String delivery) {
         amount = new Amount(new Double(price), new Double(hour), contact);
         quotation = new Quotation(name, amount, delivery);
@@ -80,23 +83,40 @@ public class QuotationsController extends PageController implements OverviewPage
         //quotation = new Quotation(name, amount, delivery);
         dao.update(quotation);
     }
+
+    public Quotation getQuotation() {
+        return quotation;
+    }
+
+    public void setQuotation(int id) {
+        this.quotation = dao.loadById(id);
+    }
+
+    public Request getRequest() {
+        return request;
+    }
+
     @Override
     public Response overview(Request request) {
+        this.request = request;
         return new ViewResponse(this);
     }
 
     @Override
     public Response detail(Request request) {
+        this.request = request;
         return new ViewResponse(this);
     }
 
     @Override
     public Response edit(Request request) {
+        this.request = request;
         return new ViewResponse(this);
     }
 
     @Override
     public Response create(Request request) {
+        this.request = request;
         return new ViewResponse(this);
     }
 }
