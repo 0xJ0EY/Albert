@@ -79,6 +79,7 @@ public class InvoiceEditView extends AnchorPane implements PageView {
                 .atZone(ZoneId.systemDefault()).toInstant());
         Timestamp timeStamp = new Timestamp(date.getTime());
         controller.saveInvoice(price.getText(), hours.getText(), betaaldBox.isSelected(), timeStamp, this.controller.getInvoice());
+        controller.getRouter().nav("invoices/");
     }
 
     public void setAttributes(Invoice invoice) {

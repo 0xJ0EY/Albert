@@ -18,6 +18,7 @@ public class InvoiceDAO implements DAO<Invoice>{
     private ProjectDAO daoProject = new ProjectDAO();
 
 
+
     @Override
     public ArrayList<Invoice> getAll() {
         String sql = "SELECT * FROM invoice";
@@ -102,7 +103,7 @@ public class InvoiceDAO implements DAO<Invoice>{
     public void update(Invoice obj) {
         this.invoice = obj;
         //TODO sql update schrijven
-        String sql = "UPDATE invoice SET ( paid='?' ,tax_id= ?,project_id=?, created_at=?, amount_id=? , deliverydate=?)WHERE invoice_id=?";
+        String sql = "UPDATE invoice SET paid=? ,tax_id= ?,project_id=?, created_at=?, amount_id=? , deliverydate=? WHERE invoice_id=?";
 
         try {
             Connection conn = Database.getInstance().getConnection();
@@ -124,6 +125,7 @@ public class InvoiceDAO implements DAO<Invoice>{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        daoAmount.update(invoice.getAmount());
         System.out.println("Invoice Updated");
 
     }
@@ -160,6 +162,7 @@ public class InvoiceDAO implements DAO<Invoice>{
         invoice.setTax(daoTax.loadById(rs.getInt("tax_id")));
         invoice.setProject(daoProject.loadById(rs.getInt("project_id")));
         invoice.setId(rs.getInt("invoice_id"));
+        invoice.setCreated_at(rs.getTimestamp("created_at"));
         return invoice;
     }
 

@@ -9,7 +9,10 @@ public class Tax {
 
     public Tax(String name, int percentage) {
         this.name = name;
-        this.percentage = percentage;
+        this.percentage = percentage; }
+
+    public Tax() {
+
     }
 
     public int getId() {

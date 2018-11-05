@@ -4,7 +4,7 @@ public class ContactEmail {
 
     private String emailAddress;
 
-    private int contact;
+    private Contact contact;
 
     private int id;
 
@@ -13,10 +13,15 @@ public class ContactEmail {
         this.emailAddress = emailAddress;
     }
 
-    public ContactEmail(String emailAddress, int contact) {
+    public ContactEmail(String emailAddress, Contact contact) {
         this.emailAddress = emailAddress;
         this.contact = contact;
     }
+
+    public ContactEmail() {
+
+    }
+
     public int getId() {
         return id;
     }
@@ -32,11 +37,11 @@ public class ContactEmail {
         this.emailAddress = emailAddress;
     }
 
-    public int getContact() {
+    public Contact getContact() {
         return contact;
     }
 
-    public void setContact(int contact) {
+    public void setContact(Contact contact) {
         this.contact = contact;
     }
 }

@@ -17,6 +17,7 @@ import router.response.Response;
 import router.response.ViewResponse;
 import table.Column;
 import table.Table;
+import table.factories.cells.RouteCellFactory;
 import table.factories.cells.TextCellFactory;
 import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
@@ -41,6 +42,35 @@ public class ProjectsController extends PageController implements OverviewPage, 
     public Table getOverviewTable(){
         Table table = new Table(
                 new DatabaseStrategy(Query.table("project")),
+                new SearchTableView()
+        );
+
+        table.addCol(new Column("project_id::text",
+                new LeftHeaderViewFactory("Project ID"),
+                new TextCellFactory())
+        );
+
+        table.addCol(new Column("name",
+                new LeftHeaderViewFactory("Naam"),
+                new RouteCellFactory("projects/details/{project}/", this))
+        );
+
+        table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
+                new LeftHeaderViewFactory("Aangemaakt op"),
+                new TextCellFactory())
+        );
+
+        table.addCol(new Column("done::text",
+                new LeftHeaderViewFactory("Afgerond"),
+                new TextCellFactory())
+        );
+
+        return  table;
+    }
+
+    public Table getDoneOverviewTable(){
+        Table table = new Table(
+                new DatabaseStrategy(Query.table("project").where("done", "=", "true")),
                 new SearchTableView()
         );
 

@@ -76,7 +76,36 @@ public class InvoicesController extends PageController implements OverviewPage, 
         invoice.setPaid(betaald);
         invoice.setDeliveryDate(deliveryDate);
         invoice.setTax(tax);
-        dao.create(invoice);
+
+    }
+
+    public Table getPaidOverviewTable(){
+        Table table = new Table(
+                new DatabaseStrategy(Query.table("invoice").where("paid", "=", "paid")),
+                new SearchTableView()
+        );
+
+        table.addCol(new Column("invoice_id::text",
+                new LeftHeaderViewFactory("Invoice ID"),
+                new TextCellFactory())
+        );
+
+        table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
+                new LeftHeaderViewFactory("Aangemaakt op"),
+                new TextCellFactory())
+        );
+
+        table.addCol(new Column("TO_CHAR(deliverydate, 'DD-MM-YYYY')",
+                new LeftHeaderViewFactory("Afleverdatum"),
+                new TextCellFactory())
+        );
+
+        table.addCol(new Column("paid::text",
+                new LeftHeaderViewFactory("Betaald"),
+                new TextCellFactory())
+        );
+
+        return  table;
     }
 
     public void saveInvoice(String price, String hours, Boolean betaald, Timestamp deliveryDate, Invoice invoice) {

@@ -7,11 +7,12 @@ import database.Database;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class QuotationDAO implements DAO{
+public class QuotationDAO implements DAO<Quotation>{
 
     private Quotation quotation;
     private AmountDAO daoAmount = new AmountDAO();
-    private ProjectDAO daoProject = new ProjectDAO();
+//    private ProjectDAO daoProject = new ProjectDAO();
+    private AmountDAO amountDAO = new AmountDAO();
     @Override
     public ArrayList getAll() {
 
@@ -38,7 +39,7 @@ public class QuotationDAO implements DAO{
     }
 
     @Override
-    public Object loadById(long id) {
+    public Quotation loadById(long id) {
         String sql = "SELECT * FROM quotation WHERE quotation_id= ?";
         try {
             Connection conn = Database.getInstance().getConnection();
@@ -48,9 +49,7 @@ public class QuotationDAO implements DAO{
             ResultSet rs = statement.executeQuery();
 
             rs.next();
-
-            quotation = this.extractFromResultSet(rs);
-
+            quotation= this.extractFromResultSet(rs);
 
             conn.close();
         }
@@ -64,23 +63,24 @@ public class QuotationDAO implements DAO{
 
 
     @Override
-    public void create(Object quotation) {
-        this.quotation = (Quotation) quotation;
+    public void create(Quotation quotation) {
+        this.quotation = quotation;
         //TODO sql insert schrijven
-        String sql = "INSERT INTO quotation VALUES (quotation_id=?, name = ? ,description =?, product=?, amount_id=?,created_at=?, project_id=?);";
+        String sql = "INSERT INTO quotation(name, description,product, amount_id, created_at, project_id, hours_expected) VALUES (?,?,?,?,?,?,?);";
 
         try {
             Connection conn = Database.getInstance().getConnection();
 
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setInt(1,this.quotation.getId());
-            statement.setString(2,this.quotation.getName());
-            statement.setString(3, this.quotation.getDescription());
-            statement.setString(4,  this.quotation.getProduct());
-            statement.setInt(5,this.quotation.getAmount().getId());
-            statement.setTimestamp(6,this.quotation.getCreated_at());
-            statement.setInt(7,this.quotation.getProject().getId());
+
+            statement.setString(1,this.quotation.getName());
+            statement.setString(2, this.quotation.getDescription());
+            statement.setString(3,  this.quotation.getProduct());
+            statement.setInt(4,this.quotation.getAmount().getId());
+            statement.setTimestamp(5,this.quotation.getCreated_at());
+            statement.setInt(6,this.quotation.getProject().getId());
+            statement.setInt(7,this.quotation.getExpectedHours());
 
             statement.execute();
             conn.close();
@@ -93,12 +93,8 @@ public class QuotationDAO implements DAO{
 
     }
 
-    public void update(Object o, String[] params) {
-
-    }
-
     @Override
-    public void update(Object obj) {
+    public void update(Quotation quotation) {
         this.quotation = quotation;
         //TODO sql update schrijven
         String sql = "UPDATE quotation SET ( name = ? ,description =?, product=?, amount_id=?,created_at=?, project_id=?)WHERE quotation_id =?";
@@ -114,6 +110,7 @@ public class QuotationDAO implements DAO{
             statement.setInt(4,this.quotation.getAmount().getId());
             statement.setTimestamp(5,this.quotation.getCreated_at());
             statement.setInt(6,this.quotation.getProject().getId());
+            statement.setInt(6,this.quotation.getId());
 
             statement.executeUpdate();
             conn.close();
@@ -125,7 +122,7 @@ public class QuotationDAO implements DAO{
     }
 
     @Override
-    public void delete(Object obj) {
+    public void delete(Quotation quotation) {
         this.quotation = quotation;
         //TODO sql delete schrijven
         String sql = "DELETE FROM quotation WHERE quotation_id =?";
@@ -154,7 +151,9 @@ public class QuotationDAO implements DAO{
                 rs.getTimestamp("created_at")
         );
         quotation.setAmount(daoAmount.loadById(rs.getInt("amount_id")));
-        quotation.setProject(daoProject.loadById(rs.getInt("project_id")));
+   //     quotation.setProject(daoProject.loadById(rs.getInt("project_id")));
+        quotation.setExpectedHours(rs.getInt("hours_expected"));
+
         return quotation;
     }
 }
