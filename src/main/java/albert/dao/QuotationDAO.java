@@ -97,7 +97,8 @@ public class QuotationDAO implements DAO<Quotation>{
     public void update(Quotation quotation) {
         this.quotation = quotation;
         //TODO sql update schrijven
-        String sql = "UPDATE quotation SET ( name = ? ,description =?, product=?, amount_id=?,created_at=?, project_id=?)WHERE quotation_id =?";
+        String sql = "UPDATE quotation SET ( name = ? ,description =?, product=?, amount_id=?,created_at=?, project_id=?)WHERE quotation_id =?;" +
+                "UPDATE project SET (quotation_id =?) WHERE project_id=?;";
 
         try {
             Connection conn = Database.getInstance().getConnection();
@@ -110,9 +111,11 @@ public class QuotationDAO implements DAO<Quotation>{
             statement.setInt(4,this.quotation.getAmount().getId());
             statement.setTimestamp(5,this.quotation.getCreated_at());
             statement.setInt(6,this.quotation.getProject().getId());
-            statement.setInt(6,this.quotation.getId());
+            statement.setInt(7,this.quotation.getId());
+            statement.setInt(8,this.quotation.getId());
+            statement.setInt(8,this.quotation.getProject().getId());
 
-            statement.executeUpdate();
+            statement.executeQuery();
             conn.close();
 
         } catch (SQLException e) {

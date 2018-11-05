@@ -14,42 +14,42 @@ public class Project {
     private String status = PaidState.notPaid.toString();
     private Timestamp created_at;
     private Boolean done;
-    private Contact contact;
-    private Invoice invoice;
-    private Expense expense;
-    private Quotation quotation;
+    private int contactId;
+    private int invoiceId;
+    private int expenseId;
+    private int quotationId;
 
     public Project() {
 
     }
 
-    public Expense getExpense() {
-        return expense;
+    public int getExpenseId() {
+        return expenseId;
     }
 
-    public void setExpense(Expense expense) {
-        this.expense = expense;
+    public void setExpenseId(int expenseId) {
+        this.expenseId = expenseId;
     }
 
-    public Quotation getQuotation() {
-        return quotation;
+    public int getQuotationId() {
+        return quotationId;
     }
 
-    public void setQuotation(Quotation quotation) {
-        this.quotation = quotation;
+    public void setQuotationId(int quotationId) {
+        this.quotationId = quotationId;
     }
 
-    public Invoice getInvoice() {
-        return invoice;
+    public int getInvoiceId() {
+        return invoiceId;
     }
 
-    public void setInvoice(Invoice invoice) {
-        this.invoice = invoice;
+    public void setInvoiceId(int invoiceId) {
+        this.invoiceId = invoiceId;
     }
 
-    public Contact getContact() { return contact; }
+    public int getContactId() { return contactId; }
 
-    public void setContact(Contact contact) { this.contact = contact; }
+    public void setContactId(int contactId) { this.contactId = contactId; }
 
     public Project(String name, String status) {
         this.name = name; this.status = status;

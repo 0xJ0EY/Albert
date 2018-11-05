@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class ContactDAO implements DAO<Contact> {
     private Contact contact;
+    private ProjectDAO projectDAO = new ProjectDAO();
 
     @Override
     public ArrayList getAll() {
@@ -39,7 +40,7 @@ public class ContactDAO implements DAO<Contact> {
 
     @Override
     public Contact loadById(long id) {
-        Contact contact = null;
+
 
         String sql = "SELECT * FROM contact WHERE contact_id = ?";
 
@@ -74,7 +75,8 @@ public class ContactDAO implements DAO<Contact> {
 
         //TODO sql insert schrijven
         String sql = "INSERT INTO contact(first_name, last_name, tel_number, postal_code, street_name, house_number, city, created_at, website, description)" +
-                "VALUES (?,?,?,?,?,?,?,?,?,?);";
+                "VALUES (?,?,?,?,?,?,?,?,?,?); " +
+                "UPDATE project SET contact_id=? WHERE project_id=?  ";
 
          try {
 
@@ -92,6 +94,8 @@ public class ContactDAO implements DAO<Contact> {
                 statement.setTimestamp(8, this.contact.getCreated_at());
                 statement.setString(9, this.contact.getWebsite());
                 statement.setString(10, this.contact.getBeschrijving());
+                statement.setInt(11,this.contact.getId());
+                statement.setInt(12, this.contact.getProject().getId());
                //TODO project later koppelenj niet bij create
                 // statement.setInt(11, this.contact.getProject().getId());
 
@@ -111,7 +115,9 @@ public class ContactDAO implements DAO<Contact> {
 
         this.contact=obj;
 
-        String sql = "UPDATE contact SET first_name=?,last_name=?,tel_number=?,postal_code=?,street_name=?,house_number=?,created_at=?,website=?,description=? WHERE contact_id = ?";
+        String sql = "UPDATE contact SET first_name=?,last_name=?,tel_number=?,postal_code=?,street_name=?,house_number=?,created_at=?,website=?,description=?" +
+                " WHERE contact_id = ?;" +
+                "UPDATE project SET contact_id=? WHERE project_id=?;";
 
         try {
 
@@ -124,6 +130,8 @@ public class ContactDAO implements DAO<Contact> {
                 statement.setString(4, this.contact.getPostcode());
                 statement.setString(5, this.contact.getStraatnaam());
                 statement.setString(6, this.contact.getHouseNumber());
+                statement.setInt(7, this.contact.getId());
+                statement.setInt(8, this.contact.getProject().getId());
 
 
                 statement.executeUpdate();
@@ -172,6 +180,7 @@ public class ContactDAO implements DAO<Contact> {
                 contact.setHouseNumber(rs.getString("house_number"));
                 contact.setWoonplaats(rs.getString("city"));
                 contact.setCreated_at(rs.getTimestamp("created_at"));
+                contact.setProject(projectDAO.loadById(rs.getInt("project_id")));
 
         return contact;
     }
