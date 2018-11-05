@@ -106,7 +106,6 @@ public class PdfService {
         context.setVariable("data", quotation);
 
 
-
         String renderedHtmlContent = templateEngine.process("templateQuotation", context);
         String xHtml = convertToXhtml(renderedHtmlContent);
 
@@ -120,8 +119,13 @@ public class PdfService {
                 .toString();
         renderer.setDocumentFromString(xHtml, baseUrl);
         renderer.layout();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Pdf");
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("pdf file", ".pdf"));
+        File file = fileChooser.showSaveDialog(stage);
 
-        OutputStream outputStream = new FileOutputStream("src/main/resources/quotation.pdf");
+        OutputStream outputStream = new FileOutputStream(file.getAbsoluteFile());
         renderer.createPDF(outputStream);
         outputStream.close();
         return true;

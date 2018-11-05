@@ -15,13 +15,13 @@ public class Invoice {
 
     private int id;
     private Amount amount;
-    private String paid;
+    private Boolean paid;
     private String dateNow;
     private Timestamp created_at;
     private Timestamp deliveryDate;
     private Project project;
     private Tax tax;
-    DecimalFormat df=new DecimalFormat("0.00");
+    DecimalFormat df = new DecimalFormat("0.00");
 
     public Invoice(String paid, Timestamp deliveryDate) {
         this.amount = amount;
@@ -37,18 +37,17 @@ public class Invoice {
     }
 
 
-    public String getPaid() { return this.paid; }
+    public Boolean getPaid() { return this.paid; }
 
-    public void setPaid(String paid) { this.paid = paid; }
+    public void setPaid(Boolean paid) { this.paid = paid; }
 
-    public Date getCreated_at() { return  this.created_at; }
+    public Timestamp getCreated_at() { return  this.created_at; }
 
     public void setCreated_at(Timestamp created_at) { this.created_at = created_at; }
 
     public Timestamp getDeliveryDate() { return deliveryDate; }
 
     public void setDeliveryDate(Timestamp deliveryDate) { this.deliveryDate = deliveryDate; }
-
 
     public Amount getAmount() {
         return amount;
@@ -92,7 +91,7 @@ public class Invoice {
     public void generatePdf() throws ParseException {
         this.getTax().setTaxPart(this.calculateTax());
         String value = df.format(this.getTax().getTaxPart()+this.getAmount().getPrice());
-        this.getAmount().setBcost((Double)df.parse(value));
+        this.getAmount().setBcost(df.parse(value).doubleValue());
 
         try {
             PdfService.getInstance().generateInvoicePdf(this);

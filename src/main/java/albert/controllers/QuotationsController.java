@@ -20,14 +20,13 @@ import table.factories.cells.TextCellFactory;
 import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
-import table.views.tables.components.TableButton;
-
 
 public class QuotationsController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
     Amount amount;
     Quotation quotation;
 
     private QuotationDAO dao = new QuotationDAO();
+    private Request request;
 
     public QuotationsController(PageView view, TemplateController template) {
         super(view, template);
@@ -41,7 +40,7 @@ public class QuotationsController extends PageController implements OverviewPage
 
         table.addCol(new Column("name",
                 new LeftHeaderViewFactory("Voornaam"),
-                new RouteCellFactory("contacts/details/{quotation_id}/", this))
+                new RouteCellFactory("quotations/detail/{quotation_id}/", this))
         );
 
         table.addCol(new Column("description",
@@ -59,16 +58,16 @@ public class QuotationsController extends PageController implements OverviewPage
                 new TextCellFactory())
         );
 
-        table.addCol(new Column("hours_expected::text",
-                new LeftHeaderViewFactory("Verwachte uren"),
-                new TextCellFactory())
-        );
+//        table.addCol(new Column("hours::text",
+//                new LeftHeaderViewFactory("Verwachte uren"),
+//                new TextCellFactory())
+//        );
 
         return table;
     }
 
     public void saveQuotation(String name, String price, String hour, String contact, String delivery) {
-        amount = new Amount(new Double(price), new Double(hour), contact);
+        amount = new Amount(new Double(price), new Double(hour));
         quotation = new Quotation(name, amount, delivery);
         dao.create(quotation);
     }
@@ -76,27 +75,40 @@ public class QuotationsController extends PageController implements OverviewPage
     public void deleteQuotation() { dao.delete(quotation); }
 
     public void editQuotation(String name, String price, String hour, String contact, String delivery) {
-        //amount = new Amount(new Double(price), new Double(hour), contact);
-        //quotation = new Quotation(name, amount, delivery);
+        amount = new Amount(new Double(price), new Double(hour));
+        quotation = new Quotation(name, amount, delivery);
         dao.update(quotation);
     }
     @Override
     public Response overview(Request request) {
+        this.request = request;
         return new ViewResponse(this);
     }
 
     @Override
     public Response detail(Request request) {
+        this.request = request;
         return new ViewResponse(this);
     }
 
     @Override
     public Response edit(Request request) {
+        this.request = request;
         return new ViewResponse(this);
     }
 
     @Override
     public Response create(Request request) {
+        this.request = request;
         return new ViewResponse(this);
     }
+
+    public void setQuotation(int id) {
+        this.quotation = (Quotation)dao.loadById(id);
+    }
+
+    public Quotation getQuotation() { return this.quotation; }
+
+    public Request getRequest() { return request; }
+
 }

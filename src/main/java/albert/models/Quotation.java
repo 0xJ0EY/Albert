@@ -1,6 +1,13 @@
 package albert.models;
 
+import albert.services.PdfService;
+import com.itextpdf.text.DocumentException;
+
+import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Quotation {
@@ -65,10 +72,6 @@ public class Quotation {
         this.id = id;
     }
 
-
-
-
-
     public Project getProject() {
         return project;
     }
@@ -83,5 +86,21 @@ public class Quotation {
 
     public void setCreated_at(Timestamp created_at) {
         this.created_at = created_at;
+    }
+
+    public void generatePdf() throws ParseException {
+        try {
+            PdfService.getInstance().generateQuotationPdf(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getCurrentDate() {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        return dateFormat.format(date).toString();
     }
 }

@@ -160,6 +160,11 @@
                         </HBox>
                         <HBox alignment="TOP_RIGHT" prefHeight="40.0" prefWidth="200.0">
                            <children>
+                              <Button mnemonicParsing="false" onAction="#onClickGeneratePdf" text="Genereer pdf">
+                                 <HBox.margin>
+                                    <Insets right="50.0" />
+                                 </HBox.margin>
+                              </Button>
                               <Button fx:id="editButton" mnemonicParsing="false" prefWidth="100.0" text="Edit" />
                            </children>
                         </HBox>

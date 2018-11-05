@@ -6,10 +6,16 @@ import albert.models.Amount;
 import albert.models.Invoice;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import router.views.PageView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+
+import java.sql.Timestamp;
+import java.time.ZoneId;
+import java.util.Date;
 
 public class InvoiceCreateView extends AnchorPane implements PageView {
 
@@ -17,9 +23,6 @@ public class InvoiceCreateView extends AnchorPane implements PageView {
     private InvoicesController controller;
     private Invoice invoice;
     private Amount amount;
-
-    @FXML
-    private TextField name;
 
     @FXML
     private TextField contact;
@@ -35,6 +38,12 @@ public class InvoiceCreateView extends AnchorPane implements PageView {
 
     @FXML
     private TextField delivery;
+
+    @FXML
+    private CheckBox betaaldBox;
+
+    @FXML
+    private DatePicker deliveryDate;
 
 
     @Override
@@ -69,7 +78,10 @@ public class InvoiceCreateView extends AnchorPane implements PageView {
     @FXML
     public void onClickSave(ActionEvent event){
         System.out.println("Click on Save");
-        controller.saveInvoice(name.getText(), price.getText(), hours.getText(), contact.getText(), delivery.getText());
+        Date date = Date.from(deliveryDate.getValue().atStartOfDay()
+                .atZone(ZoneId.systemDefault()).toInstant());
+        Timestamp timeStamp = new Timestamp(date.getTime());
+        controller.createInvoice(price.getText(), hours.getText(), betaaldBox.isSelected(), timeStamp);
     }
 
     @FXML

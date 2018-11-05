@@ -24,6 +24,7 @@ import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 
@@ -68,20 +69,26 @@ public class InvoicesController extends PageController implements OverviewPage, 
         return  table;
     }
 
-    public void saveInvoice(String name, String price, String hours, String contact, String delivery) {
-        //amount = new Amount(new Double(price), new Double(hours), contact);
-        //invoice = new Invoice(name, amount, delivery);
+    public void createInvoice(String price, String hours, Boolean betaald, Timestamp deliveryDate) {
+        amount = new Amount(new Double(price), new Double(hours));
+        Tax tax = new Tax("btw", 21);
+        invoice = new Invoice();
+        invoice.setPaid(betaald);
+        invoice.setDeliveryDate(deliveryDate);
+        invoice.setTax(tax);
         dao.create(invoice);
     }
 
-    public void deleteInvoice() {
-        dao.delete(invoice);
+    public void saveInvoice(String price, String hours, Boolean betaald, Timestamp deliveryDate, Invoice invoice) {
+        invoice.getAmount().setPrice(new Double(price));
+        invoice.getAmount().setHours(new Double(hours));
+        invoice.setPaid(betaald);
+        invoice.setDeliveryDate(deliveryDate);
+        dao.update(invoice);
     }
 
-    public void editInvoice(String name, String price, String hours, String contact, String delivery) {
-        amount = new Amount(new Double(price), new Double(hours), contact);
-        //invoice = new Invoice(name, amount, delivery);
-        dao.update(invoice);
+    public void deleteInvoice(Invoice invoice) {
+        dao.delete(invoice);
     }
 
     public Invoice getInvoice() { return this.invoice; }

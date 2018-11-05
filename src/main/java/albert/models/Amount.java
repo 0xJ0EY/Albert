@@ -7,7 +7,9 @@ public class Amount {
     private int contact;
     private int id;
 
-    public Amount(Double price, Double hours, String contact) {
+    public Amount(Double price, Double hours) {
+        this.price = price;
+        this.hours = hours;
     }
 
     public int getId() {

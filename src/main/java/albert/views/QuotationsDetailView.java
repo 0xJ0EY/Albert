@@ -1,6 +1,8 @@
 package albert.views;
 
 import albert.controllers.PageController;
+import albert.controllers.QuotationsController;
+import albert.models.Quotation;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import router.views.PageView;
@@ -8,10 +10,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
+import java.text.ParseException;
+
 public class QuotationsDetailView extends AnchorPane implements PageView {
 
     private final String resource = "/views/pages/QuotationsDetail.fxml";
-    private PageController controller;
+    private QuotationsController controller;
 
     @FXML
     private Button editButton;
@@ -37,7 +41,7 @@ public class QuotationsDetailView extends AnchorPane implements PageView {
 
     @Override
     public void setController(PageController controller) {
-        this.controller = controller;
+        this.controller = (QuotationsController)controller;
     }
 
     @Override
@@ -53,5 +57,13 @@ public class QuotationsDetailView extends AnchorPane implements PageView {
     @FXML
     public void onClickEdit() {
         this.controller.getRouter().nav("quotations/edit/{quotation}/)");
+    }
+
+    @FXML
+    public void onClickGeneratePdf() throws ParseException {
+        System.out.println("G$EFWDWREFTHBGFVDCEF" + this.controller.getRequest().getParameter("quotation"));
+        int invoiceId = Integer.parseInt(this.controller.getRequest().getParameter("quotation"));
+        controller.setQuotation(invoiceId);
+        controller.getQuotation().generatePdf();
     }
 }

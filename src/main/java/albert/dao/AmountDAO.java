@@ -130,7 +130,7 @@ public class AmountDAO implements DAO<Amount> {
     @Override
     public Amount extractFromResultSet(ResultSet rs) throws SQLException {
         Amount amount = new Amount(
-                rs.getDouble("price"),
+                rs.getInt("price"),
                 rs.getDouble("hours"),
                 rs.getInt("contact_id")
         );
