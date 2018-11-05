@@ -75,21 +75,21 @@ public class ExpenseDAO implements DAO<Expense>{
 
     @Override
     public void create(Expense obj) {
-        this.expense = expense;
+        this.expense = obj;
         //TODO sql insert schrijven
-        String sql = "INSERT INTO expense VALUES (expense_id=?, prijs =?, created_at =? , description =?, naam=?);";
+        String sql = "INSERT INTO expense(price, created_at, description,name) VALUES (?, ? ,?,?);";
 
         try {
             Connection conn = Database.getInstance().getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setInt(1,this.expense.getId());
-            statement.setDouble(2,this.expense.getPrice());
-            statement.setTime(3,(Time) this.expense.getCreated_at());
-            statement.setString(4,this.expense.getDescription());
-            statement.setString(5,this.expense.getName());
+            statement.setDouble(1,this.expense.getPrice());
+            statement.setTimestamp(2,this.expense.getCreated_at());
+            statement.setString(3,this.expense.getDescription());
+            statement.setString(4,this.expense.getName());
 
-            statement.execute();
+            statement.executeQuery();
+
             conn.close();
 
         } catch (SQLException e) {
@@ -104,14 +104,14 @@ public class ExpenseDAO implements DAO<Expense>{
 
         this.expense = obj;
         //TODO sql update schrijven
-        String sql = "UPDATE expense SET( prijs =?, created_at =? , description =?, naam=?) WHERE expense_id=?)";
+        String sql = "UPDATE expense SET price =?, created_at =? , description =?, name=? WHERE expense_id=?)";
         try {
             Connection conn = Database.getInstance().getConnection();
 
             PreparedStatement statement = conn.prepareStatement(sql);
 
             statement.setDouble(1,this.expense.getPrice());
-            statement.setTime(2,(Time) this.expense.getCreated_at());
+            statement.setTimestamp(2,this.expense.getCreated_at());
             statement.setString(3,this.expense.getDescription());
             statement.setString(4,this.expense.getName());
 

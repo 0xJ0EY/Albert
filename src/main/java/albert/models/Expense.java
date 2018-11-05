@@ -1,6 +1,7 @@
 package albert.models;
 
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.util.Date;
 
 public class Expense {
@@ -44,7 +45,9 @@ public class Expense {
     }
 
     public void setPrice(double price) {
-        this.price = price;
+        DecimalFormat decim = new DecimalFormat("####.##");
+        Double price2 = Double.parseDouble(decim.format(price));
+        this.price = price2;
     }
 
     public String getDescription() {
@@ -57,7 +60,7 @@ public class Expense {
 
     public int getId() { return this.id; }
 
-    public Date getCreated_at() { return this.created_at; }
+    public Timestamp getCreated_at() { return this.created_at; }
 
     public double getBtw() { return btw; }
 
