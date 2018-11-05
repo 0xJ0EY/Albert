@@ -90,7 +90,6 @@ public class ExpenseController extends PageController implements OverviewPage, D
     }
 
     public void navigateEditExpense(){
-        //this.getRouter().nav("expenses/edit/{expense}/", this.getRequest().getParameter("expense"));
         this.getRouter().nav("expenses/edit/"+ this.getRequest().getParameter("expense") + "/");
     }
     public void editExpense(int expenseID, String name, double price, String description){
