@@ -2,18 +2,13 @@ package albert.views;
 
 import albert.controllers.ExpenseController;
 import albert.controllers.PageController;
-import albert.controllers.RapportsController;
-import albert.models.Expense;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import router.Router;
 import router.views.PageView;
 
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -74,6 +69,8 @@ public class ExpenseDetailView extends AnchorPane implements PageView {
 
     @FXML
     public void onClickEdit() {
+        this.controller.navigateEditExpense();
+
         this.controller.getRouter().nav("expenses/edit/{expense}/");
     }
 

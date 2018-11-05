@@ -20,6 +20,7 @@ import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
 
+import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -87,6 +88,17 @@ public class ExpenseController extends PageController implements OverviewPage, D
         return new ViewResponse(this);
     }
 
+    public void navigateEditExpense(){
+        this.getRouter().nav("expenses/edit/"+ this.getRequest().getParameter("expense") + "/");
+    }
+    public void editExpense(int expenseID, String name, double price, String description){
+        expense.setId(expenseID);
+        expense.setName(name);
+        expense.setPrice(price);
+        expense.setDescription(description);
+        dao.update(expense);
+        this.getRouter().nav("expenses/detail/"+ expenseID+ "/");
+    }
     public void setExpense(int id) {
         this.expense = dao.loadById(id);
     }
@@ -113,5 +125,4 @@ public class ExpenseController extends PageController implements OverviewPage, D
         dao.create(expense);
 
     }
-
 }
