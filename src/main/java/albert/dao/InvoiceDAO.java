@@ -15,9 +15,7 @@ public class InvoiceDAO implements DAO<Invoice>{
     private Invoice invoice;
     private AmountDAO daoAmount = new AmountDAO();
     private TaxDAO daoTax = new TaxDAO();
-    private ProjectDAO daoProject = new ProjectDAO();
-
-
+    private ProjectDAO projectDAO = new ProjectDAO();
 
     @Override
     public ArrayList<Invoice> getAll() {
@@ -82,7 +80,6 @@ public class InvoiceDAO implements DAO<Invoice>{
             PreparedStatement statement = conn.prepareStatement(sql);
 
 
-
             statement.setBoolean(1,this.invoice.getPaid());
             statement.setInt(2, this.invoice.getTax().getId());
             statement.setInt(3,  this.invoice.getProject().getId());
@@ -103,21 +100,23 @@ public class InvoiceDAO implements DAO<Invoice>{
     public void update(Invoice obj) {
         this.invoice = obj;
         //TODO sql update schrijven
-        String sql = "UPDATE invoice SET paid=? ,tax_id= ?,project_id=?, created_at=?, amount_id=? , deliverydate=? WHERE invoice_id=?";
+        String sql = "UPDATE invoice SET  paid=? ,tax_id= ?,project_id=?, amount_id=? , deliverydate=? WHERE invoice_id =?;" +
+                "UPDATE project SET invoice_id=? WHERE project_id=?;";
 
         try {
             Connection conn = Database.getInstance().getConnection();
 
             PreparedStatement statement = conn.prepareStatement(sql);
 
-
-            statement.setBoolean(1,this.invoice.getPaid());
-            statement.setInt(2, this.invoice.getTax().getId());
-            statement.setInt(3, this.invoice.getProject().getId());
-            statement.setTimestamp(4, invoice.getCreated_at());
-            statement.setInt(5 ,this.invoice.getAmount().getId());
-            statement.setTimestamp(6, this.invoice.getDeliveryDate());
-            statement.setInt(7,this.invoice.getId());
+            int i = 0;
+            statement.setBoolean(i++,this.invoice.getPaid());
+            statement.setInt(i++, this.invoice.getTax().getId());
+            statement.setInt(i++, this.invoice.getProject().getId());
+            statement.setInt( i++,this.invoice.getAmount().getId());
+            statement.setTimestamp(i++, this.invoice.getDeliveryDate());
+            statement.setInt(i++,this.invoice.getId());
+            statement.setInt(i++, this.invoice.getId());
+            statement.setInt(i++, this.invoice.getProject().getId());
 
             statement.executeUpdate();
             conn.close();
@@ -156,11 +155,12 @@ public class InvoiceDAO implements DAO<Invoice>{
     public Invoice extractFromResultSet(ResultSet rs) throws SQLException {
         Invoice invoice = new Invoice();
         invoice.setPaid(rs.getBoolean("paid"));
+        invoice.setId(rs.getInt("invoice_id"));
+        invoice.setProject(projectDAO.loadById(rs.getInt("project_id")));
         invoice.setDeliveryDate(rs.getTimestamp("deliverydate"));
         invoice.setAmount(daoAmount.loadById(rs.getInt("amount_id")));
         invoice.setDeliveryDate(rs.getTimestamp("deliverydate"));
         invoice.setTax(daoTax.loadById(rs.getInt("tax_id")));
-        invoice.setProject(daoProject.loadById(rs.getInt("project_id")));
         invoice.setId(rs.getInt("invoice_id"));
         invoice.setCreated_at(rs.getTimestamp("created_at"));
         return invoice;

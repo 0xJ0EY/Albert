@@ -7,11 +7,6 @@ public class Amount {
     private Contact contact;
     private int id;
 
-    public Amount(Double price, Double hours) {
-        this.price = price;
-        this.hours = hours;
-    }
-
     public Amount() {
 
     }

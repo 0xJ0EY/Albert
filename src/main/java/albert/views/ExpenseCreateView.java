@@ -8,33 +8,30 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import router.views.PageView;
+
+import java.text.DecimalFormat;
 
 public class ExpenseCreateView extends AnchorPane implements PageView {
 
-    private final String resource = "/views/pages/ExpenseEdit.fxml";
+    private final String resource = "/views/pages/ExpenseCreate.fxml";
     private ExpenseController controller;
+    DecimalFormat df = new DecimalFormat("####0.00");
+    double btw = 1.21;
 
     @FXML
-    private TextField QuarterYear;
+    private TextField Name;
 
     @FXML
-    private TextField nettoBar;
+    private TextField Price;
 
     @FXML
-    private TextField btwBar;
+    private Text NettoBedrag;
 
     @FXML
-    private TextField brutoBar;
+    private TextField Description;
 
-    @FXML
-    private TextField amountBar;
-
-    @FXML
-    private TextField costBar;
-
-    @FXML
-    private Button editButton;
 
     @Override
     public void load() {
@@ -72,7 +69,13 @@ public class ExpenseCreateView extends AnchorPane implements PageView {
 
     @FXML
     public void onClickSave() {
+        controller.saveExpense(Double.parseDouble(Price.getText()), Description.getText(), Name.getText() );
+    }
 
+    @FXML
+    public void onClickCalculate(){
+        double netto = Double.parseDouble(Price.getText()) * btw;
+        NettoBedrag.setText(df.format(netto));
     }
 
 

@@ -181,7 +181,6 @@ public class ContactController extends PageController implements OverviewPage, D
             contactEmails.add(contactEmail);
         }
 
-       contact= new Contact();
         contact = new Contact();
         contact.setFirstName(firstName);
         contact.setLastName(lastName);

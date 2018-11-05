@@ -31,7 +31,11 @@ public class Contact {
 
     private Timestamp created_at;
 
-    private ArrayList<Project> project;
+    private Project project;
+
+    private Amount amount;
+
+
 
     /**
      *
@@ -147,11 +151,19 @@ public class Contact {
         return this.id;
     }
 
-    public ArrayList<Project> getProject() {
+    public Project getProject() {
         return project;
     }
 
-    public void setProject(ArrayList<Project> project) {
+    public void setProject(Project project) {
         this.project = project;
+    }
+
+    public Amount getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Amount amount) {
+        this.amount = amount;
     }
 }

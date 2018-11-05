@@ -150,8 +150,8 @@ public class MenuView extends AnchorPane implements TemplateView {
         controller.getRouter().nav("invoices/");
     }
 
-    public void clickOnReports(){
-        controller.getRouter().nav("reports/");
+    public void clickOnExpenses(){
+        controller.getRouter().nav("expenses/");
     }
 
     public void clickOnContacts()

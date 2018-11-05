@@ -66,16 +66,18 @@ public class QuotationsController extends PageController implements OverviewPage
         return table;
     }
 
-    public void saveQuotation(String name, String price, String hour, String contact, String delivery) {
-        amount = new Amount(new Double(price), new Double(hour));
-        quotation = new Quotation(name, amount, delivery);
+    public void saveQuotation(String name, String price, String hour, String delivery) {
+
+
         dao.create(quotation);
     }
 
     public void deleteQuotation() { dao.delete(quotation); }
 
     public void editQuotation(String name, String price, String hour, String contact, String delivery) {
-        amount = new Amount(new Double(price), new Double(hour));
+        amount = new Amount();
+        amount.setPrice(new Double(price));
+        amount.setHours(new Double(hour));
         quotation = new Quotation(name, amount, delivery);
         dao.update(quotation);
     }

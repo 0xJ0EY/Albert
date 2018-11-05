@@ -24,7 +24,19 @@
                   </Text>
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="821.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="821.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Naam:" wrappingWidth="150.0" />
+                  <TextField fx:id="name" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="67.0" prefWidth="821.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gekoppelde klant:" wrappingWidth="150.0" />
+                  <TextField fx:id="contactId" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="821.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gewerkte uren:" wrappingWidth="150.0" />
                   <TextField fx:id="hours" />

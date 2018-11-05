@@ -125,7 +125,7 @@ public class ContactEmailDAO implements DAO<ContactEmail> {
 
     @Override
     public  void delete(ContactEmail contactEmail) {
-        this.contactEmail = this.contactEmail;
+        this.contactEmail = contactEmail;
 
 
             String sql = "DELETE FROM contactEmail WHERE contact_id = ?";

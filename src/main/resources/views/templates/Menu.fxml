@@ -107,9 +107,9 @@
                   <Font name="SansSerif Bold" size="12.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#clickOnReports" style="-fx-background-color: #00000000;" text="Rapportages">
+            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#clickOnExpenses" style="-fx-background-color: #00000000;" text="Onkosten">
                <graphic>
-                  <FontAwesomeIconView glyphName="AREA_CHART" size="25.0" />
+                  <FontAwesomeIconView glyphName="EURO" size="25.0" />
                </graphic>
                <font>
                   <Font name="SansSerif Bold" size="12.0" />

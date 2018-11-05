@@ -20,6 +20,9 @@ public class Quotation {
     private Timestamp created_at;
     private Project project;
     private int expectedHours;
+    private Quotation quotation;
+
+
 
     public int getExpectedHours() { return expectedHours; }
 

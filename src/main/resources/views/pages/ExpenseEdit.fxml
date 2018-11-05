@@ -31,11 +31,12 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="806.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bedrag:" wrappingWidth="150.0">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bedrag:" wrappingWidth="136.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </Text>
+                  <FontAwesomeIconView glyphName="EURO" size="14.0" wrappingWidth="14.0" />
                   <TextField fx:id="Price" prefWidth="149.0" />
                </children>
             </HBox>
@@ -46,12 +47,13 @@
                         <Insets />
                      </HBox.margin>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="21%" wrappingWidth="150.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="+21%" wrappingWidth="150.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="806.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Netto:" wrappingWidth="150.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Netto:" wrappingWidth="134.0" />
+                  <FontAwesomeIconView glyphName="EURO" size="14.0" wrappingWidth="14.0" />
                   <Text fx:id="NettoBedrag" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="150.0" />
                </children>
             </HBox>

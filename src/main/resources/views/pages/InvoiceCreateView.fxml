@@ -19,6 +19,18 @@
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Factuur aanmaken" />
                </children>
             </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="821.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Naam:" wrappingWidth="150.65625" />
+                  <TextField fx:id="name" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="821.0" style="-fx-background-color: #ededed;">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gekoppelde klant:" wrappingWidth="151.82421875" />
+                  <TextField fx:id="contactId" />
+               </children>
+            </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="821.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gewerkte uren:" wrappingWidth="150.6923828125" />

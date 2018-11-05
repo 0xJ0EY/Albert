@@ -1,9 +1,8 @@
 package albert.services;
 
-import albert.models.Contact;
-import albert.models.Invoice;
-import albert.models.Quotation;
-import albert.models.Rapportage;
+import albert.dao.ContactDAO;
+import albert.dao.ProjectDAO;
+import albert.models.*;
 import com.itextpdf.text.DocumentException;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -27,6 +26,8 @@ public class PdfService {
     private String resources;
     private String template_path;
     private String output;
+    private ProjectDAO projectDAO = new ProjectDAO();
+    private ContactDAO contactDAO = new ContactDAO();
 
     public static PdfService getInstance() {
         if (instance == null)
@@ -53,7 +54,8 @@ public class PdfService {
         templateEngine.setTemplateResolver(templateResolver);
 
         Context context = new Context();
-        Contact contact = invoice.getProject().getContact();
+        Project project = projectDAO.loadById(invoice.getProject().getId());
+        Contact contact = contactDAO.loadById(project.getContactId());
         context.setVariable("contact", contact);
         context.setVariable("data", invoice);
 
@@ -93,7 +95,7 @@ public class PdfService {
      * @throws IOException
      * @throws DocumentException
      */
-    public boolean generateQuotationPdf(Quotation quotation) throws IOException, DocumentException {
+    public void generateQuotationPdf(Quotation quotation) throws IOException, DocumentException {
 
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
         templateResolver.setPrefix("templates/invoice/");
@@ -105,7 +107,7 @@ public class PdfService {
         templateEngine.setTemplateResolver(templateResolver);
 
         Context context = new Context();
-        Contact contact = quotation.getProject().getContact();
+        int contact = quotation.getProject().getContactId();
         context.setVariable("contact", contact);
         context.setVariable("data", quotation);
 
@@ -133,10 +135,9 @@ public class PdfService {
         OutputStream outputStream = new FileOutputStream(file.getAbsoluteFile());
         renderer.createPDF(outputStream);
         outputStream.close();
-        return true;
     }
 
-    private boolean generateRepports(Rapportage rapportage) throws IOException, DocumentException {
+    public void generateRepports(Rapportage rapportage) throws IOException, DocumentException {
 
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
         templateResolver.setPrefix("templates/rapportage/");
@@ -174,7 +175,6 @@ public class PdfService {
 
         renderer.createPDF(outputStream);
         outputStream.close();
-        return true;
     }
 
     private void setParms(){

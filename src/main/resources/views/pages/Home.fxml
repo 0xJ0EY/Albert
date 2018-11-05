@@ -37,7 +37,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#clickOnInvoices" text="Facturen">
+                              <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#clickOnExpenses" text="Onkosten">
                                  <graphic>
                                     <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -46,7 +46,7 @@
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#clickOnReports" text="Rapporten">
+                              <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#clickOnInvoices" text="Facturen">
                                  <graphic>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                        <image>

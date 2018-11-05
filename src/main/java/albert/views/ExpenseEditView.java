@@ -2,39 +2,38 @@ package albert.views;
 
 import albert.controllers.ExpenseController;
 import albert.controllers.PageController;
-import albert.controllers.RapportsController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import router.views.PageView;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ExpenseEditView extends AnchorPane implements PageView {
 
     private final String resource = "/views/pages/ExpenseEdit.fxml";
     private ExpenseController controller;
+    SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+
+
 
     @FXML
-    private TextField QuarterYear;
+    private TextField Name;
 
     @FXML
-    private TextField nettoBar;
+    private TextField Price;
 
     @FXML
-    private TextField btwBar;
+    private Text NettoBedrag;
 
     @FXML
-    private TextField brutoBar;
+    private TextField DateCreated;
 
     @FXML
-    private TextField amountBar;
-
-    @FXML
-    private TextField costBar;
-
-    @FXML
-    private Button editButton;
+    private TextField Description;
 
     @Override
     public void load() {
@@ -52,8 +51,9 @@ public class ExpenseEditView extends AnchorPane implements PageView {
 
     @Override
     public void update() {
-
+        this.fillForm();
     }
+
 
     @Override
     public void setController(PageController controller) {
@@ -72,8 +72,26 @@ public class ExpenseEditView extends AnchorPane implements PageView {
 
     @FXML
     public void onClickSave() {
+      int expenseID =Integer.parseInt(this.controller.getRequest().getParameter("expense"));
+      controller.editExpense(expenseID, Name.getText(), Double.parseDouble(Price.getText()), Description.getText());
+
 
     }
+    public void fillForm(){
+        controller.setExpense(Integer.parseInt(this.controller.getRequest().getParameter("expense")));
+        Name.setText(controller.getExpense().getName());
+        Price.setText(String.valueOf(controller.getExpense().getPrice()));
+        NettoBedrag.setText(getNettoBedrag(controller.getExpense().getPrice()));
+        DateCreated.setText(getDateString(controller.getExpense().getCreated_at()));
+        Description.setText(controller.getExpense().getDescription());
+    }
 
+    public String getNettoBedrag(double bedrag){
+        return String.format( "%.2f", (bedrag * controller.getExpense().getBtw()));
+    }
+
+    public String getDateString(Date date){
+        return formatter.format(date);
+    }
 
 }

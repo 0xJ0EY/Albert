@@ -4,7 +4,7 @@
     <head>
         <title>Invoice PDF</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" media="all"  href="css/pdf/invoice.css" />
+        <link rel="stylesheet" type="text/css" media="all"  href="css/pdf/invoiceId.css" />
 
     </head>
     <body>
@@ -22,8 +22,8 @@
         <div style="float: right; width: 50%; height:100%;">
             <ul style="list-style-type: none; margin-top:20%;">
                 <li>[[${data.getCurrentDate()}]]</li>
-                <li>[[${contact.getStraatnaam()}]] [[${contact.getHouseNumber()}]]</li>
-                <li>[[${contact.getPostcode()}]] [[${contact.getWoonplaats()}]]</li>
+                <li>[[${contactId.getStraatnaam()}]] [[${contactId.getHouseNumber()}]]</li>
+                <li>[[${contactId.getPostcode()}]] [[${contactId.getWoonplaats()}]]</li>
                 <li><b>Datum:</b>[[${data.getCurrentDate()}]]</li>
                 <li><b>Factuur Nr.</b> [[${data.getId()}]]</li>
             </ul>

@@ -46,7 +46,7 @@ public class InvoicesController extends PageController implements OverviewPage, 
 
     public Table getOverviewTable(){
         Table table = new Table(
-                new DatabaseStrategy(Query.table("invoice").where("paid", "=", "false")),
+                new DatabaseStrategy(Query.table("invoice").where("paid", "=", "onbetaald")),
                 new SearchTableView()
         );
 
@@ -65,16 +65,18 @@ public class InvoicesController extends PageController implements OverviewPage, 
                 new TextCellFactory())
         );
 
-        table.addCol(new Column("paid::text",
-                new LeftHeaderViewFactory("Betaald"),
-                new TextCellFactory())
-        );
+//        table.addCol(new Column("paid::text",
+//                new LeftHeaderViewFactory("Betaald"),
+//                new TextCellFactory())
+//        );
 
         return  table;
     }
 
     public void createInvoice(String price, String hours, Boolean betaald, Timestamp deliveryDate, int projectId) {
-        amount = new Amount(new Double(price), new Double(hours));
+        amount = new Amount();
+        amount.setHours(new Double(hours));
+        amount.setPrice(new Double(price));
         Tax tax = new Tax("btw", 21);
         invoice = new Invoice();
         invoice.setPaid(betaald);
@@ -90,7 +92,7 @@ public class InvoicesController extends PageController implements OverviewPage, 
 
     public Table getPaidOverviewTable(){
         Table table = new Table(
-                new DatabaseStrategy(Query.table("invoice").where("paid", "=", "true")),
+                new DatabaseStrategy(Query.table("invoice").where("paid", "=", "betaald")),
                 new SearchTableView()
         );
 
@@ -109,10 +111,10 @@ public class InvoicesController extends PageController implements OverviewPage, 
                 new TextCellFactory())
         );
 
-        table.addCol(new Column("paid::text",
-                new LeftHeaderViewFactory("Betaald"),
-                new TextCellFactory())
-        );
+//        table.addCol(new Column("paid::text",
+//                new LeftHeaderViewFactory("Betaald"),
+//                new TextCellFactory())
+//        );
 
         return  table;
     }
@@ -127,6 +129,12 @@ public class InvoicesController extends PageController implements OverviewPage, 
 
     public void deleteInvoice(Invoice invoice) {
         dao.delete(invoice);
+    }
+
+    public void editInvoice(String name, String price, String hours, String contact, String delivery) {
+
+        //invoice = new Invoice(name, amount, delivery);
+        dao.update(invoice);
     }
 
     public Invoice getInvoice() { return this.invoice; }
