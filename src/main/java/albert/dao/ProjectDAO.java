@@ -165,6 +165,7 @@ public class ProjectDAO implements DAO<Project> {
         project.setQuotationId(rs.getInt("quotation_id"));
         project.setInvoiceId(rs.getInt("invoice_id"));
         project.setContactId(rs.getInt("contact_id"));
+        project.setCreated_at(rs.getTimestamp("created_at"));
 
         return project;
     }

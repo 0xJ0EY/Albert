@@ -138,7 +138,7 @@ public class ExpenseDAO implements DAO<Expense>{
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, this.expense.getId());
 
-            statement.executeUpdate();
+            statement.executeQuery();
 
             conn.close();
 

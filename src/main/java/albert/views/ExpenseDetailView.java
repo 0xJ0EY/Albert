@@ -69,8 +69,8 @@ public class ExpenseDetailView extends AnchorPane implements PageView {
     @FXML
     public void onClickEdit() {
 
-this.controller.navigateEditExpense();
-        this.controller.getRouter().nav("expenses/edit/{expense}/");
+        this.controller.navigateEditExpense();
+
     }
 
 

@@ -62,15 +62,15 @@ public class AmountDAO implements DAO<Amount> {
 
         this.amount= obj;
         //TODO sql insert schrijven
-        String sql = "INSERT INTO amount VALUES (amount_id=?, hours=?, price=?,contact_id=?);";
+        String sql = "INSERT INTO amount(hours, price, contact_id) VALUES (?,?,?);";
 
         try {
                 Connection conn = Database.getInstance().getConnection();
                 PreparedStatement statement = conn.prepareStatement(sql);
-                statement.setInt(1,this.amount.getId());
-                statement.setDouble(2,this.amount.getHours());
-                statement.setDouble(3,this.amount.getPrice());
-                statement.setInt(4,this.amount.getContact().getId());
+
+                statement.setDouble(1,this.amount.getHours());
+                statement.setDouble(2,this.amount.getPrice());
+                statement.setInt(3,this.amount.getContact().getId());
 
                 statement.execute();
 
@@ -87,7 +87,7 @@ public class AmountDAO implements DAO<Amount> {
     public void update(Amount obj) {
         this.amount = obj;
         //TODO sql update schrijven
-        String sql = "UPDATE amount SET( hours=?, price =?, contact_id=? ) WHERE amount_id =?";
+        String sql = "UPDATE amount SET hours=?, price =?, contact_id=?  WHERE amount_id =?";
         try {
             Connection conn = Database.getInstance().getConnection();
 
@@ -97,7 +97,7 @@ public class AmountDAO implements DAO<Amount> {
             statement.setDouble(2,this.amount.getPrice());
             statement.setInt(3, this.amount.getContact().getId());
 
-            statement.executeUpdate();
+            statement.executeQuery();
             conn.close();
 
         } catch (SQLException e) {
@@ -119,7 +119,7 @@ public class AmountDAO implements DAO<Amount> {
 
             statement.setInt(1,this.amount.getId());
 
-            statement.execute();
+            statement.executeQuery();
             conn.close();
 
         } catch (SQLException e) {
@@ -131,6 +131,7 @@ public class AmountDAO implements DAO<Amount> {
     @Override
     public Amount extractFromResultSet(ResultSet rs) throws SQLException {
         Amount amount = new Amount();
+        amount.setId(rs.getInt("amount_id"));
         amount.setPrice(rs.getDouble("price"));
         amount.setHours(rs.getDouble("hours"));
         return amount;
