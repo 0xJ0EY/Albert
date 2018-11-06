@@ -12,6 +12,7 @@ public class QuotationDAO implements DAO<Quotation>{
     private Quotation quotation;
     private AmountDAO amountDAO = new AmountDAO();
     private ProjectDAO projectDAO = new ProjectDAO();
+
     @Override
     public ArrayList getAll() {
 
@@ -61,13 +62,11 @@ public class QuotationDAO implements DAO<Quotation>{
         return quotation;
     }
 
-
-
     @Override
     public void create(Quotation quotation) {
         this.quotation = quotation;
         //TODO sql insert schrijven
-        String sql = "INSERT INTO quotation(name, description,product, amount_id, created_at, project_id, hours_expected) VALUES (?,?,?,?,?,?,?);";
+        String sql = "INSERT INTO quotation(name, description,product, price_expected, created_at, project_id, hours_expected) VALUES (?,?,?,?,?,?,?);";
 
         try {
             Connection conn = Database.getInstance().getConnection();
@@ -78,7 +77,7 @@ public class QuotationDAO implements DAO<Quotation>{
             statement.setString(1,this.quotation.getName());
             statement.setString(2, this.quotation.getDescription());
             statement.setString(3,  this.quotation.getProduct());
-            statement.setInt(4,this.quotation.getAmount().getId());
+            statement.setDouble(4,this.quotation.getExpectedPrice());
             statement.setTimestamp(5,this.quotation.getCreated_at());
             statement.setInt(6,this.quotation.getProject().getId());
             statement.setInt(7,this.quotation.getExpectedHours());
@@ -98,7 +97,8 @@ public class QuotationDAO implements DAO<Quotation>{
     public void update(Quotation quotation) {
         this.quotation = quotation;
         //TODO sql update schrijven
-        String sql = "UPDATE quotation SET ( name = ? ,description =?, product=?, amount_id=?,created_at=?, project_id=?)WHERE quotation_id =?;" +
+
+        String sql = "UPDATE quotation SET ( name = ? ,description =?, product=?, price_expected=?,created_at=?, project_id=?, hours_expected=?)WHERE quotation_id =?;" +
                 "UPDATE project SET quotation_id =? WHERE project_id=?;";
 
         try {
@@ -109,12 +109,12 @@ public class QuotationDAO implements DAO<Quotation>{
             statement.setString(1,this.quotation.getName());
             statement.setString(2, this.quotation.getDescription());
             statement.setString(3,  this.quotation.getProduct());
-            statement.setInt(4,this.quotation.getAmount().getId());
+            statement.setDouble(4,this.quotation.getExpectedPrice());
             statement.setTimestamp(5,this.quotation.getCreated_at());
             statement.setInt(6,this.quotation.getProject().getId());
-            statement.setInt(7,this.quotation.getId());
+            statement.setInt(7,this.quotation.getExpectedHours());
             statement.setInt(8,this.quotation.getId());
-            statement.setInt(9,this.quotation.getProject().getId());
+
 
             statement.executeQuery();
             conn.close();

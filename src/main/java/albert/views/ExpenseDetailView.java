@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import router.Router;
 import router.views.PageView;
 
 import java.text.SimpleDateFormat;

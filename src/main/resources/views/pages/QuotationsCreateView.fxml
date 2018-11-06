@@ -25,37 +25,37 @@
             <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="821.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Naam:" wrappingWidth="150.65625" />
-                  <TextField fx:id="naamBar" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="821.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Verwachte werkuren" wrappingWidth="150.6923828125" />
-                  <TextField fx:id="hourBar" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="821.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Verwachte prijs:" wrappingWidth="151.99853515625" />
-                  <TextField fx:id="priceBar" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="821.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gekoppeld contactId:" wrappingWidth="151.99853515625" />
-                  <TextField fx:id="contactBar" />
+                  <TextField fx:id="Name" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="821.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Geleverd product:" wrappingWidth="151.99853515625" />
-                  <TextField fx:id="delivery" />
+                  <TextField fx:id="Product" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="821.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Verwachte werkuren" wrappingWidth="150.6923828125" />
+                  <TextField fx:id="HoursExpected" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="821.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Verwachte prijs:" wrappingWidth="151.99853515625" />
+                  <TextField fx:id="PriceExpected" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="821.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gekoppeld project ID:" wrappingWidth="151.99853515625" />
+                  <TextField fx:id="Project" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Beschrijving:" wrappingWidth="151.99853515625" />
-                  <TextArea fx:id="description" maxHeight="60.0" minHeight="70.0" prefHeight="30.0" prefWidth="200.0" />
+                  <TextArea fx:id="Description" maxHeight="60.0" minHeight="70.0" prefHeight="30.0" prefWidth="200.0" />
                </children>
             </HBox>
             <HBox prefHeight="54.0" prefWidth="1020.0" spacing="334.0">

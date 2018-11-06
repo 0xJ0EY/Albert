@@ -40,7 +40,7 @@ public class ProjectDAO implements DAO<Project> {
         return projectArrayList;
     }
 
-        @Override
+    @Override
     public Project loadById(long id) {
         Project project = null;
 
@@ -85,7 +85,8 @@ public class ProjectDAO implements DAO<Project> {
             statement.setString(1,this.project.getName());
             statement.setTimestamp(2,this.project.getCreated_at());
             statement.setBoolean(3, this.project.getDone());
- //           statement.setInt(4,this.project.getContactId().getId());
+            //           statement.setInt(4,this.project.getContactId().getId());
+
 
 
             statement.execute();

@@ -74,9 +74,8 @@ public class ExpenseEditView extends AnchorPane implements PageView {
     public void onClickSave() {
       int expenseID =Integer.parseInt(this.controller.getRequest().getParameter("expense"));
       controller.editExpense(expenseID, Name.getText(), Double.parseDouble(Price.getText()), Description.getText());
-
-
     }
+
     public void fillForm(){
         controller.setExpense(Integer.parseInt(this.controller.getRequest().getParameter("expense")));
         Name.setText(controller.getExpense().getName());
