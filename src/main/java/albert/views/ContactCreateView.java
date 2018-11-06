@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Window;
 import router.views.PageView;
 import javafx.scene.control.*;
+import table.Table;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -21,7 +22,6 @@ public class ContactCreateView extends AnchorPane implements PageView {
 
     private final String resource = "/views/pages/ContactCreateView.fxml";
     private ContactController controller;
-    ArrayList<String> emails;
 
     private Contact contact;
 
@@ -33,6 +33,9 @@ public class ContactCreateView extends AnchorPane implements PageView {
 
     @FXML
     private TextField lastName;
+
+    @FXML
+    private TextField company;
 
     @FXML
     private TextField streetName;
@@ -61,6 +64,13 @@ public class ContactCreateView extends AnchorPane implements PageView {
     @FXML
     private TextField email;
 
+
+    @FXML
+    private AnchorPane emailsTable;
+
+    @FXML
+    private AnchorPane phoneNumberTable;
+
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
@@ -69,7 +79,7 @@ public class ContactCreateView extends AnchorPane implements PageView {
         loader.setRoot(this);
 
         try {
-           loader.load();
+            loader.load();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -77,6 +87,48 @@ public class ContactCreateView extends AnchorPane implements PageView {
 
     @Override
     public void update() {
+        Contact contact = this.controller.getContact();
+
+        this.setupEmailTable();
+        this.setupPhoneNumberTable();
+
+    }
+
+    private void setupEmailTable() {
+
+        Table emailsTable = this.controller.getEmailsTable();
+
+        emailsTable.fetch();
+
+        emailsTable.update();
+
+        AnchorPane emailsView = emailsTable.getView().render();
+
+        AnchorPane.setRightAnchor(emailsView, 0.0);
+        AnchorPane.setLeftAnchor(emailsView, 0.0);
+        AnchorPane.setTopAnchor(emailsView, 0.0);
+        AnchorPane.setBottomAnchor(emailsView, 0.0);
+
+        this.emailsTable.getChildren().add(emailsView);
+
+    }
+
+    private void setupPhoneNumberTable() {
+
+        Table phoneNumbersTable = this.controller.getPhoneNumbersTable();
+
+        phoneNumbersTable.fetch();
+
+        phoneNumbersTable.update();
+
+        AnchorPane phoneNumberView = phoneNumbersTable.getView().render();
+
+        AnchorPane.setRightAnchor(phoneNumberView, 0.0);
+        AnchorPane.setLeftAnchor(phoneNumberView, 0.0);
+        AnchorPane.setTopAnchor(phoneNumberView, 0.0);
+        AnchorPane.setBottomAnchor(phoneNumberView, 0.0);
+
+        this.phoneNumberTable.getChildren().add(phoneNumberView);
 
     }
 
@@ -91,15 +143,23 @@ public class ContactCreateView extends AnchorPane implements PageView {
     }
 
     @FXML
-    public void onClickSave(ActionEvent event){
-        System.out.println("Click on Save");
-        emails = new ArrayList<String>();
-        emails.add(email.getText());
-        controller.saveContact(firstName.getText(), lastName.getText(),houseNumber.getText(),telephone.getText(),postcode.getText(), emails,website.getText(),description.getText(),streetName.getText(),place.getText());
+    public void onClickSave(){
+        Contact contact = this.controller.getContact();
+
+        contact.setFirstName(this.firstName.getText());
+        contact.setLastName(this.lastName.getText());
+        contact.setCompany(this.company.getText());
+        contact.setStreetName(this.streetName.getText());
+        contact.setHouseNumber(this.houseNumber.getText());
+        contact.setPostalCode(this.postcode.getText());
+        contact.setCity(this.place.getText());
+        contact.setWebsite(this.website.getText());
+        contact.setDescription(this.description.getText());
+
+        this.controller.createContact(contact);
+        this.controller.getRouter().nav("contacts/");
     }
 
     @FXML
-    public void onClickBack(){
-        controller.getRouter().nav("contacts/");
-    }
+    public void onClickBack(){ controller.getRouter().nav("contacts/"); }
 }

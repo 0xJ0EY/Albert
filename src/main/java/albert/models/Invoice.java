@@ -1,8 +1,6 @@
 package albert.models;
 
 import albert.services.PdfService;
-import com.itextpdf.text.DocumentException;
-
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -20,8 +18,6 @@ public class Invoice {
     private Timestamp created_at;
     private Timestamp deliveryDate;
     private Project project;
-    private Contact contact;
-    private Amount bedragen;
     private Tax tax;
     DecimalFormat df=new DecimalFormat("0.00");
 
@@ -90,18 +86,8 @@ public class Invoice {
         return dateFormat.format(date).toString();
     }
 
-    public void generatePdf() throws ParseException {
-        this.getTax().setTaxPart(this.calculateTax());
-        String value = df.format(this.getTax().getTaxPart()+this.getAmount().getPrice());
-        this.getAmount().setBcost((Double)df.parse(value));
+    public void generatePdf() {
 
-        try {
-            PdfService.getInstance().generateInvoicePdf(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (DocumentException e) {
-            e.printStackTrace();
-        }
     }
 
     public double calculateTax() {

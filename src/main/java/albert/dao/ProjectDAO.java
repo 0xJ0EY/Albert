@@ -1,5 +1,6 @@
 package albert.dao;
 
+import albert.models.Contact;
 import albert.models.Project;
 import database.Database;
 
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 public class ProjectDAO implements DAO<Project> {
 
     private Project project;
+    private ContactDAO contactDAO = new ContactDAO();
 
 
     @Override
@@ -109,18 +111,11 @@ public class ProjectDAO implements DAO<Project> {
 
             PreparedStatement statement = conn.prepareStatement(sql);
 
-//            statement.setString(1,this.project.getName());
-//            statement.setBoolean(2,this.project.getDone());
-//            statement.setInt(3, this.project.getId());
-
-            statement.setString(1,this.project.getName());
-            statement.setInt(2,this.project.getInvoiceId());
-            statement.setInt(3,this.project.getContactId());
-            statement.setInt(4,this.project.getExpenseId());
-            statement.setInt(5,this.project.getQuotationId());
-            statement.setTimestamp(6,this.project.getCreated_at());
-            statement.setBoolean(7,this.project.getDone());
-            statement.setInt(8, this.project.getId());
+            int i =1;
+            statement.setString(i++,this.project.getName());
+            statement.setTimestamp(i++,this.project.getCreated_at());
+            statement.setBoolean(i++,this.project.getDone());
+            statement.setInt(i++, this.project.getId());
 
             statement.executeUpdate();
             conn.close();
@@ -157,15 +152,9 @@ public class ProjectDAO implements DAO<Project> {
     @Override
     public Project extractFromResultSet(ResultSet rs) throws SQLException {
 
-        Project project = new Project(
-                rs.getString("name"), rs.getString("done").toString()
-        );
 
         project.setId(rs.getInt("project_id"));
-        project.setExpenseId(rs.getInt("expense_id"));
-        project.setQuotationId(rs.getInt("quotation_id"));
-        project.setInvoiceId(rs.getInt("invoice_id"));
-        project.setContactId(rs.getInt("contact_id"));
+        project.setContact(contactDAO.loadById(rs.getInt("contact_id")));
         project.setCreated_at(rs.getTimestamp("created_at"));
 
         return project;
