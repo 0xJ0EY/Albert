@@ -124,9 +124,9 @@ ALTER TABLE quotation
 ADD CONSTRAINT fk_quotationproject fOREIGN KEY (project_id)
 REFERENCES project(project_id);
 
-ALTER TABLE contact
-ADD CONSTRAINT fk_contactproject fOREIGN KEY (project_id)
-REFERENCES project(project_id);
+ALTER TABLE project
+ADD CONSTRAINT fk_project_contact FOREIGN KEY (contact_id)
+REFERENCES contact(contact_id);
 
 ALTER TABLE quotation
 ADD CONSTRAINT fk_quotationamount FOREIGN KEY (amount_id)

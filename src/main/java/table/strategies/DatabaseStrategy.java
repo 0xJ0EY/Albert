@@ -2,11 +2,11 @@ package table.strategies;
 
 import config.Config;
 import org.apache.commons.lang.SerializationUtils;
+import query.orderby.OrderBy;
 import table.Column;
 import table.Table;
 import query.Query;
 import query.Record;
-import table.enumerations.OrderBy;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -17,6 +17,8 @@ public class DatabaseStrategy implements DataStrategy {
     private Query baseQuery;
 
     private Table table;
+
+    private ArrayList<OrderBy> orderBy = new ArrayList<>();
 
     private int page = 1;
     private int total = 0;
@@ -79,11 +81,15 @@ public class DatabaseStrategy implements DataStrategy {
             .clearSelect()
             .limit(this.limit)
             .offset(this.offset)
+            .clearOrderBy()
         ;
 
         // Build select statements
         ArrayList<Column> columns = this.table.getCols();
 
+        for (OrderBy orderBy: this.orderBy) {
+            searchQuery.orderBy(orderBy.getName(), orderBy.getDirection());
+        }
 
         HashSet<String> cols = new HashSet<>();
 
@@ -110,6 +116,7 @@ public class DatabaseStrategy implements DataStrategy {
             .clearSelect()
             .clearLimit()
             .clearOffset()
+            .clearOrderBy()
         ;
 
         countQuery.select("COUNT(*)");
@@ -128,8 +135,8 @@ public class DatabaseStrategy implements DataStrategy {
     }
 
     @Override
-    public void orderBy(Column column, OrderBy orderBy) {
-
+    public void orderBy(String table, String direction) {
+        this.orderBy.add(new OrderBy(table, direction));
     }
 
     @Override

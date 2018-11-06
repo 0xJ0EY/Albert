@@ -21,7 +21,7 @@ public class ContactsEditView extends AnchorPane implements PageView {
     private final String resource = "/views/pages/ContactEditView.fxml";
     private ContactController controller;
 
-     @FXML
+    @FXML
     private TextField firstName;
 
     @FXML

@@ -175,6 +175,10 @@ public class Table {
         this.strategy.setLimit(limit);
     }
 
+    public void orderBy(String column, String direction) {
+        this.strategy.orderBy(column, direction);
+    }
+
     public int getLimit() {
         return this.strategy.getLimit();
     }

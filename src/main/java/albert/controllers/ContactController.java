@@ -91,6 +91,8 @@ public class ContactController extends PageController implements OverviewPage, D
                 new EditCellFactory("contacts/edit/{contact_id}/", this))
         );
 
+        table.orderBy("contact_id", "ASC");
+
         return table;
     }
 
@@ -107,6 +109,9 @@ public class ContactController extends PageController implements OverviewPage, D
             new LeftHeaderViewFactory("E-mail"),
             new TextCellFactory())
         );
+
+        table.orderBy("id", "ASC");
+        table.limit(Integer.MAX_VALUE);
 
         this.emailsTable = table;
     }
@@ -125,6 +130,9 @@ public class ContactController extends PageController implements OverviewPage, D
             new TextCellFactory())
         );
 
+        table.orderBy("id", "ASC");
+        table.limit(Integer.MAX_VALUE);
+
         this.phoneNumbersTable = table;
     }
 
@@ -141,6 +149,9 @@ public class ContactController extends PageController implements OverviewPage, D
             new LeftHeaderViewFactory("E-mail"),
             new EditableTextCellFactory())
         );
+
+        table.orderBy("id", "ASC");
+        table.limit(Integer.MAX_VALUE);
 
         // Add a button to add new email addresses in runtime
         HashMap<String, Object> defaultValues = new HashMap<>();
@@ -170,6 +181,7 @@ public class ContactController extends PageController implements OverviewPage, D
             new EditableTextCellFactory())
         );
 
+        table.orderBy("id", "ASC");
         table.limit(Integer.MAX_VALUE);
 
         // Add a button to add new email addresses in runtime
@@ -192,16 +204,19 @@ public class ContactController extends PageController implements OverviewPage, D
 
     @Override
     public Response detail(Request request) {
+        long id = Long.valueOf(request.getParameter("contacts"));
+        this.contact = new ContactDAO().loadById(id);
+
+        this.createOverviewEmails(this.contact);
+        this.createOverviewPhoneNumbers(this.contact);
+
         return new ViewResponse(this);
     }
 
     @Override
     public Response edit(Request request) {
-
-        ContactDAO dao = new ContactDAO();
-
         long id = Long.valueOf(request.getParameter("contacts"));
-        this.contact = dao.loadById(id);
+        this.contact = new ContactDAO().loadById(id);
 
         this.createEditableEmails(this.contact);
         this.createEditablePhoneNumbers(this.contact);
