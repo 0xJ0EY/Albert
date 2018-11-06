@@ -91,10 +91,6 @@ public class ContactController extends PageController implements OverviewPage, D
                 new EditCellFactory("contacts/edit/{contact_id}/", this))
         );
 
-        table.addButton(new TableButton("Toevoegen", () -> {
-            this.router.nav("home/");
-        }));
-
         return table;
     }
 
@@ -161,12 +157,12 @@ public class ContactController extends PageController implements OverviewPage, D
 
     private void createEditablePhoneNumbers(Contact contact) {
         Table table = new Table(
-                new DatabaseStrategy(
-                    Query.table("contact_phone")
-                        .where("contact_id", "=", contact.getId())
+            new DatabaseStrategy(
+                Query.table("contact_phone")
+                    .where("contact_id", "=", contact.getId())
 
-                ),
-                new EditTableView()
+            ),
+            new EditTableView()
         );
 
         table.addCol(new Column("phone_number",
@@ -229,8 +225,6 @@ public class ContactController extends PageController implements OverviewPage, D
 
         contact = this.updateEmails(contact);
         contact = this.updatePhoneNumbers(contact);
-
-        System.out.println("contact.getPhoneNumbers() = " + contact.getPhoneNumbers());
 
         dao.create(contact);
     }
