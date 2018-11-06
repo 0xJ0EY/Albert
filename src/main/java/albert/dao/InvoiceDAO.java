@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import albert.models.Amount;
 import albert.models.Contact;
 import albert.models.Invoice;
 import albert.models.Project;
@@ -52,9 +53,9 @@ public class InvoiceDAO implements DAO<Invoice>{
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setLong(1, id);
             ResultSet rs = statement.executeQuery();
-            rs.next();
 
-            invoice = this.extractFromResultSet(rs);
+            if(rs.next())
+                invoice = this.extractFromResultSet(rs);
 
 
             conn.close();
@@ -71,21 +72,30 @@ public class InvoiceDAO implements DAO<Invoice>{
     @Override
     public void create(Invoice obj) {
         this.invoice = obj;
-        //TODO sql insert schrijven
-        String sql = "INSERT INTO invoice VALUES (paid= ? ,tax_id= ?,project_id=?, amount_id=? ,created_at=? , deliverydate=?);";
+
+        String sql = "INSERT INTO \"public\".\"invoice\" (" +
+                "\"invoice_id\", " +
+                "\"paid\", " +
+                "\"tax_id\", " +
+                "\"project_id\", " +
+                "\"amount_id\", " +
+                "\"deliverydate\", " +
+                "\"created_at\" " +
+                ") VALUES (DEFAULT, ?, ?, ?, ?, ?, ?)";
 
         try {
             Connection conn = Database.getInstance().getConnection();
 
             PreparedStatement statement = conn.prepareStatement(sql);
 
+            int i = 0;
 
-            statement.setString(1,this.invoice.getPaid().toString());
-            statement.setInt(2, this.invoice.getTax().getId());
-            statement.setInt(3,  this.invoice.getProject().getId());
-            statement.setInt(4,this.invoice.getAmount().getId());
-            statement.setTimestamp(5, this.invoice.getCreated_at());
-            statement.setTimestamp(6, this.invoice.getDeliveryDate());
+            statement.setString(++i,this.invoice.getPaid().toString());
+            statement.setInt(++i, this.invoice.getTax().getId());
+            statement.setInt(++i, this.invoice.getProject().getId());
+            statement.setInt(++i, this.invoice.getAmount().getId());
+            statement.setTimestamp(++i, this.invoice.getDeliveryDate());
+            statement.setTimestamp(++i, this.invoice.getCreated_at());
 
             statement.execute();
             conn.close();
@@ -109,14 +119,14 @@ public class InvoiceDAO implements DAO<Invoice>{
             PreparedStatement statement = conn.prepareStatement(sql);
 
             int i = 0;
-            statement.setBoolean(i++,this.invoice.getPaid());
-            statement.setInt(i++, this.invoice.getTax().getId());
-            statement.setInt(i++, this.invoice.getProject().getId());
-            statement.setInt( i++,this.invoice.getAmount().getId());
-            statement.setTimestamp(i++, this.invoice.getDeliveryDate());
-            statement.setInt(i++,this.invoice.getId());
-            statement.setInt(i++, this.invoice.getId());
-            statement.setInt(i++, this.invoice.getProject().getId());
+            statement.setBoolean(++i,this.invoice.getPaid());
+            statement.setInt(++i, this.invoice.getTax().getId());
+            statement.setInt(++i, this.invoice.getProject().getId());
+            statement.setInt(++i,this.invoice.getAmount().getId());
+            statement.setTimestamp(++i, this.invoice.getDeliveryDate());
+            statement.setInt(++i,this.invoice.getId());
+            statement.setInt(++i, this.invoice.getId());
+            statement.setInt(++i, this.invoice.getProject().getId());
 
             statement.executeUpdate();
             conn.close();
@@ -153,6 +163,11 @@ public class InvoiceDAO implements DAO<Invoice>{
 
     @Override
     public Invoice extractFromResultSet(ResultSet rs) throws SQLException {
+
+        Amount amount = daoAmount.loadById(rs.getInt("amount_id"));
+
+        System.out.println("amount = " + amount);
+
         Invoice invoice = new Invoice();
         invoice.setPaid(rs.getBoolean("paid"));
         invoice.setId(rs.getInt("invoice_id"));

@@ -55,10 +55,8 @@ public class ProjectDAO implements DAO<Project> {
 
             ResultSet rs = statement.executeQuery();
 
-            rs.next();
-
-            project = this.extractFromResultSet(rs);
-
+            if (rs.next())
+                project = this.extractFromResultSet(rs);
 
             conn.close();
         }

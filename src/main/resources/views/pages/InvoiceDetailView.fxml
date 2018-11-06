@@ -21,7 +21,7 @@
                 </Text>
                 <HBox prefHeight="40.0" prefWidth="806.0">
                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gekoppelde klant:">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gekoppelde klant:" wrappingWidth="160.0">
                             <HBox.margin>
                                 <Insets />
                             </HBox.margin>
@@ -34,7 +34,7 @@
                 </HBox>
                 <HBox prefHeight="40.0" prefWidth="806.0">
                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Factuur nummer:">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Factuur nummer:" wrappingWidth="160.0">
                             <HBox.margin>
                                 <Insets />
                             </HBox.margin>
@@ -47,7 +47,7 @@
                 </HBox>
                 <HBox prefHeight="40.0" prefWidth="806.0">
                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Datum:">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Datum:" wrappingWidth="160.0">
                             <HBox.margin>
                                 <Insets />
                             </HBox.margin>
@@ -60,7 +60,7 @@
                 </HBox>
                 <HBox prefHeight="40.0" prefWidth="806.0">
                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gewerkte uren:" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gewerkte uren:" wrappingWidth="160.0" />
                         <Text fx:id="hours" strokeType="OUTSIDE" strokeWidth="0.0" text="uren">
                             <HBox.margin>
                                 <Insets left="20.0" />
@@ -69,7 +69,7 @@
                 </HBox>
                 <HBox prefHeight="40.0" prefWidth="200.0">
                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Status project:" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Status project:" wrappingWidth="160.0" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Status">
                             <HBox.margin>
                                 <Insets left="20.0" />
@@ -84,7 +84,7 @@
                                         <Insets right="20.0" />
                                     </HBox.margin>
                                 </HBox>
-                                <CheckBox fx:id="paidBox" mnemonicParsing="false" />
+                                <CheckBox fx:id="paidBox" disable="true" mnemonicParsing="false" />
                             </children>
                             <HBox.margin>
                                 <Insets left="200.0" />
@@ -94,7 +94,7 @@
                 </HBox>
                 <HBox prefHeight="40.0" prefWidth="200.0">
                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bruto:" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bruto:" wrappingWidth="160.0" />
                         <Text fx:id="bAmount" strokeType="OUTSIDE" strokeWidth="0.0" text="Bedrag">
                             <HBox.margin>
                                 <Insets left="20.0" />
@@ -103,7 +103,7 @@
                 </HBox>
                 <HBox prefHeight="40.0" prefWidth="200.0">
                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Btw:" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Btw:" wrappingWidth="160.0" />
                         <Text fx:id="btwPercentage" strokeType="OUTSIDE" strokeWidth="0.0" text="Btw%">
                             <HBox.margin>
                                 <Insets left="20.0" />
@@ -112,7 +112,7 @@
                 </HBox>
                 <HBox prefHeight="40.0" prefWidth="200.0">
                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Netto bedrag:" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Netto bedrag:" wrappingWidth="160.0" />
                         <Text fx:id="nAmount" strokeType="OUTSIDE" strokeWidth="0.0" text="Bedrag">
                             <HBox.margin>
                                 <Insets left="20.0" />
@@ -121,7 +121,7 @@
                 </HBox>
                 <HBox prefHeight="40.0" prefWidth="200.0">
                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gekoppeld project:" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gekoppeld project:" wrappingWidth="160.0" />
                         <Text fx:id="project" strokeType="OUTSIDE" strokeWidth="0.0" text="Project1">
                             <HBox.margin>
                                 <Insets left="20.0" />

@@ -98,11 +98,14 @@ public class InvoiceCreateView extends AnchorPane implements PageView {
                 .atZone(ZoneId.systemDefault()).toInstant());
         Timestamp timeStamp = new Timestamp(date.getTime());
 
+        int projectId = controller.getProjectIdFromName(linkedProject.getValue().toString());
+
         controller.createInvoice(price.getText(),
-                hours.getText(),
-                betaaldBox.isSelected(),
-                timeStamp,
-                controller.getProjectIdFromName(linkedProject.getValue().toString()));
+            hours.getText(),
+            betaaldBox.isSelected(),
+            timeStamp,
+            projectId
+        );
 
         controller.getRouter().nav("invoices/");
 

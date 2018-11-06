@@ -44,6 +44,9 @@ public class InvoiceDetailView extends AnchorPane implements PageView {
     @FXML
     private Text nAmount;
 
+    @FXML
+    private Text naamKlant;
+
 
 
     @Override
@@ -95,6 +98,7 @@ public class InvoiceDetailView extends AnchorPane implements PageView {
     }
 
     public void setAttributes(Invoice invoice) {
+        naamKlant.setText(controller.getContactNameFromId(invoice.getProject().getContactId()));
         paidBox.setSelected(invoice.getPaid());
         invoiceId.setText("" + invoice.getId());
         date.setText(dateFormat.format(invoice.getDeliveryDate()));

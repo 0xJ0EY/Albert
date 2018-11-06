@@ -11,6 +11,8 @@ import java.util.ArrayList;
 public class AmountDAO implements DAO<Amount> {
 
     private Amount amount;
+
+    private ContactDAO daoContact = new ContactDAO();
     @Override
     public ArrayList getAll() {
         String sql = "SELECT * FROM amount";
@@ -43,10 +45,9 @@ public class AmountDAO implements DAO<Amount> {
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setLong(1, id);
             ResultSet rs = statement.executeQuery();
-            rs.next();
 
-            amount = this.extractFromResultSet(rs);
-
+            if (rs.next())
+                amount = this.extractFromResultSet(rs);
 
             conn.close();
         }
@@ -66,13 +67,20 @@ public class AmountDAO implements DAO<Amount> {
 
         try {
                 Connection conn = Database.getInstance().getConnection();
-                PreparedStatement statement = conn.prepareStatement(sql);
+
+                String generatedColumns[] = {"contact_id"};
+                PreparedStatement statement = conn.prepareStatement(sql, generatedColumns);
 
                 statement.setDouble(1,this.amount.getHours());
                 statement.setDouble(2,this.amount.getPrice());
                 statement.setInt(3,this.amount.getContact().getId());
 
                 statement.execute();
+
+                ResultSet rs = statement.getGeneratedKeys();
+
+                if (rs.next())
+                    obj.setId(rs.getInt("contact_id"));
 
                 conn.close();
 
@@ -81,6 +89,10 @@ public class AmountDAO implements DAO<Amount> {
             e.printStackTrace();
         }
         System.out.println("Amount added");
+    }
+
+    public int getLastInsertedId() {
+        return this.amount.getId();
     }
 
     @Override
@@ -135,6 +147,7 @@ public class AmountDAO implements DAO<Amount> {
         amount.setId(rs.getInt("amount_id"));
         amount.setPrice(rs.getDouble("price"));
         amount.setHours(rs.getDouble("hours"));
+        amount.setContact(daoContact.loadById(rs.getInt("contact_id")));
 
         return amount;
     }

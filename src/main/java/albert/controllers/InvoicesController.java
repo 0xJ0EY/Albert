@@ -1,8 +1,6 @@
 package albert.controllers;
 
-import albert.dao.ContactDAO;
-import albert.dao.InvoiceDAO;
-import albert.dao.ProjectDAO;
+import albert.dao.*;
 import albert.models.*;
 import albert.services.PdfService;
 import com.itextpdf.text.DocumentException;
@@ -77,7 +75,13 @@ public class InvoicesController extends PageController implements OverviewPage, 
         amount = new Amount();
         amount.setHours(new Double(hours));
         amount.setPrice(new Double(price));
-        Tax tax = new Tax("btw", 21);
+        amount.setContact(daoContact.loadById(1));
+
+        AmountDAO amountDAO = new AmountDAO();
+        amountDAO.create(amount);
+        amount = amountDAO.loadById(amountDAO.getLastInsertedId());
+
+        Tax tax = (new TaxDAO()).loadById(1);
         invoice = new Invoice();
         invoice.setPaid(betaald);
         invoice.setDeliveryDate(deliveryDate);
@@ -85,7 +89,6 @@ public class InvoicesController extends PageController implements OverviewPage, 
         invoice.setTax(tax);
         invoice.setAmount(amount);
         invoice.setCreated_at(new Timestamp(System.currentTimeMillis()));
-        invoice.getAmount().setContact(daoContact.loadById(1));
         //TODO: VERANDER REGEL HIERBOVEN NAAR NIET STATIC
         dao.create(invoice);
     }
@@ -148,6 +151,10 @@ public class InvoicesController extends PageController implements OverviewPage, 
     @Override
     public Response detail(Request request) {
         this.request = request;
+
+        int invoiceId = Integer.valueOf(request.getParameter("invoice"));
+        this.invoice = (new InvoiceDAO()).loadById(invoiceId);
+
         return new ViewResponse(this);
     }
 
@@ -183,7 +190,7 @@ public class InvoicesController extends PageController implements OverviewPage, 
     }
 
     public int getProjectIdFromName(String projectName) {
-        int projectId = 1;
+        int projectId = 0;
         ArrayList<Project> projects = this.getProjects();
         for(int i=0; i<projects.size();i++) {
             if(projects.get(i).getName().equals(projectName)) {
@@ -197,11 +204,18 @@ public class InvoicesController extends PageController implements OverviewPage, 
         int contactId = 1;
         ArrayList<Contact> contacts = this.getContacts();
         for(int i=0; i<contacts.size();i++) {
-            if(contacts.get(i).getFirstName().equals(contactName)) {
+            String name = contacts.get(i).getFirstName() + " " + contacts.get(i).getLastName();
+            if(name.equals(contactName)) {
                 contactId = contacts.get(i).getId();
             }
         }
         return contactId;
+    }
+
+    public String getContactNameFromId(int contactId) {
+        Contact placeHoldContact = daoContact.loadById(contactId);
+        String contactName = placeHoldContact.getFirstName() + " " + placeHoldContact.getLastName();
+        return contactName;
     }
 
 }
