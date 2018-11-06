@@ -13,7 +13,11 @@ public class Quotation {
     private Timestamp created_at;
     private Project project;
     private int expectedHours;
-    private int expectedPrice;
+    private double expectedPrice;
+
+    public Quotation(){
+
+    }
 
     public int getExpectedHours() { return expectedHours; }
 
@@ -52,12 +56,11 @@ public class Quotation {
         this.amount = amount;
     }
 
-
-    public int getExpectedPrice() {
+    public double getExpectedPrice() {
         return expectedPrice;
     }
 
-    public void setExpectedPrice(int expectedPrice) {
+    public void setExpectedPrice(double expectedPrice) {
         this.expectedPrice = expectedPrice;
     }
 
@@ -76,7 +79,7 @@ public class Quotation {
     }
 
 
-        public Project getProject() {
+    public Project getProject() {
         return project;
     }
 
@@ -91,4 +94,5 @@ public class Quotation {
     public void setCreated_at(Timestamp created_at) {
         this.created_at = created_at;
     }
+
 }

@@ -97,7 +97,7 @@ public class ExpenseController extends PageController implements OverviewPage, D
         expense.setPrice(price);
         expense.setDescription(description);
         dao.update(expense);
-        this.getRouter().nav("expenses/detail/"+ expenseID+ "/");
+        this.getRouter().nav("expenses/detail/"+ expenseID + "/");
     }
     public void setExpense(int id) {
         this.expense = dao.loadById(id);

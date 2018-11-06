@@ -62,8 +62,6 @@ public class QuotationDAO implements DAO<Quotation>{
         return quotation;
     }
 
-
-
     @Override
     public void create(Quotation quotation) {
         this.quotation = quotation;
@@ -99,7 +97,9 @@ public class QuotationDAO implements DAO<Quotation>{
     public void update(Quotation quotation) {
         this.quotation = quotation;
         //TODO sql update schrijven
-        String sql = "UPDATE quotation SET ( name = ? ,description =?, product=?, price_expected=?,created_at=?, project_id=?, hours_expected=?)WHERE quotation_id =?";
+
+        String sql = "UPDATE quotation SET ( name = ? ,description =?, product=?, price_expected=?,created_at=?, project_id=?, hours_expected=?)WHERE quotation_id =?;" +
+                "UPDATE project SET quotation_id =? WHERE project_id=?;";
 
         try {
             Connection conn = Database.getInstance().getConnection();
@@ -115,7 +115,8 @@ public class QuotationDAO implements DAO<Quotation>{
             statement.setInt(7,this.quotation.getExpectedHours());
             statement.setInt(8,this.quotation.getId());
 
-            statement.executeUpdate();
+
+            statement.executeQuery();
             conn.close();
 
         } catch (SQLException e) {

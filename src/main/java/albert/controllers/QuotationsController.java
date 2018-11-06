@@ -1,5 +1,6 @@
 package albert.controllers;
 
+import albert.dao.ProjectDAO;
 import albert.dao.QuotationDAO;
 import albert.models.Amount;
 import albert.models.Quotation;
@@ -22,6 +23,8 @@ import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
 import table.views.tables.components.TableButton;
 
+import java.sql.Timestamp;
+
 
 public class QuotationsController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
 
@@ -29,6 +32,7 @@ public class QuotationsController extends PageController implements OverviewPage
     private Quotation quotation;
     private QuotationDAO dao = new QuotationDAO();
     private Request request;
+    private ProjectDAO projectdao = new ProjectDAO();
 
     public QuotationsController(PageView view, TemplateController template) {
         super(view, template);
@@ -68,11 +72,17 @@ public class QuotationsController extends PageController implements OverviewPage
         return table;
     }
 
+    public void saveQuotation(String name, double expectedprice, int expectedhours, String description, String product, int projectID, Timestamp createdAt) {
+        quotation = new Quotation();
+        quotation.setName(name);
+        quotation.setExpectedPrice(expectedprice);
+        quotation.setExpectedHours(expectedhours);
+        quotation.setDescription(description);
+        quotation.setProduct(product);
+        quotation.setProject(projectdao.loadById(projectID));git
+        quotation.setCreated_at(createdAt);
 
 
-    public void saveQuotation(String name, String price, String hour, String contact, String delivery) {
-        amount = new Amount(new Double(price), new Double(hour), contact);
-        quotation = new Quotation(name, amount, delivery);
         dao.create(quotation);
     }
 

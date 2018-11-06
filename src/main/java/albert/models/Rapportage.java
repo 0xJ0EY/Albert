@@ -1,7 +1,11 @@
 package albert.models;
 
+import albert.services.PdfService;
+import com.itextpdf.text.DocumentException;
+
+import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.Date;
+import java.util.ArrayList;
 
 public class Rapportage {
 
@@ -10,8 +14,20 @@ public class Rapportage {
     private Timestamp startDate;
     private Timestamp endDate;
     private Invoice invoice;
-    private Expense expense;
+    private ArrayList<Expense> expenseArrayList;
 
+    public void generatePdf(){
+
+
+        try {
+            PdfService.getInstance().generateRepports(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+
+    }
     public void setId(int id) {
         this.id = id;
     }
@@ -24,12 +40,12 @@ public class Rapportage {
         this.invoice = invoice;
     }
 
-    public Expense getExpense() {
-        return expense;
+    public ArrayList<Expense> getExpenseArrayList() {
+        return expenseArrayList;
     }
 
-    public void setExpense(Expense expense) {
-        this.expense = expense;
+    public void setExpenseArrayList(ArrayList<Expense> expenseArrayList) {
+        this.expenseArrayList = expenseArrayList;
     }
 
 
