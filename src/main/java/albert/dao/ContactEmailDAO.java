@@ -1,6 +1,8 @@
 package albert.dao;
 
+import albert.models.Contact;
 import albert.models.ContactEmail;
+import albert.models.ContactPhoneNumber;
 import database.Database;
 
 import java.sql.Connection;
@@ -9,152 +11,158 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ContactEmailDAO implements DAO<ContactEmail> {
-    private ContactEmail contactEmail;
-    private ContactDAO contactDAO= new ContactDAO();
+import java.util.HashMap;
 
-    @Override
-    public ArrayList getAll() {
-        String sql = "SELECT * FROM contactEmail";
-        ArrayList<ContactEmail> contactArrayList = null;
+public class ContactEmailDAO {
+
+    private static final int NEW_EMAIL_ID = 0;
+
+    private final String SELECT_QUERY = "SELECT * FROM contact_email WHERE contact_id = ?;";
+    private final String INSERT_QUERY = "INSERT INTO contact_email (email_address, contact_id) VALUES (?, ?);";
+    private final String UPDATE_QUERY = "UPDATE contact_email SET email_address = ? WHERE id = ?;";
+    private final String DELETE_QUERY = "DELETE FROM contact_email WHERE id = ?;";
+
+    public ArrayList<ContactEmail> loadContactEmails(Contact contact) {
+        ArrayList<ContactEmail> emails = new ArrayList<>();
+
         try {
             Connection conn = Database.getInstance().getConnection();
 
-            PreparedStatement statement = conn.prepareStatement(sql);
+            PreparedStatement statement = conn.prepareStatement(this.SELECT_QUERY);
+
+            statement.setLong(1, contact.getId());
 
             ResultSet rs = statement.executeQuery();
 
-            while (rs.next()){
-                this.contactEmail = extractFromResultSet(rs);
-                contactArrayList.add(contactEmail);
+            ContactEmail contactEmail;
+
+            while (rs.next()) {
+                contactEmail = new ContactEmail();
+
+                contactEmail.setId(rs.getInt("id"));
+                contactEmail.setEmailAddress(rs.getString("email_address"));
+                contactEmail.setContact(contact);
+
+                emails.add(contactEmail);
             }
 
+            statement.close();
             conn.close();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return contactArrayList;
-    }
-
-    @Override
-    public ContactEmail loadById(long id) {
-        ContactEmail contactEmail = null;
-
-        String sql = "SELECT * FROM contactEmail WHERE contact_id = ?";
-
-        try {
-            Connection conn = Database.getInstance().getConnection();
-
-            PreparedStatement statement = conn.prepareStatement(sql);
-
-            statement.setLong(1, id);
-
-            ResultSet rs = statement.executeQuery();
-
-            rs.next();
-
-            this.contactEmail= this.extractFromResultSet(rs);
-
-
-            conn.close();
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
 
-        return this.contactEmail;
+        System.out.println("emails size = " + emails.size());
+
+        return emails;
     }
 
+    public void updateEmails(Contact contact) {
+        ArrayList<ContactEmail> newEmails = contact.getEmails();
+        HashMap<Integer, ContactEmail> oldEmails = new HashMap<>();
 
-    @Override
-    public void create(ContactEmail contact) {
-
-        this.contactEmail = contact;
-
-        //TODO sql insert schrijven
-        String sql = "INSERT INTO contact_email(contact_id, email_address)" +
-                "VALUES (?,?,?);";
-
-         try {
-
-                Connection conn = Database.getInstance().getConnection();
-
-                PreparedStatement statement = conn.prepareStatement(sql);
-                statement.setInt(1,this.contactEmail.getContact().getId());
-                statement.setString(2, this.contactEmail.getEmailAddress());
-
-
-                statement.executeQuery();
-                conn.close();
-
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+        for (ContactEmail email : this.loadContactEmails(contact)) {
+            email.setContact(contact);
+            oldEmails.put(email.getId(), email);
         }
-        System.out.println("Contact added");
+
+        ArrayList<ContactEmail> insert = new ArrayList<>();
+        ArrayList<ContactEmail> update = new ArrayList<>();
+
+        for (ContactEmail email : newEmails) {
+
+            email.setContact(contact);
+
+            // New numbers don't have an id yet, so just add them to the insert ArrayList
+            if (email.getId() == NEW_EMAIL_ID) {
+                insert.add(email);
+            }
+
+            // If
+            if (oldEmails.get(email.getId()) != null) {
+                update.add(email);
+                oldEmails.remove(email.getId());
+            }
+        }
+
+        ArrayList<ContactEmail> delete = new ArrayList<>(oldEmails.values());
+
+        // Insert phone numbers
+        for (ContactEmail email : insert)
+            this.insertEmail(email);
+
+        // Update phone numbers
+        for (ContactEmail email : update)
+            this.updateEmail(email);
+
+        // Delete old phone numbers
+        for (ContactEmail email : delete)
+            this.deleteEmail(email);
+
     }
 
-
-    @Override
-    public void update(ContactEmail obj) {
-
-        this.contactEmail =obj;
-
-        String sql = "UPDATE contactEmail SET contact_id=?, email_address=?  WHERE email_id = ?";
+    private void insertEmail(ContactEmail email) {
 
         try {
+            Connection conn = Database.getInstance().getConnection();
+            PreparedStatement statement = conn.prepareStatement(this.INSERT_QUERY);
 
-                Connection conn = Database.getInstance().getConnection();
-                PreparedStatement statement = conn.prepareStatement(sql);
-                statement.setInt(1,this.contactEmail.getContact().getId());
-                statement.setString(2, this.contactEmail.getEmailAddress());
-                statement.setInt(3, this.contactEmail.getId());
+            int i = 0;
 
+            statement.setString(++i, email.getEmailAddress());
+            statement.setInt(++i, email.getContact().getId());
 
-                statement.executeUpdate();
+            statement.executeUpdate();
 
-                conn.close();
-
+            statement.close();
+            conn.close();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        System.out.println("Contact updated");
+
     }
 
-    @Override
-    public  void delete(ContactEmail contactEmail) {
-        this.contactEmail = contactEmail;
+    private void updateEmail(ContactEmail email) {
 
+        try {
+            Connection conn = Database.getInstance().getConnection();
+            PreparedStatement statement = conn.prepareStatement(this.UPDATE_QUERY);
 
-            String sql = "DELETE FROM contactEmail WHERE contact_id = ?";
+            int i = 0;
 
-            try {
+            statement.setString(++i, email.getEmailAddress());
+            statement.setInt(++i, email.getId());
 
-                Connection conn = Database.getInstance().getConnection();
-                PreparedStatement statement = conn.prepareStatement(sql);
-                statement.setInt(1, this.contactEmail.getId());
+            statement.executeUpdate();
 
-                statement.executeUpdate();
+            statement.close();
+            conn.close();
 
-                conn.close();
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            System.out.println("Contact deleted");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
-    @Override
-    public ContactEmail extractFromResultSet(ResultSet rs) throws SQLException {
-        ContactEmail contactEmail = new ContactEmail();
-        contactEmail.setId(rs.getInt("email_id"));
-        contactEmail.setContact(contactDAO.loadById(rs.getInt("contact_id")));
-        contactEmail.setEmailAddress("email_address");
+    }
 
+    private void deleteEmail(ContactEmail email) {
 
-        return contactEmail;
+        try {
+            Connection conn = Database.getInstance().getConnection();
+            PreparedStatement statement = conn.prepareStatement(this.DELETE_QUERY);
+
+            statement.setInt(1, email.getId());
+
+            statement.executeUpdate();
+
+            statement.close();
+            conn.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 }

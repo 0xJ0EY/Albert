@@ -89,11 +89,11 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
 
     }
 
-    private void scrollUp() {
+    protected void scrollUp() {
         this.tableContainer.setVvalue(0);
     }
 
-    private void updateOverlay() {
+    protected void updateOverlay() {
         String status;
 
         if (this.table.isLoaded()) {
@@ -106,16 +106,16 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
         this.status.setText(status);
     }
 
-    private void showOverlay() {
+    protected void showOverlay() {
         this.overlay.setVisible(true);
     }
 
-    private void hideOverlay() {
+    protected void hideOverlay() {
         this.overlay.setVisible(false);
     }
 
 
-    private void createColumns() {
+    protected void createColumns() {
 
         this.columns = new ArrayList<>();
 
@@ -130,7 +130,7 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
         }
     }
 
-    private void createHeaders() {
+    protected void createHeaders() {
 
         ArrayList<Column> cols = this.table.getCols();
 
@@ -155,7 +155,7 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
 
     }
 
-    private void createRows() {
+    protected void createRows() {
 
         // Based on a row
         ArrayList<Row> rows = this.table.getData();
@@ -190,7 +190,7 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
         }
     }
 
-    private void createPagination() {
+    protected void createPagination() {
 
         this.paginationContainer.getChildren().clear();
 
@@ -200,7 +200,7 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
 
     }
 
-    private void createPreviousButton() {
+    protected void createPreviousButton() {
 
         PreviousButton button = new PreviousButton(1, this.table.getPage(), this.table);
 
@@ -208,7 +208,7 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
 
     }
 
-    private void createPageNumberButtons() {
+    protected void createPageNumberButtons() {
 
         int minPage = 1;
         int maxPage = this.table.getMaxPage();
@@ -237,7 +237,7 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
 
     }
 
-    public void createButtons() {
+    protected void createButtons() {
         this.buttonContainer.getChildren().clear();
 
         for (Button button : this.table.getButtons()) {
@@ -246,7 +246,7 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
 
     }
 
-    private void createNextButton() {
+    protected void createNextButton() {
 
         NextButton button = new NextButton(this.table.getMaxPage(), this.table.getPage(), this.table);
 
@@ -254,7 +254,7 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
 
     }
 
-    private void updateText() {
+    protected void updateText() {
 
         this.description.setText(
             String.format(
@@ -265,7 +265,7 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
         );
     }
 
-    private void updateTable() {
+    protected void updateTable() {
         this.container.getChildren().clear();
 
         ArrayList<VBox> columns = new ArrayList<>();

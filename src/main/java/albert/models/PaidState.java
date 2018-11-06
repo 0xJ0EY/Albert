@@ -1,20 +1,20 @@
 package albert.models;
 
 public enum PaidState {
-    paid {
-        public String toString() {
-            return "Betaald";
-        }
-    },
 
-    notPaid {
-        public String toString() {
-            return "Niet betaald";
-        }
-    },
-    waiting {
-        public String toString() {
-            return "In afwachting";
-        }
+    PAID("Betaald"),
+    NOT_PAID("Niet betaald"),
+    WAITING("In afwachting");
+
+    private final String status;
+
+    private PaidState(String status) {
+        this.status = status;
+
     }
+
+    public String toString() {
+        return this.status;
+    }
+
 }

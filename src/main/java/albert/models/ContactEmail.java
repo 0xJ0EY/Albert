@@ -3,24 +3,16 @@ package albert.models;
 public class ContactEmail {
 
     private String emailAddress;
-
     private Contact contact;
-
     private int id;
 
+    public ContactEmail() {
+    }
 
     public ContactEmail(String emailAddress) {
         this.emailAddress = emailAddress;
     }
 
-    public ContactEmail(String emailAddress, Contact contact) {
-        this.emailAddress = emailAddress;
-        this.contact = contact;
-    }
-
-    public ContactEmail() {
-
-    }
 
     public int getId() {
         return id;
@@ -29,6 +21,7 @@ public class ContactEmail {
     public void setId(int id) {
         this.id = id;
     }
+
     public String getEmailAddress() {
         return emailAddress;
     }

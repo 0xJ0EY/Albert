@@ -55,7 +55,7 @@ public class PdfService {
 
         Context context = new Context();
         Project project = projectDAO.loadById(invoice.getProject().getId());
-        Contact contact = contactDAO.loadById(project.getContactId());
+        Contact contact = project.getContact();
         context.setVariable("contact", contact);
         context.setVariable("data", invoice);
 
@@ -103,7 +103,7 @@ public class PdfService {
         templateEngine.setTemplateResolver(templateResolver);
 
         Context context = new Context();
-        int contact = quotation.getProject().getContactId();
+        Contact contact = quotation.getProject().getContact();
         context.setVariable("contact", contact);
         context.setVariable("data", quotation);
 

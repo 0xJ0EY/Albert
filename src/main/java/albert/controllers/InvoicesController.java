@@ -3,7 +3,6 @@ package albert.controllers;
 import albert.dao.InvoiceDAO;
 import albert.models.*;
 import albert.services.PdfService;
-import com.itextpdf.text.DocumentException;
 import javafx.fxml.FXML;
 import query.Query;
 import router.Request;
@@ -60,6 +59,22 @@ public class InvoicesController extends PageController implements OverviewPage, 
                 new TextCellFactory())
         );
 
+
+        table.addCol(new Column("PAID::text",
+                new LeftHeaderViewFactory("Betaald"),
+                new TextCellFactory())
+        );
+
+        table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
+                new LeftHeaderViewFactory("Aangemaakt op"),
+                new TextCellFactory())
+        );
+
+        table.addCol(new Column("TO_CHAR(deliverydate, 'DD-MM-YYYY')",
+                new LeftHeaderViewFactory("Afleverdatum"),
+                new TextCellFactory())
+        );
+
 //        table.addCol(new Column("paid::text",
 //                new LeftHeaderViewFactory("Betaald"),
 //                new TextCellFactory())
@@ -67,7 +82,6 @@ public class InvoicesController extends PageController implements OverviewPage, 
 
         return  table;
     }
-
     public Table getPaidOverviewTable(){
         Table table = new Table(
                 new DatabaseStrategy(Query.table("invoice").where("paid", "=", "betaald")),
