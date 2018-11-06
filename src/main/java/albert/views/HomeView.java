@@ -34,11 +34,11 @@ public class HomeView extends AnchorPane implements PageView {
     @Override
     public void update() {
 
-        this.controller.getTemplate().addAction("Projects", () -> controller.getRouter().nav("projects/"));
+        this.controller.getTemplate().addAction("Projecten", () -> controller.getRouter().nav("projects/"));
 
-        this.controller.getTemplate().addAction("Invoices", () -> controller.getRouter().nav("invoices/"));
+        this.controller.getTemplate().addAction("Onkosten", () -> controller.getRouter().nav("expenses/"));
 
-        this.controller.getTemplate().addAction("Reports", () -> controller.getRouter().nav("reports/"));
+        this.controller.getTemplate().addAction("Facturen", () -> controller.getRouter().nav("invoices/"));
 
     }
 
@@ -63,8 +63,8 @@ public class HomeView extends AnchorPane implements PageView {
     }
 
 
-    public void clickOnReports(){
-        controller.getRouter().nav("reports/");
+    public void clickOnExpenses(){
+        controller.getRouter().nav("expenses/");
     }
 
 

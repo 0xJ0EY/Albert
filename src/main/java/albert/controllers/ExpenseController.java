@@ -1,5 +1,7 @@
 package albert.controllers;
 
+import albert.dao.ExpenseDAO;
+import albert.models.Expense;
 import query.Query;
 import router.Request;
 import router.pages.CreatePage;
@@ -18,7 +20,15 @@ import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
 
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
+
 public class ExpenseController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
+
+    Expense expense;
+    ExpenseDAO dao = new ExpenseDAO();
+    private Request request;
 
 
     public ExpenseController(PageView view, TemplateController template) {
@@ -34,7 +44,7 @@ public class ExpenseController extends PageController implements OverviewPage, D
 
         table.addCol(new Column("name",
                 new LeftHeaderViewFactory("Naam"),
-                new RouteCellFactory("expenses/details/{expense_id}/", this))
+                new RouteCellFactory("expenses/detail/{expense_id}/", this))
         );
 
         table.addCol(new Column("price::text",
@@ -57,21 +67,63 @@ public class ExpenseController extends PageController implements OverviewPage, D
 
     @Override
     public Response overview(Request request) {
+        this.request = request;
         return new ViewResponse(this);
     }
 
     @Override
     public Response detail(Request request) {
+        this.request = request;
         return new ViewResponse(this);
     }
 
     @Override
     public Response edit(Request request) {
+        this.request = request;
         return new ViewResponse(this);
     }
 
     @Override
     public Response create(Request request) {
+        this.request = request;
         return new ViewResponse(this);
+    }
+
+    public void navigateEditExpense(){
+        this.getRouter().nav("expenses/edit/"+ this.getRequest().getParameter("expense") + "/");
+    }
+    public void editExpense(int expenseID, String name, double price, String description){
+        expense.setId(expenseID);
+        expense.setName(name);
+        expense.setPrice(price);
+        expense.setDescription(description);
+        dao.update(expense);
+        this.getRouter().nav("expenses/detail/"+ expenseID + "/");
+    }
+    public void setExpense(int id) {
+        this.expense = dao.loadById(id);
+    }
+
+    public Expense getExpense(){
+        return this.expense;
+    }
+
+    public Request getRequest() {
+        return request;
+    }
+
+    public void saveExpense(double price, String description, String name){
+
+        Calendar calendar = Calendar.getInstance();
+        java.util.Date now = calendar.getTime();
+        java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
+
+        expense = new Expense();
+        expense.setPrice(price);
+        expense.setDescription(description);
+        expense.setName(name);
+        expense.setCreated_at(currentTimestamp);
+        dao.create(expense);
+
     }
 }

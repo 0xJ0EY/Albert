@@ -31,7 +31,7 @@
             <HBox alignment="CENTER_LEFT" prefHeight="67.0" prefWidth="821.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gekoppelde klant:" wrappingWidth="150.0" />
-                  <TextField fx:id="contact" />
+                  <TextField fx:id="contactId" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="821.0">

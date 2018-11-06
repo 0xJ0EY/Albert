@@ -42,7 +42,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="821.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gekoppeld contact:" wrappingWidth="151.99853515625" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gekoppeld contactId:" wrappingWidth="151.99853515625" />
                   <TextField fx:id="contactBar" />
                </children>
             </HBox>

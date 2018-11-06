@@ -67,9 +67,9 @@ public class QuotationsController extends PageController implements OverviewPage
         return table;
     }
 
-    public void saveQuotation(String name, String price, String hour, String contact, String delivery) {
-        amount = new Amount(new Double(price), new Double(hour), contact);
-        quotation = new Quotation(name, amount, delivery);
+    public void saveQuotation(String name, String price, String hour, String delivery) {
+
+
         dao.create(quotation);
     }
 

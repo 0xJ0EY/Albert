@@ -7,9 +7,6 @@ public class Amount {
     private Contact contact;
     private int id;
 
-    public Amount(Double price, Double hours, String contact) {
-    }
-
     public Amount() {
 
     }

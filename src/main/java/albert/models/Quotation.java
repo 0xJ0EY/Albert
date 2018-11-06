@@ -13,6 +13,9 @@ public class Quotation {
     private Timestamp created_at;
     private Project project;
     private int expectedHours;
+    private Quotation quotation;
+
+
 
     public int getExpectedHours() { return expectedHours; }
 
@@ -65,10 +68,6 @@ public class Quotation {
         this.id = id;
     }
 
-
-
-
-
     public Project getProject() {
         return project;
     }
@@ -83,5 +82,13 @@ public class Quotation {
 
     public void setCreated_at(Timestamp created_at) {
         this.created_at = created_at;
+    }
+
+    public Quotation getQuotation() {
+        return quotation;
+    }
+
+    public void setQuotation(Quotation quotation) {
+        this.quotation = quotation;
     }
 }
