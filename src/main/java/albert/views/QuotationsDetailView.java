@@ -91,7 +91,7 @@ public class QuotationsDetailView extends AnchorPane implements PageView {
         Name.setText(controller.getQuotation().getName());
         Product.setText(controller.getQuotation().getProduct());
         Hours.setText(Integer.toString(controller.getQuotation().getExpectedHours()));
-        Price.setText(Integer.toString(controller.getQuotation().getExpectedPrice()));
+        Price.setText(Double.toString(controller.getQuotation().getExpectedPrice()));
         Project.setText(Integer.toString(controller.getQuotation().getProject().getId()));
         DateCreated.setText(getDateString(controller.getQuotation().getCreated_at()));
         Description.setText(controller.getQuotation().getDescription());

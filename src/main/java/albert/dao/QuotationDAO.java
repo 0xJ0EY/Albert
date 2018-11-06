@@ -77,7 +77,7 @@ public class QuotationDAO implements DAO<Quotation>{
             statement.setString(1,this.quotation.getName());
             statement.setString(2, this.quotation.getDescription());
             statement.setString(3,  this.quotation.getProduct());
-            statement.setInt(4,this.quotation.getExpectedPrice());
+            statement.setDouble(4,this.quotation.getExpectedPrice());
             statement.setTimestamp(5,this.quotation.getCreated_at());
             statement.setInt(6,this.quotation.getProject().getId());
             statement.setInt(7,this.quotation.getExpectedHours());
@@ -109,7 +109,7 @@ public class QuotationDAO implements DAO<Quotation>{
             statement.setString(1,this.quotation.getName());
             statement.setString(2, this.quotation.getDescription());
             statement.setString(3,  this.quotation.getProduct());
-            statement.setInt(4,this.quotation.getExpectedPrice());
+            statement.setDouble(4,this.quotation.getExpectedPrice());
             statement.setTimestamp(5,this.quotation.getCreated_at());
             statement.setInt(6,this.quotation.getProject().getId());
             statement.setInt(7,this.quotation.getExpectedHours());

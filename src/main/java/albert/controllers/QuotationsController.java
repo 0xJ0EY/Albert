@@ -79,7 +79,7 @@ public class QuotationsController extends PageController implements OverviewPage
         quotation.setExpectedHours(expectedhours);
         quotation.setDescription(description);
         quotation.setProduct(product);
-        quotation.setProject(projectdao.loadById(projectID));git
+        quotation.setProject(projectdao.loadById(projectID));
         quotation.setCreated_at(createdAt);
 
 
