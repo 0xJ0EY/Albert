@@ -9,27 +9,20 @@ import java.sql.Timestamp;
 public class Project {
 
     private int id;
-
     private String name;
-    private String status = PaidState.notPaid.toString();
+    private String status = PaidState.NOT_PAID.toString();
     private Timestamp created_at;
     private Boolean done;
     private int contactId;
     private int invoiceId;
     private int expenseId;
     private int quotationId;
+    private Tax tax;
 
     public Project() {
 
     }
 
-    public int getExpenseId() {
-        return expenseId;
-    }
-
-    public void setExpenseId(int expenseId) {
-        this.expenseId = expenseId;
-    }
 
     public int getQuotationId() {
         return quotationId;
@@ -55,45 +48,34 @@ public class Project {
         this.name = name; this.status = status;
     }
 
-
-
-    public void setCreated_at(Timestamp created_at) {
-        this.created_at = created_at;
-    }
-
-
     public void setId(int id) {
         this.id = id;
     }
 
-
-    public String isDone() {
-        return status;
-    }
-
-    public void setStatus(String status) { this.status = status; }
-
-
-
-    public void setName(String name) {
-            this.name = name;
-    }
+    public int getId() { return this.id; }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getStatus() {
         return status;
     }
 
-    public int getId() {
-        return this.id;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Timestamp getCreated_at() {
         return created_at;
+    }
+
+    public void setCreated_at(Timestamp created_at) {
+        this.created_at = created_at;
     }
 
     public Boolean getDone() {
@@ -103,4 +85,13 @@ public class Project {
     public void setDone(Boolean done) {
         this.done = done;
     }
+
+    public Tax getTax() {
+        return tax;
+    }
+
+    public void setTax(Tax tax) {
+        this.tax = tax;
+    }
+
 }

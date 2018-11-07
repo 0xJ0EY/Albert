@@ -26,10 +26,9 @@ import java.util.Date;
 
 public class ExpenseController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
 
-    Expense expense;
-    ExpenseDAO dao = new ExpenseDAO();
+    private Expense expense;
+    private ExpenseDAO dao = new ExpenseDAO();
     private Request request;
-
 
     public ExpenseController(PageView view, TemplateController template) {
 

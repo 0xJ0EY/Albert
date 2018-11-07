@@ -87,8 +87,7 @@ public class ExpenseDAO implements DAO<Expense>{
             statement.setTimestamp(2,this.expense.getCreated_at());
             statement.setString(3,this.expense.getDescription());
             statement.setString(4,this.expense.getName());
-
-            statement.executeQuery();
+            statement.execute();
 
             conn.close();
 
@@ -116,7 +115,7 @@ public class ExpenseDAO implements DAO<Expense>{
             statement.setString(4,this.expense.getName());
             statement.setInt(5,this.expense.getId());
 
-            statement.executeQuery();
+            statement.execute();
             conn.close();
 
         } catch (SQLException e) {

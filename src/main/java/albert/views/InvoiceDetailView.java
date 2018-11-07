@@ -47,6 +47,9 @@ public class InvoiceDetailView extends AnchorPane implements PageView {
     @FXML
     private Text naamKlant;
 
+    @FXML
+    private Text description;
+
 
 
     @Override
@@ -107,6 +110,6 @@ public class InvoiceDetailView extends AnchorPane implements PageView {
         project.setText(invoice.getProject().getName());
         bAmount.setText("" + invoice.getAmount().getPrice());
         nAmount.setText(invoice.getAmount().getPrice() + invoice.calculateTax() + "");
-
+        description.setText(invoice.getDescription());
     }
 }

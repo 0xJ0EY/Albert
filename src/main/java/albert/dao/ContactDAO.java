@@ -1,18 +1,49 @@
 package albert.dao;
 
 import albert.models.Contact;
-import albert.models.Invoice;
+import albert.models.ContactEmail;
+import albert.models.ContactPhoneNumber;
 import database.Database;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class ContactDAO implements DAO<Contact> {
-    private Contact contact;
-    private ProjectDAO projectDAO = new ProjectDAO();
+
+
+    private final ContactEmailDAO contactEmailDAO = new ContactEmailDAO();
+    private final ContactPhoneNumberDAO contactPhoneNumberDAO = new ContactPhoneNumberDAO();
+
+    private final String SELECT_CONTACT_SQL = "SELECT * FROM contact WHERE contact_id = ?";
+
+    private final String CREATE_CONTACT_SQL = "INSERT INTO \"contact\" " +
+            "(\"contact_id\", " +
+            "\"first_name\", " +
+            "\"last_name\", " +
+            "\"company\", " +
+            "\"postal_code\", " +
+            "\"street_name\", " +
+            "\"house_number\", " +
+            "\"city\", " +
+            "\"website\", " +
+            "\"description\") " +
+            "VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    private final String UPDATE_CONTACT_SQL = "UPDATE contact SET " +
+            "first_name=?, " +
+            "last_name=?, " +
+            "company=?, " +
+            "postal_code=?, " +
+            "street_name=?, " +
+            "house_number=?, " +
+            "city=?, " +
+            "website=?, " +
+            "description=? " +
+            "WHERE " +
+            "contact_id = ?";
+
+    private final String DELETE_CONTACT_SQL = "DELETE FROM contact WHERE contact_id = ?";
+
 
     @Override
     public ArrayList getAll() {
@@ -26,14 +57,13 @@ public class ContactDAO implements DAO<Contact> {
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()){
-                this.contact = extractFromResultSet(rs);
-                contactArrayList.add(contact);
+                contactArrayList.add(this.extractFromResultSet(rs));
             }
 
             conn.close();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return contactArrayList;
     }
@@ -41,13 +71,13 @@ public class ContactDAO implements DAO<Contact> {
     @Override
     public Contact loadById(long id) {
 
+        Contact contact = new Contact();
 
-        String sql = "SELECT * FROM contact WHERE contact_id = ?";
 
         try {
             Connection conn = Database.getInstance().getConnection();
 
-            PreparedStatement statement = conn.prepareStatement(sql);
+            PreparedStatement statement = conn.prepareStatement(this.SELECT_CONTACT_SQL);
 
             statement.setLong(1, id);
 
@@ -55,8 +85,23 @@ public class ContactDAO implements DAO<Contact> {
 
             rs.next();
 
-            contact= this.extractFromResultSet(rs);
 
+            contact.setId(rs.getInt("contact_id"));
+            contact.setFirstName(rs.getString("first_name"));
+            contact.setLastName(rs.getString("last_name"));
+            contact.setCompany(rs.getString("company"));
+            contact.setPostalCode(rs.getString("postal_code"));
+            contact.setStreetName(rs.getString("street_name"));
+            contact.setHouseNumber(rs.getString("house_number"));
+            contact.setCity(rs.getString("city"));
+            contact.setWebsite(rs.getString("website"));
+            contact.setDescription(rs.getString("description"));
+            contact.setCreated_at(rs.getTimestamp("created_at"));
+
+            contact.setEmails(this.contactEmailDAO.loadContactEmails(contact));
+            contact.setPhoneNumbers(this.contactPhoneNumberDAO.loadContactPhoneNumbers(contact));
+
+            statement.close();
 
             conn.close();
         }
@@ -67,128 +112,119 @@ public class ContactDAO implements DAO<Contact> {
         return contact;
     }
 
-
     @Override
     public void create(Contact contact) {
 
-        this.contact= contact;
 
-        //TODO sql insert schrijven
-        String sql = "INSERT INTO contact(first_name, last_name, tel_number, postal_code, street_name, house_number, city, created_at, website, description)" +
-                "VALUES (?,?,?,?,?,?,?,?,?,?); " +
-                "UPDATE project SET contact_id=? WHERE project_id=?  ";
-
-         try {
-
-                Connection conn = Database.getInstance().getConnection();
-
-                PreparedStatement statement = conn.prepareStatement(sql);
-                int i=0;
-                statement.setString(i++, this.contact.getFirstName());
-                statement.setString(i++, this.contact.getLastName());
-                statement.setString(i++, this.contact.getTelephoneNumber());
-                statement.setString(i++, this.contact.getPostcode());
-                statement.setString(i++, this.contact.getStraatnaam());
-                statement.setString(i++, this.contact.getHouseNumber());
-                statement.setString(i++, this.contact.getWoonplaats());
-                statement.setTimestamp(i++, this.contact.getCreated_at());
-                statement.setString(i++, this.contact.getWebsite());
-                statement.setString(i++, this.contact.getBeschrijving());
-                statement.setInt(i++,this.contact.getId());
-                statement.setInt(i++, this.contact.getProject().getId());
-               //TODO project later koppelenj niet bij create
-                // statement.setInt(11, this.contact.getProject().getId());
-
-                statement.executeQuery();
-                conn.close();
+        try {
+            Connection conn = Database.getInstance().getConnection();
 
 
-        } catch (SQLException e) {
-            e.printStackTrace();
+            String generatedColumns[] = {"contact_id"};
+            PreparedStatement statement = conn.prepareStatement(this.CREATE_CONTACT_SQL, generatedColumns);
+
+
+            int i = 0;
+
+            statement.setString(++i, contact.getFirstName());
+            statement.setString(++i, contact.getLastName());
+            statement.setString(++i, contact.getCompany());
+            statement.setString(++i, contact.getPostalCode());
+            statement.setString(++i, contact.getStreetName());
+            statement.setString(++i, contact.getHouseNumber());
+            statement.setString(++i, contact.getStreetName());
+            statement.setString(++i, contact.getWebsite());
+            statement.setString(++i, contact.getDescription());
+
+            statement.executeUpdate();
+
+            ResultSet rs = statement.getGeneratedKeys();
+
+            if (rs.next())
+                contact.setId(rs.getInt("contact_id"));
+
+            this.contactEmailDAO.updateEmails(contact);
+            this.contactPhoneNumberDAO.updatePhoneNumbers(contact);
+
+            statement.close();
+            conn.close();
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
         }
-        System.out.println("Contact added");
+
     }
 
 
     @Override
-    public void update(Contact obj) {
-
-        this.contact=obj;
-
-        String sql = "UPDATE contact SET first_name=?,last_name=?,tel_number=?,postal_code=?,street_name=?,house_number=?,created_at=?,website=?,description=?" +
-                " WHERE contact_id = ?;" +
-                "UPDATE project SET contact_id=? WHERE project_id=?;";
+    public void update(Contact contact) {
 
         try {
+            Connection conn = Database.getInstance().getConnection();
+            PreparedStatement statement = conn.prepareStatement(this.UPDATE_CONTACT_SQL);
 
-                Connection conn = Database.getInstance().getConnection();
-                PreparedStatement statement = conn.prepareStatement(sql);
+            int i = 0;
 
-            int i=0;
-            statement.setString(i++, this.contact.getFirstName());
-            statement.setString(i++, this.contact.getLastName());
-            statement.setString(i++, this.contact.getTelephoneNumber());
-            statement.setString(i++, this.contact.getPostcode());
-            statement.setString(i++, this.contact.getStraatnaam());
-            statement.setString(i++, this.contact.getHouseNumber());
-            statement.setString(i++, this.contact.getWoonplaats());
-            statement.setTimestamp(i++, this.contact.getCreated_at());
-            statement.setString(i++, this.contact.getWebsite());
-            statement.setString(i++, this.contact.getBeschrijving());
-            statement.setInt(i++,this.contact.getId());
-            statement.setInt(i++, this.contact.getProject().getId());
+            statement.setString(++i, contact.getFirstName());
+            statement.setString(++i, contact.getLastName());
+            statement.setString(++i, contact.getCompany());
+            statement.setString(++i, contact.getPostalCode());
+            statement.setString(++i, contact.getStreetName());
+            statement.setString(++i, contact.getHouseNumber());
+            statement.setString(++i, contact.getStreetName());
+            statement.setString(++i, contact.getWebsite());
+            statement.setString(++i, contact.getDescription());
+
+            statement.setInt(++i, contact.getId());
 
 
-                statement.executeQuery();
+            this.contactEmailDAO.updateEmails(contact);
+            this.contactPhoneNumberDAO.updatePhoneNumbers(contact);
 
-                conn.close();
 
+            statement.executeUpdate();
+
+            statement.close();
+            conn.close();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        System.out.println("Contact updated");
     }
 
     @Override
     public  void delete(Contact contact) {
-        this.contact = contact;
+
+        // Remove all old phone numbers & emails
+        contact.setEmails(new ArrayList<>());
+        contact.setPhoneNumbers(new ArrayList<>());
+
+        try {
+            Connection conn = Database.getInstance().getConnection();
+            PreparedStatement statement = conn.prepareStatement(this.DELETE_CONTACT_SQL);
+            statement.setInt(1, contact.getId());
+
+            statement.executeUpdate();
+
+            // Delete phone numbers
+            contact.setEmails(new ArrayList<>());
+            contact.setPhoneNumbers(new ArrayList<>());
 
 
-            String sql = "DELETE FROM contact WHERE contact_id = ?";
+            this.contactEmailDAO.updateEmails(contact);
 
-            try {
 
-                Connection conn = Database.getInstance().getConnection();
-                PreparedStatement statement = conn.prepareStatement(sql);
-                statement.setInt(1, this.contact.getId());
+            statement.close();
+            conn.close();
 
-                statement.executeQuery();
-
-                conn.close();
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            System.out.println("Contact deleted");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
+    }
 
     @Override
     public Contact extractFromResultSet(ResultSet rs) throws SQLException {
-        Contact contact = new Contact();
-        contact.setId(rs.getInt("contact_id"));
-                contact.setFirstName(rs.getString("first_name"));
-                contact.setLastName(rs.getString("last_name"));
-                contact.setPostcode(rs.getString("postal_code"));
-                contact.setWebsite(rs.getString("website"));
-                contact.setBeschrijving(rs.getString("description"));
-                contact.setStraatnaam(rs.getString("street_name"));
-                contact.setHouseNumber(rs.getString("house_number"));
-                contact.setWoonplaats(rs.getString("city"));
-                contact.setCreated_at(rs.getTimestamp("created_at"));
-                contact.setProject(projectDAO.loadById(rs.getInt("project_id")));
 
-        return contact;
+        return this.loadById(rs.getInt("contact_id"));
     }
 
 }

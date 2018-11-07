@@ -20,9 +20,11 @@ public class Quotation {
     private Timestamp created_at;
     private Project project;
     private int expectedHours;
-    private Quotation quotation;
+    private double expectedPrice;
 
+    public Quotation(){
 
+    }
 
     public int getExpectedHours() { return expectedHours; }
 
@@ -34,7 +36,7 @@ public class Quotation {
      */
     public Quotation(String name, Amount amount, String product) {
         this.name = name;
-        this.amount = amount;
+        //this.amount = amount;
         this.product = product;
     }
     public Quotation(String name, String product, String description, Timestamp created_at) {
@@ -61,6 +63,14 @@ public class Quotation {
         this.amount = amount;
     }
 
+    public double getExpectedPrice() {
+        return expectedPrice;
+    }
+
+    public void setExpectedPrice(double expectedPrice) {
+        this.expectedPrice = expectedPrice;
+    }
+
     public String getProduct() { return this.product; }
 
     public void setDelivery(String product) { this.product = product; }
@@ -74,6 +84,7 @@ public class Quotation {
     public void setId(int id) {
         this.id = id;
     }
+
 
     public Project getProject() {
         return project;

@@ -23,8 +23,8 @@
             <ul style="list-style-type: none; margin-top:20%;">
                 <li>[[${data.getCurrentDate()}]]</li>
                 <li>[[${contact.getFirstName()}]] [[${contact.getLastName()}]]</li>
-                <li>[[${contact.getStraatnaam()}]] [[${contact.getHouseNumber()}]]</li>
-                <li>[[${contact.getPostcode()}]] [[${contact.getWoonplaats()}]]</li>
+                <li>[[${contact.getStreetName()}]] [[${contact.getHouseNumber()}]]</li>
+                <li>[[${contact.getPostalCode()}]] [[${contact.getCity()}]]</li>
                 <li><b>Datum:</b>[[${data.getCurrentDate()}]]</li>
                 <li><b>Factuur Nr.</b> [[${data.getId()}]]</li>
             </ul>
@@ -42,7 +42,7 @@
                     </tr>
                     <tr>
                         <td>1/11/2018</td>
-                        <td>Infographic</td>
+                        <td>[[${data.getDescription()}]]</td>
                         <td>[[${data.getAmount.getHours()}]]</td>
                         <td> &euro;[[${data.getAmount.getPrice()}]]</td>
                     </tr>

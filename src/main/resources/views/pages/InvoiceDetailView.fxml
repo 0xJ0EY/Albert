@@ -69,8 +69,8 @@
                 </HBox>
                 <HBox prefHeight="40.0" prefWidth="200.0">
                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Status project:" wrappingWidth="160.0" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Status">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Beschrijving:" wrappingWidth="160.0" />
+                        <Text fx:id="description" strokeType="OUTSIDE" strokeWidth="0.0" text="beschrijving">
                             <HBox.margin>
                                 <Insets left="20.0" />
                             </HBox.margin></Text>

@@ -3,7 +3,6 @@ package albert.controllers;
 import albert.dao.*;
 import albert.models.*;
 import albert.services.PdfService;
-import com.itextpdf.text.DocumentException;
 import javafx.fxml.FXML;
 import query.Query;
 import router.Request;
@@ -51,6 +50,22 @@ public class InvoicesController extends PageController implements OverviewPage, 
         table.addCol(new Column("invoice_id::text",
                 new LeftHeaderViewFactory("Invoice ID"),
                 new RouteCellFactory("invoices/detail/{invoice_id}/", this))
+        );
+
+        table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
+                new LeftHeaderViewFactory("Aangemaakt op"),
+                new TextCellFactory())
+        );
+
+        table.addCol(new Column("TO_CHAR(deliverydate, 'DD-MM-YYYY')",
+                new LeftHeaderViewFactory("Afleverdatum"),
+                new TextCellFactory())
+        );
+
+
+        table.addCol(new Column("PAID::text",
+                new LeftHeaderViewFactory("Betaald"),
+                new TextCellFactory())
         );
 
         table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
@@ -122,11 +137,12 @@ public class InvoicesController extends PageController implements OverviewPage, 
         return  table;
     }
 
-    public void saveInvoice(String price, String hours, Boolean betaald, Timestamp deliveryDate, Invoice invoice) {
+    public void saveInvoice(String price, String hours, Boolean betaald, Timestamp deliveryDate, Invoice invoice, String description) {
         invoice.getAmount().setPrice(new Double(price));
         invoice.getAmount().setHours(new Double(hours));
         invoice.setPaid(betaald);
         invoice.setDeliveryDate(deliveryDate);
+        invoice.setDescription(description);
         dao.update(invoice);
     }
 

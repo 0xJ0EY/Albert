@@ -6,52 +6,22 @@ import java.util.ArrayList;
 
 public class Contact {
 
+    private String name;
 
-    private int id;
-
+    private int id = 0;
     private String firstName;
-
     private String lastName;
-
+    private String company;
     private String telephoneNumber;
-
-    private String postcode;
-
-    private ArrayList<ContactEmail> email;
-
+    private String postalCode;
+    private ArrayList<ContactEmail> emails = new ArrayList<>();
+    private ArrayList<ContactPhoneNumber> phoneNumbers = new ArrayList<>();
     private String website;
-
-    private String beschrijving;
-
-    private String straatnaam;
-
+    private String description;
+    private String streetName;
     private String houseNumber;
-
-    private String woonplaats;
-
+    private String city;
     private Timestamp created_at;
-
-    private Project project;
-
-    private Amount amount;
-
-
-
-    /**
-     *
-     * @param firstName
-     * @param lastName
-     */
-    public Contact(String firstName, String lastName){
-        this.firstName= firstName;
-        this.lastName = lastName;
-    }
-
-    public Contact() {
-
-    }
-
-
 
     public Timestamp getCreated_at() {
         return created_at;
@@ -61,12 +31,40 @@ public class Contact {
         this.created_at = created_at;
     }
 
-    public ArrayList<ContactEmail> getEmail() {
-        return email;
+    private ArrayList<Project> project;
+
+    public ArrayList<ContactEmail> getEmails() {
+        return this.emails;
     }
 
-    public void setEmail(ArrayList<ContactEmail> email) {
-        this.email = email;
+    public ArrayList<ContactPhoneNumber> getPhoneNumbers() {
+        return phoneNumbers;
+    }
+
+    public void setEmails(ArrayList<ContactEmail> email) {
+        this.emails = email;
+    }
+
+    public void addEmail(ContactEmail email) {
+        email.setContact(this);
+        this.emails.add(email);
+    }
+
+    public void removeEmail(ContactEmail email) {
+        this.emails.remove(email);
+    }
+
+    public void setPhoneNumbers(ArrayList<ContactPhoneNumber> phoneNumbers) {
+        this.phoneNumbers = phoneNumbers;
+    }
+
+    public void addPhoneNumber(ContactPhoneNumber phoneNumber) {
+        phoneNumber.setContact(this);
+        this.phoneNumbers.add(phoneNumber);
+    }
+
+    public void removePhoneNumber(ContactPhoneNumber phoneNumber) {
+        this.phoneNumbers.remove(phoneNumber);
     }
 
     public String getHouseNumber() {
@@ -79,6 +77,14 @@ public class Contact {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
     }
 
     public String getFirstName() {
@@ -105,12 +111,12 @@ public class Contact {
         this.telephoneNumber = telephoneNumber;
     }
 
-    public String getPostcode() {
-        return postcode;
+    public String getPostalCode() {
+        return postalCode;
     }
 
-    public void setPostcode(String postcode) {
-        this.postcode = postcode;
+    public void setPostalCode(String postal_code) {
+        this.postalCode = postal_code;
     }
 
 
@@ -122,48 +128,45 @@ public class Contact {
         this.website = website;
     }
 
-    public String getBeschrijving() {
-        return beschrijving;
+    public String getDescription() {
+        return description;
     }
 
-    public void setBeschrijving(String beschrijving) {
-        this.beschrijving = beschrijving;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getStraatnaam() {
-        return straatnaam;
+    public String getStreetName() {
+        return streetName;
     }
 
-    public void setStraatnaam(String straatnaam) {
-        this.straatnaam = straatnaam;
+    public void setStreetName(String streetName) {
+        this.streetName = streetName;
     }
 
-    public String getWoonplaats() {
-        return woonplaats;
+    public String getCity() {
+        return city;
     }
 
-    public void setWoonplaats(String woonplaats) {
-        this.woonplaats = woonplaats;
+    public void setCity(String city) {
+        this.city = city;
     }
 
+    public void setName(String name) { this.name = name; }
+
+    public String getName() {
+        return this.name;
+    }
 
     public int getId() {
         return this.id;
     }
 
-    public Project getProject() {
+    public ArrayList<Project> getProject() {
         return project;
     }
 
-    public void setProject(Project project) {
+    public void setProject(ArrayList<Project> project) {
         this.project = project;
-    }
-
-    public Amount getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Amount amount) {
-        this.amount = amount;
     }
 }

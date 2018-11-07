@@ -34,6 +34,9 @@ public class InvoiceEditView extends AnchorPane implements PageView {
     private TextField price;
 
     @FXML
+    private TextField description;
+
+    @FXML
     private CheckBox betaaldBox;
 
     @FXML
@@ -94,14 +97,15 @@ public class InvoiceEditView extends AnchorPane implements PageView {
         Timestamp timeStamp = new Timestamp(date.getTime());
         int contactId = controller.getContactIdFromName(linkedContact.getValue().toString());
 
-        controller.saveInvoice(price.getText(), hours.getText(), betaaldBox.isSelected(), timeStamp, this.controller.getInvoice());
+        controller.saveInvoice(price.getText(), hours.getText(), betaaldBox.isSelected(), timeStamp, this.controller.getInvoice(), description.getText());
         controller.getRouter().nav("invoices/");
     }
 
     public void setAttributes(Invoice invoice) {
-        hours.setText(invoice.getAmount().getPrice() + "");
+        hours.setText(invoice.getAmount().getHours() + "");
         price.setText(invoice.getAmount().getPrice() + "");
         betaaldBox.setSelected(invoice.getPaid());
         deliveryDate.setValue(invoice.getDeliveryDate().toLocalDateTime().toLocalDate());
+        description.setText(invoice.getDescription());
     }
 }

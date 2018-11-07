@@ -1,5 +1,6 @@
 package albert.controllers;
 
+import albert.dao.ProjectDAO;
 import albert.dao.QuotationDAO;
 import albert.models.Amount;
 import albert.models.Quotation;
@@ -20,13 +21,15 @@ import table.factories.cells.TextCellFactory;
 import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
+import java.sql.Timestamp;
 
 public class QuotationsController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
-    Amount amount;
-    Quotation quotation;
 
+    private Amount amount;
+    private Quotation quotation;
     private QuotationDAO dao = new QuotationDAO();
     private Request request;
+    private ProjectDAO projectdao = new ProjectDAO();
 
     public QuotationsController(PageView view, TemplateController template) {
         super(view, template);
@@ -39,7 +42,7 @@ public class QuotationsController extends PageController implements OverviewPage
         );
 
         table.addCol(new Column("name",
-                new LeftHeaderViewFactory("Voornaam"),
+                new LeftHeaderViewFactory("Naam"),
                 new RouteCellFactory("quotations/detail/{quotation_id}/", this))
         );
 
@@ -66,7 +69,15 @@ public class QuotationsController extends PageController implements OverviewPage
         return table;
     }
 
-    public void saveQuotation(String name, String price, String hour, String delivery) {
+    public void saveQuotation(String name, double expectedprice, int expectedhours, String description, String product, int projectID, Timestamp createdAt) {
+        quotation = new Quotation();
+        quotation.setName(name);
+        quotation.setExpectedPrice(expectedprice);
+        quotation.setExpectedHours(expectedhours);
+        quotation.setDescription(description);
+        quotation.setProduct(product);
+        quotation.setProject(projectdao.loadById(projectID));
+        quotation.setCreated_at(createdAt);
 
 
         dao.create(quotation);
@@ -81,6 +92,19 @@ public class QuotationsController extends PageController implements OverviewPage
         quotation = new Quotation(name, amount, delivery);
         dao.update(quotation);
     }
+
+    public Quotation getQuotation() {
+        return quotation;
+    }
+
+    public void setQuotation(int id) {
+        this.quotation = dao.loadById(id);
+    }
+
+    public Request getRequest() {
+        return request;
+    }
+
     @Override
     public Response overview(Request request) {
         this.request = request;
@@ -104,13 +128,5 @@ public class QuotationsController extends PageController implements OverviewPage
         this.request = request;
         return new ViewResponse(this);
     }
-
-    public void setQuotation(int id) {
-        this.quotation = dao.loadById(id);
-    }
-
-    public Quotation getQuotation() { return this.quotation; }
-
-    public Request getRequest() { return request; }
 
 }
