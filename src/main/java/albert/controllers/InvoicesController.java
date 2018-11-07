@@ -59,7 +59,6 @@ public class InvoicesController extends PageController implements OverviewPage, 
                 new TextCellFactory())
         );
 
-
         table.addCol(new Column("PAID::text",
                 new LeftHeaderViewFactory("Betaald"),
                 new TextCellFactory())
@@ -74,11 +73,6 @@ public class InvoicesController extends PageController implements OverviewPage, 
                 new LeftHeaderViewFactory("Afleverdatum"),
                 new TextCellFactory())
         );
-
-//        table.addCol(new Column("paid::text",
-//                new LeftHeaderViewFactory("Betaald"),
-//                new TextCellFactory())
-//        );
 
         return  table;
     }

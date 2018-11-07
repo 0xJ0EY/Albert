@@ -14,7 +14,7 @@
 
 <fx:root prefHeight="832.0" prefWidth="1020.0" style="-fx-background-color: f2f2f2;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="14.0" layoutY="14.0" text="Contact aanmaken" AnchorPane.leftAnchor="10.0">
+      <Label layoutX="14.0" layoutY="14.0" text="Contact overzicht" AnchorPane.leftAnchor="10.0">
          <font>
             <Font size="18.0" />
          </font>

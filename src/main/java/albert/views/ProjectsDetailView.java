@@ -1,30 +1,44 @@
 package albert.views;
 
 import albert.controllers.PageController;
+import albert.controllers.ProjectsController;
+import albert.models.Contact;
+import albert.models.Project;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import router.views.PageView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
-/*
-Hier wordt de DetailView geladen
- */
-
+import table.Table;
 
 public class ProjectsDetailView extends AnchorPane implements PageView {
 
     private final String resource = "/views/pages/ProjectsDetail.fxml";
-    private PageController controller;
+    private ProjectsController controller;
 
     @FXML
-    private AnchorPane quotationOverviewTable;
+    private Text name;
 
     @FXML
-    private AnchorPane invoiceOverviewTable;
+    private Text customer;
 
     @FXML
-    private AnchorPane expenseOverviewTable;
+    private Text done;
+
+    @FXML
+    private TextArea description;
+
+    @FXML
+    private AnchorPane invoiceOverview;
+
+    @FXML
+    private AnchorPane expensesOverview;
+
+    @FXML
+    private AnchorPane quotationOverview;
 
     @Override
     public void load() {
@@ -42,12 +56,37 @@ public class ProjectsDetailView extends AnchorPane implements PageView {
 
     @Override
     public void update() {
+        Project project = this.controller.getProject();
 
+        this.name.setText(project.getName());
+        this.customer.setText(project.getContact().toFullName());
+        this.done.setText(project.getDone() ? "Afgerond" : "Niet afgerond");
+        this.description.setText(project.getDescription());
+
+        this.setupTable(this.controller.getInvoicesTable(project), this.invoiceOverview);
+        this.setupTable(this.controller.getExpensesTable(project), this.expensesOverview);
+        this.setupTable(this.controller.getQuotationTable(project), this.quotationOverview);
+
+    }
+
+    public void setupTable(Table table, AnchorPane target) {
+
+        table.fetch();
+        table.update();
+
+        AnchorPane tableView = table.getView().render();
+
+        AnchorPane.setRightAnchor(tableView, 0.0);
+        AnchorPane.setLeftAnchor(tableView, 0.0);
+        AnchorPane.setTopAnchor(tableView, 0.0);
+        AnchorPane.setBottomAnchor(tableView, 0.0);
+
+        target.getChildren().add(tableView);
     }
 
     @Override
     public void setController(PageController controller) {
-        this.controller = controller;
+        this.controller = (ProjectsController) controller;
     }
 
     @Override
@@ -61,22 +100,9 @@ public class ProjectsDetailView extends AnchorPane implements PageView {
     }
 
     @FXML
-    public void onClickEdit() {
-        controller.getRouter().nav("projects/edit/{project}/");
+    public void onCustomerClick() {
+        Contact contact = this.controller.getProject().getContact();
+        this.controller.getRouter().nav("contacts/details/" + contact.getId());
     }
 
-    @FXML
-    public void onClickAddQuotation() {
-        controller.getRouter().nav("quotations/create/");
-    }
-
-    @FXML
-    public void onClickAddInvoice() {
-        controller.getRouter().nav("invoices/create/");
-    }
-    @FXML
-
-    public void onClickAddExpense() {
-        controller.getRouter().nav("projects/edit/{project}/");
-    }
 }

@@ -41,7 +41,7 @@ public class RouteFactoryBuilder {
 
         // Projects
         map.put(new Route("projects/"), new OverviewPageAction(new ProjectsPageFactory()));
-        map.put(new Route("projectsdone/"), new OverviewPageAction(new ProjectsDonePageFactory()));
+        map.put(new Route("projects/done/"), new OverviewPageAction(new ProjectsDonePageFactory()));
         map.put(new Route("projects/details/{project}/"), new DetailPageAction(new ProjectsDetailPageFactory()));
         map.put(new Route("projects/edit/{project}/"), new EditPageAction(new ProjectsEditPageFactory()));
         map.put(new Route("projects/create/"), new CreatePageAction(new ProjectsCreatePageFactory()));

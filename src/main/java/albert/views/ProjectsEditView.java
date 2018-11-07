@@ -1,12 +1,19 @@
 package albert.views;
 
+import albert.Client;
 import albert.controllers.PageController;
 import albert.controllers.ProjectsController;
+import albert.dao.ProjectDAO;
+import albert.models.Contact;
+import albert.models.Project;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import router.views.PageView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+
+import java.util.ArrayList;
 
 public class ProjectsEditView extends AnchorPane implements PageView {
 
@@ -17,14 +24,12 @@ public class ProjectsEditView extends AnchorPane implements PageView {
     private TextField naam;
 
     @FXML
-    private TextField klant;
-
-    @FXML
     private CheckBox isDone;
 
     @FXML
-    private TextArea beschrijving;
+    private TextArea description;
 
+    @FXML
     private ChoiceBox contactDropBox;
 
     @FXML
@@ -45,6 +50,28 @@ public class ProjectsEditView extends AnchorPane implements PageView {
     @Override
     public void update() {
 
+        Project project = this.controller.getProject();
+
+        this.naam.setText(project.getName());
+        this.isDone.setSelected(project.getDone());
+        this.description.setText(project.getDescription());
+        this.updateContactDropdown();
+
+    }
+
+    private void updateContactDropdown() {
+        ArrayList<Contact> contacts = this.controller.getContacts();
+
+        Contact selected = null;
+        Contact projectContact = this.controller.getProject().getContact();
+
+        for (Contact contact : contacts) {
+            if (contact.getId() == projectContact.getId())
+                selected = contact;
+        }
+
+        this.contactDropBox.setItems(FXCollections.observableArrayList(contacts));
+        this.contactDropBox.setValue(selected);
     }
 
     @Override
@@ -59,8 +86,23 @@ public class ProjectsEditView extends AnchorPane implements PageView {
 
     @FXML
     public void onClickSave() {
-//        controller.saveProject(naam.getText(), isDone.isSelected());
 
+        Contact contact = (Contact) this.contactDropBox.getValue();
+
+        if (this.naam.getText().length() == 0) {
+            Client.ShowWarning("Geen naam", "Er is geen projectnaam opgegeven");
+            return;
+        }
+
+        Project project = controller.getProject();
+
+        project.setName(this.naam.getText());
+        project.setContact(contact);
+        project.setDescription(this.description.getText());
+        project.setDone(this.isDone.isSelected());
+
+        this.controller.updateProject(project);
+        this.controller.getRouter().nav("projects/");
 
     }
 

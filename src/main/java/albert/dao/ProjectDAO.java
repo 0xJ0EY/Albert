@@ -13,9 +13,7 @@ import java.util.ArrayList;
 
 public class ProjectDAO implements DAO<Project> {
 
-    private Project project;
     private ContactDAO contactDAO = new ContactDAO();
-
 
     @Override
     public ArrayList<Project> getAll() {
@@ -57,11 +55,10 @@ public class ProjectDAO implements DAO<Project> {
 
             ResultSet rs = statement.executeQuery();
 
-            rs.next();
+            if (rs.next())
+                project = this.extractFromResultSet(rs);
 
-            project = this.extractFromResultSet(rs);
-
-
+            statement.close();
             conn.close();
         }
         catch (SQLException ex) {
@@ -75,62 +72,55 @@ public class ProjectDAO implements DAO<Project> {
     @Override
     public void create(Project project) {
 
-        this.project = project;
-        //TODO sql insert schrijven
-//        String sql = "INSERT INTO project(name, created_at, done, contact_id) VALUES (?,?,?,?);";
-        String sql = "INSERT INTO project(name, created_at, done) VALUES (?,?,?);";
+        String sql = "INSERT INTO project(name, description, contact_id, done) VALUES (?, ?,?,?);";
 
         try {
             Connection conn = Database.getInstance().getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setString(1,this.project.getName());
-            statement.setTimestamp(2,this.project.getCreated_at());
-            statement.setBoolean(3, this.project.getDone());
-            //           statement.setInt(4,this.project.getContactId().getId());
-
-
+            int i = 0;
+            statement.setString(++i, project.getName());
+            statement.setString(++i, project.getDescription());
+            statement.setInt(++i, project.getContact().getId());
+            statement.setBoolean(++i, project.getDone());
 
             statement.execute();
+
+            statement.close();
             conn.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("Project added");
     }
 
     @Override
     public void update(Project project) {
-        this.project = project;
-        //TODO sql update schrijven
-        String sql = "UPDATE project SET(naam=? ,invoice_id=?, contact_id=?, expense_id=?, quotation_id=?, created_at= ?, done =? ) WHERE project_id =?";
-//        String sql = "UPDATE project SET(naam=?, done =? ) WHERE project_id =?";
+        String sql = "UPDATE project SET name=?, description=?, contact_id=?, done =?  WHERE project_id =?";
         try {
             Connection conn = Database.getInstance().getConnection();
 
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            int i =1;
-            statement.setString(i++,this.project.getName());
-            statement.setTimestamp(i++,this.project.getCreated_at());
-            statement.setBoolean(i++,this.project.getDone());
-            statement.setInt(i++, this.project.getId());
+            int i = 0;
+            statement.setString(++i, project.getName());
+            statement.setString(++i, project.getDescription());
+            statement.setInt(++i, project.getContact().getId());
+            statement.setBoolean(++i, project.getDone());
+            statement.setInt(++i, project.getId());
 
             statement.executeUpdate();
+
+            statement.close();
             conn.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("Project Updated");
-
     }
-
 
     @Override
     public void delete(Project obj) {
-        this.project = obj;
         //TODO sql delete schrijven
         String sql = "DELETE FROM project WHERE project_id =?";
         try {
@@ -138,9 +128,11 @@ public class ProjectDAO implements DAO<Project> {
 
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setInt(1,this.project.getId());
+            statement.setInt(1, obj.getId());
 
             statement.execute();
+
+            statement.close();
             conn.close();
 
         } catch (SQLException e) {
@@ -152,8 +144,12 @@ public class ProjectDAO implements DAO<Project> {
     @Override
     public Project extractFromResultSet(ResultSet rs) throws SQLException {
 
+        Project project = new Project();
 
         project.setId(rs.getInt("project_id"));
+        project.setName(rs.getString("name"));
+        project.setDone(rs.getBoolean("done"));
+        project.setDescription(rs.getString("description"));
         project.setContact(contactDAO.loadById(rs.getInt("contact_id")));
         project.setCreated_at(rs.getTimestamp("created_at"));
 

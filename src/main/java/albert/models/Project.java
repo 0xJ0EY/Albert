@@ -10,17 +10,11 @@ public class Project {
 
     private int id;
 
-    private String name;
-    private PaidState status = PaidState.NOT_PAID;
+    private String name = "";
     private Timestamp created_at;
     private Boolean done;
-    private Tax tax;
     private Contact contact;
-
-    public Project() {
-
-    }
-
+    private String description = "";
 
     public Contact getContact() {
         return contact;
@@ -46,14 +40,6 @@ public class Project {
         this.name = name;
     }
 
-    public PaidState getStatus() {
-        return status;
-    }
-
-    public void setStatus(PaidState status) {
-        this.status = status;
-    }
-
     public Timestamp getCreated_at() {
         return created_at;
     }
@@ -70,12 +56,11 @@ public class Project {
         this.done = done;
     }
 
-    public Tax getTax() {
-        return tax;
+    public String getDescription() {
+        return description;
     }
 
-    public void setTax(Tax tax) {
-        this.tax = tax;
+    public void setDescription(String description) {
+        this.description = description;
     }
-
 }

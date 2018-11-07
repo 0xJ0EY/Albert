@@ -71,6 +71,6 @@ public class ProjectsView extends AnchorPane implements PageView  {
 
     @FXML
     public void onClickDone(){
-        controller.getRouter().nav("projectsdone/");
+        controller.getRouter().nav("projects/done/");
     }
 }

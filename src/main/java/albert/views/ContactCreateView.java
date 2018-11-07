@@ -1,5 +1,6 @@
 package albert.views;
 
+import albert.Client;
 import albert.controllers.ContactController;
 import albert.controllers.PageController;
 import albert.models.Contact;
@@ -145,6 +146,16 @@ public class ContactCreateView extends AnchorPane implements PageView {
     @FXML
     public void onClickSave(){
         Contact contact = this.controller.getContact();
+
+        if (this.firstName.getText().length() == 0) {
+            Client.ShowWarning("Geen naam", "Er is geen voornaam opgegeven");
+            return;
+        }
+
+        if (this.lastName.getText().length() == 0) {
+            Client.ShowWarning("Geen naam", "Er is geen achternaam opgegeven");
+            return;
+        }
 
         contact.setFirstName(this.firstName.getText());
         contact.setLastName(this.lastName.getText());
