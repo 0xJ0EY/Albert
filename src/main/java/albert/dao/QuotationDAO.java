@@ -10,6 +10,8 @@ import java.util.ArrayList;
 public class QuotationDAO implements DAO<Quotation>{
 
     private Quotation quotation;
+    private AmountDAO daoAmount = new AmountDAO();
+    private ProjectDAO daoProject = new ProjectDAO();
     private AmountDAO amountDAO = new AmountDAO();
     private ProjectDAO projectDAO = new ProjectDAO();
 
@@ -49,9 +51,7 @@ public class QuotationDAO implements DAO<Quotation>{
             ResultSet rs = statement.executeQuery();
 
             rs.next();
-
             quotation= this.extractFromResultSet(rs);
-
 
             conn.close();
         }
@@ -98,8 +98,7 @@ public class QuotationDAO implements DAO<Quotation>{
         this.quotation = quotation;
         //TODO sql update schrijven
 
-        String sql = "UPDATE quotation SET ( name = ? ,description =?, product=?, price_expected=?,created_at=?, project_id=?, hours_expected=?)WHERE quotation_id =?;" +
-                "UPDATE project SET quotation_id =? WHERE project_id=?;";
+        String sql = "UPDATE quotation SET ( name = ? ,description =?, product=?, price_expected=?,created_at=?, project_id=?, hours_expected=?)WHERE quotation_id =?;";
 
         try {
             Connection conn = Database.getInstance().getConnection();
@@ -155,10 +154,9 @@ public class QuotationDAO implements DAO<Quotation>{
                 rs.getTimestamp("created_at")
         );
         quotation.setId(rs.getInt("quotation_id"));
-        quotation.setExpectedHours(rs.getInt("hours_expected"));
+      //  quotation.setExpectedHours(rs.getInt("hours_expected"));
         quotation.setAmount(amountDAO.loadById(rs.getInt("amount_id")));
         quotation.setProject(projectDAO.loadById(rs.getInt("project_id")));
-
 
         return quotation;
     }

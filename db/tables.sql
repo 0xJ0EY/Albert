@@ -10,7 +10,7 @@ CREATE TABLE project
 CREATE TABLE invoice
 (
     invoice_id BIGSERIAL PRIMARY KEY,
-    paid VARCHAR(15),
+    paid BOOLEAN DEFAULT FALSE,
     tax_id integer,
     project_id integer,
     created_at TIMESTAMP,
@@ -47,7 +47,7 @@ CREATE TABLE report
 CREATE TABLE expense
 (
     expense_id BIGSERIAL PRIMARY KEY,
-    price numeric(2),
+    price numeric(5, 2),
     created_at TIMESTAMP,
     description varchar,
     name varchar
@@ -56,8 +56,8 @@ CREATE TABLE expense
 CREATE TABLE amount
 (
     amount_id BIGSERIAL PRIMARY KEY,
-    hours integer,
-    price integer,
+    hours NUMERIC (5, 2) ,
+    price NUMERIC (5, 2),
     contact_id integer
 );
 
@@ -102,8 +102,8 @@ CREATE TABLE contact_phone
   id           BIGSERIAL NOT NULL
     CONSTRAINT contact_phone_pkey
     PRIMARY KEY,
-  phone_number VARCHAR(20),
-  contact_id   BIGINT
+    phone_number VARCHAR(20),
+    contact_id   BIGINT
     CONSTRAINT fk_contact_phone
     REFERENCES contact
     ON UPDATE CASCADE ON DELETE CASCADE

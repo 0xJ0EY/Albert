@@ -55,7 +55,7 @@ public class PdfService {
 
         Context context = new Context();
         Project project = projectDAO.loadById(invoice.getProject().getId());
-        Contact contact = project.getContact();
+        Contact contact = contactDAO.loadById(project.getContactId());
         context.setVariable("contact", contact);
         context.setVariable("data", invoice);
 
@@ -75,7 +75,11 @@ public class PdfService {
         renderer.setDocumentFromString(xHtml, baseUrl);
         renderer.layout();
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Save Pdf");
+        FileChooser.ExtensionFilter extFilter =
+                new FileChooser.ExtensionFilter("PDF Bestand (*.pdf)", "*.pdf");
+        fileChooser.getExtensionFilters().add(extFilter);
+        fileChooser.setInitialFileName("NieuweFactuur");
+        fileChooser.setTitle("Factuur Exporteren");
         File file = fileChooser.showSaveDialog(stage);
 
         OutputStream outputStream = new FileOutputStream(file.getAbsoluteFile());
@@ -103,10 +107,11 @@ public class PdfService {
         templateEngine.setTemplateResolver(templateResolver);
 
         Context context = new Context();
-        Contact contact = quotation.getProject().getContact();
-        context.setVariable("contact", contact);
+        int contact = quotation.getProject().getContactId();
+        Project project = projectDAO.loadById(quotation.getProject().getId());
+        Contact contactQ = contactDAO.loadById(project.getContactId());
+        context.setVariable("contact", contactQ);
         context.setVariable("data", quotation);
-
 
 
         String renderedHtmlContent = templateEngine.process("templateQuotation", context);
@@ -122,8 +127,14 @@ public class PdfService {
                 .toString();
         renderer.setDocumentFromString(xHtml, baseUrl);
         renderer.layout();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Offerte exporteren");
+        FileChooser.ExtensionFilter extFilter =
+                new FileChooser.ExtensionFilter("PDF Bestand (*.pdf)", "*.pdf");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showSaveDialog(stage);
 
-        OutputStream outputStream = new FileOutputStream("src/main/resources/quotation.pdf");
+        OutputStream outputStream = new FileOutputStream(file.getAbsoluteFile());
         renderer.createPDF(outputStream);
         outputStream.close();
     }

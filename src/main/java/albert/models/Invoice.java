@@ -1,6 +1,8 @@
 package albert.models;
 
 import albert.services.PdfService;
+import com.itextpdf.text.DocumentException;
+
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -13,13 +15,14 @@ public class Invoice {
 
     private int id;
     private Amount amount;
-    private String paid;
+    private Boolean paid;
     private String dateNow;
     private Timestamp created_at;
     private Timestamp deliveryDate;
     private Project project;
     private Tax tax;
-    DecimalFormat df=new DecimalFormat("0.00");
+    private String description;
+    DecimalFormat df = new DecimalFormat("0.00");
 
     public Invoice(String paid, Timestamp deliveryDate) {
         this.amount = amount;
@@ -35,9 +38,9 @@ public class Invoice {
     }
 
 
-    public String getPaid() { return this.paid; }
+    public Boolean getPaid() { return this.paid; }
 
-    public void setPaid(String paid) { this.paid = paid; }
+    public void setPaid(Boolean paid) { this.paid = paid; }
 
     public Timestamp getCreated_at() { return  this.created_at; }
 
@@ -46,7 +49,6 @@ public class Invoice {
     public Timestamp getDeliveryDate() { return deliveryDate; }
 
     public void setDeliveryDate(Timestamp deliveryDate) { this.deliveryDate = deliveryDate; }
-
 
     public Amount getAmount() {
         return amount;
@@ -76,9 +78,10 @@ public class Invoice {
         this.project = project;
 
     }
-    public double getAmountHours() { return amount.getHours(); }
 
-    public double getAmountPrice() { return amount.getPrice(); }
+    public String getDescription() { return description; }
+
+    public void setDescription(String description) { this.description = description; }
 
     public String getCurrentDate() {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -86,8 +89,18 @@ public class Invoice {
         return dateFormat.format(date).toString();
     }
 
-    public void generatePdf() {
+    public void generatePdf() throws ParseException {
+        this.getTax().setTaxPart(this.calculateTax());
+        String value = df.format(this.getTax().getTaxPart() + this.getAmount().getPrice());
+        this.getAmount().setBcost(df.parse(value).doubleValue());
 
+        try {
+            PdfService.getInstance().generateInvoicePdf(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
     }
 
     public double calculateTax() {

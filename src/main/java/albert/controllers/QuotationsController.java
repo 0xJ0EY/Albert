@@ -21,10 +21,7 @@ import table.factories.cells.TextCellFactory;
 import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
-import table.views.tables.components.TableButton;
-
 import java.sql.Timestamp;
-
 
 public class QuotationsController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
 
@@ -64,10 +61,10 @@ public class QuotationsController extends PageController implements OverviewPage
                 new TextCellFactory())
         );
 
-        table.addCol(new Column("hours_expected::text",
-                new LeftHeaderViewFactory("Verwachte uren"),
-                new TextCellFactory())
-        );
+//        table.addCol(new Column("hours::text",
+//                new LeftHeaderViewFactory("Verwachte uren"),
+//                new TextCellFactory())
+//        );
 
         return table;
     }
@@ -89,8 +86,10 @@ public class QuotationsController extends PageController implements OverviewPage
     public void deleteQuotation() { dao.delete(quotation); }
 
     public void editQuotation(String name, String price, String hour, String contact, String delivery) {
-        //amount = new Amount(new Double(price), new Double(hour), contact);
-        //quotation = new Quotation(name, amount, delivery);
+        amount = new Amount();
+        amount.setPrice(new Double(price));
+        amount.setHours(new Double(hour));
+        quotation = new Quotation(name, amount, delivery);
         dao.update(quotation);
     }
 
@@ -129,4 +128,5 @@ public class QuotationsController extends PageController implements OverviewPage
         this.request = request;
         return new ViewResponse(this);
     }
+
 }
