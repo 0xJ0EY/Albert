@@ -2,8 +2,9 @@ CREATE TABLE project
 (
     project_id BIGSERIAL PRIMARY KEY,
     name VARCHAR,
+    description TEXT,
     contact_id integer,
-    created_at TIMESTAMP,
+    created_at TIMESTAMP DEFAULT NOW(),
     done BOOLEAN DEFAULT FALSE
 );
 
@@ -15,7 +16,8 @@ CREATE TABLE invoice
     project_id integer,
     created_at TIMESTAMP,
     amount_id integer,
-    deliverydate TIMESTAMP
+    deliverydate TIMESTAMP,
+    description TEXT
 );
 
 CREATE TABLE tax
@@ -29,7 +31,7 @@ CREATE TABLE quotation
 (
     name VARCHAR,
     quotation_id BIGSERIAL PRIMARY KEY,
-    description VARCHAR,
+    description TEXT,
     product VARCHAR,
     amount_id integer,
     created_at TIMESTAMP,
@@ -47,9 +49,9 @@ CREATE TABLE report
 CREATE TABLE expense
 (
     expense_id BIGSERIAL PRIMARY KEY,
-    price numeric(5, 2),
+    price numeric(11, 2),
     created_at TIMESTAMP,
-    description varchar,
+    description TEXT,
     name varchar
 );
 
@@ -57,7 +59,7 @@ CREATE TABLE amount
 (
     amount_id BIGSERIAL PRIMARY KEY,
     hours NUMERIC (5, 2) ,
-    price NUMERIC (5, 2),
+    price NUMERIC (11, 2),
     contact_id integer
 );
 
@@ -74,7 +76,7 @@ CREATE TABLE contact
     house_number varchar,
     city varchar,
     website varchar,
-    description varchar,
+    description TEXT,
     created_at TIMESTAMP DEFAULT NOW()
 );
 
