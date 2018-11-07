@@ -91,12 +91,12 @@ public class InvoiceDAO implements DAO<Invoice>{
 
             int i = 0;
 
-            statement.setString(++i,this.invoice.getPaid().toString());
+            statement.setBoolean(++i,this.invoice.getPaid());
             statement.setInt(++i, this.invoice.getTax().getId());
             statement.setInt(++i, this.invoice.getProject().getId());
+            statement.setTimestamp(++i, this.invoice.getCreated_at());
             statement.setInt(++i, this.invoice.getAmount().getId());
             statement.setTimestamp(++i, this.invoice.getDeliveryDate());
-            statement.setTimestamp(++i, this.invoice.getCreated_at());
             statement.setString(++i, this.invoice.getDescription());
 
             statement.execute();
