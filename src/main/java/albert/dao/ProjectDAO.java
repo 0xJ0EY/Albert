@@ -21,7 +21,7 @@ public class ProjectDAO implements DAO<Project> {
     public ArrayList<Project> getAll() {
 
         String sql = "SELECT * FROM project";
-        ArrayList<Project> projectArrayList = null;
+        ArrayList<Project> projectArrayList = new ArrayList<Project>();
         try {
             Connection conn = Database.getInstance().getConnection();
 
@@ -30,8 +30,8 @@ public class ProjectDAO implements DAO<Project> {
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()){
-                Project project = extractFromResultSet(rs);
-                projectArrayList.add(project);
+                Project newProject = extractFromResultSet(rs);
+                projectArrayList.add(newProject);
             }
 
             conn.close();
@@ -57,10 +57,8 @@ public class ProjectDAO implements DAO<Project> {
 
             ResultSet rs = statement.executeQuery();
 
-            rs.next();
-
-            project = this.extractFromResultSet(rs);
-
+            if (rs.next())
+                project = this.extractFromResultSet(rs);
 
             conn.close();
         }
@@ -151,10 +149,13 @@ public class ProjectDAO implements DAO<Project> {
 
     @Override
     public Project extractFromResultSet(ResultSet rs) throws SQLException {
-
-
+        QuotationDAO daoQuot = new QuotationDAO();
+        InvoiceDAO daoInvoice = new InvoiceDAO();
+        Project project = new Project();
+        project.setName(rs.getString("name"));
+        project.setDone(rs.getBoolean("done"));
         project.setId(rs.getInt("project_id"));
-        project.setContact(contactDAO.loadById(rs.getInt("contact_id")));
+        project.setContactId(rs.getInt("contact_id"));
         project.setCreated_at(rs.getTimestamp("created_at"));
 
         return project;

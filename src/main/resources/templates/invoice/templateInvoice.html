@@ -22,8 +22,9 @@
         <div style="float: right; width: 50%; height:100%;">
             <ul style="list-style-type: none; margin-top:20%;">
                 <li>[[${data.getCurrentDate()}]]</li>
-                <li>[[${contactId.getStraatnaam()}]] [[${contactId.getHouseNumber()}]]</li>
-                <li>[[${contactId.getPostcode()}]] [[${contactId.getWoonplaats()}]]</li>
+                <li>[[${contact.getFirstName()}]] [[${contact.getLastName()}]]</li>
+                <li>[[${contact.getStreetName()}]] [[${contact.getHouseNumber()}]]</li>
+                <li>[[${contact.getPostalCode()}]] [[${contact.getCity()}]]</li>
                 <li><b>Datum:</b>[[${data.getCurrentDate()}]]</li>
                 <li><b>Factuur Nr.</b> [[${data.getId()}]]</li>
             </ul>
@@ -32,7 +33,7 @@
             <div id="content-header" style="width:100%; height: 65%;">
                 <h2 style="width:100%; text-align: center; margin-top:10%;">Factuur</h2>
             </div>
-                <table id="dataTable" align="center"; border="1" style="height: 400px;">
+                <table id="dataTable" align="center"; border="1" style="height: 400px; border-bottom: 0px solid">
                     <tr>
                         <th>Afleverdatum</th>
                         <th>Omschrijving</th>
@@ -41,9 +42,9 @@
                     </tr>
                     <tr>
                         <td>1/11/2018</td>
-                        <td>Infographic</td>
-                        <td>[[${data.getAmountHours()}]]</td>
-                        <td> &euro;[[${data.getAmountPrice()}]]</td>
+                        <td>[[${data.getDescription()}]]</td>
+                        <td>[[${data.getAmount.getHours()}]]</td>
+                        <td> &euro;[[${data.getAmount.getPrice()}]]</td>
                     </tr>
                     <tr height="300px;">
                         <td><br></td>

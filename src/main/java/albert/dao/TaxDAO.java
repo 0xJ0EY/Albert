@@ -146,9 +146,7 @@ public class TaxDAO implements DAO<Tax> {
         tax.setName(rs.getString("name"));
         tax.setPercentage(rs.getInt("percentage"));
 
-
         return tax;
-
     }
 
 }

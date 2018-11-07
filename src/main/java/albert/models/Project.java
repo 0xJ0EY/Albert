@@ -9,34 +9,50 @@ import java.sql.Timestamp;
 public class Project {
 
     private int id;
-
     private String name;
-    private PaidState status = PaidState.NOT_PAID;
+    private String status = PaidState.NOT_PAID.toString();
     private Timestamp created_at;
     private Boolean done;
+    private int contactId;
+    private int invoiceId;
+    private int expenseId;
+    private int quotationId;
     private Tax tax;
-    private Contact contact;
 
     public Project() {
 
     }
 
 
-    public Contact getContact() {
-        return contact;
+    public int getQuotationId() {
+        return quotationId;
     }
 
-    public void setContact(Contact contact) {
-        this.contact = contact;
+    public void setQuotationId(int quotationId) {
+        this.quotationId = quotationId;
     }
 
-    public int getId() {
-        return id;
+    public int getInvoiceId() {
+        return invoiceId;
+    }
+
+    public void setInvoiceId(int invoiceId) {
+        this.invoiceId = invoiceId;
+    }
+
+    public int getContactId() { return contactId; }
+
+    public void setContactId(int contactId) { this.contactId = contactId; }
+
+    public Project(String name, String status) {
+        this.name = name; this.status = status;
     }
 
     public void setId(int id) {
         this.id = id;
     }
+
+    public int getId() { return this.id; }
 
     public String getName() {
         return name;
@@ -46,11 +62,11 @@ public class Project {
         this.name = name;
     }
 
-    public PaidState getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(PaidState status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
