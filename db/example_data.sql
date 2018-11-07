@@ -29,12 +29,12 @@ INSERT INTO public.amount (amount_id, hours, price, contact_id) VALUES (535, 43,
 INSERT INTO public.amount (amount_id, hours, price, contact_id) VALUES (565, 54, 1233, 1234);
 INSERT INTO public.amount (amount_id, hours, price, contact_id) VALUES (234, 23, 4342, 2344);
 
-INSERT INTO public.quotation (name, quotation_id, description, product, amount_id, created_at, project_id, hours_expected) VALUES ('Sky offerte', 53565, 'offerte voor sky', 'sky product', 778, '2016-12-04 12:16:22.896', 3, 46);
-INSERT INTO public.quotation (name, quotation_id, description, product, amount_id, created_at, project_id, hours_expected) VALUES ('Posten offerte', 23456, 'offerte voor posten', 'post product', 261, '2017-11-02 11:53:29.982', 2, 43);
-INSERT INTO public.quotation (name, quotation_id, description, product, amount_id, created_at, project_id, hours_expected) VALUES ('Natuur offerte', 12345, 'Offerte voor het project natuur', 'Natuur product', 345, '2014-06-05 11:13:51.999', 1, 3);
-INSERT INTO public.quotation (name, quotation_id, description, product, amount_id, created_at, project_id, hours_expected) VALUES ('Bank offerte', 95865, 'Offerte voor Bank', 'Bank product', 535, '2018-08-04 13:16:53.751', 5, 60);
-INSERT INTO public.quotation (name, quotation_id, description, product, amount_id, created_at, project_id, hours_expected) VALUES ('Drive offerte', 45343, 'Offerte voor Drive', 'Drive product', 565, '2016-12-04 13:44:04.651', 4, 12);
-INSERT INTO public.quotation (name, quotation_id, description, product, amount_id, created_at, project_id, hours_expected) VALUES ('Bedrijf offerte', 23564, 'Offerte voor Bedrijf', 'Bedrijf product', 234, '2013-07-07 14:08:19.03', 6, 53);
+INSERT INTO public.quotation (name, quotation_id, description, product, amount_id, created_at, project_id, hours_expected, price_expected) VALUES ('Sky offerte', 53565, 'offerte voor sky', 'sky product', 778, '2016-12-04 12:16:22.896', 3, 46, 500);
+INSERT INTO public.quotation (name, quotation_id, description, product, amount_id, created_at, project_id, hours_expected, price_expected) VALUES ('Posten offerte', 23456, 'offerte voor posten', 'post product', 261, '2017-11-02 11:53:29.982', 2, 43, 480);
+INSERT INTO public.quotation (name, quotation_id, description, product, amount_id, created_at, project_id, hours_expected, price_expected) VALUES ('Natuur offerte', 12345, 'Offerte voor het project natuur', 'Natuur product', 345, '2014-06-05 11:13:51.999', 1, 3, 70);
+INSERT INTO public.quotation (name, quotation_id, description, product, amount_id, created_at, project_id, hours_expected, price_expected) VALUES ('Bank offerte', 95865, 'Offerte voor Bank', 'Bank product', 535, '2018-08-04 13:16:53.751', 5, 60, 700);
+INSERT INTO public.quotation (name, quotation_id, description, product, amount_id, created_at, project_id, hours_expected, price_expected) VALUES ('Drive offerte', 45343, 'Offerte voor Drive', 'Drive product', 565, '2016-12-04 13:44:04.651', 4, 12, 200);
+INSERT INTO public.quotation (name, quotation_id, description, product, amount_id, created_at, project_id, hours_expected, price_expected) VALUES ('Bedrijf offerte', 23564, 'Offerte voor Bedrijf', 'Bedrijf product', 234, '2013-07-07 14:08:19.03', 6, 53, 630);
 
 INSERT INTO public.invoice (invoice_id, paid, tax_id, project_id, created_at, amount_id, deliverydate, description) VALUES (123, 'true', 123, 1, '2015-01-01 10:58:39.061', 345, '2016-08-03 10:59:42.4', 'van een vriend');
 INSERT INTO public.invoice (invoice_id, paid, tax_id, project_id, created_at, amount_id, deliverydate, description) VALUES (234, 'false', 123, 2, '2017-03-02 12:00:47.826', 261, '2017-07-02 12:01:24.817', 'belangrijke betaling');
