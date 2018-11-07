@@ -80,7 +80,7 @@ public class QuotationDAO implements DAO<Quotation>{
             statement.setDouble(4,this.quotation.getExpectedPrice());
             statement.setTimestamp(5,this.quotation.getCreated_at());
             statement.setInt(6,this.quotation.getProject().getId());
-            statement.setInt(7,this.quotation.getExpectedHours());
+            statement.setDouble(7,this.quotation.getExpectedHours());
 
             statement.execute();
             conn.close();
@@ -111,7 +111,7 @@ public class QuotationDAO implements DAO<Quotation>{
             statement.setDouble(4,this.quotation.getExpectedPrice());
             statement.setTimestamp(5,this.quotation.getCreated_at());
             statement.setInt(6,this.quotation.getProject().getId());
-            statement.setInt(7,this.quotation.getExpectedHours());
+            statement.setDouble(7,this.quotation.getExpectedHours());
             statement.setInt(8,this.quotation.getId());
 
 
@@ -157,6 +157,8 @@ public class QuotationDAO implements DAO<Quotation>{
       //  quotation.setExpectedHours(rs.getInt("hours_expected"));
         quotation.setAmount(amountDAO.loadById(rs.getInt("amount_id")));
         quotation.setProject(projectDAO.loadById(rs.getInt("project_id")));
+        quotation.setExpectedHours(rs.getDouble("hours_expected"));
+        quotation.setExpectedPrice(rs.getDouble("price_expected"));
 
         return quotation;
     }

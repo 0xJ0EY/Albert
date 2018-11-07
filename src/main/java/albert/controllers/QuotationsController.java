@@ -61,10 +61,10 @@ public class QuotationsController extends PageController implements OverviewPage
                 new TextCellFactory())
         );
 
-//        table.addCol(new Column("hours::text",
-//                new LeftHeaderViewFactory("Verwachte uren"),
-//                new TextCellFactory())
-//        );
+        table.addCol(new Column("hours_expected::text",
+                new LeftHeaderViewFactory("Verwachte uren"),
+                new TextCellFactory())
+        );
 
         return table;
     }
@@ -127,6 +127,10 @@ public class QuotationsController extends PageController implements OverviewPage
     public Response create(Request request) {
         this.request = request;
         return new ViewResponse(this);
+    }
+
+    public String getCurrentId(){
+       return this.getRequest().getParameter("quotation");
     }
 
 }

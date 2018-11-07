@@ -2,7 +2,10 @@ package albert.views;
 
 import albert.controllers.PageController;
 import albert.controllers.QuotationsController;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import router.views.PageView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,16 +17,25 @@ public class QuotationsEditView extends AnchorPane implements PageView {
     private QuotationsController controller;
 
     @FXML
-    private TextField naamBar;
+    private TextField Name;
 
     @FXML
-    private TextField klantBar;
+    private TextField Product;
 
     @FXML
-    private TextField workBar;
+    private TextField HoursExpected;
 
     @FXML
-    private TextField projectBar;
+    private TextField PriceExpected;
+
+    @FXML
+    private Text Project;
+
+    @FXML
+    private DatePicker Date;
+
+    @FXML
+    private TextArea Description;
 
 
     @Override
@@ -42,7 +54,7 @@ public class QuotationsEditView extends AnchorPane implements PageView {
 
     @Override
     public void update() {
-
+        this.fillForm();
     }
 
     @Override
@@ -62,6 +74,17 @@ public class QuotationsEditView extends AnchorPane implements PageView {
 
     @FXML
     public void onClickSave() {
+
+    }
+
+    public void fillForm(){
+        controller.setQuotation(Integer.parseInt(this.controller.getRequest().getParameter("quotation")));
+        Name.setText(controller.getQuotation().getName());
+        Product.setText(String.valueOf(controller.getQuotation().getProduct()));
+        HoursExpected.setText(Double.toString(controller.getQuotation().getExpectedHours()));
+        PriceExpected.setText(Double.toString(controller.getQuotation().getExpectedPrice()));
+        Project.setText(controller.getQuotation().getProject().getName());
+        Description.setText(controller.getQuotation().getDescription());
 
     }
 }
