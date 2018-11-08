@@ -78,7 +78,8 @@ public class InvoicesController extends PageController implements OverviewPage, 
 
         AmountDAO amountDAO = new AmountDAO();
         amountDAO.create(amount);
-        amount = amountDAO.loadById(amountDAO.getLastInsertedId());
+
+        Amount amountHolder = amountDAO.loadById(amountDAO.getLastInsertedId());
 
         Tax tax = (new TaxDAO()).loadById(1);
         invoice = new Invoice();
@@ -86,7 +87,7 @@ public class InvoicesController extends PageController implements OverviewPage, 
         invoice.setDeliveryDate(deliveryDate);
         invoice.setProject(daoProject.loadById(projectId));
         invoice.setTax(tax);
-        invoice.setAmount(amount);
+        invoice.setAmount(amountHolder);
         invoice.setCreated_at(new Timestamp(System.currentTimeMillis()));
         invoice.setDescription(description);
         dao.create(invoice);
