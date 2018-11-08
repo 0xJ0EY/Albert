@@ -53,7 +53,8 @@ CREATE TABLE expense
     price numeric(11, 2),
     created_at TIMESTAMP,
     description TEXT,
-    name varchar
+    name varchar,
+    project_id
 );
 
 CREATE TABLE amount

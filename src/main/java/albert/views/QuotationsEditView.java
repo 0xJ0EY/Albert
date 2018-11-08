@@ -2,11 +2,18 @@ package albert.views;
 
 import albert.controllers.PageController;
 import albert.controllers.QuotationsController;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import router.views.PageView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+
+import java.sql.Timestamp;
+import java.time.ZoneId;
+import java.util.Date;
 
 public class QuotationsEditView extends AnchorPane implements PageView {
 
@@ -14,16 +21,25 @@ public class QuotationsEditView extends AnchorPane implements PageView {
     private QuotationsController controller;
 
     @FXML
-    private TextField naamBar;
+    private TextField Name;
 
     @FXML
-    private TextField klantBar;
+    private TextField Product;
 
     @FXML
-    private TextField workBar;
+    private TextField HoursExpected;
 
     @FXML
-    private TextField projectBar;
+    private TextField PriceExpected;
+
+    @FXML
+    private Text Project;
+
+    @FXML
+    private DatePicker createDate;
+
+    @FXML
+    private TextArea Description;
 
 
     @Override
@@ -42,7 +58,7 @@ public class QuotationsEditView extends AnchorPane implements PageView {
 
     @Override
     public void update() {
-
+        this.fillForm();
     }
 
     @Override
@@ -62,6 +78,28 @@ public class QuotationsEditView extends AnchorPane implements PageView {
 
     @FXML
     public void onClickSave() {
+        java.util.Date date = java.util.Date.from(createDate.getValue().atStartOfDay()
+                .atZone(ZoneId.systemDefault()).toInstant());
+        Timestamp timeStamp = new Timestamp(date.getTime());
+
+        controller.updateQuotation(Name.getText(),
+                Product.getText(),
+                Double.parseDouble(HoursExpected.getText()),
+                Double.parseDouble(PriceExpected.getText()),
+                Description.getText(),
+                timeStamp);
+        controller.getRouter().nav("quotations/");
+    }
+
+    public void fillForm(){
+        controller.setQuotation(Integer.parseInt(this.controller.getRequest().getParameter("quotation")));
+        Name.setText(controller.getQuotation().getName());
+        Product.setText(String.valueOf(controller.getQuotation().getProduct()));
+        HoursExpected.setText(Double.toString(controller.getQuotation().getExpectedHours()));
+        PriceExpected.setText(Double.toString(controller.getQuotation().getExpectedPrice()));
+        createDate.setValue(controller.getQuotation().getCreated_at().toLocalDateTime().toLocalDate());
+        Project.setText(controller.getQuotation().getProject().getName());
+        Description.setText(controller.getQuotation().getDescription());
 
     }
 }

@@ -80,7 +80,7 @@ public class QuotationDAO implements DAO<Quotation>{
             statement.setDouble(4,this.quotation.getExpectedPrice());
             statement.setTimestamp(5,this.quotation.getCreated_at());
             statement.setInt(6,this.quotation.getProject().getId());
-            statement.setInt(7,this.quotation.getExpectedHours());
+            statement.setDouble(7,this.quotation.getExpectedHours());
 
             statement.execute();
             conn.close();
@@ -98,7 +98,7 @@ public class QuotationDAO implements DAO<Quotation>{
         this.quotation = quotation;
         //TODO sql update schrijven
 
-        String sql = "UPDATE quotation SET ( name = ? ,description =?, product=?, price_expected=?,created_at=?, project_id=?, hours_expected=?)WHERE quotation_id =?;";
+        String sql = "UPDATE quotation SET  name=?, description=?, product=?, price_expected=?, created_at=?, hours_expected=? WHERE quotation_id =?;";
 
         try {
             Connection conn = Database.getInstance().getConnection();
@@ -110,12 +110,12 @@ public class QuotationDAO implements DAO<Quotation>{
             statement.setString(3,  this.quotation.getProduct());
             statement.setDouble(4,this.quotation.getExpectedPrice());
             statement.setTimestamp(5,this.quotation.getCreated_at());
-            statement.setInt(6,this.quotation.getProject().getId());
-            statement.setInt(7,this.quotation.getExpectedHours());
-            statement.setInt(8,this.quotation.getId());
+            statement.setDouble(6,this.quotation.getExpectedHours());
+            statement.setInt(7,this.quotation.getId());
 
 
-            statement.executeQuery();
+            statement.execute();
+
             conn.close();
 
         } catch (SQLException e) {
@@ -157,6 +157,8 @@ public class QuotationDAO implements DAO<Quotation>{
       //  quotation.setExpectedHours(rs.getInt("hours_expected"));
         quotation.setAmount(amountDAO.loadById(rs.getInt("amount_id")));
         quotation.setProject(projectDAO.loadById(rs.getInt("project_id")));
+        quotation.setExpectedHours(rs.getDouble("hours_expected"));
+        quotation.setExpectedPrice(rs.getDouble("price_expected"));
 
         return quotation;
     }

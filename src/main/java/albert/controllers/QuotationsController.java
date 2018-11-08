@@ -3,6 +3,7 @@ package albert.controllers;
 import albert.dao.ProjectDAO;
 import albert.dao.QuotationDAO;
 import albert.models.Amount;
+import albert.models.Project;
 import albert.models.Quotation;
 import query.Query;
 import router.Request;
@@ -22,6 +23,8 @@ import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Calendar;
 
 public class QuotationsController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
 
@@ -30,6 +33,9 @@ public class QuotationsController extends PageController implements OverviewPage
     private QuotationDAO dao = new QuotationDAO();
     private Request request;
     private ProjectDAO projectdao = new ProjectDAO();
+    Calendar calendar = Calendar.getInstance();
+    java.util.Date now = calendar.getTime();
+    java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
 
     public QuotationsController(PageView view, TemplateController template) {
         super(view, template);
@@ -61,10 +67,15 @@ public class QuotationsController extends PageController implements OverviewPage
                 new TextCellFactory())
         );
 
+        table.addCol(new Column("hours_expected::text",
+                new LeftHeaderViewFactory("Verwachte uren"),
+                new TextCellFactory())
+        );
+
         return table;
     }
 
-    public void saveQuotation(String name, double expectedprice, int expectedhours, String description, String product, int projectID, Timestamp createdAt) {
+    public void saveQuotation(String name, String product, double expectedhours, double expectedprice, int projectID, String description) {
         quotation = new Quotation();
         quotation.setName(name);
         quotation.setExpectedPrice(expectedprice);
@@ -72,20 +83,29 @@ public class QuotationsController extends PageController implements OverviewPage
         quotation.setDescription(description);
         quotation.setProduct(product);
         quotation.setProject(projectdao.loadById(projectID));
-        quotation.setCreated_at(createdAt);
-
+        quotation.setCreated_at(currentTimestamp);
 
         dao.create(quotation);
     }
 
     public void deleteQuotation() { dao.delete(quotation); }
 
-    public void editQuotation(String name, String price, String hour, String contact, String delivery) {
-        amount = new Amount();
-        amount.setPrice(new Double(price));
-        amount.setHours(new Double(hour));
-        quotation = new Quotation(name, amount, delivery);
+    public void updateQuotation(String name, String product, double expectedhours, double expectedprice, String description, Timestamp timestamp) {
+        quotation = new Quotation();
+        quotation.setName(name);
+        quotation.setExpectedPrice(expectedprice);
+        quotation.setExpectedHours(expectedhours);
+        quotation.setDescription(description);
+        quotation.setProduct(product);
+        quotation.setCreated_at(timestamp);
+        quotation.setId(Integer.parseInt(this.getCurrentId()));
+
         dao.update(quotation);
+    }
+
+    public ArrayList<Project> getProjects(){
+        ArrayList<Project> projects = projectdao.getAll();
+        return projects;
     }
 
     public Quotation getQuotation() {
@@ -122,6 +142,21 @@ public class QuotationsController extends PageController implements OverviewPage
     public Response create(Request request) {
         this.request = request;
         return new ViewResponse(this);
+    }
+
+    public String getCurrentId(){
+       return this.getRequest().getParameter("quotation");
+    }
+
+    public int getProjectIdFromName(String projectName) {
+        int projectId = 0;
+        ArrayList<Project> projects = this.getProjects();
+        for(int i=0; i<projects.size();i++) {
+            if(projects.get(i).getName().equals(projectName)) {
+                projectId = projects.get(i).getId();
+            }
+        }
+        return projectId;
     }
 
 }

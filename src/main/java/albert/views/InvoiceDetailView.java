@@ -108,8 +108,8 @@ public class InvoiceDetailView extends AnchorPane implements PageView {
         hours.setText("" + invoice.getAmount().getHours());
         btwPercentage.setText("" + invoice.getTax().getPercentage() + "%");
         project.setText(invoice.getProject().getName());
-        bAmount.setText("" + invoice.getAmount().getPrice());
-        nAmount.setText(invoice.getAmount().getPrice() + invoice.calculateTax() + "");
+        bAmount.setText("\u20AC" + invoice.getAmount().getPrice());
+        nAmount.setText("\u20AC" + (invoice.getAmount().getPrice() + invoice.calculateTax()));
         description.setText(invoice.getDescription());
     }
 }

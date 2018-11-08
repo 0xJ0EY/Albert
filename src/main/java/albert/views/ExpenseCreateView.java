@@ -3,15 +3,19 @@ package albert.views;
 import albert.controllers.ExpenseController;
 import albert.controllers.PageController;
 import albert.controllers.RapportsController;
+import albert.models.Project;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import router.views.PageView;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class ExpenseCreateView extends AnchorPane implements PageView {
 
@@ -22,6 +26,12 @@ public class ExpenseCreateView extends AnchorPane implements PageView {
 
     @FXML
     private TextField Name;
+
+    @FXML
+    private CheckBox projectOnkost;
+
+    @FXML
+    private ComboBox projectKoppel;
 
     @FXML
     private TextField Price;
@@ -49,6 +59,13 @@ public class ExpenseCreateView extends AnchorPane implements PageView {
 
     @Override
     public void update() {
+        projectKoppel.setDisable(true);
+        ArrayList<Project> projects = controller.getProjects();
+        for(int i = 0; i < projects.size(); i++ ) {
+            projectKoppel.getItems().add(projects.get(i).getName());
+        }
+
+        projectKoppel.setValue("Kies een project");
 
     }
 
@@ -69,13 +86,24 @@ public class ExpenseCreateView extends AnchorPane implements PageView {
 
     @FXML
     public void onClickSave() {
-        controller.saveExpense(Double.parseDouble(Price.getText()), Description.getText(), Name.getText() );
+        int projectId = controller.getProjectIdFromName(projectKoppel.getValue().toString());
+        controller.saveExpense(Double.parseDouble(Price.getText()), Description.getText(), Name.getText(), projectId);
+        this.controller.getRouter().nav("expenses/");
     }
 
     @FXML
     public void onClickCalculate(){
         double netto = Double.parseDouble(Price.getText()) * btw;
         NettoBedrag.setText(df.format(netto));
+    }
+
+    @FXML
+    public void onClickProjectCheck(){
+        if (projectOnkost.isSelected()){
+            projectKoppel.setDisable(false);
+        } else {
+            projectKoppel.setDisable(true);
+        }
     }
 
 

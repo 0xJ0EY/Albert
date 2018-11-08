@@ -3,6 +3,8 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -31,11 +33,32 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="806.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bedrag:" wrappingWidth="150.0">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Project onkost:" wrappingWidth="150.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </Text>
+                  <CheckBox fx:id="projectOnkost" mnemonicParsing="false" onAction="#onClickProjectCheck" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="806.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gekoppeld project:" wrappingWidth="150.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Text>
+                  <ComboBox fx:id="projectKoppel" prefWidth="150.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="806.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bedrag:" wrappingWidth="130.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Text>
+                  <FontAwesomeIconView glyphName="EURO" size="14.0" wrappingWidth="20.0" />
                   <TextField fx:id="Price" prefWidth="149.0" />
                </children>
             </HBox>
@@ -51,7 +74,8 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="806.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Netto:" wrappingWidth="150.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Netto:" wrappingWidth="130.0" />
+                  <FontAwesomeIconView glyphName="EURO" size="14.0" wrappingWidth="20.0" />
                   <Text fx:id="NettoBedrag" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="150.0" />
                   <Button mnemonicParsing="false" onAction="#onClickCalculate" prefHeight="25.0" prefWidth="110.0" text="Bereken">
                      <graphic>

@@ -63,12 +63,11 @@ public class AmountDAO implements DAO<Amount> {
 
         this.amount= obj;
         //TODO sql insert schrijven
-        String sql = "INSERT INTO amount(hours, price, contact_id) VALUES (?,?,?);";
+        String sql = "INSERT INTO amount(amount_id, hours, price, contact_id) VALUES (DEFAULT, ?,?,?);";
 
         try {
                 Connection conn = Database.getInstance().getConnection();
-
-                String generatedColumns[] = {"contact_id"};
+                String generatedColumns[] = {"amount_id"};
                 PreparedStatement statement = conn.prepareStatement(sql, generatedColumns);
 
                 statement.setDouble(1,this.amount.getHours());
@@ -80,7 +79,7 @@ public class AmountDAO implements DAO<Amount> {
                 ResultSet rs = statement.getGeneratedKeys();
 
                 if (rs.next())
-                    obj.setId(rs.getInt("contact_id"));
+                    obj.setId(rs.getInt("amount_id"));
 
                 conn.close();
 

@@ -19,16 +19,16 @@ public class Quotation {
     private String description;
     private Timestamp created_at;
     private Project project;
-    private int expectedHours;
+    private double expectedHours;
     private double expectedPrice;
 
     public Quotation(){
 
     }
 
-    public int getExpectedHours() { return expectedHours; }
+    public double getExpectedHours() { return expectedHours; }
 
-    public void setExpectedHours(int expectedHours) { this.expectedHours = expectedHours; }
+    public void setExpectedHours(double expectedHours) { this.expectedHours = expectedHours; }
 
     /**
      *

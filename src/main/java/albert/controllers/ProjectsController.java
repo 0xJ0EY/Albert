@@ -98,7 +98,8 @@ public class ProjectsController extends PageController implements OverviewPage, 
 
     public Table getInvoicesTable(Project project) {
         Table table = new Table(
-            new DatabaseStrategy(Query.table("invoice")
+            new DatabaseStrategy(
+                Query.table("invoice")
                     .where("project_id", "=", project.getId())),
             new SearchTableView()
         );
@@ -152,6 +153,11 @@ public class ProjectsController extends PageController implements OverviewPage, 
 
         table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
             new LeftHeaderViewFactory("Aangemaakt op"),
+            new TextCellFactory())
+        );
+
+        table.addCol(new Column("hours_expected::text",
+            new LeftHeaderViewFactory("Verwachte uren"),
             new TextCellFactory())
         );
 

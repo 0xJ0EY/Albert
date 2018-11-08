@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class ProjectsEditView extends AnchorPane implements PageView {
 
-    private final String resource = "/views/pages/ProjectEditView.fxml";
+    private final String resource = "/views/pages/QuotationsEditView.fxml";
     private ProjectsController controller;
 
     @FXML

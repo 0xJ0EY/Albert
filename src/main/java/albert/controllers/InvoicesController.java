@@ -53,6 +53,11 @@ public class InvoicesController extends PageController implements OverviewPage, 
             new RouteCellFactory("invoices/detail/{invoice_id}/", this))
         );
 
+        table.addCol(new Column("description",
+            new LeftHeaderViewFactory("Beschrijving"),
+            new TextCellFactory())
+        );
+
         table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
             new LeftHeaderViewFactory("Aangemaakt op"),
             new TextCellFactory())
@@ -63,18 +68,19 @@ public class InvoicesController extends PageController implements OverviewPage, 
             new TextCellFactory())
         );
 
-        return table;
+        return  table;
     }
 
-    public void createInvoice(String price, String hours, Boolean betaald, Timestamp deliveryDate, int projectId) {
+    public void createInvoice(String price, String hours, Boolean betaald, Timestamp deliveryDate, int projectId, String description, String contactName) {
         amount = new Amount();
         amount.setHours(new Double(hours));
         amount.setPrice(new Double(price));
-        amount.setContact(daoContact.loadById(1));
+        amount.setContact(daoContact.loadById(this.getContactIdFromName(contactName)));
 
         AmountDAO amountDAO = new AmountDAO();
         amountDAO.create(amount);
-        amount = amountDAO.loadById(amountDAO.getLastInsertedId());
+
+        Amount amountHolder = amountDAO.loadById(amountDAO.getLastInsertedId());
 
         Tax tax = (new TaxDAO()).loadById(1);
         invoice = new Invoice();
@@ -82,9 +88,9 @@ public class InvoicesController extends PageController implements OverviewPage, 
         invoice.setDeliveryDate(deliveryDate);
         invoice.setProject(daoProject.loadById(projectId));
         invoice.setTax(tax);
-        invoice.setAmount(amount);
+        invoice.setAmount(amountHolder);
         invoice.setCreated_at(new Timestamp(System.currentTimeMillis()));
-        //TODO: VERANDER REGEL HIERBOVEN NAAR NIET STATIC
+        invoice.setDescription(description);
         dao.create(invoice);
     }
 
@@ -98,6 +104,11 @@ public class InvoicesController extends PageController implements OverviewPage, 
         table.addCol(new Column("invoice_id::text",
             new LeftHeaderViewFactory("Invoice ID"),
             new RouteCellFactory("invoices/detail/{invoice_id}/", this))
+        );
+
+        table.addCol(new Column("description",
+                new LeftHeaderViewFactory("Beschrijving"),
+                new TextCellFactory())
         );
 
         table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
