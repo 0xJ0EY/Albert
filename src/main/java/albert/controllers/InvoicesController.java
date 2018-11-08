@@ -70,11 +70,11 @@ public class InvoicesController extends PageController implements OverviewPage, 
         return  table;
     }
 
-    public void createInvoice(String price, String hours, Boolean betaald, Timestamp deliveryDate, int projectId, String description) {
+    public void createInvoice(String price, String hours, Boolean betaald, Timestamp deliveryDate, int projectId, String description, String contactName) {
         amount = new Amount();
         amount.setHours(new Double(hours));
         amount.setPrice(new Double(price));
-        amount.setContact(daoContact.loadById(1));
+        amount.setContact(daoContact.loadById(this.getContactIdFromName(contactName)));
 
         AmountDAO amountDAO = new AmountDAO();
         amountDAO.create(amount);

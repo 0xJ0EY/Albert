@@ -78,7 +78,7 @@ public class InvoiceDAO implements DAO<Invoice>{
                 "\"paid\", " +
                 "\"tax_id\", " +
                 "\"project_id\", " +
-                "\"created_at\" " +
+                "\"created_at\", " +
                 "\"amount_id\", " +
                 "\"deliverydate\", " +
                 "\"description\" " +

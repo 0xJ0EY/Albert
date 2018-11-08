@@ -105,7 +105,8 @@ public class InvoiceCreateView extends AnchorPane implements PageView {
             paidBox.isSelected(),
             timeStamp,
             projectId,
-            description.getText()
+            description.getText(),
+            linkedContact.getValue().toString()
         );
 
         controller.getRouter().nav("invoices/");
