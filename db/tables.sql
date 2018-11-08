@@ -54,7 +54,7 @@ CREATE TABLE expense
     created_at TIMESTAMP,
     description TEXT,
     name varchar,
-    project_id
+    project_id integer
 );
 
 CREATE TABLE amount
@@ -139,3 +139,19 @@ REFERENCES contact(contact_id);
 ALTER TABLE amount
 ADD CONSTRAINT fk_amountcontact FOREIGN KEY (contact_id)
 REFERENCES contact(contact_id);
+
+ALTER TABLE expense
+ADD CONSTRAINT fk_expenseproject FOREIGN KEY (project_id)
+REFERENCES project(project_id);
+
+SELECT setval('expense_expense_id_seq', 21, true);
+SELECT setval('amount_amount_id_seq', 21, true);
+SELECT setval('contact_contact_id_seq', 21, true);
+SELECT setval('contact_email_id_seq', 21, true);
+SELECT setval('contact_phone_id_seq', 21, true);
+SELECT setval('invoice_invoice_id_seq', 21, true);
+SELECT setval('project_project_id_seq', 21, true);
+SELECT setval('quotation_quotation_id_seq', 21, true);
+SELECT setval('report_report_id_seq', 21, true);
+SELECT setval('tax_tax_id_seq', 21, true);
+
