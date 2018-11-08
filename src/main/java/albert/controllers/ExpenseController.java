@@ -1,7 +1,9 @@
 package albert.controllers;
 
 import albert.dao.ExpenseDAO;
+import albert.dao.ProjectDAO;
 import albert.models.Expense;
+import albert.models.Project;
 import query.Query;
 import router.Request;
 import router.pages.CreatePage;
@@ -21,6 +23,7 @@ import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -28,7 +31,12 @@ public class ExpenseController extends PageController implements OverviewPage, D
 
     private Expense expense;
     private ExpenseDAO dao = new ExpenseDAO();
+    private ProjectDAO projectDAO = new ProjectDAO();
     private Request request;
+
+    Calendar calendar = Calendar.getInstance();
+    java.util.Date now = calendar.getTime();
+    java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
 
     public ExpenseController(PageView view, TemplateController template) {
 
@@ -46,7 +54,7 @@ public class ExpenseController extends PageController implements OverviewPage, D
                 new RouteCellFactory("expenses/detail/{expense_id}/", this))
         );
 
-        table.addCol(new Column("price::text",
+        table.addCol(new Column("'\u20AC' || price::text",
                 new LeftHeaderViewFactory("Bedrag"),
                 new TextCellFactory())
         );
@@ -111,18 +119,31 @@ public class ExpenseController extends PageController implements OverviewPage, D
         return request;
     }
 
-    public void saveExpense(double price, String description, String name){
-
-        Calendar calendar = Calendar.getInstance();
-        java.util.Date now = calendar.getTime();
-        java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
+    public void saveExpense(double price, String description, String name, int projectID){
 
         expense = new Expense();
+        expense.setProject(projectDAO.loadById(projectID));
         expense.setPrice(price);
         expense.setDescription(description);
         expense.setName(name);
         expense.setCreated_at(currentTimestamp);
-        dao.create(expense);
 
+        dao.create(expense);
+    }
+
+    public ArrayList<Project> getProjects(){
+        ArrayList<Project> projects = projectDAO.getAll();
+        return projects;
+    }
+
+    public int getProjectIdFromName(String projectName) {
+        int projectId = 0;
+        ArrayList<Project> projects = this.getProjects();
+        for(int i=0; i<projects.size();i++) {
+            if(projects.get(i).getName().equals(projectName)) {
+                projectId = projects.get(i).getId();
+            }
+        }
+        return projectId;
     }
 }

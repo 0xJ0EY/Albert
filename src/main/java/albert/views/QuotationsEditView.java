@@ -11,6 +11,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
+import java.sql.Timestamp;
+import java.time.ZoneId;
+import java.util.Date;
+
 public class QuotationsEditView extends AnchorPane implements PageView {
 
     private final String resource = "/views/pages/QuotationsEditView.fxml";
@@ -32,7 +36,7 @@ public class QuotationsEditView extends AnchorPane implements PageView {
     private Text Project;
 
     @FXML
-    private DatePicker Date;
+    private DatePicker createDate;
 
     @FXML
     private TextArea Description;
@@ -74,7 +78,17 @@ public class QuotationsEditView extends AnchorPane implements PageView {
 
     @FXML
     public void onClickSave() {
+        java.util.Date date = java.util.Date.from(createDate.getValue().atStartOfDay()
+                .atZone(ZoneId.systemDefault()).toInstant());
+        Timestamp timeStamp = new Timestamp(date.getTime());
 
+        controller.updateQuotation(Name.getText(),
+                Product.getText(),
+                Double.parseDouble(HoursExpected.getText()),
+                Double.parseDouble(PriceExpected.getText()),
+                Description.getText(),
+                timeStamp);
+        controller.getRouter().nav("quotations/");
     }
 
     public void fillForm(){
@@ -83,6 +97,7 @@ public class QuotationsEditView extends AnchorPane implements PageView {
         Product.setText(String.valueOf(controller.getQuotation().getProduct()));
         HoursExpected.setText(Double.toString(controller.getQuotation().getExpectedHours()));
         PriceExpected.setText(Double.toString(controller.getQuotation().getExpectedPrice()));
+        createDate.setValue(controller.getQuotation().getCreated_at().toLocalDateTime().toLocalDate());
         Project.setText(controller.getQuotation().getProject().getName());
         Description.setText(controller.getQuotation().getDescription());
 

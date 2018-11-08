@@ -31,6 +31,16 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="806.0">
                <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gekoppeld project:" wrappingWidth="150.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Text>
+                  <Text fx:id="projectName" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="150.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="806.0">
+               <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bedrag:" wrappingWidth="136.0">
                      <HBox.margin>
                         <Insets />

@@ -4,6 +4,7 @@ import albert.controllers.ExpenseController;
 import albert.controllers.PageController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import router.Router;
@@ -32,6 +33,9 @@ public class ExpenseDetailView extends AnchorPane implements PageView {
 
     @FXML
     private Text Description;
+
+    @FXML
+    private Text projectName;
 
     @Override
     public void load() {
@@ -82,6 +86,7 @@ public class ExpenseDetailView extends AnchorPane implements PageView {
         NettoBedrag.setText(getNettoBedrag(controller.getExpense().getPrice()));
         DateCreated.setText(getDateString(controller.getExpense().getCreated_at()));
         Description.setText(controller.getExpense().getDescription());
+        projectName.setText(controller.getExpense().getProject().getName());
     }
 
     public String getNettoBedrag(double bedrag){

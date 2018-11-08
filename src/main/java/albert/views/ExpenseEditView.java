@@ -35,6 +35,9 @@ public class ExpenseEditView extends AnchorPane implements PageView {
     @FXML
     private TextField Description;
 
+    @FXML
+    private Text projectName;
+
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
@@ -74,6 +77,7 @@ public class ExpenseEditView extends AnchorPane implements PageView {
     public void onClickSave() {
       int expenseID =Integer.parseInt(this.controller.getRequest().getParameter("expense"));
       controller.editExpense(expenseID, Name.getText(), Double.parseDouble(Price.getText()), Description.getText());
+      this.controller.getRouter().nav("expenses/");
     }
 
     public void fillForm(){
@@ -83,6 +87,7 @@ public class ExpenseEditView extends AnchorPane implements PageView {
         NettoBedrag.setText(getNettoBedrag(controller.getExpense().getPrice()));
         DateCreated.setText(getDateString(controller.getExpense().getCreated_at()));
         Description.setText(controller.getExpense().getDescription());
+        projectName.setText(controller.getExpense().getProject().getName());
     }
 
     public String getNettoBedrag(double bedrag){
