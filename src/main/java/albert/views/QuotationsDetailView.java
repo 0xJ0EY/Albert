@@ -54,6 +54,16 @@ public class QuotationsDetailView extends AnchorPane implements PageView {
 
     @Override
     public void update() {
+        this.controller.getTemplate().addAction("Terug", () -> this.onClickBack());
+        this.controller.getTemplate().addAction("Genereer PDF", () -> {
+            try {
+                this.onClickGeneratePDF();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        });
+        this.controller.getTemplate().addAction("Offerte aanpassen", () -> this.onClickEdit());
+
         this.fillForm();
     }
 

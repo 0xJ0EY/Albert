@@ -53,8 +53,6 @@ public class ContactEmailDAO {
             ex.printStackTrace();
         }
 
-        System.out.println("emails size = " + emails.size());
-
         return emails;
     }
 

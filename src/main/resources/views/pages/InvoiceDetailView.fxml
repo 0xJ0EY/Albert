@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<fx:root prefHeight="630.0" prefWidth="1020.0" style="-fx-background-color: #DEDEDE;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="630.0" prefWidth="1020.0" style="-fx-background-color: f2f2f2;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <VBox layoutX="107.0" layoutY="102.0" prefHeight="427.0" prefWidth="806.0">
             <children>
@@ -95,6 +95,7 @@
                 <HBox prefHeight="40.0" prefWidth="200.0">
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bruto:" wrappingWidth="160.0" />
+                  <FontAwesomeIconView glyphName="EURO" size="14.0" />
                         <Text fx:id="bAmount" strokeType="OUTSIDE" strokeWidth="0.0" text="Bedrag">
                             <HBox.margin>
                                 <Insets left="20.0" />
@@ -113,6 +114,7 @@
                 <HBox prefHeight="40.0" prefWidth="200.0">
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Netto bedrag:" wrappingWidth="160.0" />
+                  <FontAwesomeIconView glyphName="EURO" size="14.0" />
                         <Text fx:id="nAmount" strokeType="OUTSIDE" strokeWidth="0.0" text="Bedrag">
                             <HBox.margin>
                                 <Insets left="20.0" />
@@ -146,7 +148,7 @@
                                 <FontAwesomeIconView glyphName="FILE" />
                             </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#onClickEdit" prefHeight="31.0" prefWidth="111.0" text="Aanpassen">
+                        <Button mnemonicParsing="false" onAction="#onClickEdit" prefHeight="25.0" prefWidth="111.0" text="Aanpassen">
                             <graphic>
                                 <FontAwesomeIconView glyphName="PENCIL" size="14.0" />
                             </graphic>

@@ -44,6 +44,8 @@ public class ExpenseView extends AnchorPane implements PageView {
 
     @Override
     public void update() {
+        this.controller.getTemplate().addAction("Nieuwe onkost", () -> this.onClickAddExpense());
+
             Table table = controller.getOverviewTable();
 
             table.fetch();

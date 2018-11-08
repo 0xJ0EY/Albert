@@ -57,6 +57,9 @@ public class QuotationsCreateView extends AnchorPane implements PageView {
 
     @Override
     public void update() {
+        this.controller.getTemplate().addAction("Terug", () -> this.onClickBack());
+        this.controller.getTemplate().addAction("Opslaan", () -> this.onClickSave());
+
         ArrayList<Project> projects = controller.getProjects();
         for(int i = 0; i < projects.size(); i++ ) {
             projectConnect.getItems().add(projects.get(i).getName());

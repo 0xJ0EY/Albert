@@ -46,6 +46,8 @@ public class QuotationsView extends AnchorPane implements PageView {
 
     @Override
     public void update() {
+        this.controller.getTemplate().addAction("Nieuwe offerte", () -> this.onClickAddQuotation());
+
         Table table = controller.getOverviewTable();
 
         table.fetch();

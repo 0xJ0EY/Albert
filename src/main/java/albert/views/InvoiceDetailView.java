@@ -69,6 +69,16 @@ public class InvoiceDetailView extends AnchorPane implements PageView {
 
     @Override
     public void update() {
+        this.controller.getTemplate().addAction("Terug", () -> this.onClickBack());
+        this.controller.getTemplate().addAction("Genereer PDF", () -> {
+            try {
+                this.onClickGeneratePdf();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        });
+        this.controller.getTemplate().addAction("Factuur aanpassen", () -> this.onClickEdit());
+
         int invoiceId = Integer.parseInt(this.controller.getRequest().getParameter("invoice"));
         controller.setInvoice(invoiceId);
         this.setAttributes(controller.getInvoice());
