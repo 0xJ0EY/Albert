@@ -45,14 +45,14 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="63.0" prefWidth="821.0" style="-fx-background-color: #ededed;">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Geleverd product:" wrappingWidth="151.99853515625" />
-                  <TextField fx:id="delivery" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Beschrijving:" wrappingWidth="151.99853515625" />
+                  <TextField fx:id="description" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="63.0" prefWidth="821.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Betaald:" wrappingWidth="151.99853515625" />
-                  <CheckBox fx:id="betaaldBox" mnemonicParsing="false" />
+                  <CheckBox fx:id="paidBox" mnemonicParsing="false" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="63.0" prefWidth="821.0" style="-fx-background-color: #ededed;">
