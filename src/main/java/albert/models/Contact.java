@@ -169,4 +169,13 @@ public class Contact {
     public void setProject(ArrayList<Project> project) {
         this.project = project;
     }
+
+    public String toFullName() {
+        return this.getFirstName() + " " + this.getLastName();
+    }
+
+    @Override
+    public String toString() {
+        return this.firstName + " " + this.lastName;
+    }
 }

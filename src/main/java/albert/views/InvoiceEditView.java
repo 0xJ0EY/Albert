@@ -69,7 +69,7 @@ public class InvoiceEditView extends AnchorPane implements PageView {
         ArrayList<Contact> contacts = controller.getContacts();
         for(int i=0; i<contacts.size(); i++ ) {
             linkedContact.getItems().add(contacts.get(i).getFirstName() + " " + contacts.get(i).getLastName());
-            if(contacts.get(i).getId() == controller.getInvoice().getProject().getContactId()) {
+            if(contacts.get(i).getId() == controller.getInvoice().getProject().getContact().getId()) {
                 linkedContact.setValue(contacts.get(i).getFirstName() + " " + contacts.get(i).getLastName());
             }
         }

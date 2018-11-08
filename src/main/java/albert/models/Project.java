@@ -9,44 +9,12 @@ import java.sql.Timestamp;
 public class Project {
 
     private int id;
-    private String name;
-    private String status = PaidState.NOT_PAID.toString();
+
+    private String name = "";
     private Timestamp created_at;
     private Boolean done;
-    private int contactId;
-    private int invoiceId;
-    private int expenseId;
-    private int quotationId;
-    private Tax tax;
-
-    public Project() {
-
-    }
-
-
-    public int getQuotationId() {
-        return quotationId;
-    }
-
-    public void setQuotationId(int quotationId) {
-        this.quotationId = quotationId;
-    }
-
-    public int getInvoiceId() {
-        return invoiceId;
-    }
-
-    public void setInvoiceId(int invoiceId) {
-        this.invoiceId = invoiceId;
-    }
-
-    public int getContactId() { return contactId; }
-
-    public void setContactId(int contactId) { this.contactId = contactId; }
-
-    public Project(String name, String status) {
-        this.name = name; this.status = status;
-    }
+    private Contact contact;
+    private String description = "";
 
     public void setId(int id) {
         this.id = id;
@@ -62,12 +30,12 @@ public class Project {
         this.name = name;
     }
 
-    public String getStatus() {
-        return status;
+    public Contact getContact() {
+        return contact;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 
     public Timestamp getCreated_at() {
@@ -86,12 +54,11 @@ public class Project {
         this.done = done;
     }
 
-    public Tax getTax() {
-        return tax;
+    public String getDescription() {
+        return description;
     }
 
-    public void setTax(Tax tax) {
-        this.tax = tax;
+    public void setDescription(String description) {
+        this.description = description;
     }
-
 }

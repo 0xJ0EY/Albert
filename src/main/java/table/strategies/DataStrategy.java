@@ -1,8 +1,6 @@
 package table.strategies;
 
-import table.Column;
 import table.Table;
-import table.enumerations.OrderBy;
 
 public interface DataStrategy {
 
@@ -22,7 +20,7 @@ public interface DataStrategy {
 
     public void fetch();
 
-    public void orderBy(Column column, OrderBy orderBy);
+    public void orderBy(String column, String direction);
 
     public void search(String str);
 

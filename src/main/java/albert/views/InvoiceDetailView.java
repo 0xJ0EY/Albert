@@ -101,7 +101,7 @@ public class InvoiceDetailView extends AnchorPane implements PageView {
     }
 
     public void setAttributes(Invoice invoice) {
-        naamKlant.setText(controller.getContactNameFromId(invoice.getProject().getContactId()));
+        naamKlant.setText(controller.getContactNameFromId(invoice.getProject().getContact().getId()));
         paidBox.setSelected(invoice.getPaid());
         invoiceId.setText("" + invoice.getId());
         date.setText(dateFormat.format(invoice.getDeliveryDate()));

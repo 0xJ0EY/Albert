@@ -43,28 +43,29 @@ public class InvoicesController extends PageController implements OverviewPage, 
 
     public Table getOverviewTable(){
         Table table = new Table(
-                new DatabaseStrategy(Query.table("invoice").where("paid", "=", false)),
-                new SearchTableView()
+            new DatabaseStrategy(Query.table("invoice")
+                .where("paid", "=", false)),
+            new SearchTableView()
         );
 
         table.addCol(new Column("invoice_id::text",
-                new LeftHeaderViewFactory("Invoice ID"),
-                new RouteCellFactory("invoices/detail/{invoice_id}/", this))
+            new LeftHeaderViewFactory("Invoice ID"),
+            new RouteCellFactory("invoices/detail/{invoice_id}/", this))
         );
 
         table.addCol(new Column("description",
-                new LeftHeaderViewFactory("Beschrijving"),
-                new TextCellFactory())
+            new LeftHeaderViewFactory("Beschrijving"),
+            new TextCellFactory())
         );
 
         table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
-                new LeftHeaderViewFactory("Aangemaakt op"),
-                new TextCellFactory())
+            new LeftHeaderViewFactory("Aangemaakt op"),
+            new TextCellFactory())
         );
 
         table.addCol(new Column("TO_CHAR(deliverydate, 'DD-MM-YYYY')",
-                new LeftHeaderViewFactory("Afleverdatum"),
-                new TextCellFactory())
+            new LeftHeaderViewFactory("Afleverdatum"),
+            new TextCellFactory())
         );
 
         return  table;
@@ -95,13 +96,14 @@ public class InvoicesController extends PageController implements OverviewPage, 
 
     public Table getPaidOverviewTable(){
         Table table = new Table(
-                new DatabaseStrategy(Query.table("invoice").where("paid", "=", true)),
-                new SearchTableView()
+            new DatabaseStrategy(Query.table("invoice")
+                .where("paid", "=", true)),
+            new SearchTableView()
         );
 
         table.addCol(new Column("invoice_id::text",
-                new LeftHeaderViewFactory("Invoice ID"),
-                new RouteCellFactory("invoices/detail/{invoice_id}/", this))
+            new LeftHeaderViewFactory("Invoice ID"),
+            new RouteCellFactory("invoices/detail/{invoice_id}/", this))
         );
 
         table.addCol(new Column("description",
@@ -110,13 +112,13 @@ public class InvoicesController extends PageController implements OverviewPage, 
         );
 
         table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
-                new LeftHeaderViewFactory("Aangemaakt op"),
-                new TextCellFactory())
+            new LeftHeaderViewFactory("Aangemaakt op"),
+            new TextCellFactory())
         );
 
         table.addCol(new Column("TO_CHAR(deliverydate, 'DD-MM-YYYY')",
-                new LeftHeaderViewFactory("Afleverdatum"),
-                new TextCellFactory())
+            new LeftHeaderViewFactory("Afleverdatum"),
+            new TextCellFactory())
         );
 
         return  table;
