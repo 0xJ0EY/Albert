@@ -52,6 +52,12 @@ public class InvoiceView extends AnchorPane implements PageView {
         table.update();
 
         TableView tableView = table.getView();
+        AnchorPane render = tableView.render();
+
+        AnchorPane.setRightAnchor(render, 0.0);
+        AnchorPane.setLeftAnchor(render, 0.0);
+        AnchorPane.setTopAnchor(render, 0.0);
+        AnchorPane.setBottomAnchor(render, 0.0);
 
         this.overviewTable.getChildren().add(tableView.render());
     }

@@ -10,11 +10,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="630.0" prefWidth="1020.0" style="-fx-background-color: #f2f2f2;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="630.0" prefWidth="1020.0" style="-fx-background-color: #f2f2f2;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TextField fx:id="naam" layoutX="159.0" layoutY="45.0" prefHeight="31.0" prefWidth="186.0" />
       <Label layoutX="47.0" layoutY="88.0" prefHeight="21.0" prefWidth="43.0" text="Klant:" />
-      <TextField fx:id="klant" layoutX="159.0" layoutY="83.0" prefHeight="31.0" prefWidth="186.0" />
       <Label layoutX="48.0" layoutY="134.0" text="Afgerond:" />
       <Label layoutX="47.0" layoutY="50.0" prefHeight="21.0" prefWidth="54.0" text="Naam:" />
       <Label layoutX="49.0" layoutY="168.0" text="Beschrijving:" />
@@ -35,6 +34,6 @@
             <FontAwesomeIconView glyphName="CHECK" size="14.0" />
          </graphic></Button>
       <CheckBox fx:id="isDone" layoutX="159.0" layoutY="134.0" mnemonicParsing="false" />
-      <ChoiceBox fx:id="contactDropBox" layoutX="355.0" layoutY="83.0" prefHeight="31.0" prefWidth="179.0" />
+      <ChoiceBox fx:id="contactDropBox" layoutX="160.0" layoutY="83.0" prefHeight="31.0" prefWidth="179.0" />
    </children>
 </fx:root>

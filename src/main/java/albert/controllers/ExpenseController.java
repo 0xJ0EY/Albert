@@ -16,8 +16,10 @@ import router.templates.TemplateController;
 import router.views.PageView;
 import table.Column;
 import table.Table;
+import table.factories.cells.EditCellFactory;
 import table.factories.cells.RouteCellFactory;
 import table.factories.cells.TextCellFactory;
+import table.factories.header.CenterHeaderViewFactory;
 import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
@@ -67,6 +69,11 @@ public class ExpenseController extends PageController implements OverviewPage, D
         table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
                 new LeftHeaderViewFactory("Aangemaakt op"),
                 new TextCellFactory())
+        );
+
+        table.addCol(new Column("null",
+                new CenterHeaderViewFactory("Aanpassen"),
+                new EditCellFactory("expenses/edit/{expense_id}/", this))
         );
 
         return table;

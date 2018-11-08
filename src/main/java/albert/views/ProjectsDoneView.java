@@ -40,6 +40,12 @@ public class ProjectsDoneView extends AnchorPane implements PageView  {
 
     @Override
     public void update() {
+
+        this.controller.getTemplate().addAction(
+            "Nieuw project",
+            () -> controller.getRouter().nav("projects/create/")
+        );
+
         Table table = controller.getDoneOverviewTable();
 
         table.fetch();
@@ -47,8 +53,14 @@ public class ProjectsDoneView extends AnchorPane implements PageView  {
         table.update();
 
         TableView tableView = table.getView();
+        AnchorPane render = tableView.render();
 
-        this.overviewTable.getChildren().add(tableView.render());
+        AnchorPane.setRightAnchor(render, 0.0);
+        AnchorPane.setLeftAnchor(render, 0.0);
+        AnchorPane.setTopAnchor(render, 0.0);
+        AnchorPane.setBottomAnchor(render, 0.0);
+
+        this.overviewTable.getChildren().add(render);
     }
 
     @Override

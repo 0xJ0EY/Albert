@@ -11,6 +11,7 @@ public class QueryBuilder implements
         JoinQueryBuilderInterface,
         TableQueryBuilderInterface,
         GroupByQueryBuilderInterface,
+        OrderByQueryBuilderInterface,
         LimitQueryBuilderInterface,
         OffsetQueryBuilderInterface {
 
@@ -19,6 +20,7 @@ public class QueryBuilder implements
     private JoinQueryBuilder joinQueryBuilder = new JoinQueryBuilder();
     private WhereQueryBuilder whereQueryBuilder = new WhereQueryBuilder();
     private GroupByQueryBuilder groupByQueryBuilder = new GroupByQueryBuilder();
+    private OrderByQueryBuilder orderByQueryBuilder = new OrderByQueryBuilder();
     private LimitQueryBuilder limitQueryBuilder = new LimitQueryBuilder();
     private OffsetQueryBuilder offsetQueryBuilder = new OffsetQueryBuilder();
 
@@ -85,6 +87,16 @@ public class QueryBuilder implements
     }
 
     @Override
+    public void orderBy(String value, String direction) {
+        this.orderByQueryBuilder.orderBy(value, direction);
+    }
+
+    @Override
+    public void clearOrderBy() {
+        this.orderByQueryBuilder.clearOrderBy();
+    }
+
+    @Override
     public void limit(int limit) {
         this.limitQueryBuilder.limit(limit);
     }
@@ -128,6 +140,8 @@ public class QueryBuilder implements
         }
 
         query.append(this.groupByQueryBuilder.build());
+
+        query.append(this.orderByQueryBuilder.build());
 
         query.append(this.limitQueryBuilder.build());
 

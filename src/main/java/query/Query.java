@@ -93,6 +93,16 @@ public class Query implements Cloneable, Serializable {
         return this;
     }
 
+    public Query orderBy(String value, String direction) {
+        this.queryBuilder.orderBy(value, direction);
+        return this;
+    }
+
+    public Query clearOrderBy() {
+        this.queryBuilder.clearOrderBy();
+        return this;
+    }
+
     public Query limit(int limit) {
 
         this.queryBuilder.limit(limit);

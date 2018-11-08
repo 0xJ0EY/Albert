@@ -41,7 +41,7 @@ public class RouteFactoryBuilder {
 
         // Projects
         map.put(new Route("projects/"), new OverviewPageAction(new ProjectsPageFactory()));
-        map.put(new Route("projectsdone/"), new OverviewPageAction(new ProjectsDonePageFactory()));
+        map.put(new Route("projects/done/"), new OverviewPageAction(new ProjectsDonePageFactory()));
         map.put(new Route("projects/details/{project}/"), new DetailPageAction(new ProjectsDetailPageFactory()));
         map.put(new Route("projects/edit/{project}/"), new EditPageAction(new ProjectsEditPageFactory()));
         map.put(new Route("projects/create/"), new CreatePageAction(new ProjectsCreatePageFactory()));
@@ -59,7 +59,6 @@ public class RouteFactoryBuilder {
         map.put(new Route("invoices/detail/{invoice}/"), new DetailPageAction(new InvoiceDetailPageFactory()));
         map.put(new Route("invoices/create/"), new CreatePageAction(new InvoiceCreatePageFactory()));
 
-
         //Quotations
         map.put(new Route("quotations/"), new OverviewPageAction(new QuotationsPageFactory()));
         map.put(new Route("quotations/edit/{quotation}/"), new EditPageAction(new QuotationsEditPageFactory()));
@@ -72,18 +71,15 @@ public class RouteFactoryBuilder {
         map.put(new Route("expenses/detail/{expense}/"), new DetailPageAction(new ExpenseDetailPageFactory()));
         map.put(new Route("expenses/create/"), new CreatePageAction(new ExpenseCreatePageFactory()));
 
-
         //Reports
         map.put(new Route("reports/"), new OverviewPageAction(new RapportsPageFactory()));
         map.put(new Route("reports/edit/{rapport}/"), new EditPageAction(new RapportsEditPageFactory()));
         map.put(new Route("reports/detail/{rapport}/"), new DetailPageAction(new RapportsDetailPageFactory()));
         map.put(new Route("reports/create/"), new CreatePageAction(new RapportsCreatePageFactory()));
 
-
         //Settings
         map.put(new Route("settings/"), new OverviewPageAction(new SettingsPageFactory()));
         map.put(new Route("settings/edit/{setting}/"), new EditPageAction(new SettingsEditPageFactory()));
-
 
         // Errors
         map.put(new Route("errors/404"), new OverviewPageAction(() -> {

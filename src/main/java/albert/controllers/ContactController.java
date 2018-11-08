@@ -88,12 +88,10 @@ public class ContactController extends PageController implements OverviewPage, D
 
         table.addCol(new Column("null",
                 new CenterHeaderViewFactory("Aanpassen"),
-                new EditCellFactory("contacts/edit/{contact_id}/", this))
+                new EditCellFactory("projects/edit/{contact_id}/", this))
         );
 
-        table.addButton(new TableButton("Toevoegen", () -> {
-            this.router.nav("home/");
-        }));
+        table.orderBy("contact_id", "DESC");
 
         return table;
     }
@@ -112,6 +110,9 @@ public class ContactController extends PageController implements OverviewPage, D
             new TextCellFactory())
         );
 
+        table.orderBy("id", "ASC");
+        table.limit(Integer.MAX_VALUE);
+
         this.emailsTable = table;
     }
 
@@ -128,6 +129,9 @@ public class ContactController extends PageController implements OverviewPage, D
             new LeftHeaderViewFactory("Telefoonnummer"),
             new TextCellFactory())
         );
+
+        table.orderBy("id", "ASC");
+        table.limit(Integer.MAX_VALUE);
 
         this.phoneNumbersTable = table;
     }
@@ -146,6 +150,9 @@ public class ContactController extends PageController implements OverviewPage, D
             new EditableTextCellFactory())
         );
 
+        table.orderBy("id", "ASC");
+        table.limit(Integer.MAX_VALUE);
+
         // Add a button to add new email addresses in runtime
         HashMap<String, Object> defaultValues = new HashMap<>();
         defaultValues.put("email_address", "");
@@ -161,12 +168,12 @@ public class ContactController extends PageController implements OverviewPage, D
 
     private void createEditablePhoneNumbers(Contact contact) {
         Table table = new Table(
-                new DatabaseStrategy(
-                    Query.table("contact_phone")
-                        .where("contact_id", "=", contact.getId())
+            new DatabaseStrategy(
+                Query.table("contact_phone")
+                    .where("contact_id", "=", contact.getId())
 
-                ),
-                new EditTableView()
+            ),
+            new EditTableView()
         );
 
         table.addCol(new Column("phone_number",
@@ -174,6 +181,7 @@ public class ContactController extends PageController implements OverviewPage, D
             new EditableTextCellFactory())
         );
 
+        table.orderBy("id", "ASC");
         table.limit(Integer.MAX_VALUE);
 
         // Add a button to add new email addresses in runtime
@@ -196,16 +204,19 @@ public class ContactController extends PageController implements OverviewPage, D
 
     @Override
     public Response detail(Request request) {
+        long id = Long.valueOf(request.getParameter("contacts"));
+        this.contact = new ContactDAO().loadById(id);
+
+        this.createOverviewEmails(this.contact);
+        this.createOverviewPhoneNumbers(this.contact);
+
         return new ViewResponse(this);
     }
 
     @Override
     public Response edit(Request request) {
-
-        ContactDAO dao = new ContactDAO();
-
         long id = Long.valueOf(request.getParameter("contacts"));
-        this.contact = dao.loadById(id);
+        this.contact = new ContactDAO().loadById(id);
 
         this.createEditableEmails(this.contact);
         this.createEditablePhoneNumbers(this.contact);
@@ -229,8 +240,6 @@ public class ContactController extends PageController implements OverviewPage, D
 
         contact = this.updateEmails(contact);
         contact = this.updatePhoneNumbers(contact);
-
-        System.out.println("contact.getPhoneNumbers() = " + contact.getPhoneNumbers());
 
         dao.create(contact);
     }

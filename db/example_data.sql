@@ -1,10 +1,3 @@
-INSERT INTO public.project (project_id, name, contact_id, created_at, done) VALUES (3, 'Sky', 3453, '2017-11-02 12:07:42.4', false);
-INSERT INTO public.project (project_id, name, contact_id, created_at, done) VALUES (4, 'Drive', 1234, '2014-11-02 12:21:28.493', false);
-INSERT INTO public.project (project_id, name, contact_id, created_at, done) VALUES (2, 'Posten', 2345, '2016-05-03 11:51:05.265', true);
-INSERT INTO public.project (project_id, name, contact_id, created_at, done) VALUES (1, 'Natuur ', 1234, '2018-11-02 10:56:27.07', true);
-INSERT INTO public.project (project_id, name, contact_id, created_at, done) VALUES (5, 'Bank', 8678, '2013-11-05 12:41:23.149', false);
-INSERT INTO public.project (project_id, name, contact_id, created_at, done) VALUES (6, 'Bedrijf', 2344, '2011-07-02 13:49:09.56', true);
-INSERT INTO public.project (project_id, name, contact_id, created_at, done) VALUES (7, 'Auto', 6743, '2015-07-07 14:17:35.348', false);
 
 INSERT INTO public.tax (tax_id, name, percentage) VALUES (1, 'btw', 21);
 
@@ -27,11 +20,19 @@ INSERT INTO public.amount (amount_id, hours, price, contact_id) VALUES (4, 43, 1
 INSERT INTO public.amount (amount_id, hours, price, contact_id) VALUES (5, 54, 1233, 3);
 INSERT INTO public.amount (amount_id, hours, price, contact_id) VALUES (6, 23, 4342, 1);
 
-INSERT INTO public.quotation (name, quotation_id, description, product, amount_id, created_at, project_id, hours_expected, price_expected) VALUES ('Sky offerte', 1, 'offerte voor sky', 'sky product', 1, '2016-12-04 12:16:22.896', 1, 46, 500);
+INSERT INTO public.project (project_id, name, contact_id, created_at, done) VALUES (3, 'Sky', 1, '2017-11-02 12:07:42.4', false);
+INSERT INTO public.project (project_id, name, contact_id, created_at, done) VALUES (4, 'Drive', 1, '2014-11-02 12:21:28.493', false);
+INSERT INTO public.project (project_id, name, contact_id, created_at, done) VALUES (2, 'Posten', 2, '2016-05-03 11:51:05.265', true);
+INSERT INTO public.project (project_id, name, contact_id, created_at, done) VALUES (1, 'Natuur ', 2, '2018-11-02 10:56:27.07', true);
+INSERT INTO public.project (project_id, name, contact_id, created_at, done) VALUES (5, 'Bank', 3, '2013-11-05 12:41:23.149', false);
+INSERT INTO public.project (project_id, name, contact_id, created_at, done) VALUES (6, 'Bedrijf', 4, '2011-07-02 13:49:09.56', true);
+INSERT INTO public.project (project_id, name, contact_id, created_at, done) VALUES (7, 'Auto', 5, '2015-07-07 14:17:35.348', false);
+
+INSERT INTO public.quotation (name, quotation_id, description, product, amount_id, created_at, project_id, hours_expected, price_expected) VALUES ('Sky offerte', 1, 'offerte voor sky', 'sky product', 1, '2016-12-04 12:16:22.896', 3, 46, 500);
 INSERT INTO public.quotation (name, quotation_id, description, product, amount_id, created_at, project_id, hours_expected, price_expected) VALUES ('Posten offerte', 2, 'offerte voor posten', 'post product', 2, '2017-11-02 11:53:29.982', 2, 43, 480);
-INSERT INTO public.quotation (name, quotation_id, description, product, amount_id, created_at, project_id, hours_expected, price_expected) VALUES ('Natuur offerte', 3, 'Offerte voor het project natuur', 'Natuur product', 3, '2014-06-05 11:13:51.999', 3, 3, 70);
-INSERT INTO public.quotation (name, quotation_id, description, product, amount_id, created_at, project_id, hours_expected, price_expected) VALUES ('Bank offerte', 4, 'Offerte voor Bank', 'Bank product', 4, '2018-08-04 13:16:53.751', 4, 60, 700);
-INSERT INTO public.quotation (name, quotation_id, description, product, amount_id, created_at, project_id, hours_expected, price_expected) VALUES ('Drive offerte', 5, 'Offerte voor Drive', 'Drive product', 5, '2016-12-04 13:44:04.651', 5, 12, 200);
+INSERT INTO public.quotation (name, quotation_id, description, product, amount_id, created_at, project_id, hours_expected, price_expected) VALUES ('Natuur offerte', 3, 'Offerte voor het project natuur', 'Natuur product', 3, '2014-06-05 11:13:51.999', 1, 3, 70);
+INSERT INTO public.quotation (name, quotation_id, description, product, amount_id, created_at, project_id, hours_expected, price_expected) VALUES ('Bank offerte', 4, 'Offerte voor Bank', 'Bank product', 4, '2018-08-04 13:16:53.751', 5, 60, 700);
+INSERT INTO public.quotation (name, quotation_id, description, product, amount_id, created_at, project_id, hours_expected, price_expected) VALUES ('Drive offerte', 5, 'Offerte voor Drive', 'Drive product', 5, '2016-12-04 13:44:04.651', 4, 12, 200);
 INSERT INTO public.quotation (name, quotation_id, description, product, amount_id, created_at, project_id, hours_expected, price_expected) VALUES ('Bedrijf offerte', 6, 'Offerte voor Bedrijf', 'Bedrijf product', 6, '2013-07-07 14:08:19.03', 6, 53, 630);
 
 INSERT INTO public.invoice (invoice_id, paid, tax_id, project_id, created_at, amount_id, deliverydate, description) VALUES (1, 'true', 1, 1, '2015-01-01 10:58:39.061', 1, '2016-08-03 10:59:42.4', 'van een vriend');
@@ -46,17 +47,14 @@ INSERT INTO public.expense (expense_id, price, created_at, description, name) VA
 INSERT INTO public.expense (expense_id, price, created_at, description, name) VALUES (4, 56, '2016-11-02 13:01:24.108', 'Onkosten voor Bank project', 'Bank onkosten');
 INSERT INTO public.expense (expense_id, price, created_at, description, name) VALUES (5, 43, '2013-10-05 13:59:23.234', 'Onkosten voor Bedrijf', 'Bedrijf onkosten');
 
-INSERT INTO public.contact_email (id, contact_id, email_address) VALUES (445576, 1, 'B-andre@gmail.com');
-INSERT INTO public.contact_email (id, contact_id, email_address) VALUES (757825, 2, 'K-harsmen@ziggo.nl');
-INSERT INTO public.contact_email (id, contact_id, email_address) VALUES (234561, 1, 'A-bar@gmail.com');
-INSERT INTO public.contact_email (id, contact_id, email_address) VALUES (123456, 3, 'R-hary@outlook.com');
-INSERT INTO public.contact_email (id, contact_id, email_address) VALUES (45664756, 4, 'r-gereard@nvidia.com');
+INSERT INTO public.contact_email (id, contact_id, email_address) VALUES (default, 1, 'B-andre@gmail.com');
+INSERT INTO public.contact_email (id, contact_id, email_address) VALUES (default, 2, 'K-harsmen@ziggo.nl');
+INSERT INTO public.contact_email (id, contact_id, email_address) VALUES (default, 1, 'A-bar@gmail.com');
+INSERT INTO public.contact_email (id, contact_id, email_address) VALUES (default, 3, 'R-hary@outlook.com');
+INSERT INTO public.contact_email (id, contact_id, email_address) VALUES (default, 4, 'r-gereard@nvidia.com');
 
-INSERT INTO public.contact_phone (id, contact_id, phone_number) VALUES (445576, 1, '+31612345678');
-INSERT INTO public.contact_phone (id, contact_id, phone_number) VALUES (757825, 2, '0683657689');
-INSERT INTO public.contact_phone (id, contact_id, phone_number) VALUES (234561, 1, '+31698797350');
-INSERT INTO public.contact_phone (id, contact_id, phone_number) VALUES (123456, 3, '0614643712');
-INSERT INTO public.contact_phone (id, contact_id, phone_number) VALUES (45664756, 4, '+31687468528');
-
-
-
+INSERT INTO public.contact_phone (id, contact_id, phone_number) VALUES (default, 1, '+31612345678');
+INSERT INTO public.contact_phone (id, contact_id, phone_number) VALUES (default, 2, '0683657689');
+INSERT INTO public.contact_phone (id, contact_id, phone_number) VALUES (default, 1, '+31698797350');
+INSERT INTO public.contact_phone (id, contact_id, phone_number) VALUES (default, 3, '0614643712');
+INSERT INTO public.contact_phone (id, contact_id, phone_number) VALUES (default, 4, '+31687468528');

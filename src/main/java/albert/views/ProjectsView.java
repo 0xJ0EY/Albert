@@ -12,9 +12,6 @@ import table.views.TableView;
 
 import java.awt.*;
 import java.io.IOException;
-/*
-Hier wordt de prrojects geladen
- */
 
 public class ProjectsView extends AnchorPane implements PageView  {
 
@@ -43,15 +40,26 @@ public class ProjectsView extends AnchorPane implements PageView  {
 
     @Override
     public void update() {
+
+        this.controller.getTemplate().addAction(
+            "Nieuw project",
+            () -> controller.getRouter().nav("projects/create/")
+        );
+
         Table table = controller.getOverviewTable();
 
         table.fetch();
 
         table.update();
 
-        TableView tableView = table.getView();
+        AnchorPane render = table.getView().render();
 
-        this.overviewTable.getChildren().add(tableView.render());
+        AnchorPane.setRightAnchor(render, 0.0);
+        AnchorPane.setLeftAnchor(render, 0.0);
+        AnchorPane.setTopAnchor(render, 0.0);
+        AnchorPane.setBottomAnchor(render, 0.0);
+
+        this.overviewTable.getChildren().add(render);
     }
 
     @Override
@@ -71,6 +79,6 @@ public class ProjectsView extends AnchorPane implements PageView  {
 
     @FXML
     public void onClickDone(){
-        controller.getRouter().nav("projectsdone/");
+        controller.getRouter().nav("projects/done/");
     }
 }

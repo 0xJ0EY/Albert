@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<fx:root maxHeight="620.0" maxWidth="830.0" minHeight="0.0" minWidth="0.0" prefHeight="620.0" prefWidth="830.0" style="-fx-background-color: white;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="620.0" maxWidth="830.0" minHeight="0.0" minWidth="0.0" prefHeight="620.0" prefWidth="830.0" style="-fx-background-color: white;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane maxHeight="620.0" maxWidth="830.0" prefHeight="620.0" prefWidth="830.0" style="-fx-background-color: white;">
+      <AnchorPane maxHeight="620.0" maxWidth="830.0" prefHeight="620.0" prefWidth="830.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <BorderPane maxHeight="620.0" maxWidth="830.0" minHeight="0.0" minWidth="0.0" prefHeight="620.0" prefWidth="830.0">
+            <BorderPane maxHeight="620.0" maxWidth="830.0" minHeight="0.0" minWidth="0.0" prefHeight="620.0" prefWidth="830.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <center>
                   <VBox alignment="CENTER" maxHeight="620.0" maxWidth="830.0" minHeight="0.0" minWidth="0.0" prefHeight="620.0" prefWidth="830.0" spacing="20.0" BorderPane.alignment="CENTER">
                      <children>

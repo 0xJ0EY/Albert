@@ -46,21 +46,21 @@ public class ExpenseView extends AnchorPane implements PageView {
     public void update() {
         this.controller.getTemplate().addAction("Nieuwe onkost", () -> this.onClickAddExpense());
 
-            Table table = controller.getOverviewTable();
+        Table table = controller.getOverviewTable();
 
-            table.fetch();
+        table.fetch();
 
-            table.update();
+        table.update();
 
-            TableView tableView = table.getView();
+        TableView tableView = table.getView();
 
-            AnchorPane view = tableView.render();
+        AnchorPane view = tableView.render();
 
-            AnchorPane.setRightAnchor(view, 0.0);
-            AnchorPane.setLeftAnchor(view, 0.0);
-            AnchorPane.setTopAnchor(view, 0.0);
-            AnchorPane.setBottomAnchor(view, 0.0);
-            this.overviewTable.getChildren().add(view);
+        AnchorPane.setRightAnchor(view, 0.0);
+        AnchorPane.setLeftAnchor(view, 0.0);
+        AnchorPane.setTopAnchor(view, 0.0);
+        AnchorPane.setBottomAnchor(view, 0.0);
+        this.overviewTable.getChildren().add(view);
 
     }
 

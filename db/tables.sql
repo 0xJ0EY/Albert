@@ -54,7 +54,7 @@ CREATE TABLE expense
     created_at TIMESTAMP,
     description TEXT,
     name varchar,
-    project_id integer
+    project_id bigint
 );
 
 CREATE TABLE amount
@@ -103,45 +103,49 @@ DROP TABLE IF EXISTS contact_phone;
 
 CREATE TABLE contact_phone
 (
-  id           BIGSERIAL NOT NULL
-    CONSTRAINT contact_phone_pkey
-    PRIMARY KEY,
+    id           BIGSERIAL NOT NULL
+        CONSTRAINT contact_phone_pkey
+        PRIMARY KEY,
     phone_number VARCHAR(20),
     contact_id   BIGINT
-    CONSTRAINT fk_contact_phone
-    REFERENCES contact
-    ON UPDATE CASCADE ON DELETE CASCADE
+        CONSTRAINT fk_contact_phone
+        REFERENCES contact
+        ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE UNIQUE INDEX contact_phone_id_uindex
-  ON contact_phone (id);
+    ON contact_phone (id);
 
 ALTER TABLE invoice
-ADD CONSTRAINT fk_invoiceproject fOREIGN KEY (project_id)
+    ADD CONSTRAINT fk_invoiceproject fOREIGN KEY (project_id)
 REFERENCES project(project_id);
 
 ALTER TABLE invoice
-ADD CONSTRAINT fk_invoicetax fOREIGN KEY (tax_id)
+    ADD CONSTRAINT fk_invoicetax fOREIGN KEY (tax_id)
 REFERENCES tax(tax_id);
 
 ALTER TABLE quotation
-ADD CONSTRAINT fk_quotationproject fOREIGN KEY (project_id)
+    ADD CONSTRAINT fk_quotationproject fOREIGN KEY (project_id)
 REFERENCES project(project_id);
 
+ALTER TABLE project
+    ADD CONSTRAINT fk_project_contact FOREIGN KEY (contact_id)
+REFERENCES contact(contact_id);
+
 ALTER TABLE quotation
-ADD CONSTRAINT fk_quotationamount FOREIGN KEY (amount_id)
+    ADD CONSTRAINT fk_quotationamount FOREIGN KEY (amount_id)
 REFERENCES amount(amount_id);
 
 ALTER TABLE contact_email
-ADD CONSTRAINT fk_contactemails FOREIGN KEY (contact_id)
+    ADD CONSTRAINT fk_contactemails FOREIGN KEY (contact_id)
 REFERENCES contact(contact_id);
 
 ALTER TABLE amount
-ADD CONSTRAINT fk_amountcontact FOREIGN KEY (contact_id)
+    ADD CONSTRAINT fk_amountcontact FOREIGN KEY (contact_id)
 REFERENCES contact(contact_id);
 
 ALTER TABLE expense
-ADD CONSTRAINT fk_expenseproject FOREIGN KEY (project_id)
+    ADD CONSTRAINT fk_expenseproject FOREIGN KEY (project_id)
 REFERENCES project(project_id);
 
 SELECT setval('expense_expense_id_seq', 21, true);

@@ -10,6 +10,15 @@
     -fx-background-color: #ffffff;
 }
 
+.link_button {
+    -fx-cursor: hand;
+    -fx-text-fill: #6CB0E5;
+}
+
+.link_button:hover {
+    -fx-text-fill: #4d739a;
+}
+
 .nav_button {
     -fx-cursor: hand;
 }

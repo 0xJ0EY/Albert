@@ -1,6 +1,8 @@
 package query.groupby;
 
-public interface GroupByStatement {
+import java.io.Serializable;
+
+public interface GroupByStatement extends Serializable {
 
     public String build();
 
