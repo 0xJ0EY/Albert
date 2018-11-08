@@ -44,10 +44,10 @@ public class InvoiceCreateView extends AnchorPane implements PageView {
     private ComboBox linkedContact;
 
     @FXML
-    private TextField delivery;
+    private TextField description;
 
     @FXML
-    private CheckBox betaaldBox;
+    private CheckBox paidBox;
 
     @FXML
     private DatePicker deliveryDate;
@@ -102,9 +102,11 @@ public class InvoiceCreateView extends AnchorPane implements PageView {
 
         controller.createInvoice(price.getText(),
             hours.getText(),
-            betaaldBox.isSelected(),
+            paidBox.isSelected(),
             timeStamp,
-            projectId
+            projectId,
+            description.getText(),
+            linkedContact.getValue().toString()
         );
 
         controller.getRouter().nav("invoices/");

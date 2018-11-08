@@ -60,4 +60,3 @@ INSERT INTO public.contact_phone (id, contact_id, phone_number) VALUES (45664756
 
 
 
-
