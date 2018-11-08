@@ -55,6 +55,9 @@ public class ExpenseEditView extends AnchorPane implements PageView {
 
     @Override
     public void update() {
+        this.controller.getTemplate().addAction("Terug", () -> this.onClickBack());
+        this.controller.getTemplate().addAction("Terug", () -> this.onClickSave());
+
         this.fillForm();
     }
 

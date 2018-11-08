@@ -70,6 +70,9 @@ public class InvoiceCreateView extends AnchorPane implements PageView {
 
     @Override
     public void update() {
+        this.controller.getTemplate().addAction("Terug", () -> this.onClickBack());
+        this.controller.getTemplate().addAction("Opslaan", () -> this.onClickSave());
+
         ArrayList<Project> projects = controller.getProjects();
         for(int i=0; i<projects.size(); i++ ) {
             linkedProject.getItems().add(projects.get(i).getName());
@@ -92,7 +95,7 @@ public class InvoiceCreateView extends AnchorPane implements PageView {
     }
 
     @FXML
-    public void onClickSave(ActionEvent event){
+    public void onClickSave(){
         System.out.println("Click on Save");
         Date date = Date.from(deliveryDate.getValue().atStartOfDay()
                 .atZone(ZoneId.systemDefault()).toInstant());
@@ -114,5 +117,5 @@ public class InvoiceCreateView extends AnchorPane implements PageView {
     }
 
     @FXML
-    public void onClickBack(ActionEvent event) { controller.getRouter().nav("invoices/");   }
+    public void onClickBack() { controller.getRouter().nav("invoices/");   }
 }
