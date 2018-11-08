@@ -3,35 +3,43 @@ package albert.views;
 import albert.controllers.PageController;
 import albert.controllers.QuotationsController;
 import albert.models.Amount;
+import albert.models.Contact;
+import albert.models.Project;
 import albert.models.Quotation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import router.views.PageView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
+import java.util.ArrayList;
+
 public class QuotationsCreateView extends AnchorPane implements PageView {
 
     private final String resource = "/views/pages/QuotationsCreateView.fxml";
     private QuotationsController controller;
-    private Quotation quotation;
-    private Amount amount;
+
 
     @FXML
-    private TextField naamBar;
+    private TextField Name;
 
     @FXML
-    private TextField hourBar;
+    private TextField Product;
 
     @FXML
-    private TextField priceBar;
+    private TextField HoursExpected;
 
     @FXML
-    private TextField contactBar;
+    private TextField PriceExpected;
 
     @FXML
-    private TextField delivery;
+    private ComboBox projectConnect;
+
+    @FXML
+    private TextArea Description;
 
     @Override
     public void load() {
@@ -49,6 +57,12 @@ public class QuotationsCreateView extends AnchorPane implements PageView {
 
     @Override
     public void update() {
+        ArrayList<Project> projects = controller.getProjects();
+        for(int i = 0; i < projects.size(); i++ ) {
+            projectConnect.getItems().add(projects.get(i).getName());
+        }
+
+        projectConnect.setValue("Kies een project");
 
     }
 
@@ -64,8 +78,14 @@ public class QuotationsCreateView extends AnchorPane implements PageView {
 
     @FXML
     public void onClickSave(){
-        System.out.println("Click on Save");
-
+        int projectId = controller.getProjectIdFromName(projectConnect.getValue().toString());
+        controller.saveQuotation(Name.getText(),
+                Product.getText(),
+                Double.parseDouble(HoursExpected.getText()),
+                Double.parseDouble(PriceExpected.getText()),
+                projectId,
+                Description.getText());
+        controller.getRouter().nav("quotations/");
     }
 
     public void onClickBack(){

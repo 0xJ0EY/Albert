@@ -12,6 +12,7 @@ public class Expense {
     private String description;
     private Timestamp created_at;
     private double btw = 1.21;
+    private Project project;
 
     public Expense(int id, double price, String description, Timestamp created_at, String name) {
         this.id = id;
@@ -66,6 +67,7 @@ public class Expense {
 
     public void setBtw(double btw) { this.btw = btw; }
 
+    public Project getProject() { return project; }
 
-
+    public void setProject(Project project) { this.project = project; }
 }

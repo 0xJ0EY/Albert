@@ -18,6 +18,8 @@ import java.util.ArrayList;
 public class ExpenseDAO implements DAO<Expense>{
 
     private Expense expense;
+    private ProjectDAO projectDAO = new ProjectDAO();
+
     @Override
     public ArrayList getAll() {
         String sql = "SELECT * FROM expense";
@@ -77,7 +79,7 @@ public class ExpenseDAO implements DAO<Expense>{
     public void create(Expense obj) {
         this.expense = obj;
         //TODO sql insert schrijven
-        String sql = "INSERT INTO expense(price, created_at, description,name) VALUES (?, ? ,?,?);";
+        String sql = "INSERT INTO expense (price, created_at, description, name, project_id) VALUES (?, ? ,? ,? ,? );";
 
         try {
             Connection conn = Database.getInstance().getConnection();
@@ -87,6 +89,8 @@ public class ExpenseDAO implements DAO<Expense>{
             statement.setTimestamp(2,this.expense.getCreated_at());
             statement.setString(3,this.expense.getDescription());
             statement.setString(4,this.expense.getName());
+            statement.setInt(5,this.expense.getProject().getId());
+
             statement.execute();
 
             conn.close();
@@ -157,6 +161,8 @@ public class ExpenseDAO implements DAO<Expense>{
                 rs.getTimestamp("created_at"),
                 rs.getString("name")
         );
+        expense.setProject(projectDAO.loadById(rs.getInt("project_id")));
+
         return expense;
     }
 

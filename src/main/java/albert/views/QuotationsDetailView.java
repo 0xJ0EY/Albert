@@ -74,7 +74,7 @@ public class QuotationsDetailView extends AnchorPane implements PageView {
 
     @FXML
     public void onClickEdit() {
-        this.controller.getRouter().nav("quotations/edit/{quotation}/)");
+        this.controller.getRouter().nav("quotations/edit/" + controller.getCurrentId());
     }
 
     @FXML
@@ -86,12 +86,11 @@ public class QuotationsDetailView extends AnchorPane implements PageView {
 
     public void fillForm(){
         controller.setQuotation(Integer.parseInt(this.controller.getRequest().getParameter("quotation")));
-//        controller.getQuotation().setProjectId(Integer.parseInt(this.controller.getRequest().getParameter("project")));
         Name.setText(controller.getQuotation().getName());
         Product.setText(controller.getQuotation().getProduct());
-        Hours.setText(Integer.toString(controller.getQuotation().getExpectedHours()));
+        Hours.setText(Double.toString(controller.getQuotation().getExpectedHours()));
         Price.setText(Double.toString(controller.getQuotation().getExpectedPrice()));
-        Project.setText(Integer.toString(controller.getQuotation().getProject().getId()));
+        Project.setText(controller.getQuotation().getProject().getName());
         DateCreated.setText(getDateString(controller.getQuotation().getCreated_at()));
         Description.setText(controller.getQuotation().getDescription());
     }
