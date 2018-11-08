@@ -38,6 +38,12 @@ public class ContactsView extends AnchorPane implements PageView {
 
     @Override
     public void update() {
+
+        this.controller.getTemplate().addAction(
+            "Nieuwe contact",
+            () -> controller.getRouter().nav("contacts/create/")
+        );
+
         Table table = controller.getOverviewTable();
 
         table.fetch();
