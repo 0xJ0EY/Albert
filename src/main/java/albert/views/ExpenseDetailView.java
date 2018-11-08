@@ -2,6 +2,7 @@ package albert.views;
 
 import albert.controllers.ExpenseController;
 import albert.controllers.PageController;
+import albert.models.Project;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
@@ -86,7 +87,11 @@ public class ExpenseDetailView extends AnchorPane implements PageView {
         NettoBedrag.setText(getNettoBedrag(controller.getExpense().getPrice()));
         DateCreated.setText(getDateString(controller.getExpense().getCreated_at()));
         Description.setText(controller.getExpense().getDescription());
-        projectName.setText(controller.getExpense().getProject().getName());
+
+        Project project = controller.getExpense().getProject();
+
+        if (project != null)
+            projectName.setText(controller.getExpense().getProject().getName());
     }
 
     public String getNettoBedrag(double bedrag){

@@ -46,6 +46,12 @@ public class QuotationsView extends AnchorPane implements PageView {
 
     @Override
     public void update() {
+
+        this.controller.getTemplate().addAction(
+            "Nieuwe offerte",
+            () -> controller.getRouter().nav("quotations/create/")
+        );
+
         Table table = controller.getOverviewTable();
 
         table.fetch();

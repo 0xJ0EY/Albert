@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class ProjectsCreateView extends AnchorPane implements PageView {
 
-    private final String resource = "/views/pages/ProjectEditView.fxml";
+    private final String resource = "/views/pages/ProjectCreateView.fxml";
     private ProjectsController controller;
 
     @FXML

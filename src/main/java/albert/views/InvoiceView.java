@@ -43,6 +43,12 @@ public class InvoiceView extends AnchorPane implements PageView {
 
     @Override
     public void update() {
+
+        this.controller.getTemplate().addAction(
+            "Nieuwe factuur",
+            () -> controller.getRouter().nav("invoices/create/")
+        );
+
         Table table = controller.getOverviewTable();
 
         table.fetch();

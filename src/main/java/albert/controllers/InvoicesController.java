@@ -16,8 +16,10 @@ import router.templates.TemplateController;
 import router.views.PageView;
 import table.Column;
 import table.Table;
+import table.factories.cells.EditCellFactory;
 import table.factories.cells.RouteCellFactory;
 import table.factories.cells.TextCellFactory;
+import table.factories.header.CenterHeaderViewFactory;
 import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
@@ -66,6 +68,11 @@ public class InvoicesController extends PageController implements OverviewPage, 
         table.addCol(new Column("TO_CHAR(deliverydate, 'DD-MM-YYYY')",
             new LeftHeaderViewFactory("Afleverdatum"),
             new TextCellFactory())
+        );
+
+        table.addCol(new Column("null",
+                new CenterHeaderViewFactory("Aanpassen"),
+                new EditCellFactory("invoices/edit/{invoice_id}/", this))
         );
 
         return  table;
