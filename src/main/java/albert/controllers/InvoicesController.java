@@ -43,41 +43,27 @@ public class InvoicesController extends PageController implements OverviewPage, 
 
     public Table getOverviewTable(){
         Table table = new Table(
-                new DatabaseStrategy(Query.table("invoice").where("paid", "=", "false")),
-                new SearchTableView()
+            new DatabaseStrategy(Query.table("invoice")
+                .where("paid", "=", false)),
+            new SearchTableView()
         );
 
         table.addCol(new Column("invoice_id::text",
-                new LeftHeaderViewFactory("Invoice ID"),
-                new RouteCellFactory("invoices/detail/{invoice_id}/", this))
+            new LeftHeaderViewFactory("Invoice ID"),
+            new RouteCellFactory("invoices/detail/{invoice_id}/", this))
         );
 
         table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
-                new LeftHeaderViewFactory("Aangemaakt op"),
-                new TextCellFactory())
+            new LeftHeaderViewFactory("Aangemaakt op"),
+            new TextCellFactory())
         );
 
         table.addCol(new Column("TO_CHAR(deliverydate, 'DD-MM-YYYY')",
-                new LeftHeaderViewFactory("Afleverdatum"),
-                new TextCellFactory())
+            new LeftHeaderViewFactory("Afleverdatum"),
+            new TextCellFactory())
         );
 
-        table.addCol(new Column("PAID::text",
-                new LeftHeaderViewFactory("Betaald"),
-                new TextCellFactory())
-        );
-
-        table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
-                new LeftHeaderViewFactory("Aangemaakt op"),
-                new TextCellFactory())
-        );
-
-        table.addCol(new Column("TO_CHAR(deliverydate, 'DD-MM-YYYY')",
-                new LeftHeaderViewFactory("Afleverdatum"),
-                new TextCellFactory())
-        );
-
-        return  table;
+        return table;
     }
 
     public void createInvoice(String price, String hours, Boolean betaald, Timestamp deliveryDate, int projectId) {
@@ -104,29 +90,25 @@ public class InvoicesController extends PageController implements OverviewPage, 
 
     public Table getPaidOverviewTable(){
         Table table = new Table(
-                new DatabaseStrategy(Query.table("invoice").where("paid", "=", "true")),
-                new SearchTableView()
+            new DatabaseStrategy(Query.table("invoice")
+                .where("paid", "=", true)),
+            new SearchTableView()
         );
 
         table.addCol(new Column("invoice_id::text",
-                new LeftHeaderViewFactory("Invoice ID"),
-                new RouteCellFactory("invoices/detail/{invoice_id}/", this))
+            new LeftHeaderViewFactory("Invoice ID"),
+            new RouteCellFactory("invoices/detail/{invoice_id}/", this))
         );
 
         table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
-                new LeftHeaderViewFactory("Aangemaakt op"),
-                new TextCellFactory())
+            new LeftHeaderViewFactory("Aangemaakt op"),
+            new TextCellFactory())
         );
 
         table.addCol(new Column("TO_CHAR(deliverydate, 'DD-MM-YYYY')",
-                new LeftHeaderViewFactory("Afleverdatum"),
-                new TextCellFactory())
+            new LeftHeaderViewFactory("Afleverdatum"),
+            new TextCellFactory())
         );
-
-//        table.addCol(new Column("paid::text",
-//                new LeftHeaderViewFactory("Betaald"),
-//                new TextCellFactory())
-//        );
 
         return  table;
     }

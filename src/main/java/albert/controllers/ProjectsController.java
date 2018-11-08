@@ -2,7 +2,6 @@ package albert.controllers;
 
 import albert.Client;
 import albert.dao.ContactDAO;
-import albert.dao.*;
 import albert.models.Contact;
 import query.Query;
 import albert.dao.ProjectDAO;
@@ -26,6 +25,7 @@ import table.factories.header.CenterHeaderViewFactory;
 import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
+import table.views.tables.components.TableButton;
 
 import java.util.ArrayList;
 
@@ -34,8 +34,6 @@ public class ProjectsController extends PageController implements OverviewPage, 
     private Project project;
     private ProjectDAO projectDAO = new ProjectDAO();
     private ContactDAO contactDAO = new ContactDAO();
-    private ExpenseDAO expenseDAO = new ExpenseDAO();
-    private InvoiceDAO invoiceDAO  = new InvoiceDAO();
 
     public ProjectsController(
             PageView view,
@@ -47,7 +45,7 @@ public class ProjectsController extends PageController implements OverviewPage, 
     public Table getOverviewTable(){
         Table table = new Table(
             new DatabaseStrategy(Query.table("project")
-                .where("done::varchar", "=", "false")),
+                .where("done", "=", false)),
             new SearchTableView()
         );
 
@@ -74,13 +72,13 @@ public class ProjectsController extends PageController implements OverviewPage, 
     public Table getDoneOverviewTable(){
         Table table = new Table(
                 new DatabaseStrategy(Query.table("project")
-                        .where("done::varchar", "=", "true")),
+                        .where("done", "=", true)),
                 new SearchTableView()
         );
 
         table.addCol(new Column("name",
                 new LeftHeaderViewFactory("Naam"),
-                new RouteCellFactory("projects/edit/{project_id}/", this))
+                new RouteCellFactory("projects/details/{project_id}/", this))
         );
 
         table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
@@ -100,83 +98,106 @@ public class ProjectsController extends PageController implements OverviewPage, 
 
     public Table getInvoicesTable(Project project) {
         Table table = new Table(
-                new DatabaseStrategy(Query.table("project")
-                        .where("done::varchar", "=", "true")),
-                new SearchTableView()
+            new DatabaseStrategy(Query.table("invoice")
+                    .where("project_id", "=", project.getId())),
+            new SearchTableView()
         );
 
-        table.addCol(new Column("name",
-                new LeftHeaderViewFactory("Naam"),
-                new RouteCellFactory("projects/edit/{project_id}/", this))
+        table.addCol(new Column("invoice_id::text",
+            new LeftHeaderViewFactory("Invoice ID"),
+            new RouteCellFactory("invoices/detail/{invoice_id}/", this))
         );
 
         table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
-                new LeftHeaderViewFactory("Aangemaakt op"),
-                new TextCellFactory())
+            new LeftHeaderViewFactory("Aangemaakt op"),
+            new TextCellFactory())
         );
 
-        table.addCol(new Column("null",
-                new CenterHeaderViewFactory("Aanpassen"),
-                new EditCellFactory("projects/edit/{project_id}/", this))
+        table.addCol(new Column("TO_CHAR(deliverydate, 'DD-MM-YYYY')",
+            new LeftHeaderViewFactory("Afleverdatum"),
+            new TextCellFactory())
         );
 
-        table.orderBy("project_id", "DESC");
+        table.addButton(
+            new TableButton("Factuur toevoegen", () -> {
+                this.router.nav("projects/create/");
+            })
+        );
 
-        return  table;
+        return table;
     }
 
     public Table getQuotationTable(Project project) {
         Table table = new Table(
-                new DatabaseStrategy(Query.table("project")
-                        .where("done::varchar", "=", "true")),
-                new SearchTableView()
+            new DatabaseStrategy(
+                Query.table("quotation")
+                    .where("project_id", "=", project.getId())),
+            new SearchTableView()
         );
 
         table.addCol(new Column("name",
-                new LeftHeaderViewFactory("Naam"),
-                new RouteCellFactory("projects/edit/{project_id}/", this))
+            new LeftHeaderViewFactory("Naam"),
+            new RouteCellFactory("quotations/detail/{quotation_id}/", this))
+        );
+
+        table.addCol(new Column("description",
+            new LeftHeaderViewFactory("Beschrijving"),
+            new TextCellFactory())
+        );
+
+        table.addCol(new Column("product",
+            new LeftHeaderViewFactory("Product"),
+            new TextCellFactory())
         );
 
         table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
-                new LeftHeaderViewFactory("Aangemaakt op"),
-                new TextCellFactory())
+            new LeftHeaderViewFactory("Aangemaakt op"),
+            new TextCellFactory())
         );
 
-        table.addCol(new Column("null",
-                new CenterHeaderViewFactory("Aanpassen"),
-                new EditCellFactory("projects/edit/{project_id}/", this))
+        table.addButton(
+            new TableButton("Offerte toevoegen", () -> {
+                this.router.nav("quotations/create/");
+            })
         );
 
-        table.orderBy("project_id", "DESC");
-
-        return  table;
+        return table;
     }
 
     public Table getExpensesTable(Project project) {
         Table table = new Table(
-                new DatabaseStrategy(Query.table("project")
-                        .where("done::varchar", "=", "true")),
-                new SearchTableView()
+            new DatabaseStrategy(Query.table("expense")
+                .where("project_id", "=", project.getId())),
+            new SearchTableView()
         );
 
         table.addCol(new Column("name",
-                new LeftHeaderViewFactory("Naam"),
-                new RouteCellFactory("projects/edit/{project_id}/", this))
+            new LeftHeaderViewFactory("Naam"),
+            new RouteCellFactory("expenses/detail/{expense_id}/", this))
+        );
+
+        table.addCol(new Column("price::text",
+            new LeftHeaderViewFactory("Bedrag"),
+            new TextCellFactory())
+        );
+
+        table.addCol(new Column("description",
+            new LeftHeaderViewFactory("Beschrijving"),
+            new TextCellFactory())
         );
 
         table.addCol(new Column("TO_CHAR(created_at, 'DD-MM-YYYY')",
-                new LeftHeaderViewFactory("Aangemaakt op"),
-                new TextCellFactory())
+            new LeftHeaderViewFactory("Aangemaakt op"),
+            new TextCellFactory())
         );
 
-        table.addCol(new Column("null",
-                new CenterHeaderViewFactory("Aanpassen"),
-                new EditCellFactory("projects/edit/{project_id}/", this))
+        table.addButton(
+            new TableButton("Onkosten toevoegen", () -> {
+                this.router.nav("expenses/create/");
+            })
         );
 
-        table.orderBy("project_id", "DESC");
-
-        return  table;
+        return table;
     }
 
     @Override

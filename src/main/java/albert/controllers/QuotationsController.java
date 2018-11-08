@@ -61,11 +61,6 @@ public class QuotationsController extends PageController implements OverviewPage
                 new TextCellFactory())
         );
 
-//        table.addCol(new Column("hours::text",
-//                new LeftHeaderViewFactory("Verwachte uren"),
-//                new TextCellFactory())
-//        );
-
         return table;
     }
 
