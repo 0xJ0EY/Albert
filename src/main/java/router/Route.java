@@ -5,20 +5,46 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Route.
+ *
+ */
 public class Route {
 
+    /** The route. */
     private String route;
+    
+    /** The pattern. */
     private String pattern;
+    
+    /** The args. */
     private ArrayList<String> args;
 
+    /**
+     * Instantiates a new route.
+     *
+     * @param route the route
+     */
     public Route(String route) {
         this.setRoute(route);
     }
 
+    /**
+     * Sets the route.
+     *
+     * @param route the new route
+     */
     public void setRoute(String route) {
         this.pattern = this.generatePattern(route);
     }
 
+    /**
+     * Generate pattern.
+     *
+     * @param route the route
+     * @return the string
+     */
     private String generatePattern(String route) {
 
         route = this.trimRoute(route);
@@ -44,6 +70,12 @@ public class Route {
         return regex.replaceAll(pattern, "([^\\\\/]+)");
     }
 
+    /**
+     * Builds the url.
+     *
+     * @param values the values
+     * @return the string
+     */
     public String buildUrl(HashMap<String, Object> values) {
         String URL = this.route;
 
@@ -60,6 +92,12 @@ public class Route {
         return URL;
     }
 
+    /**
+     * Match.
+     *
+     * @param route the route
+     * @return true, if successful
+     */
     public boolean match(String route) {
 
         route = this.trimRoute(route);
@@ -67,6 +105,12 @@ public class Route {
         return route.matches(this.pattern);
     }
 
+    /**
+     * Generate request.
+     *
+     * @param route the route
+     * @return the request
+     */
     public Request generateRequest(String route) {
         route = this.trimRoute(route);
 
@@ -78,6 +122,12 @@ public class Route {
         return request;
     }
 
+    /**
+     * Extract params.
+     *
+     * @param route the route
+     * @return the hash map
+     */
     private HashMap<String, String> extractParams(String route) {
         HashMap<String, String> map = new HashMap<>();
 
@@ -100,11 +150,22 @@ public class Route {
         return map;
     }
 
+    /**
+     * Trim route.
+     *
+     * @param route the route
+     * @return the string
+     */
     private String trimRoute(String route) {
         if (route.length() <= 1) return route;
         return route.replaceAll("/*$", "");
     }
 
+    /**
+     * Gets the args.
+     *
+     * @return the args
+     */
     public ArrayList<String> getArgs() {
         return this.args;
     }

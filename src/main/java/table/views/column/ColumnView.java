@@ -6,11 +6,21 @@ import javafx.scene.layout.VBox;
 import table.Column;
 import table.exceptions.ViewNotFoundException;
 
+/**
+ * The Class ColumnView.
+ *
+ */
 public class ColumnView extends VBox {
 
+    /** The resource. */
     private final String resource = "/views/table/columns/ColumnView.fxml";
+    
+    /** The cell. */
     private Column cell;
 
+    /**
+     * Load.
+     */
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
 
@@ -24,10 +34,18 @@ public class ColumnView extends VBox {
         }
     }
 
+    /**
+     * Sets the cell.
+     *
+     * @param cell the new cell
+     */
     public void setCell(Column cell) {
         this.cell = cell;
     }
 
+    /**
+     * Update.
+     */
     public void update() {
 
         // TODO: Refactor
@@ -35,6 +53,11 @@ public class ColumnView extends VBox {
 
     }
 
+    /**
+     * Render.
+     *
+     * @return the v box
+     */
     public VBox render() {
         return this;
     }

@@ -8,14 +8,23 @@ import database.Database;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * The Class ContactDAO. Insert an object into the database. And gets data from the database to an object.
+ *
+ */
 public class ContactDAO implements DAO<Contact> {
 
 
+    /** The contact email DAO. */
     private final ContactEmailDAO contactEmailDAO = new ContactEmailDAO();
+    
+    /** The contact phone number DAO. */
     private final ContactPhoneNumberDAO contactPhoneNumberDAO = new ContactPhoneNumberDAO();
 
+    /** The select contact sql. */
     private final String SELECT_CONTACT_SQL = "SELECT * FROM contact WHERE contact_id = ?";
 
+    /** The create contact sql. */
     private final String CREATE_CONTACT_SQL = "INSERT INTO \"contact\" " +
             "(\"contact_id\", " +
             "\"first_name\", " +
@@ -29,6 +38,7 @@ public class ContactDAO implements DAO<Contact> {
             "\"description\") " +
             "VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+    /** The update contact sql. */
     private final String UPDATE_CONTACT_SQL = "UPDATE contact SET " +
             "first_name=?, " +
             "last_name=?, " +
@@ -42,9 +52,13 @@ public class ContactDAO implements DAO<Contact> {
             "WHERE " +
             "contact_id = ?";
 
+    /** The delete contact sql. */
     private final String DELETE_CONTACT_SQL = "DELETE FROM contact WHERE contact_id = ?";
 
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#getAll()
+     */
     @Override
     public ArrayList getAll() {
         String sql = "SELECT * FROM contact";
@@ -68,6 +82,9 @@ public class ContactDAO implements DAO<Contact> {
         return contactArrayList;
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#loadById(long)
+     */
     @Override
     public Contact loadById(long id) {
 
@@ -112,6 +129,9 @@ public class ContactDAO implements DAO<Contact> {
         return contact;
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#create(java.lang.Object)
+     */
     @Override
     public void create(Contact contact) {
 
@@ -155,6 +175,9 @@ public class ContactDAO implements DAO<Contact> {
     }
 
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#update(java.lang.Object)
+     */
     @Override
     public void update(Contact contact) {
 
@@ -191,6 +214,9 @@ public class ContactDAO implements DAO<Contact> {
         }
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#delete(java.lang.Object)
+     */
     @Override
     public  void delete(Contact contact) {
 
@@ -221,6 +247,9 @@ public class ContactDAO implements DAO<Contact> {
         }
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#extractFromResultSet(java.sql.ResultSet)
+     */
     @Override
     public Contact extractFromResultSet(ResultSet rs) throws SQLException {
 

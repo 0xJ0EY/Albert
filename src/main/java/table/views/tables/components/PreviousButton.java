@@ -1,13 +1,30 @@
+/*
+ * 
+ */
 package table.views.tables.components;
 
 import javafx.scene.control.Button;
 import table.Table;
 
+/**
+ * The Class PreviousButton in a table.
+ *
+ */
 public class PreviousButton extends Button {
 
+    /** The controller. */
     private Table controller;
+    
+    /** The page. */
     private int page;
 
+    /**
+     * Instantiates a new previous button.
+     *
+     * @param minPage the min page
+     * @param page the page
+     * @param table the table
+     */
     public PreviousButton(int minPage, int page, Table table) {
 
         this.setDisable(minPage >= page);

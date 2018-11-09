@@ -11,19 +11,28 @@ import table.views.TableView;
 
 import java.awt.*;
 import java.io.IOException;
-/*
-Hier wordt de prrojects geladen
- */
 
+
+/**
+ * The Class ProjectsDoneView. Loads the ProjectsDoneView
+ *
+ */
 public class ProjectsDoneView extends AnchorPane implements PageView  {
 
+    /** The resource. */
     private final String resource = "/views/pages/ProjectsDone.fxml";
+    
+    /** The controller. */
     private ProjectsController controller;
 
+    /** The overview table. */
     @FXML
     private AnchorPane overviewTable;
 
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#load()
+     */
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
@@ -38,6 +47,9 @@ public class ProjectsDoneView extends AnchorPane implements PageView  {
         }
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#update()
+     */
     @Override
     public void update() {
 
@@ -63,21 +75,33 @@ public class ProjectsDoneView extends AnchorPane implements PageView  {
         this.overviewTable.getChildren().add(render);
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#setController(albert.controllers.PageController)
+     */
     @Override
     public void setController(PageController controller) {
         this.controller = (ProjectsController)controller;
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#render()
+     */
     @Override
     public AnchorPane render() {
         return this;
     }
 
+    /**
+     * On click new project.
+     */
     public void onClickNewProject(){
 
         controller.getRouter().nav("projects/create/");
     }
 
+    /**
+     * On click ongoing.
+     */
     @FXML
     public void onClickOngoing(){
         controller.getRouter().nav("projects/");

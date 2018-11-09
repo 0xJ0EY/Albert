@@ -4,10 +4,18 @@ import javafx.fxml.FXMLLoader;
 import table.exceptions.ViewNotFoundException;
 import table.views.TableView;
 
+/**
+ * The Class BareTableView.
+ *
+ */
 public class BareTableView extends BaseTableView implements TableView {
 
+    /** The resource. */
     private final String resource = "/views/table/tables/BareTableView.fxml";
 
+    /* (non-Javadoc)
+     * @see table.views.tables.BaseTableView#load()
+     */
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));

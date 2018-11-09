@@ -21,30 +21,48 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * The Class InvoiceEditView. Loads the InvoiceEditView
+ *
+ */
 public class InvoiceEditView extends AnchorPane implements PageView {
 
+    /** The resource. */
     private final String resource = "/views/pages/InvoiceEditView.fxml";
+    
+    /** The controller. */
     private InvoicesController controller;
+    
+    /** The dtf. */
     private SimpleDateFormat dtf = new SimpleDateFormat("dd/MM/yyyy");
 
+    /** The hours. */
     @FXML
     private TextField hours;
 
+    /** The price. */
     @FXML
     private TextField price;
 
+    /** The description. */
     @FXML
     private TextField description;
 
+    /** The betaald box. */
     @FXML
     private CheckBox betaaldBox;
 
+    /** The linked contact. */
     @FXML
     private ComboBox linkedContact;
 
+    /** The delivery date. */
     @FXML
     private DatePicker deliveryDate;
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#load()
+     */
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
@@ -60,6 +78,9 @@ public class InvoiceEditView extends AnchorPane implements PageView {
 
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#update()
+     */
     @Override
     public void update() {
         this.controller.getTemplate().addAction("Terug", () -> this.onClickBack());
@@ -78,21 +99,33 @@ public class InvoiceEditView extends AnchorPane implements PageView {
         }
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#setController(albert.controllers.PageController)
+     */
     @Override
     public void setController(PageController controller) {
         this.controller = (InvoicesController)controller;
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#render()
+     */
     @Override
     public AnchorPane render() {
         return this;
     }
 
+    /**
+     * On click back.
+     */
     @FXML
     public void onClickBack() {
         this.controller.getRouter().nav("invoices/");
     }
 
+    /**
+     * On click save.
+     */
     @FXML
     public void onClickSave() {
         Date date = Date.from(deliveryDate.getValue().atStartOfDay()
@@ -104,6 +137,11 @@ public class InvoiceEditView extends AnchorPane implements PageView {
         controller.getRouter().nav("invoices/");
     }
 
+    /**
+     * Sets the attributes.
+     *
+     * @param invoice the new attributes
+     */
     public void setAttributes(Invoice invoice) {
         hours.setText(invoice.getAmount().getHours() + "");
         price.setText(invoice.getAmount().getPrice() + "");

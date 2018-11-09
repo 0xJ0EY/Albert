@@ -15,23 +15,37 @@ import javafx.scene.layout.AnchorPane;
 
 import java.util.ArrayList;
 
+/**
+ * The Class ProjectsEditView. Loads the ProjectsEditView
+ *
+ */
 public class ProjectsEditView extends AnchorPane implements PageView {
 
+    /** The resource. */
     private final String resource = "/views/pages/ProjectEditView.fxml";
+    
+    /** The controller. */
     private ProjectsController controller;
 
+    /** The naam. */
     @FXML
     private TextField naam;
 
+    /** The is done. */
     @FXML
     private CheckBox isDone;
 
+    /** The description. */
     @FXML
     private TextArea description;
 
+    /** The contact drop box. */
     @FXML
     private ChoiceBox contactDropBox;
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#load()
+     */
     @FXML
     @Override
     public void load() {
@@ -47,6 +61,9 @@ public class ProjectsEditView extends AnchorPane implements PageView {
         }
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#update()
+     */
     @Override
     public void update() {
         this.controller.getTemplate().addAction("Terug", () -> this.onClickBack());
@@ -67,6 +84,9 @@ public class ProjectsEditView extends AnchorPane implements PageView {
 
     }
 
+    /**
+     * Update contact dropdown.
+     */
     private void updateContactDropdown() {
         ArrayList<Contact> contacts = this.controller.getContacts();
 
@@ -82,16 +102,25 @@ public class ProjectsEditView extends AnchorPane implements PageView {
         this.contactDropBox.setValue(selected);
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#setController(albert.controllers.PageController)
+     */
     @Override
     public void setController(PageController controller) {
         this.controller = (ProjectsController)controller;
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#render()
+     */
     @Override
     public AnchorPane render() {
         return this;
     }
 
+    /**
+     * On click save.
+     */
     @FXML
     public void onClickSave() {
 
@@ -114,6 +143,9 @@ public class ProjectsEditView extends AnchorPane implements PageView {
 
     }
 
+    /**
+     * On click back.
+     */
     @FXML
     public void onClickBack() {
         controller.getRouter().nav("projects/");

@@ -10,7 +10,15 @@ import albert.views.ProjectsView;
 import router.factories.pages.CreatePageFactory;
 import router.pages.CreatePage;
 
+/**
+ * A factory for creating ProjectsCreatePage objects.
+ *
+ */
 public class ProjectsCreatePageFactory implements CreatePageFactory {
+    
+    /* (non-Javadoc)
+     * @see router.factories.PageFactory#create()
+     */
     @Override
     public CreatePage create() {
         return new ProjectsController(new ProjectsCreateView(), new MenuTemplateController());

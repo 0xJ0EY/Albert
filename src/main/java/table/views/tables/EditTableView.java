@@ -5,10 +5,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import table.exceptions.ViewNotFoundException;
 
+/**
+ * The Class EditTableView.
+ *
+ */
 public class EditTableView extends BaseTableView {
 
+    /** The resource. */
     private final String resource = "/views/table/tables/EditTableView.fxml";
 
+    /* (non-Javadoc)
+     * @see table.views.tables.BaseTableView#load()
+     */
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
@@ -24,6 +32,9 @@ public class EditTableView extends BaseTableView {
         }
     }
 
+    /* (non-Javadoc)
+     * @see table.views.tables.BaseTableView#update()
+     */
     @Override
     public void update() {
         // Update overlay text

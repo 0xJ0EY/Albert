@@ -17,32 +17,52 @@ import router.views.PageView;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+/**
+ * The Class ExpenseCreateView. Loads the ExpenseCreateView
+ *
+ */
 public class ExpenseCreateView extends AnchorPane implements PageView {
 
+    /** The resource. */
     private final String resource = "/views/pages/ExpenseCreate.fxml";
+    
+    /** The controller. */
     private ExpenseController controller;
+    
+    /** The df. */
     DecimalFormat df = new DecimalFormat("####0.00");
+    
+    /** The btw. */
     double btw = 1.21;
 
+    /** The Name. */
     @FXML
     private TextField Name;
 
+    /** The project onkost. */
     @FXML
     private CheckBox projectOnkost;
 
+    /** The project koppel. */
     @FXML
     private ComboBox projectKoppel;
 
+    /** The Price. */
     @FXML
     private TextField Price;
 
+    /** The Netto bedrag. */
     @FXML
     private Text NettoBedrag;
 
+    /** The Description. */
     @FXML
     private TextField Description;
 
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#load()
+     */
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
@@ -57,6 +77,9 @@ public class ExpenseCreateView extends AnchorPane implements PageView {
         }
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#update()
+     */
     @Override
     public void update() {
         this.controller.getTemplate().addAction("Terug", () -> this.onClickBack());
@@ -72,21 +95,33 @@ public class ExpenseCreateView extends AnchorPane implements PageView {
 
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#setController(albert.controllers.PageController)
+     */
     @Override
     public void setController(PageController controller) {
         this.controller =(ExpenseController) controller;
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#render()
+     */
     @Override
     public AnchorPane render() {
         return this;
     }
 
+    /**
+     * On click back.
+     */
     @FXML
     public void onClickBack() {
         this.controller.getRouter().nav("expenses/");
     }
 
+    /**
+     * On click save.
+     */
     @FXML
     public void onClickSave() {
         int projectId = controller.getProjectIdFromName(projectKoppel.getValue().toString());
@@ -94,12 +129,18 @@ public class ExpenseCreateView extends AnchorPane implements PageView {
         this.controller.getRouter().nav("expenses/");
     }
 
+    /**
+     * On click calculate.
+     */
     @FXML
     public void onClickCalculate(){
         double netto = Double.parseDouble(Price.getText()) * btw;
         NettoBedrag.setText(df.format(netto));
     }
 
+    /**
+     * On click project check.
+     */
     @FXML
     public void onClickProjectCheck(){
         if (projectOnkost.isSelected()){

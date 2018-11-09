@@ -1,10 +1,19 @@
 package router.util;
 
+// TODO: Auto-generated Javadoc
 /**
- * This class isnt the most elegant, but there is no other way to cast String to primitive cells
+ * This class isnt the most elegant, but there is no other way to cast String to primitive cells.
+ *
  */
 public class Helper {
 
+    /**
+     * Zero.
+     *
+     * @param <T> the generic type
+     * @param clazz the clazz
+     * @return the t
+     */
     @SuppressWarnings("unchecked")
     public static <T> T zero(Class<T> clazz) {
         Object o = null;
@@ -49,6 +58,14 @@ public class Helper {
 
     }
 
+    /**
+     * Parses the.
+     *
+     * @param <T> the generic type
+     * @param value the value
+     * @param clazz the clazz
+     * @return the t
+     */
     @SuppressWarnings("unchecked")
     public static <T> T parse(String value, Class<T> clazz) {
 
@@ -67,6 +84,14 @@ public class Helper {
         return (T) o;
     }
 
+    /**
+     * Parses the primitive.
+     *
+     * @param value the value
+     * @param clazz the clazz
+     * @return the object
+     * @throws IllegalArgumentException the illegal argument exception
+     */
     private static Object parsePrimitive(String value, Class clazz) throws IllegalArgumentException {
 
         Object o = null;
@@ -113,6 +138,13 @@ public class Helper {
         return o;
     }
 
+    /**
+     * Parses the special.
+     *
+     * @param value the value
+     * @param clazz the clazz
+     * @return the object
+     */
     private static Object parseSpecial(String value, Class clazz) {
         // TODO: Special type parsing
         return null;

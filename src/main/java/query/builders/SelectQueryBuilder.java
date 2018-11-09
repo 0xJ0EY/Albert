@@ -4,15 +4,26 @@ import query.selects.Select;
 
 import java.util.ArrayList;
 
+/**
+ * The Class SelectQueryBuilder.
+ *
+ */
 public class SelectQueryBuilder implements SelectQueryBuilderInterface {
 
+    /** The selects. */
     private ArrayList<Select> selects = new ArrayList<>();
 
+    /* (non-Javadoc)
+     * @see query.builders.SelectQueryBuilderInterface#select(java.lang.String)
+     */
     @Override
     public void select(String key) {
         this.selects.add(new Select(key));
     }
 
+    /* (non-Javadoc)
+     * @see query.builders.QueryBuilderInterface#build()
+     */
     @Override
     public String build() {
 
@@ -29,11 +40,17 @@ public class SelectQueryBuilder implements SelectQueryBuilderInterface {
         return "SELECT " + String.join(", ", names);
     }
 
+    /* (non-Javadoc)
+     * @see query.builders.SelectQueryBuilderInterface#getSelected()
+     */
     @Override
     public ArrayList<Select> getSelected() {
         return this.selects;
     }
 
+    /* (non-Javadoc)
+     * @see query.builders.SelectQueryBuilderInterface#clearSelect()
+     */
     @Override
     public void clearSelect() {
         this.selects = new ArrayList<>();

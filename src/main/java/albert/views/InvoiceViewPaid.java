@@ -12,17 +12,29 @@ import table.views.TableView;
 
 import java.io.IOException;
 
+/**
+ * The Class InvoiceViewPaid. Loads the InvoiceViewPaid
+ *
+ */
 public class InvoiceViewPaid extends AnchorPane implements PageView {
 
+    /** The resource. */
     private final String resource = "/views/pages/InvoiceViewPaid.fxml";
+    
+    /** The controller. */
     private InvoicesController controller;
 
+    /** The overview table. */
     @FXML
     private AnchorPane overviewTable;
 
+    /** The searchform. */
     @FXML
     private TextField searchform;
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#load()
+     */
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
@@ -38,6 +50,9 @@ public class InvoiceViewPaid extends AnchorPane implements PageView {
     }
 
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#update()
+     */
     @Override
     public void update() {
         Table table = controller.getPaidOverviewTable();
@@ -57,21 +72,33 @@ public class InvoiceViewPaid extends AnchorPane implements PageView {
         this.overviewTable.getChildren().add(render);
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#setController(albert.controllers.PageController)
+     */
     @Override
     public void setController(PageController controller) {
         this.controller = (InvoicesController)controller;
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#render()
+     */
     @Override
     public AnchorPane render() {
         return this;
     }
 
+    /**
+     * On click add invoice.
+     */
     @FXML
     public void onClickAddInvoice(){
         controller.getRouter().nav("invoices/create/");
     }
 
+    /**
+     * On click not paid.
+     */
     @FXML
     public void onClickNotPaid(){
         controller.getRouter().nav("invoices/");

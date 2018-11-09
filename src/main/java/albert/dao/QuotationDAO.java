@@ -7,14 +7,31 @@ import database.Database;
 import java.sql.*;
 import java.util.ArrayList;
 
+
+/**
+ * The Class QuotationDAO. Insert an object into the database. And gets data from the database to an object.
+ *
+ */
 public class QuotationDAO implements DAO<Quotation>{
 
+    /** The quotation. */
     private Quotation quotation;
+    
+    /** The dao amount. */
     private AmountDAO daoAmount = new AmountDAO();
+    
+    /** The dao project. */
     private ProjectDAO daoProject = new ProjectDAO();
+    
+    /** The amount DAO. */
     private AmountDAO amountDAO = new AmountDAO();
+    
+    /** The project DAO. */
     private ProjectDAO projectDAO = new ProjectDAO();
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#getAll()
+     */
     @Override
     public ArrayList getAll() {
 
@@ -40,6 +57,9 @@ public class QuotationDAO implements DAO<Quotation>{
         return quotationArrayList;
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#loadById(long)
+     */
     @Override
     public Quotation loadById(long id) {
         String sql = "SELECT * FROM quotation WHERE quotation_id= ?";
@@ -62,6 +82,9 @@ public class QuotationDAO implements DAO<Quotation>{
         return quotation;
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#create(java.lang.Object)
+     */
     @Override
     public void create(Quotation quotation) {
         this.quotation = quotation;
@@ -93,6 +116,9 @@ public class QuotationDAO implements DAO<Quotation>{
 
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#update(java.lang.Object)
+     */
     @Override
     public void update(Quotation quotation) {
         this.quotation = quotation;
@@ -124,6 +150,9 @@ public class QuotationDAO implements DAO<Quotation>{
         System.out.println("Quotation Updated");
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#delete(java.lang.Object)
+     */
     @Override
     public void delete(Quotation quotation) {
         this.quotation = quotation;
@@ -145,6 +174,9 @@ public class QuotationDAO implements DAO<Quotation>{
         System.out.println("Quotation deleted");
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#extractFromResultSet(java.sql.ResultSet)
+     */
     @Override
     public Quotation extractFromResultSet(ResultSet rs) throws SQLException {
         Quotation quotation = new Quotation(

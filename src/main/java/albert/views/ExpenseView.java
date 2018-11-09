@@ -14,20 +14,34 @@ import table.views.TableView;
 
 import java.io.IOException;
 
+
+/**
+ * The Class ExpenseView. Loads the ExpenseView
+ *
+ */
 public class ExpenseView extends AnchorPane implements PageView {
 
+    /** The resource. */
     private final String resource = "/views/pages/ExpenseView.fxml";
+    
+    /** The controller. */
     private ExpenseController controller;
 
+    /** The overview table. */
     @FXML
     private AnchorPane overviewTable;
 
+    /** The search bar. */
     @FXML
     private TextField searchBar;
 
+    /** The Generate PDF. */
     @FXML
     private Button GeneratePDF;
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#load()
+     */
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
@@ -42,6 +56,9 @@ public class ExpenseView extends AnchorPane implements PageView {
         }
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#update()
+     */
     @Override
     public void update() {
         this.controller.getTemplate().addAction("Nieuwe onkost", () -> this.onClickAddExpense());
@@ -64,16 +81,25 @@ public class ExpenseView extends AnchorPane implements PageView {
 
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#setController(albert.controllers.PageController)
+     */
     @Override
     public void setController(PageController controller) {
         this.controller =(ExpenseController) controller;
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#render()
+     */
     @Override
     public AnchorPane render() {
         return this;
     }
 
+    /**
+     * On click add expense.
+     */
     @FXML
     public void onClickAddExpense() {
 

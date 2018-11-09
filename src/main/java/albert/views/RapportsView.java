@@ -13,20 +13,33 @@ import table.views.TableView;
 
 import java.io.IOException;
 
+/**
+ * The Class RapportsView. Loads the RapportsView
+ *
+ */
 public class RapportsView extends AnchorPane implements PageView {
 
+    /** The resource. */
     private final String resource = "/views/pages/RapportsView.fxml";
+    
+    /** The controller. */
     private RapportsController controller;
 
+    /** The overview table. */
     @FXML
     private AnchorPane overviewTable;
 
+    /** The search bar. */
     @FXML
     private TextField searchBar;
 
+    /** The Generate PDF. */
     @FXML
     private Button GeneratePDF;
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#load()
+     */
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
@@ -41,6 +54,9 @@ public class RapportsView extends AnchorPane implements PageView {
         }
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#update()
+     */
     @Override
     public void update() {
             Table table = controller.getOverviewTable();
@@ -61,16 +77,25 @@ public class RapportsView extends AnchorPane implements PageView {
 
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#setController(albert.controllers.PageController)
+     */
     @Override
     public void setController(PageController controller) {
         this.controller =(RapportsController) controller;
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#render()
+     */
     @Override
     public AnchorPane render() {
         return this;
     }
 
+    /**
+     * On click add report.
+     */
     @FXML
     public void onClickAddReport() {
 
@@ -78,6 +103,9 @@ public class RapportsView extends AnchorPane implements PageView {
 
     }
 
+    /**
+     * On click expenses.
+     */
     @FXML
     public void onClickExpenses() {
 

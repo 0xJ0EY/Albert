@@ -29,22 +29,49 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * The Class ExpenseController.
+ *
+ */
 public class ExpenseController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
 
+    /** The expense. */
     private Expense expense;
+    
+    /** The dao. */
     private ExpenseDAO dao = new ExpenseDAO();
+    
+    /** The project DAO. */
     private ProjectDAO projectDAO = new ProjectDAO();
+    
+    /** The request. */
     private Request request;
 
+    /** The calendar. */
     Calendar calendar = Calendar.getInstance();
+    
+    /** The now. */
     java.util.Date now = calendar.getTime();
+    
+    /** The current timestamp. */
     java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
 
+    /**
+     * Instantiates a new expense controller.
+     *
+     * @param view the view
+     * @param template the template
+     */
     public ExpenseController(PageView view, TemplateController template) {
 
         super(view, template);
     }
 
+    /**
+     * Gets the overview table.
+     *
+     * @return the overview table
+     */
     public Table getOverviewTable(){
         Table table = new Table(
                 new DatabaseStrategy(Query.table("expense")),
@@ -79,33 +106,57 @@ public class ExpenseController extends PageController implements OverviewPage, D
         return table;
     }
 
+    /* (non-Javadoc)
+     * @see router.pages.OverviewPage#overview(router.Request)
+     */
     @Override
     public Response overview(Request request) {
         this.request = request;
         return new ViewResponse(this);
     }
 
+    /* (non-Javadoc)
+     * @see router.pages.DetailPage#detail(router.Request)
+     */
     @Override
     public Response detail(Request request) {
         this.request = request;
         return new ViewResponse(this);
     }
 
+    /* (non-Javadoc)
+     * @see router.pages.EditPage#edit(router.Request)
+     */
     @Override
     public Response edit(Request request) {
         this.request = request;
         return new ViewResponse(this);
     }
 
+    /* (non-Javadoc)
+     * @see router.pages.CreatePage#create(router.Request)
+     */
     @Override
     public Response create(Request request) {
         this.request = request;
         return new ViewResponse(this);
     }
 
+    /**
+     * Navigate edit expense.
+     */
     public void navigateEditExpense(){
         this.getRouter().nav("expenses/edit/"+ this.getRequest().getParameter("expense") + "/");
     }
+    
+    /**
+     * Edits the expense.
+     *
+     * @param expenseID the expense ID
+     * @param name the name
+     * @param price the price
+     * @param description the description
+     */
     public void editExpense(int expenseID, String name, double price, String description){
         expense.setId(expenseID);
         expense.setName(name);
@@ -114,18 +165,42 @@ public class ExpenseController extends PageController implements OverviewPage, D
         dao.update(expense);
         this.getRouter().nav("expenses/detail/"+ expenseID + "/");
     }
+    
+    /**
+     * Sets the expense.
+     *
+     * @param id the new expense
+     */
     public void setExpense(int id) {
         this.expense = dao.loadById(id);
     }
 
+    /**
+     * Gets the expense.
+     *
+     * @return the expense
+     */
     public Expense getExpense(){
         return this.expense;
     }
 
+    /**
+     * Gets the request.
+     *
+     * @return the request
+     */
     public Request getRequest() {
         return request;
     }
 
+    /**
+     * Save expense.
+     *
+     * @param price the price
+     * @param description the description
+     * @param name the name
+     * @param projectID the project ID
+     */
     public void saveExpense(double price, String description, String name, int projectID){
 
         expense = new Expense();
@@ -138,11 +213,22 @@ public class ExpenseController extends PageController implements OverviewPage, D
         dao.create(expense);
     }
 
+    /**
+     * Gets the projects.
+     *
+     * @return the projects
+     */
     public ArrayList<Project> getProjects(){
         ArrayList<Project> projects = projectDAO.getAll();
         return projects;
     }
 
+    /**
+     * Gets the project id from name.
+     *
+     * @param projectName the project name
+     * @return the project id from name
+     */
     public int getProjectIdFromName(String projectName) {
         int projectId = 0;
         ArrayList<Project> projects = this.getProjects();

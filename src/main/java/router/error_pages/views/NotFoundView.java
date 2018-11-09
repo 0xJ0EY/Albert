@@ -5,18 +5,26 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import router.views.PageView;
 
-/*
-Hier wordt de error view getoont zodra er een fout in staat.
-*/
 
+/**
+ * The Class NotFoundView. Shows an errorView
+ *
+ */
 public class NotFoundView extends AnchorPane implements PageView {
+    
+    /** The resource. */
     private final String resource = "/views/error_pages/PageNotFound.fxml";
+    
+    /** The controller. */
     private PageController controller;
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#load()
+     */
     @Override
-    /*
-Dit methode zorgt dat het programma naar pageNotfound pagina gaat, als er een fout in staat
- */
+    /**
+     * Creates an pagenotfound if its goes wrong
+     */
 
     public void load() {
 
@@ -32,16 +40,25 @@ Dit methode zorgt dat het programma naar pageNotfound pagina gaat, als er een fo
         }
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#update()
+     */
     @Override
     public void update() {
 
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#setController(albert.controllers.PageController)
+     */
     @Override
     public void setController(PageController controller) {
         this.controller = controller;
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#render()
+     */
     @Override
     public AnchorPane render() {
         return this;

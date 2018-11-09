@@ -6,23 +6,38 @@ import config.Config;
 import java.beans.PropertyVetoException;
 import java.sql.Connection;
 import java.sql.SQLException;
-/*
-De klas database zorgt dat de app is gekopeld met dbms, waar de data wordt opgeslagen.
+
+/**
+ * The Class Database.
+ * Defines the connection with the database
  */
 public class Database {
 
+    /** The instance. */
     private static Database instance;
 
+    /** The Constant JDBC_DRIVER. */
     private static final String JDBC_DRIVER = "org.postgresql.Driver";
+    
+    /** The Constant JDBC_CONN_URL. */
     private static final String JDBC_CONN_URL = "jdbc:postgresql://"
             + Config.get("database", "server.hostname") + "/"
             + Config.get("database", "server.database");
 
+    /** The Constant JDBC_USER. */
     private static final String JDBC_USER = Config.get("database", "server.username");
+    
+    /** The Constant JDBC_PASS. */
     private static final String JDBC_PASS = Config.get("database", "server.password");
 
+    /** The combo pooled data source. */
     private ComboPooledDataSource comboPooledDataSource;
 
+    /**
+     * Gets the single instance of Database.
+     *
+     * @return single instance of Database
+     */
     public static synchronized Database getInstance() {
         if (instance == null) {
             instance = new Database();
@@ -31,6 +46,9 @@ public class Database {
         return instance;
     }
 
+    /**
+     * Instantiates a new database.
+     */
     private Database() {
         try {
             this.comboPooledDataSource = new ComboPooledDataSource();
@@ -45,6 +63,11 @@ public class Database {
 
     }
 
+    /**
+     * Gets the connection.
+     *
+     * @return the connection
+     */
     public Connection getConnection() {
         Connection conn = null;
         try {

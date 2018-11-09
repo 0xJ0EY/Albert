@@ -8,11 +8,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * The Class AmountDAO. Insert an object into the database. And gets data from the database to an object.
+ *
+ */
 public class AmountDAO implements DAO<Amount> {
 
+    /** The amount. */
     private Amount amount;
 
+    /** The dao contact. */
     private ContactDAO daoContact = new ContactDAO();
+    
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#getAll()
+     */
     @Override
     public ArrayList getAll() {
         String sql = "SELECT * FROM amount";
@@ -36,6 +46,9 @@ public class AmountDAO implements DAO<Amount> {
         return AmountArrayList;
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#loadById(long)
+     */
     @Override
     public Amount loadById(long id) {
         String sql = "SELECT * FROM amount WHERE amount_id = ?";
@@ -58,6 +71,9 @@ public class AmountDAO implements DAO<Amount> {
         return amount;
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#create(java.lang.Object)
+     */
     @Override
     public void create(Amount obj) {
 
@@ -90,10 +106,18 @@ public class AmountDAO implements DAO<Amount> {
         System.out.println("Amount added");
     }
 
+    /**
+     * Gets the last inserted id.
+     *
+     * @return the last inserted id
+     */
     public int getLastInsertedId() {
         return this.amount.getId();
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#update(java.lang.Object)
+     */
     @Override
     public void update(Amount obj) {
         this.amount = obj;
@@ -119,6 +143,9 @@ public class AmountDAO implements DAO<Amount> {
 
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#delete(java.lang.Object)
+     */
     @Override
     public void delete(Amount obj) {
         this.amount = obj;
@@ -140,6 +167,9 @@ public class AmountDAO implements DAO<Amount> {
         System.out.println("Amount deleted");
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#extractFromResultSet(java.sql.ResultSet)
+     */
     @Override
     public Amount extractFromResultSet(ResultSet rs) throws SQLException {
         Amount amount = new Amount();

@@ -9,8 +9,15 @@ import router.factories.pages.EditPageFactory;
 import router.pages.CreatePage;
 import router.pages.EditPage;
 
+/**
+ * A factory for creating RapportsCreatePage objects.
+ *
+ */
 public class RapportsCreatePageFactory implements CreatePageFactory {
 
+    /* (non-Javadoc)
+     * @see router.factories.PageFactory#create()
+     */
     @Override
     public CreatePage create() {
         return new RapportsController(new RapportsCreateView(), new MenuTemplateController());

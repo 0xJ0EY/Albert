@@ -3,8 +3,16 @@ package router.views;
 import albert.controllers.PageController;
 import javafx.scene.layout.AnchorPane;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface PageView.
+ *
+ */
 public interface PageView {
 
+    /**
+     * Load.
+     */
     public void load();
 
     /**
@@ -14,8 +22,18 @@ public interface PageView {
      */
     public void update();
 
+    /**
+     * Sets the controller.
+     *
+     * @param controller the new controller
+     */
     public void setController(PageController controller);
 
+    /**
+     * Render.
+     *
+     * @return the anchor pane
+     */
     public AnchorPane render();
 
 }

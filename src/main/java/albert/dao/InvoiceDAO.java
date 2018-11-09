@@ -12,12 +12,27 @@ import albert.models.Project;
 import database.Database;
 
 
+/**
+ * The Class InvoiceDAO. Insert an object into the database. And gets data from the database to an object.
+ *
+ */
 public class InvoiceDAO implements DAO<Invoice>{
+    
+    /** The invoice. */
     private Invoice invoice;
+    
+    /** The dao amount. */
     private AmountDAO daoAmount = new AmountDAO();
+    
+    /** The dao tax. */
     private TaxDAO daoTax = new TaxDAO();
+    
+    /** The project DAO. */
     private ProjectDAO projectDAO = new ProjectDAO();
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#getAll()
+     */
     @Override
     public ArrayList<Invoice> getAll() {
         String sql = "SELECT * FROM invoice";
@@ -43,6 +58,9 @@ public class InvoiceDAO implements DAO<Invoice>{
 
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#loadById(long)
+     */
     @Override
     public Invoice loadById(long id) {
 
@@ -69,6 +87,9 @@ public class InvoiceDAO implements DAO<Invoice>{
 
 
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#create(java.lang.Object)
+     */
     @Override
     public void create(Invoice obj) {
         this.invoice = obj;
@@ -108,6 +129,9 @@ public class InvoiceDAO implements DAO<Invoice>{
         System.out.println("Invoice added");
     }
     
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#update(java.lang.Object)
+     */
     @Override
     public void update(Invoice obj) {
         this.invoice = obj;
@@ -139,6 +163,9 @@ public class InvoiceDAO implements DAO<Invoice>{
 
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#delete(java.lang.Object)
+     */
     @Override
     public void delete(Invoice obj) {
         this.invoice = obj;
@@ -161,6 +188,9 @@ public class InvoiceDAO implements DAO<Invoice>{
 
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#extractFromResultSet(java.sql.ResultSet)
+     */
     @Override
     public Invoice extractFromResultSet(ResultSet rs) throws SQLException {
 

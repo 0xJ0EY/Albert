@@ -8,8 +8,15 @@ import albert.controllers.templates.MenuTemplateController;
 import albert.views.HomeView;
 import router.factories.pages.OverviewPageFactory;
 
+/**
+ * A factory for creating ContactPage objects.
+ *
+ */
 public class ContactPageFactory implements OverviewPageFactory {
 
+    /* (non-Javadoc)
+     * @see router.factories.PageFactory#create()
+     */
     @Override
     public OverviewPage create() {
         return new ContactController(new ContactsView(), new MenuTemplateController());

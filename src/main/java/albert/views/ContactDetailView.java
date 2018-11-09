@@ -12,57 +12,79 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import table.Table;
 import java.io.IOException;
-/*
-Hier wordt de contactView geladen.
- */
 
+
+/**
+ * The Class ContactDetailView. Loads the Contactdetailview
+ *
+ */
 public class ContactDetailView extends AnchorPane implements PageView {
 
+    /** The resource. */
     private final String resource = "/views/pages/ContactDetailView.fxml";
+    
+    /** The controller. */
     private ContactController controller;
 
+    /** The first name. */
     @FXML
     private TextField firstName;
 
+    /** The save button. */
     @FXML
     private Button saveButton;
 
+    /** The last name. */
     @FXML
     private TextField lastName;
 
+    /** The company. */
     @FXML
     private TextField company;
 
+    /** The street name. */
     @FXML
     private TextField streetName;
 
+    /** The house number. */
     @FXML
     private TextField houseNumber;
 
+    /** The postcode. */
     @FXML
     private TextField postcode;
 
+    /** The place. */
     @FXML
     private TextField place;
 
+    /** The website. */
     @FXML
     private TextField website;
 
+    /** The description. */
     @FXML
     private TextField description;
 
+    /** The telephone. */
     @FXML
     private TextField telephone;
 
+    /** The email. */
     @FXML
     private TextField email;
 
+    /** The emails table. */
     @FXML
     private AnchorPane emailsTable;
 
+    /** The phone number table. */
     @FXML
     private AnchorPane phoneNumberTable;
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#load()
+     */
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
@@ -77,6 +99,9 @@ public class ContactDetailView extends AnchorPane implements PageView {
         }
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#update()
+     */
     @Override
     public void update() {
         this.controller.getTemplate().addAction("Terug", () -> this.onClickBack());
@@ -98,16 +123,25 @@ public class ContactDetailView extends AnchorPane implements PageView {
         this.setupPhoneNumberTable();
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#setController(albert.controllers.PageController)
+     */
     @Override
     public void setController(PageController controller) {
         this.controller = (ContactController) controller;
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#render()
+     */
     @Override
     public AnchorPane render() {
         return this;
     }
 
+    /**
+     * Setup email table.
+     */
     private void setupEmailTable() {
 
         Table emailsTable = this.controller.getEmailsTable();
@@ -127,6 +161,9 @@ public class ContactDetailView extends AnchorPane implements PageView {
 
     }
 
+    /**
+     * Setup phone number table.
+     */
     private void setupPhoneNumberTable() {
 
         Table phoneNumbersTable = this.controller.getPhoneNumbersTable();
@@ -146,11 +183,17 @@ public class ContactDetailView extends AnchorPane implements PageView {
 
     }
 
+    /**
+     * On click edit.
+     */
     @FXML
     public void onClickEdit() {
         controller.getRouter().nav("contacts/edit/" + this.controller.getContact().getId());
     }
 
+    /**
+     * On click back.
+     */
     @FXML
     public void onClickBack(){
         controller.getRouter().nav("contacts/");

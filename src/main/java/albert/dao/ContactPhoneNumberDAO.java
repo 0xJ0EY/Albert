@@ -13,15 +13,33 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * The Class ContactPhoneNumberDAO. Insert an object into the database. And gets data from the database to an object.
+ *
+ */
 public class ContactPhoneNumberDAO {
 
+    /** The Constant NEW_PHONE_NUMBER_ID. */
     private static final int NEW_PHONE_NUMBER_ID = 0;
 
+    /** The select query. */
     private final String SELECT_QUERY = "SELECT * FROM contact_phone WHERE contact_id = ?;";
+    
+    /** The insert query. */
     private final String INSERT_QUERY = "INSERT INTO contact_phone (phone_number, contact_id) VALUES (?, ?);";
+    
+    /** The update query. */
     private final String UPDATE_QUERY = "UPDATE contact_phone SET phone_number = ? WHERE id = ?;";
+    
+    /** The delete query. */
     private final String DELETE_QUERY = "DELETE FROM contact_phone WHERE id = ?;";
 
+    /**
+     * Load contact phone numbers.
+     *
+     * @param contact the contact
+     * @return the array list
+     */
     public ArrayList<ContactPhoneNumber> loadContactPhoneNumbers(Contact contact) {
         ArrayList<ContactPhoneNumber> phoneNumberSave = new ArrayList<>();
 
@@ -57,6 +75,11 @@ public class ContactPhoneNumberDAO {
     }
 
 
+    /**
+     * Update phone numbers.
+     *
+     * @param contact the contact
+     */
     public void updatePhoneNumbers(Contact contact) {
         ArrayList<ContactPhoneNumber> newPhoneNumbers = contact.getPhoneNumbers();
         HashMap<Integer, ContactPhoneNumber> oldPhoneNumbers = new HashMap<>();
@@ -99,6 +122,11 @@ public class ContactPhoneNumberDAO {
             this.deletePhoneNumber(number);
     }
 
+    /**
+     * Insert phone number.
+     *
+     * @param phoneNumber the phone number
+     */
     private void insertPhoneNumber(ContactPhoneNumber phoneNumber) {
 
         try {
@@ -122,6 +150,11 @@ public class ContactPhoneNumberDAO {
     }
 
 
+    /**
+     * Update phone number.
+     *
+     * @param phoneNumber the phone number
+     */
     private void updatePhoneNumber(ContactPhoneNumber phoneNumber) {
 
         try {
@@ -144,6 +177,11 @@ public class ContactPhoneNumberDAO {
 
     }
 
+    /**
+     * Delete phone number.
+     *
+     * @param phoneNumber the phone number
+     */
     private void deletePhoneNumber(ContactPhoneNumber phoneNumber) {
 
         try {

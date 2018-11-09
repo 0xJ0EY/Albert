@@ -18,14 +18,29 @@ import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
 
+/**
+ * The Class RapportsController.
+ *
+ */
 public class RapportsController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
 
 
+    /**
+     * Instantiates a new rapports controller.
+     *
+     * @param view the view
+     * @param template the template
+     */
     public RapportsController(PageView view, TemplateController template) {
 
         super(view, template);
     }
 
+    /**
+     * Gets the overview table.
+     *
+     * @return the overview table
+     */
     public Table getOverviewTable(){
         Table table = new Table(
                 new DatabaseStrategy(Query.table("report")),
@@ -50,21 +65,33 @@ public class RapportsController extends PageController implements OverviewPage, 
         return table;
     }
 
+    /* (non-Javadoc)
+     * @see router.pages.OverviewPage#overview(router.Request)
+     */
     @Override
     public Response overview(Request request) {
         return new ViewResponse(this);
     }
 
+    /* (non-Javadoc)
+     * @see router.pages.DetailPage#detail(router.Request)
+     */
     @Override
     public Response detail(Request request) {
         return new ViewResponse(this);
     }
 
+    /* (non-Javadoc)
+     * @see router.pages.EditPage#edit(router.Request)
+     */
     @Override
     public Response edit(Request request) {
         return new ViewResponse(this);
     }
 
+    /* (non-Javadoc)
+     * @see router.pages.CreatePage#create(router.Request)
+     */
     @Override
     public Response create(Request request) {
         return new ViewResponse(this);

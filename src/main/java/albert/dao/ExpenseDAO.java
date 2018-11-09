@@ -15,11 +15,21 @@ import java.sql.*;
 import java.util.ArrayList;
 
 
+/**
+ * The Class ExpenseDAO. Insert an object into the database. And gets data from the database to an object.
+ *
+ */
 public class ExpenseDAO implements DAO<Expense>{
 
+    /** The expense. */
     private Expense expense;
+    
+    /** The project DAO. */
     private ProjectDAO projectDAO = new ProjectDAO();
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#getAll()
+     */
     @Override
     public ArrayList getAll() {
         String sql = "SELECT * FROM expense";
@@ -45,6 +55,9 @@ public class ExpenseDAO implements DAO<Expense>{
 
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#loadById(long)
+     */
     @Override
     public Expense loadById(long id) {
 
@@ -75,6 +88,9 @@ public class ExpenseDAO implements DAO<Expense>{
 
 
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#create(java.lang.Object)
+     */
     @Override
     public void create(Expense obj) {
         this.expense = obj;
@@ -102,6 +118,9 @@ public class ExpenseDAO implements DAO<Expense>{
 
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#update(java.lang.Object)
+     */
     @Override
     public void update(Expense obj) {
 
@@ -128,6 +147,9 @@ public class ExpenseDAO implements DAO<Expense>{
         System.out.println("Expense Updated");
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#delete(java.lang.Object)
+     */
     @Override
     public void delete(Expense obj) {
         this.expense = obj;
@@ -151,6 +173,9 @@ public class ExpenseDAO implements DAO<Expense>{
         System.out.println("expense deleted");
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#extractFromResultSet(java.sql.ResultSet)
+     */
     @Override
     public Expense extractFromResultSet(ResultSet rs) throws SQLException {
 

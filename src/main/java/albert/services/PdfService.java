@@ -18,17 +18,41 @@ import java.nio.file.FileSystems;
 import static org.thymeleaf.templatemode.TemplateMode.HTML;
 
 
+/**
+ * The PdfService generates pdf for quotation and invoice
+ *
+ */
 public class PdfService {
 
+    /** The Constant UTF_8. */
     private static final String UTF_8 = "UTF-8";
+    
+    /** The stage. */
     private Stage stage;
+    
+    /** The instance. */
     private static PdfService instance;
+    
+    /** The resources. */
     private String resources;
+    
+    /** The template path. */
     private String template_path;
+    
+    /** The output. */
     private String output;
+    
+    /** The project DAO. */
     private ProjectDAO projectDAO = new ProjectDAO();
+    
+    /** The contact DAO. */
     private ContactDAO contactDAO = new ContactDAO();
 
+    /**
+     * Gets the single instance of PdfService.
+     *
+     * @return single instance of PdfService
+     */
     public static PdfService getInstance() {
         if (instance == null)
             instance = new PdfService();
@@ -37,10 +61,12 @@ public class PdfService {
     }
 
     /**
-     * Pdf will be generated in the folder resources
-     * @param invoice
-     * @throws IOException
-     * @throws DocumentException
+     * Pdf will be generated in the folder resources.
+     *
+     * @param invoice the invoice
+     * @return true, if successful
+     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws DocumentException the document exception
      */
     public boolean generateInvoicePdf(Invoice invoice) throws IOException, DocumentException {
 
@@ -90,10 +116,11 @@ public class PdfService {
     }
 
     /**
-     * Pdf will be generated in the folder resources
-     * @param quotation
-     * @throws IOException
-     * @throws DocumentException
+     * Pdf will be generated in the folder resources.
+     *
+     * @param quotation the quotation
+     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws DocumentException the document exception
      */
     public void generateQuotationPdf(Quotation quotation) throws IOException, DocumentException {
 
@@ -139,6 +166,13 @@ public class PdfService {
         outputStream.close();
     }
 
+    /**
+     * Generate repports.
+     *
+     * @param rapportage the rapportage
+     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws DocumentException the document exception
+     */
     public void generateRepports(Rapportage rapportage) throws IOException, DocumentException {
 
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
@@ -179,9 +213,20 @@ public class PdfService {
         outputStream.close();
     }
 
+    /**
+     * Sets the parms.
+     */
     private void setParms(){
 
     }
+    
+    /**
+     * Convert to xhtml.
+     *
+     * @param html the html
+     * @return the string
+     * @throws UnsupportedEncodingException the unsupported encoding exception
+     */
     private String convertToXhtml(String html) throws UnsupportedEncodingException {
         Tidy tidy = new Tidy();
         tidy.setInputEncoding(UTF_8);

@@ -11,36 +11,65 @@ import query.Record;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+/**
+ * The Class DatabaseStrategy.
+ *
+ */
 public class DatabaseStrategy implements DataStrategy {
 
+    /** The original base query. */
     private final Query originalBaseQuery;
+    
+    /** The base query. */
     private Query baseQuery;
 
+    /** The table. */
     private Table table;
 
+    /** The order by. */
     private ArrayList<OrderBy> orderBy = new ArrayList<>();
 
+    /** The page. */
     private int page = 1;
+    
+    /** The total. */
     private int total = 0;
 
+    /** The offset. */
     private int offset = 0;
+    
+    /** The limit. */
     private int limit = Integer.parseInt(Config.get("table", "settings.default_rows"));
 
+    /**
+     * Instantiates a new database strategy.
+     *
+     * @param query the query
+     */
     public DatabaseStrategy(Query query) {
         this.baseQuery = (Query) SerializationUtils.clone(query);
         this.originalBaseQuery = (Query) SerializationUtils.clone(query);
     }
 
+    /* (non-Javadoc)
+     * @see table.strategies.DataStrategy#getMaxPage()
+     */
     @Override
     public int getMaxPage() {
         return (int) Math.ceil((double) this.total / this.limit);
     }
 
+    /* (non-Javadoc)
+     * @see table.strategies.DataStrategy#getPage()
+     */
     @Override
     public int getPage() {
         return this.page;
     }
 
+    /* (non-Javadoc)
+     * @see table.strategies.DataStrategy#setPage(int)
+     */
     @Override
     public void setPage(int page) {
         page = Math.max(1, page);
@@ -49,15 +78,24 @@ public class DatabaseStrategy implements DataStrategy {
         this.offset = (page - 1) * limit;
     }
 
+    /* (non-Javadoc)
+     * @see table.strategies.DataStrategy#setTable(table.Table)
+     */
     public void setTable(Table table) {
         this.table = table;
     }
 
+    /* (non-Javadoc)
+     * @see table.strategies.DataStrategy#getTable()
+     */
     @Override
     public Table getTable() {
         return this.table;
     }
 
+    /* (non-Javadoc)
+     * @see table.strategies.DataStrategy#fetch()
+     */
     @Override
     public void fetch() {
 
@@ -73,6 +111,9 @@ public class DatabaseStrategy implements DataStrategy {
 
     }
 
+    /**
+     * Fetch rows.
+     */
     private void fetchRows() {
         Query searchQuery = this.baseQuery;
 
@@ -108,6 +149,9 @@ public class DatabaseStrategy implements DataStrategy {
         }
     }
 
+    /**
+     * Total rows.
+     */
     public void totalRows() {
 
         Query countQuery = this.baseQuery;
@@ -127,6 +171,9 @@ public class DatabaseStrategy implements DataStrategy {
         this.table.setTotalRows(this.total);
     }
 
+    /**
+     * Current rows.
+     */
     public void currentRows() {
 
         // Just set the current loaded records
@@ -134,11 +181,17 @@ public class DatabaseStrategy implements DataStrategy {
 
     }
 
+    /* (non-Javadoc)
+     * @see table.strategies.DataStrategy#orderBy(java.lang.String, java.lang.String)
+     */
     @Override
     public void orderBy(String table, String direction) {
         this.orderBy.add(new OrderBy(table, direction));
     }
 
+    /* (non-Javadoc)
+     * @see table.strategies.DataStrategy#search(java.lang.String)
+     */
     @Override
     public void search(String str) {
 
@@ -157,11 +210,17 @@ public class DatabaseStrategy implements DataStrategy {
 
     }
 
+    /* (non-Javadoc)
+     * @see table.strategies.DataStrategy#setLimit(int)
+     */
     @Override
     public void setLimit(int limit) {
         this.limit = limit;
     }
 
+    /* (non-Javadoc)
+     * @see table.strategies.DataStrategy#getLimit()
+     */
     @Override
     public int getLimit() {
         return this.limit;

@@ -5,15 +5,26 @@ import query.selects.Select;
 
 import java.util.ArrayList;
 
+/**
+ * The Class GroupByQueryBuilder.
+ *
+ */
 public class GroupByQueryBuilder implements GroupByQueryBuilderInterface {
 
+    /** The groups. */
     private ArrayList<GroupBy> groups = new ArrayList<>();
 
+    /* (non-Javadoc)
+     * @see query.builders.GroupByQueryBuilderInterface#groupBy(java.lang.String)
+     */
     @Override
     public void groupBy(String value) {
         this.groups.add(new GroupBy(value));
     }
 
+    /* (non-Javadoc)
+     * @see query.builders.QueryBuilderInterface#build()
+     */
     @Override
     public String build() {
 

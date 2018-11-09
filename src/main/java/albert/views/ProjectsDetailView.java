@@ -14,32 +14,49 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import table.Table;
 
+/**
+ * The Class ProjectsDetailView. Loads the ProjectsDetailView
+ *
+ */
 public class ProjectsDetailView extends AnchorPane implements PageView {
 
+    /** The resource. */
     private final String resource = "/views/pages/ProjectsDetail.fxml";
+    
+    /** The controller. */
     private ProjectsController controller;
 
+    /** The name. */
     @FXML
     private Text name;
 
+    /** The customer. */
     @FXML
     private Text customer;
 
+    /** The done. */
     @FXML
     private Text done;
 
+    /** The description. */
     @FXML
     private TextArea description;
 
+    /** The invoice overview. */
     @FXML
     private AnchorPane invoiceOverview;
 
+    /** The expenses overview. */
     @FXML
     private AnchorPane expensesOverview;
 
+    /** The quotation overview. */
     @FXML
     private AnchorPane quotationOverview;
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#load()
+     */
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
@@ -54,6 +71,9 @@ public class ProjectsDetailView extends AnchorPane implements PageView {
         }
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#update()
+     */
     @Override
     public void update() {
         this.controller.getTemplate().addAction("Nieuw Project", () -> controller.getRouter().nav("projects/create/"));
@@ -75,6 +95,12 @@ public class ProjectsDetailView extends AnchorPane implements PageView {
 
     }
 
+    /**
+     * Setup table.
+     *
+     * @param table the table
+     * @param target the target
+     */
     public void setupTable(Table table, AnchorPane target) {
 
         table.fetch();
@@ -90,21 +116,33 @@ public class ProjectsDetailView extends AnchorPane implements PageView {
         target.getChildren().add(tableView);
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#setController(albert.controllers.PageController)
+     */
     @Override
     public void setController(PageController controller) {
         this.controller = (ProjectsController) controller;
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#render()
+     */
     @Override
     public AnchorPane render() {
         return this;
     }
 
+    /**
+     * On click back.
+     */
     @FXML
     public void onClickBack(){
         controller.getRouter().nav("projects/");
     }
 
+    /**
+     * On customer click.
+     */
     @FXML
     public void onCustomerClick() {
         Contact contact = this.controller.getProject().getContact();

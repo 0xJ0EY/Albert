@@ -31,18 +31,45 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 
+/**
+ * The Class InvoicesController.
+ *
+ */
 public class InvoicesController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
+    
+    /** The dao of invoice. */
     private InvoiceDAO dao = new InvoiceDAO();
+    
+    /** The dao project. */
     private ProjectDAO daoProject = new ProjectDAO();
+    
+    /** The dao contact. */
     private ContactDAO daoContact = new ContactDAO();
+    
+    /** The amount. */
     private Amount amount;
+    
+    /** The invoice. */
     private Invoice invoice;
+    
+    /** The request. */
     private Request request;
 
+    /**
+     * Instantiates a new invoices controller.
+     *
+     * @param view the view
+     * @param template the template
+     */
     public InvoicesController(PageView view, TemplateController template) {
         super(view, template);
     }
 
+    /**
+     * Gets the overview table.
+     *
+     * @return the overview table
+     */
     public Table getOverviewTable(){
         Table table = new Table(
             new DatabaseStrategy(Query.table("invoice")
@@ -78,6 +105,17 @@ public class InvoicesController extends PageController implements OverviewPage, 
         return  table;
     }
 
+    /**
+     * Creates the invoice.
+     *
+     * @param price the price
+     * @param hours the hours
+     * @param betaald the betaald
+     * @param deliveryDate the delivery date
+     * @param projectId the project id
+     * @param description the description
+     * @param contactName the contact name
+     */
     public void createInvoice(String price, String hours, Boolean betaald, Timestamp deliveryDate, int projectId, String description, String contactName) {
         amount = new Amount();
         amount.setHours(new Double(hours));
@@ -101,6 +139,11 @@ public class InvoicesController extends PageController implements OverviewPage, 
         dao.create(invoice);
     }
 
+    /**
+     * Gets the paid overview table.
+     *
+     * @return the paid overview table
+     */
     public Table getPaidOverviewTable(){
         Table table = new Table(
             new DatabaseStrategy(Query.table("invoice")
@@ -131,6 +174,16 @@ public class InvoicesController extends PageController implements OverviewPage, 
         return  table;
     }
 
+    /**
+     * Save invoice.
+     *
+     * @param price the price
+     * @param hours the hours
+     * @param betaald the betaald
+     * @param deliveryDate the delivery date
+     * @param invoice the invoice
+     * @param description the description
+     */
     public void saveInvoice(String price, String hours, Boolean betaald, Timestamp deliveryDate, Invoice invoice, String description) {
         invoice.getAmount().setPrice(new Double(price));
         invoice.getAmount().setHours(new Double(hours));
@@ -140,24 +193,49 @@ public class InvoicesController extends PageController implements OverviewPage, 
         dao.update(invoice);
     }
 
+    /**
+     * Delete invoice.
+     *
+     * @param invoice the invoice
+     */
     public void deleteInvoice(Invoice invoice) {
         dao.delete(invoice);
     }
 
+    /**
+     * Edits the invoice.
+     *
+     * @param name the name
+     * @param price the price
+     * @param hours the hours
+     * @param contact the contact
+     * @param delivery the delivery
+     */
     public void editInvoice(String name, String price, String hours, String contact, String delivery) {
 
         //invoice = new Invoice(name, amount, delivery);
         dao.update(invoice);
     }
 
+    /**
+     * Gets the invoice.
+     *
+     * @return the invoice
+     */
     public Invoice getInvoice() { return this.invoice; }
 
+    /* (non-Javadoc)
+     * @see router.pages.OverviewPage#overview(router.Request)
+     */
     @Override
     public Response overview(Request request) {
         this.request = request;
         return new ViewResponse(this);
     }
 
+    /* (non-Javadoc)
+     * @see router.pages.DetailPage#detail(router.Request)
+     */
     @Override
     public Response detail(Request request) {
         this.request = request;
@@ -169,36 +247,68 @@ public class InvoicesController extends PageController implements OverviewPage, 
     }
 
 
+    /* (non-Javadoc)
+     * @see router.pages.EditPage#edit(router.Request)
+     */
     @Override
     public Response edit(Request request) {
         this.request = request;
         return new ViewResponse(this);
     }
 
+    /* (non-Javadoc)
+     * @see router.pages.CreatePage#create(router.Request)
+     */
     @Override
     public Response create(Request request) {
         this.request = request;
         return new ViewResponse(this);
     }
 
+    /**
+     * Sets the invoice.
+     *
+     * @param id the new invoice
+     */
     public void setInvoice(int id) {
         this.invoice = dao.loadById(id);
     }
 
+    /**
+     * Gets the request.
+     *
+     * @return the request
+     */
     public Request getRequest() {
         return request;
     }
 
+    /**
+     * Gets the projects.
+     *
+     * @return the projects
+     */
     public ArrayList<Project> getProjects() {
         ArrayList<Project> projects = daoProject.getAll();
         return projects;
     }
 
+    /**
+     * Gets the contacts.
+     *
+     * @return the contacts
+     */
     public ArrayList<Contact> getContacts() {
         ArrayList<Contact> contacts = daoContact.getAll();
         return contacts;
     }
 
+    /**
+     * Gets the project id from name.
+     *
+     * @param projectName the project name
+     * @return the project id from name
+     */
     public int getProjectIdFromName(String projectName) {
         int projectId = 0;
         ArrayList<Project> projects = this.getProjects();
@@ -210,6 +320,12 @@ public class InvoicesController extends PageController implements OverviewPage, 
         return projectId;
     }
 
+    /**
+     * Gets the contact id from name.
+     *
+     * @param contactName the contact name
+     * @return the contact id from name
+     */
     public int getContactIdFromName(String contactName) {
         int contactId = 1;
         ArrayList<Contact> contacts = this.getContacts();
@@ -222,6 +338,12 @@ public class InvoicesController extends PageController implements OverviewPage, 
         return contactId;
     }
 
+    /**
+     * Gets the contact name from id.
+     *
+     * @param contactId the contact id
+     * @return the contact name from id
+     */
     public String getContactNameFromId(int contactId) {
         Contact placeHoldContact = daoContact.loadById(contactId);
         String contactName = placeHoldContact.getFirstName() + " " + placeHoldContact.getLastName();

@@ -9,14 +9,22 @@ import router.views.PageView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
-/*
-Hier wordt de homeView geladen
+
+/**
+ * The Class HomeView. Loads the HomeView
+ *
  */
 public class HomeView extends AnchorPane implements PageView {
 
+    /** The resource. */
     private final String resource = "/views/pages/Home.fxml";
+    
+    /** The controller. */
     private HomeController controller;
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#load()
+     */
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
@@ -31,6 +39,9 @@ public class HomeView extends AnchorPane implements PageView {
         }
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#update()
+     */
     @Override
     public void update() {
 
@@ -42,27 +53,42 @@ public class HomeView extends AnchorPane implements PageView {
 
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#setController(albert.controllers.PageController)
+     */
     @Override
     public void setController(PageController controller) {
         this.controller = (HomeController) controller;
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#render()
+     */
     @Override
     public AnchorPane render() {
         return this;
     }
 
 
+    /**
+     * Click on projects.
+     */
     public void clickOnProjects(){
         controller.getRouter().nav("projects/");
     }
 
 
+    /**
+     * Click on invoices.
+     */
     public void clickOnInvoices(){
         controller.getRouter().nav("invoices/");
     }
 
 
+    /**
+     * Click on expenses.
+     */
     public void clickOnExpenses(){
         controller.getRouter().nav("expenses/");
     }

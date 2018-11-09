@@ -19,59 +19,85 @@ import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * The Class ContactCreateView. Loads the ContactCreateView
+ *
+ */
 public class ContactCreateView extends AnchorPane implements PageView {
 
+    /** The resource. */
     private final String resource = "/views/pages/ContactCreateView.fxml";
+    
+    /** The controller. */
     private ContactController controller;
 
+    /** The contact. */
     private Contact contact;
 
+    /** The first name. */
     @FXML
     private TextField firstName;
 
+    /** The save button. */
     @FXML
     private Button saveButton;
 
+    /** The last name. */
     @FXML
     private TextField lastName;
 
+    /** The company. */
     @FXML
     private TextField company;
 
+    /** The street name. */
     @FXML
     private TextField streetName;
 
+    /** The compagny. */
     @FXML
     private TextField compagny;
 
+    /** The house number. */
     @FXML
     private TextField houseNumber;
 
+    /** The postcode. */
     @FXML
     private TextField postcode;
 
+    /** The place. */
     @FXML
     private TextField place;
 
+    /** The website. */
     @FXML
     private TextField website;
 
+    /** The description. */
     @FXML
     private TextField description;
 
+    /** The telephone. */
     @FXML
     private TextField telephone;
 
+    /** The email. */
     @FXML
     private TextField email;
 
 
+    /** The emails table. */
     @FXML
     private AnchorPane emailsTable;
 
+    /** The phone number table. */
     @FXML
     private AnchorPane phoneNumberTable;
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#load()
+     */
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
@@ -86,6 +112,9 @@ public class ContactCreateView extends AnchorPane implements PageView {
         }
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#update()
+     */
     @Override
     public void update() {
         this.controller.getTemplate().addAction("Terug", () -> this.onClickBack());
@@ -98,6 +127,9 @@ public class ContactCreateView extends AnchorPane implements PageView {
 
     }
 
+    /**
+     * Setup email table.
+     */
     private void setupEmailTable() {
 
         Table emailsTable = this.controller.getEmailsTable();
@@ -117,6 +149,9 @@ public class ContactCreateView extends AnchorPane implements PageView {
 
     }
 
+    /**
+     * Setup phone number table.
+     */
     private void setupPhoneNumberTable() {
 
         Table phoneNumbersTable = this.controller.getPhoneNumbersTable();
@@ -136,16 +171,25 @@ public class ContactCreateView extends AnchorPane implements PageView {
 
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#setController(albert.controllers.PageController)
+     */
     @Override
     public void setController(PageController controller) {
         this.controller = (ContactController) controller;
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#render()
+     */
     @Override
     public AnchorPane render() {
         return this;
     }
 
+    /**
+     * On click save.
+     */
     @FXML
     public void onClickSave(){
         Contact contact = this.controller.getContact();
@@ -174,6 +218,9 @@ public class ContactCreateView extends AnchorPane implements PageView {
         this.controller.getRouter().nav("contacts/");
     }
 
+    /**
+     * On click back.
+     */
     @FXML
     public void onClickBack(){ controller.getRouter().nav("contacts/"); }
 }

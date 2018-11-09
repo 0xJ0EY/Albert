@@ -6,10 +6,18 @@ import org.ini4j.Ini;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * The Class IniStrategy.
+ *
+ */
 public class IniStrategy implements ConfigStrategy {
 
+    /** The config. */
     private Ini config;
 
+    /* (non-Javadoc)
+     * @see config.strategy.ConfigStrategy#load(java.lang.String, java.lang.String)
+     */
     @Override
     public void load(String root, String filename) {
         File file = new File(root + filename);
@@ -21,6 +29,9 @@ public class IniStrategy implements ConfigStrategy {
         }
     }
 
+    /* (non-Javadoc)
+     * @see config.strategy.ConfigStrategy#get(java.lang.String)
+     */
     @Override
     public String get(String key) throws InvalidKeyException {
 
@@ -30,6 +41,9 @@ public class IniStrategy implements ConfigStrategy {
     }
 
 
+    /* (non-Javadoc)
+     * @see config.strategy.ConfigStrategy#create(java.lang.String, java.lang.String)
+     */
     @Override
     public void create(String key, String value) throws InvalidKeyException {
         String[] parts = this.parseKey(key);
@@ -38,11 +52,17 @@ public class IniStrategy implements ConfigStrategy {
         this.save();
     }
 
+    /* (non-Javadoc)
+     * @see config.strategy.ConfigStrategy#update(java.lang.String, java.lang.String)
+     */
     @Override
     public void update(String key, String value) throws InvalidKeyException {
         this.create(key, value);
     }
 
+    /* (non-Javadoc)
+     * @see config.strategy.ConfigStrategy#delete(java.lang.String)
+     */
     @Override
     public void delete(String key) throws InvalidKeyException {
         String[] parts = this.parseKey(key);
@@ -51,6 +71,13 @@ public class IniStrategy implements ConfigStrategy {
         this.save();
     }
 
+    /**
+     * Parses the key.
+     *
+     * @param key the key
+     * @return the string[]
+     * @throws InvalidKeyException the invalid key exception
+     */
     private String[] parseKey(String key) throws InvalidKeyException {
 
         String[] parts = key.split("\\.", 2);
@@ -62,6 +89,9 @@ public class IniStrategy implements ConfigStrategy {
 
     }
 
+    /**
+     * Save the config.
+     */
     private void save() {
         try {
             this.config.store();
