@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class ProjectsEditView extends AnchorPane implements PageView {
 
-    private final String resource = "/views/pages/QuotationsEditView.fxml";
+    private final String resource = "/views/pages/ProjectEditView.fxml";
     private ProjectsController controller;
 
     @FXML
@@ -51,6 +51,12 @@ public class ProjectsEditView extends AnchorPane implements PageView {
     public void update() {
 
         Project project = this.controller.getProject();
+
+        System.out.println("project = " + project);
+
+        System.out.println("project = " + project.getName());
+
+        System.out.println("this.naam = " + this.naam);
 
         this.naam.setText(project.getName());
         this.isDone.setSelected(project.getDone());

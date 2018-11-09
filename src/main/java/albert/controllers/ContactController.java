@@ -88,7 +88,7 @@ public class ContactController extends PageController implements OverviewPage, D
 
         table.addCol(new Column("null",
                 new CenterHeaderViewFactory("Aanpassen"),
-                new EditCellFactory("projects/edit/{contact_id}/", this))
+                new EditCellFactory("contacts/edit/{contact_id}/", this))
         );
 
         table.orderBy("contact_id", "DESC");
