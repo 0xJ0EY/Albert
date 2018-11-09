@@ -80,6 +80,9 @@ public class ContactsEditView extends AnchorPane implements PageView {
 
     @Override
     public void update() {
+        this.controller.getTemplate().addAction("Terug", () -> this.onClickBack());
+        this.controller.getTemplate().addAction("Opslaan", () -> this.onClickSave());
+
         Contact contact = this.controller.getContact();
 
         this.firstName.setText(contact.getFirstName());
@@ -98,7 +101,6 @@ public class ContactsEditView extends AnchorPane implements PageView {
     }
 
     private void setupEmailTable() {
-
         Table emailsTable = this.controller.getEmailsTable();
 
         emailsTable.fetch();

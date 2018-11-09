@@ -56,6 +56,12 @@ public class ProjectsDetailView extends AnchorPane implements PageView {
 
     @Override
     public void update() {
+        this.controller.getTemplate().addAction("Nieuw Project", () -> controller.getRouter().nav("projects/create/"));
+        this.controller.getTemplate().addAction("Nieuwe Offerte", () -> controller.getRouter().nav("quotations/create/"));
+        this.controller.getTemplate().addAction("Nieuwe Onkost", () -> controller.getRouter().nav("expenses/create/"));
+
+        this.controller.getTemplate().addAction("Terug", () -> this.onClickBack());
+
         Project project = this.controller.getProject();
 
         this.name.setText(project.getName());
