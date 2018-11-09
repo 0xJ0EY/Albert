@@ -79,6 +79,9 @@ public class ContactDetailView extends AnchorPane implements PageView {
 
     @Override
     public void update() {
+        this.controller.getTemplate().addAction("Terug", () -> this.onClickBack());
+        this.controller.getTemplate().addAction("Opslaan", () -> this.onClickEdit());
+
         Contact contact = this.controller.getContact();
 
         this.firstName.setText(contact.getFirstName());
