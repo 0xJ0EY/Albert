@@ -4,13 +4,13 @@ import router.Request;
 import router.response.Response;
 
 /**
- * The Interface DeletePage.
+ * The Interface DeletePage. Deletes an page.
  *
  */
 public interface DeletePage extends Page {
 
     /**
-     * Deletes an page.
+     *
      *
      * @param request the request
      * @return the response

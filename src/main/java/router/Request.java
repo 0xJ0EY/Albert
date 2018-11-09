@@ -4,9 +4,8 @@ import router.util.Helper;
 
 import java.util.HashMap;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Request.
+ * The Class Request. Handles the request
  *
  */
 public class Request {

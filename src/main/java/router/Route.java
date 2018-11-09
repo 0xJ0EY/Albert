@@ -5,9 +5,8 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Route.
+ * The Class Route. handles the route
  *
  */
 public class Route {

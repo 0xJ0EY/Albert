@@ -3,15 +3,14 @@ package router.pages;
 import router.Request;
 import router.response.Response;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Interface EditPage.
+ * The Interface EditPage. Creates an editpage
  *
  */
 public interface EditPage extends Page {
 
     /**
-     * Edits the.
+     *
      *
      * @param request the request
      * @return the response

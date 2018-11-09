@@ -4,9 +4,9 @@ import router.templates.TemplateController;
 import router.views.PageView;
 import router.Router;
 
-// TODO: Auto-generated Javadoc
+
 /**
- * The Interface Page.
+ * The Interface Page. Creates an Page
  *
  */
 public interface Page {

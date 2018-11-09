@@ -3,7 +3,6 @@ package router.views;
 import albert.controllers.PageController;
 import javafx.scene.layout.AnchorPane;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface PageView.
  *

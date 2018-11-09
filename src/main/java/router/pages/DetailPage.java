@@ -4,13 +4,13 @@ import router.Request;
 import router.response.Response;
 
 /**
- * The Interface DetailPage.
+ * The Interface DetailPage. Creates an detailpages
  *
  */
 public interface DetailPage extends Page {
 
     /**
-     * Detail.
+     *
      *
      * @param request the request
      * @return the response

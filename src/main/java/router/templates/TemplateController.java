@@ -8,7 +8,6 @@ import router.pages.Page;
 
 import java.util.HashMap;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface TemplateController.
  *

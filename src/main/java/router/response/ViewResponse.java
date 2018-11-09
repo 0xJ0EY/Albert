@@ -3,7 +3,6 @@ package router.response;
 import albert.controllers.PageController;
 import router.Router;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ViewResponse.
  *

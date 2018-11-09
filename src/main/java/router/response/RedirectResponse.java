@@ -2,7 +2,6 @@ package router.response;
 
 import router.Router;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class RedirectResponse.
  *

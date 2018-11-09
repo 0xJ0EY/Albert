@@ -4,13 +4,13 @@ import router.Request;
 import router.response.Response;
 
 /**
- * The Interface CreatePage.
+ * The Interface CreatePage. Creates an page.
  *
  */
 public interface CreatePage extends Page {
 
     /**
-     * Creates an page.
+     *
      *
      * @param request the request
      * @return the response

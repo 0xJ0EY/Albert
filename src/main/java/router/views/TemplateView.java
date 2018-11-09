@@ -4,7 +4,6 @@ import albert.controllers.PageController;
 import router.templates.TemplateController;
 import javafx.scene.Parent;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface TemplateView.
  *

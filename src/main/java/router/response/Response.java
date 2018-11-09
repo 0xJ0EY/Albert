@@ -2,7 +2,6 @@ package router.response;
 
 import router.Router;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface Response.
  *
@@ -10,7 +9,7 @@ import router.Router;
 public interface Response {
 
     /**
-     * Execute.
+     *
      *
      * @param router the router
      */
