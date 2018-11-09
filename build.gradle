@@ -33,8 +33,6 @@ dependencies {
 
     // Fontawesome
     compile 'de.jensd:fontawesomefx-fontawesome:4.7.0-9.1.2'
-    compile group: 'org.openjfx', name: 'javafx-controls', version: '11.0.1'
-    compile group: 'org.openjfx', name: 'javafx-fxml', version: '11.0.1'
 
     // Apache Commons Lang
     compile 'commons-lang:commons-lang:2.6'
