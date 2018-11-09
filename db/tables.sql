@@ -148,6 +148,8 @@ ALTER TABLE expense
     ADD CONSTRAINT fk_expenseproject FOREIGN KEY (project_id)
 REFERENCES project(project_id);
 
+INSERT INTO public.tax (tax_id, name, percentage) VALUES (1, 'btw', 21);
+
 SELECT setval('expense_expense_id_seq', 21, true);
 SELECT setval('amount_amount_id_seq', 21, true);
 SELECT setval('contact_contact_id_seq', 21, true);

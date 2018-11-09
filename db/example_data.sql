@@ -1,6 +1,3 @@
-
-INSERT INTO public.tax (tax_id, name, percentage) VALUES (1, 'btw', 21);
-
 INSERT INTO public.report (report_id, end_date, start_date) VALUES (1, '2017-09-09 11:21:08.233', '2017-06-03 11:21:26.483');
 INSERT INTO public.report (report_id, end_date, start_date) VALUES (2, '2018-11-02 12:03:21.118', '2017-11-02 12:03:24.43');
 INSERT INTO public.report (report_id, end_date, start_date) VALUES (3, '2016-05-02 12:13:27.629', '2015-11-02 12:13:37.939');

@@ -105,7 +105,14 @@ public class ExpenseDAO implements DAO<Expense>{
             statement.setTimestamp(2,this.expense.getCreated_at());
             statement.setString(3,this.expense.getDescription());
             statement.setString(4,this.expense.getName());
-            statement.setInt(5,this.expense.getProject().getId());
+
+            Project project = this.expense.getProject();
+
+            if (project != null) {
+                statement.setInt(5, project.getId());
+            } else {
+                statement.setNull(5, java.sql.Types.INTEGER);
+            }
 
             statement.execute();
 
