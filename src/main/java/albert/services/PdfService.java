@@ -9,10 +9,14 @@ import javafx.stage.Stage;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+import org.thymeleaf.templateresolver.FileTemplateResolver;
+import org.thymeleaf.templateresolver.StringTemplateResolver;
 import org.w3c.tidy.Tidy;
 import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import java.io.*;
+import java.net.URL;
+import java.nio.Buffer;
 import java.nio.file.FileSystems;
 
 import static org.thymeleaf.templatemode.TemplateMode.HTML;
@@ -70,8 +74,10 @@ public class PdfService {
      */
     public boolean generateInvoicePdf(Invoice invoice) throws IOException, DocumentException {
 
-        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-        templateResolver.setPrefix("templates/invoice/");
+        String baseUrl = new File(".").getCanonicalPath() + "/pdf_templates/";
+
+        FileTemplateResolver templateResolver = new FileTemplateResolver();
+        templateResolver.setPrefix(baseUrl);
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode(HTML);
         templateResolver.setCharacterEncoding(UTF_8);
@@ -85,24 +91,23 @@ public class PdfService {
         context.setVariable("contact", contact);
         context.setVariable("data", invoice);
 
-
-
-        String renderedHtmlContent = templateEngine.process("templateInvoice", context);
+        String renderedHtmlContent = templateEngine.process("invoice", context);
         String xHtml = convertToXhtml(renderedHtmlContent);
 
         ITextRenderer renderer = new ITextRenderer();
 
-        String baseUrl = FileSystems
+        String assetsUrl = FileSystems
                 .getDefault()
-                .getPath("src", "main", "resources","/")
+                .getPath(baseUrl + "assets/")
                 .toUri()
                 .toURL()
                 .toString();
-        renderer.setDocumentFromString(xHtml, baseUrl);
+
+        renderer.setDocumentFromString(xHtml, assetsUrl);
         renderer.layout();
+
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter =
-                new FileChooser.ExtensionFilter("PDF Bestand (*.pdf)", "*.pdf");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF Bestand (*.pdf)", "*.pdf");
         fileChooser.getExtensionFilters().add(extFilter);
         fileChooser.setInitialFileName("NieuweFactuur");
         fileChooser.setTitle("Factuur Exporteren");
@@ -124,11 +129,12 @@ public class PdfService {
      */
     public void generateQuotationPdf(Quotation quotation) throws IOException, DocumentException {
 
-        ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-        templateResolver.setPrefix("templates/invoice/");
+        String baseUrl = new File(".").getCanonicalPath() + "/pdf_templates/";
+
+        FileTemplateResolver templateResolver = new FileTemplateResolver();
+        templateResolver.setPrefix(baseUrl);
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode(HTML);
-        templateResolver.setCharacterEncoding(UTF_8);
 
         TemplateEngine templateEngine = new TemplateEngine();
         templateEngine.setTemplateResolver(templateResolver);
@@ -141,20 +147,23 @@ public class PdfService {
         context.setVariable("data", quotation);
 
 
-        String renderedHtmlContent = templateEngine.process("templateQuotation", context);
+        String renderedHtmlContent = templateEngine.process("quotation", context);
         String xHtml = convertToXhtml(renderedHtmlContent);
 
         ITextRenderer renderer = new ITextRenderer();
 
-        String baseUrl = FileSystems
+        String assetsUrl = FileSystems
                 .getDefault()
-                .getPath("src", "main", "resources","/")
+                .getPath(baseUrl + "assets/")
                 .toUri()
                 .toURL()
                 .toString();
-        renderer.setDocumentFromString(xHtml, baseUrl);
+
+        renderer.setDocumentFromString(xHtml, assetsUrl);
+
         renderer.layout();
         FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialFileName("NieuweOfferte");
         fileChooser.setTitle("Offerte exporteren");
         FileChooser.ExtensionFilter extFilter =
                 new FileChooser.ExtensionFilter("PDF Bestand (*.pdf)", "*.pdf");
@@ -176,7 +185,7 @@ public class PdfService {
     public void generateRepports(Rapportage rapportage) throws IOException, DocumentException {
 
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-        templateResolver.setPrefix("templates/rapportage/");
+        templateResolver.setPrefix("classpath:/templates/rapportage/");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode(HTML);
         templateResolver.setCharacterEncoding(UTF_8);
@@ -237,6 +246,5 @@ public class PdfService {
         tidy.parseDOM(inputStream, outputStream);
         return outputStream.toString(UTF_8);
     }
-
 
 }
