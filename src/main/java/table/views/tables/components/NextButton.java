@@ -6,9 +6,8 @@ package table.views.tables.components;
 import javafx.scene.control.Button;
 import table.Table;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class NextButton.
+ * The Class NextButton in a table.
  *
  */
 public class NextButton extends Button {

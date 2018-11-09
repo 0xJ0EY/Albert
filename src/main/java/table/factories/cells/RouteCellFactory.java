@@ -5,7 +5,6 @@ import table.cells.Cell;
 import table.cells.RouteCell;
 import table.views.cells.RouteCellView;
 
-// TODO: Auto-generated Javadoc
 /**
  * A factory for creating RouteCell objects.
  *

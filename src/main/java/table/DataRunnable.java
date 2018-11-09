@@ -2,7 +2,6 @@ package table;
 
 import table.strategies.DataStrategy;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class DataRunnable.
  *
@@ -47,7 +46,7 @@ public class DataRunnable implements Runnable {
     }
 
     /**
-     * Interrupt.
+     * Interrupt current thread.
      */
     public void interrupt() {
         thread.interrupt();

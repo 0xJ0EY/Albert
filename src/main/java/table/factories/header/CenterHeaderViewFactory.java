@@ -3,7 +3,6 @@ package table.factories.header;
 import table.views.HeaderView;
 import table.views.header.CenterHeaderView;
 
-// TODO: Auto-generated Javadoc
 /**
  * A factory for creating CenterHeaderView objects.
  *

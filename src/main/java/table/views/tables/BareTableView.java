@@ -4,7 +4,6 @@ import javafx.fxml.FXMLLoader;
 import table.exceptions.ViewNotFoundException;
 import table.views.TableView;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class BareTableView.
  *

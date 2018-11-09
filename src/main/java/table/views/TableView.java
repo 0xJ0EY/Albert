@@ -3,7 +3,6 @@ package table.views;
 import javafx.scene.layout.AnchorPane;
 import table.Table;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface TableView.
  *
@@ -11,12 +10,12 @@ import table.Table;
 public interface TableView {
 
     /**
-     * Load.
+     * Load tableView
      */
     public void load();
 
     /**
-     * Update.
+     * Update tableView.
      */
     public void update();
 
@@ -28,7 +27,7 @@ public interface TableView {
     public void setTable(Table table);
 
     /**
-     * Render.
+     * Render tableView
      *
      * @return the anchor pane
      */
