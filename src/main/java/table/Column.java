@@ -7,7 +7,6 @@ import table.views.HeaderView;
 
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Column.
  *

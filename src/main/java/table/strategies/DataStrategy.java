@@ -2,7 +2,6 @@ package table.strategies;
 
 import table.Table;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface DataStrategy.
  *

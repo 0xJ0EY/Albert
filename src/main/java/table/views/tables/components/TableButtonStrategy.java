@@ -3,8 +3,6 @@
  */
 package table.views.tables.components;
 
-
-// TODO: Auto-generated Javadoc
 /**
  * The Interface TableButtonStrategy.
  *

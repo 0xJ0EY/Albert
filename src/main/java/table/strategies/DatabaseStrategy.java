@@ -11,7 +11,6 @@ import query.Record;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class DatabaseStrategy.
  *

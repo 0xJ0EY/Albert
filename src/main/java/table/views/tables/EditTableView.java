@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import table.exceptions.ViewNotFoundException;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class EditTableView.
  *

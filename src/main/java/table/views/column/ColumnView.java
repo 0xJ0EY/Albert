@@ -6,7 +6,6 @@ import javafx.scene.layout.VBox;
 import table.Column;
 import table.exceptions.ViewNotFoundException;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ColumnView.
  *

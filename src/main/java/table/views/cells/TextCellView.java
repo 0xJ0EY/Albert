@@ -11,7 +11,6 @@ import table.cells.TextCell;
 import table.exceptions.ViewNotFoundException;
 import table.views.CellView;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class TextCellView.
  *

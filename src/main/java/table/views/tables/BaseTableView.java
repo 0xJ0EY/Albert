@@ -20,7 +20,6 @@ import table.views.tables.components.PreviousButton;
 
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class BaseTableView.
  *

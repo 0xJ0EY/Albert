@@ -5,7 +5,6 @@ package table.views.tables.components;
 
 import javafx.scene.control.Button;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class TableButton.
  *

@@ -5,7 +5,6 @@ import table.views.CellView;
 
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface Cell.
  *

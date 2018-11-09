@@ -6,7 +6,6 @@ import table.cells.TextCell;
 import table.views.cells.EditableTextCellView;
 import table.views.cells.TextCellView;
 
-// TODO: Auto-generated Javadoc
 /**
  * A factory for creating EditableTextCell objects.
  *

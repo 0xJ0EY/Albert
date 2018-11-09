@@ -7,7 +7,6 @@ import javafx.scene.layout.AnchorPane;
 import table.exceptions.ViewNotFoundException;
 import table.views.HeaderView;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CenterHeaderView.
  *

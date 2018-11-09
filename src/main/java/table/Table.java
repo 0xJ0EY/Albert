@@ -11,7 +11,6 @@ import table.views.tables.components.TableButton;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Table.
  *
