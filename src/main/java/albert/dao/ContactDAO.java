@@ -8,10 +8,9 @@ import database.Database;
 import java.sql.*;
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ContactDAO.
- * @author
+ * The Class ContactDAO. Insert an object into the database. And gets data from the database to an object.
+ *
  */
 public class ContactDAO implements DAO<Contact> {
 

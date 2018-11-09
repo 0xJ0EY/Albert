@@ -1,9 +1,8 @@
 package albert.models;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Amount.
- * @author
+ * The Class Model Amount.
+ *
  */
 public class Amount {
     

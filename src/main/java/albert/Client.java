@@ -7,15 +7,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import router.Router;
-// TODO: Auto-generated Javadoc
 
 /**
- * The Class Client.
- * @author
+ * The Class Client. Her it starts the application
+ *
  */
-/*
-Dat is het begin van de App, waar de stage start en gekopeld aan de router.
- */
+
 public class Client extends Application {
 
     /** The stage. */

@@ -5,10 +5,9 @@ import query.wheres.*;
 
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class WhereQueryBuilder.
- * @author
+ *
  */
 public class WhereQueryBuilder implements WhereQueryBuilderInterface {
 

@@ -1,9 +1,8 @@
 package albert.models;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Enum PaidState.
- * @author
+ *
  */
 public enum PaidState {
 

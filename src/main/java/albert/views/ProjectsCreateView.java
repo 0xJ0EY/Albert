@@ -18,10 +18,9 @@ import router.views.PageView;
 
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ProjectsCreateView.
- * @author
+ * The Class ProjectsCreateView. Loads the ProjectsCreateView
+ *
  */
 public class ProjectsCreateView extends AnchorPane implements PageView {
 

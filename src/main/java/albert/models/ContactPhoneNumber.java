@@ -1,9 +1,8 @@
 package albert.models;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ContactPhoneNumber.
- * @author
+ * The Class Model ContactPhoneNumber.
+ *
  */
 public class ContactPhoneNumber {
 

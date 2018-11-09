@@ -5,10 +5,9 @@ import query.selects.Select;
 
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class QueryBuilder.
- * @author
+ *
  */
 public class QueryBuilder implements
         SelectQueryBuilderInterface,

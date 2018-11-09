@@ -6,10 +6,9 @@ import router.Router;
 import router.factories.pages.OverviewPageFactory;
 import router.response.Response;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class OverviewPageAction.
- * @author
+ * The Class OverviewPageAction. Creates an OverviewPageAction based on action
+ *
  */
 public class OverviewPageAction implements Action {
 

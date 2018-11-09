@@ -5,14 +5,10 @@ import router.Request;
 import router.Router;
 import router.factories.pages.CreatePageFactory;
 import router.response.Response;
-// TODO: Auto-generated Javadoc
 
 /**
- * The Class CreatePageAction.
- * @author
- */
-/*
-Hier wordt een page gemaakt, op basis van een request
+ * The Class CreatePageAction. Creates an CreatePageAction based on a action
+ *
  */
 public class CreatePageAction implements Action {
 

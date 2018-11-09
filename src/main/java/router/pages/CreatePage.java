@@ -3,15 +3,14 @@ package router.pages;
 import router.Request;
 import router.response.Response;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface CreatePage.
- * @author
+ *
  */
 public interface CreatePage extends Page {
 
     /**
-     * Creates the.
+     * Creates an page.
      *
      * @param request the request
      * @return the response

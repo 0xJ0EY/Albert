@@ -10,10 +10,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Quotation.
- * @author
+ * The Class Model Quotation.
+ *
  */
 public class Quotation {
 

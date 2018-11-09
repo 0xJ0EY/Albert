@@ -6,10 +6,9 @@ import router.pages.OverviewPage;
 import albert.controllers.templates.MenuTemplateController;
 import router.factories.pages.OverviewPageFactory;
 
-// TODO: Auto-generated Javadoc
 /**
  * A factory for creating QuotationsPage objects.
- * @author
+ *
  */
 public class QuotationsPageFactory implements OverviewPageFactory {
 

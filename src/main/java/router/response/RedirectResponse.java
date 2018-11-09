@@ -5,7 +5,7 @@ import router.Router;
 // TODO: Auto-generated Javadoc
 /**
  * The Class RedirectResponse.
- * @author
+ *
  */
 public class RedirectResponse implements Response {
 

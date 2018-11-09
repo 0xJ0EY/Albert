@@ -10,7 +10,7 @@ import table.views.HeaderView;
 // TODO: Auto-generated Javadoc
 /**
  * The Class CenterHeaderView.
- * @author
+ *
  */
 public class CenterHeaderView extends AnchorPane implements HeaderView {
 

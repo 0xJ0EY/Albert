@@ -9,7 +9,7 @@ import table.views.cells.RouteCellView;
 // TODO: Auto-generated Javadoc
 /**
  * A factory for creating EditCell objects.
- * @author
+ *
  */
 public class EditCellFactory implements CellFactory {
 

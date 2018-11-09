@@ -12,10 +12,9 @@ import albert.models.Project;
 import database.Database;
 
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class InvoiceDAO.
- * @author
+ * The Class InvoiceDAO. Insert an object into the database. And gets data from the database to an object.
+ *
  */
 public class InvoiceDAO implements DAO<Invoice>{
     

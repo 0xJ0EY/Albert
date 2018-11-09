@@ -13,10 +13,9 @@ import table.views.TableView;
 import java.awt.*;
 import java.io.IOException;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ProjectsView.
- * @author
+ * The Class ProjectsView. Loads the ProjectsView
+ *
  */
 public class ProjectsView extends AnchorPane implements PageView  {
 

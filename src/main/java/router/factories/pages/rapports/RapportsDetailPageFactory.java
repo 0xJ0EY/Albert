@@ -6,10 +6,9 @@ import router.pages.DetailPage;
 import albert.controllers.templates.MenuTemplateController;
 import router.factories.pages.DetailPageFactory;
 
-// TODO: Auto-generated Javadoc
 /**
  * A factory for creating RapportsDetailPage objects.
- * @author
+ *
  */
 public class RapportsDetailPageFactory implements DetailPageFactory {
 

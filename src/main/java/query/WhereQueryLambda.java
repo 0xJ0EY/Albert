@@ -1,9 +1,8 @@
 package query;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface WhereQueryLambda.
- * @author
+ *
  */
 public interface WhereQueryLambda {
 

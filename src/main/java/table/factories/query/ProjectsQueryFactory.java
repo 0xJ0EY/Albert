@@ -3,7 +3,7 @@ package table.factories.query;
 // TODO: Auto-generated Javadoc
 /**
  * A factory for creating ProjectsQuery objects.
- * @author
+ *
  */
 public class ProjectsQueryFactory implements QueryFactory {
 

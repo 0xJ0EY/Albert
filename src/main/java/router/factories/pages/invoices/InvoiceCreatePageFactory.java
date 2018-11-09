@@ -7,10 +7,9 @@ import albert.views.ProjectsCreateView;
 import router.factories.pages.CreatePageFactory;
 import router.pages.CreatePage;
 
-// TODO: Auto-generated Javadoc
 /**
  * A factory for creating InvoiceCreatePage objects.
- * @author
+ *
  */
 public class InvoiceCreatePageFactory implements CreatePageFactory {
     

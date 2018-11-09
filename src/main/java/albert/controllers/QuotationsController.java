@@ -28,10 +28,9 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class QuotationsController.
- * @author
+ *
  */
 public class QuotationsController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
 

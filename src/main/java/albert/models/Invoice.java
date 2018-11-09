@@ -11,10 +11,9 @@ import java.text.SimpleDateFormat;
 import java.sql.Timestamp;
 import java.util.Date;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Invoice.
- * @author
+ * The Class Model Invoice.
+ *
  */
 public class Invoice {
 

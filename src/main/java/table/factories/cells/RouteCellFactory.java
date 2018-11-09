@@ -8,7 +8,7 @@ import table.views.cells.RouteCellView;
 // TODO: Auto-generated Javadoc
 /**
  * A factory for creating RouteCell objects.
- * @author
+ *
  */
 public class RouteCellFactory implements CellFactory {
 

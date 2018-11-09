@@ -6,10 +6,9 @@ import org.ini4j.Ini;
 import java.io.File;
 import java.io.IOException;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class IniStrategy.
- * @author
+ *
  */
 public class IniStrategy implements ConfigStrategy {
 
@@ -91,7 +90,7 @@ public class IniStrategy implements ConfigStrategy {
     }
 
     /**
-     * Save.
+     * Save the config.
      */
     private void save() {
         try {

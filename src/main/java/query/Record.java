@@ -3,10 +3,9 @@ package query;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Record.
- * @author
+ *
  */
 public class Record {
 

@@ -21,10 +21,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class InvoiceEditView.
- * @author
+ * The Class InvoiceEditView. Loads the InvoiceEditView
+ *
  */
 public class InvoiceEditView extends AnchorPane implements PageView {
 

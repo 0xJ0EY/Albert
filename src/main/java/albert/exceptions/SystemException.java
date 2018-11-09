@@ -1,8 +1,8 @@
 package albert.exceptions;
 
 /**
- * The Class SystemException.
- * @author
+ * The Class SystemException. Defines the systemexception
+ *
  */
 public class SystemException extends ApplicationException {
 }

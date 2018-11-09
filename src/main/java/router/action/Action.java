@@ -3,14 +3,10 @@ package router.action;
 import router.Request;
 import router.Router;
 import router.response.Response;
-// TODO: Auto-generated Javadoc
 
 /**
- * The Interface Action.
- * @author
- */
-/*
-Hier worden de acties behandeld.
+ * The Interface Action. This handles the actions
+ *
  */
 public interface Action {
 

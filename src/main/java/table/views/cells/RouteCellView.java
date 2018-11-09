@@ -15,7 +15,7 @@ import table.views.CellView;
 // TODO: Auto-generated Javadoc
 /**
  * The Class RouteCellView.
- * @author
+ *
  */
 public class RouteCellView extends AnchorPane implements CellView {
 

@@ -6,10 +6,10 @@ import database.Database;
 import java.sql.*;
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
+
 /**
- * The Class RapportDAO.
- * @author
+ * The Class RapportDAO. Insert an object into the database. And gets data from the database to an object.
+ *
  */
 public class RapportDAO implements DAO<Rapportage> {
 

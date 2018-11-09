@@ -11,10 +11,9 @@ import table.Table;
 import table.views.TableView;
 
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ContactsView.
- * @author
+ * The Class ContactsView. Loads the ContactsView
+ *
  */
 public class ContactsView extends AnchorPane implements PageView {
 

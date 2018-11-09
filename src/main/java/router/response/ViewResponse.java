@@ -6,7 +6,7 @@ import router.Router;
 // TODO: Auto-generated Javadoc
 /**
  * The Class ViewResponse.
- * @author
+ *
  */
 public class ViewResponse implements Response {
 

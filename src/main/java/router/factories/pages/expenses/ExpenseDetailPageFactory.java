@@ -8,10 +8,9 @@ import albert.views.RapportsDetailView;
 import router.factories.pages.DetailPageFactory;
 import router.pages.DetailPage;
 
-// TODO: Auto-generated Javadoc
 /**
  * A factory for creating ExpenseDetailPage objects.
- * @author
+ *
  */
 public class ExpenseDetailPageFactory implements DetailPageFactory {
 

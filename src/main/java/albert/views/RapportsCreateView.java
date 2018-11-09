@@ -9,10 +9,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import router.views.PageView;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class RapportsCreateView.
- * @author
+ * The Class RapportsCreateView. Loads the RapportsCreateView
+ *
  */
 public class RapportsCreateView extends AnchorPane implements PageView {
 

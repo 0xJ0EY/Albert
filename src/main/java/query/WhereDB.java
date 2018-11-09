@@ -4,10 +4,9 @@ import query.builders.WhereQueryBuilder;
 
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class WhereDB.
- * @author
+ *
  */
 public class WhereDB implements WhereQuery {
 

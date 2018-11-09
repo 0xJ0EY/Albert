@@ -4,10 +4,9 @@ import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.util.Date;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Expense.
- * @author
+ * The Class Model Expense.
+ *
  */
 public class Expense {
 

@@ -5,7 +5,7 @@ import table.Table;
 // TODO: Auto-generated Javadoc
 /**
  * The Interface DataStrategy.
- * @author
+ *
  */
 public interface DataStrategy {
 

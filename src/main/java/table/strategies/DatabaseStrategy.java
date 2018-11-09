@@ -14,7 +14,7 @@ import java.util.HashSet;
 // TODO: Auto-generated Javadoc
 /**
  * The Class DatabaseStrategy.
- * @author
+ *
  */
 public class DatabaseStrategy implements DataStrategy {
 

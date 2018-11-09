@@ -7,10 +7,9 @@ import router.factories.pages.DetailPageFactory;
 import router.response.Response;
 
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class DetailPageAction.
- * @author
+ * The Class DetailPageAction. Creates an DetailPageAction based on action
+ *
  */
 public class DetailPageAction implements Action {
 

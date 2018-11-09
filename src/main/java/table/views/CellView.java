@@ -7,7 +7,7 @@ import table.cells.Cell;
 // TODO: Auto-generated Javadoc
 /**
  * The Interface CellView.
- * @author
+ *
  */
 public interface CellView {
 

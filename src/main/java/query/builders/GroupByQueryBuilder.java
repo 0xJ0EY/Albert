@@ -5,10 +5,9 @@ import query.selects.Select;
 
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class GroupByQueryBuilder.
- * @author
+ *
  */
 public class GroupByQueryBuilder implements GroupByQueryBuilderInterface {
 

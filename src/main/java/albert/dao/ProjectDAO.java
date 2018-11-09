@@ -11,10 +11,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ProjectDAO.
- * @author
+ * The Class ProjectDAO. Insert an object into the database. And gets data from the database to an object.
+ *
  */
 public class ProjectDAO implements DAO<Project> {
 

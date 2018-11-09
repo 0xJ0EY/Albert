@@ -11,10 +11,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class QuotationsDetailView.
- * @author
+ * The Class QuotationsDetailView. Loads the QuotationsDetailView
+ *
  */
 public class QuotationsDetailView extends AnchorPane implements PageView {
 

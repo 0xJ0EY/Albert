@@ -15,10 +15,9 @@ import javafx.scene.layout.AnchorPane;
 
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ProjectsEditView.
- * @author
+ * The Class ProjectsEditView. Loads the ProjectsEditView
+ *
  */
 public class ProjectsEditView extends AnchorPane implements PageView {
 

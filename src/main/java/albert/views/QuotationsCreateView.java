@@ -17,10 +17,9 @@ import javafx.scene.layout.AnchorPane;
 
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class QuotationsCreateView.
- * @author
+ * The Class QuotationsCreateView. Loads the QuotationsCreateView
+ *
  */
 public class QuotationsCreateView extends AnchorPane implements PageView {
 

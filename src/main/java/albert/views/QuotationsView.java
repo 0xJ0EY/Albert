@@ -13,10 +13,9 @@ import table.views.TableView;
 
 import java.io.IOException;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class QuotationsView.
- * @author
+ * The Class QuotationsView. Loads the QuotationsView
+ *
  */
 public class QuotationsView extends AnchorPane implements PageView {
 

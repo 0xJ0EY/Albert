@@ -1,9 +1,8 @@
 package query.builders;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class OffsetQueryBuilder.
- * @author
+ *
  */
 public class OffsetQueryBuilder implements OffsetQueryBuilderInterface {
 

@@ -9,10 +9,9 @@ import router.factories.pages.EditPageFactory;
 import router.pages.CreatePage;
 import router.pages.EditPage;
 
-// TODO: Auto-generated Javadoc
 /**
  * A factory for creating RapportsCreatePage objects.
- * @author
+ *
  */
 public class RapportsCreatePageFactory implements CreatePageFactory {
 

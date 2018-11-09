@@ -6,7 +6,7 @@ import table.views.header.RightHeaderView;
 // TODO: Auto-generated Javadoc
 /**
  * A factory for creating RightHeaderView objects.
- * @author
+ *
  */
 public class RightHeaderViewFactory implements HeaderViewFactory {
 

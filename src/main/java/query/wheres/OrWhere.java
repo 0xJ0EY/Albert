@@ -1,9 +1,8 @@
 package query.wheres;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class OrWhere.
- * @author
+ *
  */
 public class OrWhere implements WhereStatement {
     

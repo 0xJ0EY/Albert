@@ -8,10 +8,9 @@ import albert.views.RapportsEditView;
 import router.factories.pages.EditPageFactory;
 import router.pages.EditPage;
 
-// TODO: Auto-generated Javadoc
 /**
  * A factory for creating ExpenseEditPage objects.
- * @author
+ *
  */
 public class ExpenseEditPageFactory implements EditPageFactory {
 

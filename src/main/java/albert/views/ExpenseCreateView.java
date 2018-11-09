@@ -17,10 +17,9 @@ import router.views.PageView;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ExpenseCreateView.
- * @author
+ * The Class ExpenseCreateView. Loads the ExpenseCreateView
+ *
  */
 public class ExpenseCreateView extends AnchorPane implements PageView {
 

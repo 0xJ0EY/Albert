@@ -8,7 +8,7 @@ import table.exceptions.ViewNotFoundException;
 // TODO: Auto-generated Javadoc
 /**
  * The Class SearchTableView.
- * @author
+ *
  */
 public class SearchTableView extends BaseTableView {
 

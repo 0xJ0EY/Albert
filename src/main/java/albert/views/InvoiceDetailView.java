@@ -14,10 +14,9 @@ import java.awt.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class InvoiceDetailView.
- * @author
+ * The Class InvoiceDetailView. Loads the InvoiceDetailView
+ *
  */
 public class InvoiceDetailView extends AnchorPane implements PageView {
 

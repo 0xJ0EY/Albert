@@ -6,7 +6,7 @@ import table.views.header.CenterHeaderView;
 // TODO: Auto-generated Javadoc
 /**
  * A factory for creating CenterHeaderView objects.
- * @author
+ *
  */
 public class CenterHeaderViewFactory implements HeaderViewFactory {
 

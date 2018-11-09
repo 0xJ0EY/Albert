@@ -6,10 +6,9 @@ import router.factories.pages.EditPageFactory;
 import router.pages.EditPage;
 import albert.controllers.templates.MenuTemplateController;
 
-// TODO: Auto-generated Javadoc
 /**
  * A factory for creating SettingsEditPage objects.
- * @author
+ *
  */
 public class SettingsEditPageFactory implements EditPageFactory {
 

@@ -19,10 +19,9 @@ import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ContactCreateView.
- * @author
+ * The Class ContactCreateView. Loads the ContactCreateView
+ *
  */
 public class ContactCreateView extends AnchorPane implements PageView {
 

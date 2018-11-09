@@ -7,7 +7,7 @@ import table.views.TableView;
 // TODO: Auto-generated Javadoc
 /**
  * The Class BareTableView.
- * @author
+ *
  */
 public class BareTableView extends BaseTableView implements TableView {
 

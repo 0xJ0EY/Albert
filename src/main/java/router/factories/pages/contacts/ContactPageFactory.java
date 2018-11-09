@@ -8,10 +8,9 @@ import albert.controllers.templates.MenuTemplateController;
 import albert.views.HomeView;
 import router.factories.pages.OverviewPageFactory;
 
-// TODO: Auto-generated Javadoc
 /**
  * A factory for creating ContactPage objects.
- * @author
+ *
  */
 public class ContactPageFactory implements OverviewPageFactory {
 

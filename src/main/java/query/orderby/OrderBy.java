@@ -1,9 +1,8 @@
 package query.orderby;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class OrderBy.
- * @author
+ *
  */
 public class OrderBy implements OrderByStatement {
 

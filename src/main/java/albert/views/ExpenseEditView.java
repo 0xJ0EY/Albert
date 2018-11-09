@@ -13,10 +13,9 @@ import router.views.PageView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ExpenseEditView.
- * @author
+ * The Class ExpenseEditView. Loads the ExpenseEditView
+ *
  */
 public class ExpenseEditView extends AnchorPane implements PageView {
 

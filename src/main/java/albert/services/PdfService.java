@@ -18,10 +18,9 @@ import java.nio.file.FileSystems;
 import static org.thymeleaf.templatemode.TemplateMode.HTML;
 
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class PdfService.
- * @author
+ * The PdfService generates pdf for quotation and invoice
+ *
  */
 public class PdfService {
 

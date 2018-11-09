@@ -10,7 +10,7 @@ import table.views.HeaderView;
 // TODO: Auto-generated Javadoc
 /**
  * The Class RightHeaderView.
- * @author
+ *
  */
 public class RightHeaderView extends AnchorPane implements HeaderView {
 

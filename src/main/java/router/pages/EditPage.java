@@ -6,7 +6,7 @@ import router.response.Response;
 // TODO: Auto-generated Javadoc
 /**
  * The Interface EditPage.
- * @author
+ *
  */
 public interface EditPage extends Page {
 

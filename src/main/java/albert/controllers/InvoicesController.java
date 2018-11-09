@@ -31,14 +31,13 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class InvoicesController.
- * @author
+ *
  */
 public class InvoicesController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
     
-    /** The dao. */
+    /** The dao of invoice. */
     private InvoiceDAO dao = new InvoiceDAO();
     
     /** The dao project. */

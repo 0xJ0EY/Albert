@@ -14,10 +14,10 @@ import table.views.TableView;
 
 import java.io.IOException;
 
-// TODO: Auto-generated Javadoc
+
 /**
- * The Class ExpenseView.
- * @author
+ * The Class ExpenseView. Loads the ExpenseView
+ *
  */
 public class ExpenseView extends AnchorPane implements PageView {
 

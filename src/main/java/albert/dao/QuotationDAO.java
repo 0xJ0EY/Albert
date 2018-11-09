@@ -7,10 +7,10 @@ import database.Database;
 import java.sql.*;
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
+
 /**
- * The Class QuotationDAO.
- * @author
+ * The Class QuotationDAO. Insert an object into the database. And gets data from the database to an object.
+ *
  */
 public class QuotationDAO implements DAO<Quotation>{
 

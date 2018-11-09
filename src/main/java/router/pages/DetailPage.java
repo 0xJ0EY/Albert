@@ -3,10 +3,9 @@ package router.pages;
 import router.Request;
 import router.response.Response;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface DetailPage.
- * @author
+ *
  */
 public interface DetailPage extends Page {
 

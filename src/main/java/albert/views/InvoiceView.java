@@ -15,10 +15,9 @@ import table.views.TableView;
 
 import java.io.IOException;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class InvoiceView.
- * @author
+ * The Class InvoiceView. Loads the InvoiceView
+ *
  */
 public class InvoiceView extends AnchorPane implements PageView {
 

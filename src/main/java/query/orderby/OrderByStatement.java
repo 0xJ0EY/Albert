@@ -2,10 +2,9 @@ package query.orderby;
 
 import java.io.Serializable;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface OrderByStatement.
- * @author
+ *
  */
 public interface OrderByStatement extends Serializable {
 

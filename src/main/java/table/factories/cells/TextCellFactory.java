@@ -7,7 +7,7 @@ import table.views.cells.TextCellView;
 // TODO: Auto-generated Javadoc
 /**
  * A factory for creating TextCell objects.
- * @author
+ *
  */
 public class TextCellFactory implements CellFactory {
 

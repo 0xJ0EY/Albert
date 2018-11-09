@@ -8,10 +8,9 @@ import albert.views.QuotationsCreateView;
 import router.factories.pages.CreatePageFactory;
 import router.pages.CreatePage;
 
-// TODO: Auto-generated Javadoc
 /**
  * A factory for creating QuotationsCreatePage objects.
- * @author
+ *
  */
 public class QuotationsCreatePageFactory implements CreatePageFactory {
     

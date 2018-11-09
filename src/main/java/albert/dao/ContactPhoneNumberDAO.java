@@ -13,10 +13,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ContactPhoneNumberDAO.
- * @author
+ * The Class ContactPhoneNumberDAO. Insert an object into the database. And gets data from the database to an object.
+ *
  */
 public class ContactPhoneNumberDAO {
 

@@ -13,10 +13,9 @@ import table.views.TableView;
 
 import java.io.IOException;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class RapportsView.
- * @author
+ * The Class RapportsView. Loads the RapportsView
+ *
  */
 public class RapportsView extends AnchorPane implements PageView {
 

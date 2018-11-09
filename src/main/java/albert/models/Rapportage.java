@@ -7,10 +7,9 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Rapportage.
- * @author
+ * The Class Model Rapportage.
+ *
  */
 public class Rapportage {
 

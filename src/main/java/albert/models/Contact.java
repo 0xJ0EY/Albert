@@ -4,10 +4,9 @@ package albert.models;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Contact.
- * @author
+ * The Class Model Contact.
+ *
  */
 public class Contact {
 

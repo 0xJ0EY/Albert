@@ -1,9 +1,8 @@
 package query.joins;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface JoinStatement.
- * @author
+ *
  */
 public interface JoinStatement {
 

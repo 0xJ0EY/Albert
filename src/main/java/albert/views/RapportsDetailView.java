@@ -9,10 +9,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class RapportsDetailView.
- * @author
+ * The Class RapportsDetailView. Loads the RapportsDetailView
+ *
  */
 public class RapportsDetailView extends AnchorPane implements PageView {
 

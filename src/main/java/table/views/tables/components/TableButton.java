@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 // TODO: Auto-generated Javadoc
 /**
  * The Class TableButton.
- * @author
+ *
  */
 public class TableButton extends Button {
 

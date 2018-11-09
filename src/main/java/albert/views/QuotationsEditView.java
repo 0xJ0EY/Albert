@@ -15,10 +15,9 @@ import java.sql.Timestamp;
 import java.time.ZoneId;
 import java.util.Date;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class QuotationsEditView.
- * @author
+ * The Class QuotationsEditView. Loads the QuotationsEditView
+ *
  */
 public class QuotationsEditView extends AnchorPane implements PageView {
 

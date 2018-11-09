@@ -23,10 +23,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MenuView.
- * @author
+ *
  */
 public class MenuView extends AnchorPane implements TemplateView {
 

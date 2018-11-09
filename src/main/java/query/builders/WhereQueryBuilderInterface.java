@@ -2,10 +2,9 @@ package query.builders;
 
 import query.WhereQuery;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface WhereQueryBuilderInterface.
- * @author
+ *
  */
 public interface WhereQueryBuilderInterface extends QueryBuilderInterface {
 

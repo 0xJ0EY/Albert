@@ -14,10 +14,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import table.Table;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ProjectsDetailView.
- * @author
+ * The Class ProjectsDetailView. Loads the ProjectsDetailView
+ *
  */
 public class ProjectsDetailView extends AnchorPane implements PageView {
 

@@ -1,9 +1,8 @@
 package query.builders;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface JoinQueryBuilderInterface.
- * @author
+ *
  */
 public interface JoinQueryBuilderInterface extends QueryBuilderInterface {
 

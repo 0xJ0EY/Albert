@@ -3,7 +3,7 @@ package router.util;
 // TODO: Auto-generated Javadoc
 /**
  * This class isnt the most elegant, but there is no other way to cast String to primitive cells.
- * @author
+ *
  */
 public class Helper {
 

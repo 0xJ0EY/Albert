@@ -5,7 +5,7 @@ import table.strategies.DataStrategy;
 // TODO: Auto-generated Javadoc
 /**
  * The Class DataRunnable.
- * @author
+ *
  */
 public class DataRunnable implements Runnable {
 

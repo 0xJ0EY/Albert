@@ -5,14 +5,10 @@ import router.Request;
 import router.Router;
 import router.factories.pages.DeletePageFactory;
 import router.response.Response;
-// TODO: Auto-generated Javadoc
 
 /**
- * The Class DeletePageAction.
- * @author
- */
-/*
-Hier wordt een page verwijderd, op basis van een request
+ * The Class DeletePageAction. Create an DeletePageAction based on a action
+ *
  */
 public class DeletePageAction implements Action {
 

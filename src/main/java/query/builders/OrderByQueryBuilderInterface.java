@@ -1,9 +1,8 @@
 package query.builders;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface OrderByQueryBuilderInterface.
- * @author
+ *
  */
 public interface OrderByQueryBuilderInterface extends QueryBuilderInterface {
 

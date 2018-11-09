@@ -11,8 +11,8 @@ import java.util.ArrayList;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class TaxDAO.
- * @author
+ * The Class TaxDAO. Insert an object into the database. And gets data from the database to an object.
+ *
  */
 public class TaxDAO implements DAO<Tax> {
 

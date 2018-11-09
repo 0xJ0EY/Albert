@@ -7,7 +7,7 @@ import router.Router;
 // TODO: Auto-generated Javadoc
 /**
  * The Interface Page.
- * @author
+ *
  */
 public interface Page {
 

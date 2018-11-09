@@ -6,10 +6,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class SettingsEditView.
- * @author
+ * The Class SettingsEditView. Loads the view SettingsEditView
+ *
  */
 public class SettingsEditView extends AnchorPane implements PageView {
 

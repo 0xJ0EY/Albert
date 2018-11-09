@@ -9,7 +9,7 @@ import table.exceptions.ViewNotFoundException;
 // TODO: Auto-generated Javadoc
 /**
  * The Class ColumnView.
- * @author
+ *
  */
 public class ColumnView extends VBox {
 

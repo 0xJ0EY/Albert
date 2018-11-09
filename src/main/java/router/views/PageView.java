@@ -6,7 +6,7 @@ import javafx.scene.layout.AnchorPane;
 // TODO: Auto-generated Javadoc
 /**
  * The Interface PageView.
- * @author
+ *
  */
 public interface PageView {
 

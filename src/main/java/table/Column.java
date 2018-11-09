@@ -10,7 +10,7 @@ import java.util.ArrayList;
 // TODO: Auto-generated Javadoc
 /**
  * The Class Column.
- * @author
+ *
  */
 public class Column {
 

@@ -1,9 +1,8 @@
 package query.builders;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class LimitQueryBuilder.
- * @author
+ *
  */
 public class LimitQueryBuilder implements LimitQueryBuilderInterface {
 

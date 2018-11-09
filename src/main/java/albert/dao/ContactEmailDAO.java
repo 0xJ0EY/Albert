@@ -13,10 +13,9 @@ import java.util.ArrayList;
 
 import java.util.HashMap;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ContactEmailDAO.
- * @author
+ * The Class ContactEmailDAO. Insert an object into the database. And gets data from the database to an object.
+ *
  */
 public class ContactEmailDAO {
 

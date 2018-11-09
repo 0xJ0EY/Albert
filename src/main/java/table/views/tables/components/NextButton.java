@@ -9,7 +9,7 @@ import table.Table;
 // TODO: Auto-generated Javadoc
 /**
  * The Class NextButton.
- * @author
+ *
  */
 public class NextButton extends Button {
 

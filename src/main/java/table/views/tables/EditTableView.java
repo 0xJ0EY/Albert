@@ -8,7 +8,7 @@ import table.exceptions.ViewNotFoundException;
 // TODO: Auto-generated Javadoc
 /**
  * The Class EditTableView.
- * @author
+ *
  */
 public class EditTableView extends BaseTableView {
 

@@ -18,10 +18,9 @@ import table.factories.header.LeftHeaderViewFactory;
 import table.strategies.DatabaseStrategy;
 import table.views.tables.SearchTableView;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class RapportsController.
- * @author
+ *
  */
 public class RapportsController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
 

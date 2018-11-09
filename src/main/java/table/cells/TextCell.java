@@ -8,7 +8,7 @@ import java.util.ArrayList;
 // TODO: Auto-generated Javadoc
 /**
  * The Class TextCell.
- * @author
+ *
  */
 public class TextCell implements Cell {
 

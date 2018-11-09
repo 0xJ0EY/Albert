@@ -1,8 +1,8 @@
 package albert.exceptions;
 
 /**
- * The Class ApplicationException.
- * @author
+ * The Class ApplicationException. Defines the applicaionexception
+ *
  */
 public class ApplicationException extends RuntimeException {
 }

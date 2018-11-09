@@ -6,7 +6,7 @@ import table.Table;
 // TODO: Auto-generated Javadoc
 /**
  * The Interface TableView.
- * @author
+ *
  */
 public interface TableView {
 

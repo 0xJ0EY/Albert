@@ -3,10 +3,11 @@ package albert.components;
 import javafx.scene.control.Label;
 import router.action.TemplateAction;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class ActionTemplateButton.
- * @author
+ * Creates the actionbutton
+ *
  */
 public class ActionTemplateButton extends Label {
 

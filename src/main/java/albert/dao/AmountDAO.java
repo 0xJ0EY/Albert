@@ -8,10 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class AmountDAO.
- * @author
+ * The Class AmountDAO. Insert an object into the database. And gets data from the database to an object.
+ *
  */
 public class AmountDAO implements DAO<Amount> {
 

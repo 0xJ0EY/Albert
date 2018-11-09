@@ -2,10 +2,9 @@ package query.wheres;
 
 import query.WhereQuery;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class GroupedWhere.
- * @author
+ *
  */
 public class GroupedWhere implements WhereStatement {
 

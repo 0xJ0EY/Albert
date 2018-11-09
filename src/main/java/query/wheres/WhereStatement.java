@@ -2,10 +2,9 @@ package query.wheres;
 
 import java.io.Serializable;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface WhereStatement.
- * @author
+ *
  */
 public interface WhereStatement extends Serializable {
 

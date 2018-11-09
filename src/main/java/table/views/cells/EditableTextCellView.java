@@ -15,7 +15,7 @@ import table.views.CellView;
 // TODO: Auto-generated Javadoc
 /**
  * The Class EditableTextCellView.
- * @author
+ *
  */
 public class EditableTextCellView extends AnchorPane implements CellView {
 

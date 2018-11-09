@@ -8,10 +8,9 @@ import router.response.ViewResponse;
 import router.templates.TemplateController;
 import router.views.PageView;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SettingsController.
- * @author
+ *
  */
 public class SettingsController extends PageController implements OverviewPage, EditPage {
 

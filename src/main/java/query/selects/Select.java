@@ -2,10 +2,9 @@ package query.selects;
 
 import java.io.Serializable;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Select.
- * @author
+ *
  */
 public class Select implements Serializable {
 

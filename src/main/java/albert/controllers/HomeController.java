@@ -10,10 +10,9 @@ import router.response.Response;
 import router.response.ViewResponse;
 import table.Table;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class HomeController.
- * @author
+ *
  */
 public class HomeController extends PageController implements OverviewPage, DetailPage {
 

@@ -11,7 +11,7 @@ import java.util.HashMap;
 // TODO: Auto-generated Javadoc
 /**
  * The Interface TemplateController.
- * @author
+ *
  */
 public interface TemplateController {
 

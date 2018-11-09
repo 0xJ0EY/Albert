@@ -10,10 +10,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Query.
- * @author
+ *
  */
 public class Query implements Cloneable, Serializable {
 

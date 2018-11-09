@@ -12,14 +12,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import table.Table;
 import java.io.IOException;
-// TODO: Auto-generated Javadoc
-/*
-Hier wordt de contactView geladen.
- */
+
 
 /**
- * The Class ContactDetailView.
- * @author
+ * The Class ContactDetailView. Loads the Contactdetailview
+ *
  */
 public class ContactDetailView extends AnchorPane implements PageView {
 

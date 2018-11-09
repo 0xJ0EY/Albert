@@ -4,10 +4,9 @@ import config.strategy.ConfigStrategy;
 
 import java.util.HashMap;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Config.
- * @author
+ *
  */
 public class Config {
 
@@ -73,7 +72,7 @@ public class Config {
     }
 
     /**
-     * Gets the.
+     * Gets the config.
      *
      * @param config the config
      * @param key the key

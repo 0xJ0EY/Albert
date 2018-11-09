@@ -9,14 +9,10 @@ import router.views.PageView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
-// TODO: Auto-generated Javadoc
 
 /**
- * The Class HomeView.
- * @author
- */
-/*
-Hier wordt de homeView geladen
+ * The Class HomeView. Loads the HomeView
+ *
  */
 public class HomeView extends AnchorPane implements PageView {
 

@@ -21,10 +21,9 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class InvoiceCreateView.
- * @author
+ * The Class InvoiceCreateView. Loads the InvoiceCreateView
+ *
  */
 public class InvoiceCreateView extends AnchorPane implements PageView {
 

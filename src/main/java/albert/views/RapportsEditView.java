@@ -9,10 +9,9 @@ import router.views.PageView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class RapportsEditView.
- * @author
+ * The Class RapportsEditView. Loads the RapportsEditView
+ *
  */
 public class RapportsEditView extends AnchorPane implements PageView {
 

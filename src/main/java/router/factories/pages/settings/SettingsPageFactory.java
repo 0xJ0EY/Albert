@@ -8,10 +8,9 @@ import albert.views.SettingsView;
 import router.factories.pages.OverviewPageFactory;
 import router.pages.OverviewPage;
 
-// TODO: Auto-generated Javadoc
 /**
  * A factory for creating SettingsPage objects.
- * @author
+ *
  */
 public class SettingsPageFactory implements OverviewPageFactory {
     

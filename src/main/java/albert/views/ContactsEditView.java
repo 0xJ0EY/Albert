@@ -17,10 +17,9 @@ import table.views.TableView;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ContactsEditView.
- * @author
+ * The Class ContactsEditView. Loads the ContactsEditView
+ *
  */
 public class ContactsEditView extends AnchorPane implements PageView {
 

@@ -6,10 +6,9 @@ import albert.controllers.templates.MenuTemplateController;
 import albert.views.ProjectsView;
 import router.factories.pages.OverviewPageFactory;
 
-// TODO: Auto-generated Javadoc
 /**
  * A factory for creating ProjectsPage objects.
- * @author
+ *
  */
 public class ProjectsPageFactory implements OverviewPageFactory {
 

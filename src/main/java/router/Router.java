@@ -12,7 +12,7 @@ import java.util.HashMap;
 // TODO: Auto-generated Javadoc
 /**
  * The Class Router.
- * @author
+ *
  */
 /*
 De klas Router handelt alle requests van de gebruiker af en geeft responses terug.

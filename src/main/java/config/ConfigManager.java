@@ -7,12 +7,10 @@ import java.net.URL;
 import java.nio.channels.FileChannel;
 import java.util.HashMap;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ConfigManager.
- * @author
- */
-/*
+ *
+ *
  * This class is meant for managing everything the config class uses
  * This includes actions like copying .env files and creating the root folder
  */

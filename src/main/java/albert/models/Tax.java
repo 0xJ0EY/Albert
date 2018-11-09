@@ -1,9 +1,8 @@
 package albert.models;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Tax.
- * @author
+ * The Class Model Tax.
+ *
  */
 public class Tax {
 

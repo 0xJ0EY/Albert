@@ -4,10 +4,9 @@ import query.orderby.OrderBy;
 
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class OrderByQueryBuilder.
- * @author
+ *
  */
 public class OrderByQueryBuilder implements OrderByQueryBuilderInterface {
 

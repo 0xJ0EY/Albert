@@ -7,10 +7,9 @@ import router.factories.pages.EditPageFactory;
 import router.pages.EditPage;
 import albert.controllers.templates.MenuTemplateController;
 
-// TODO: Auto-generated Javadoc
 /**
  * A factory for creating QuotationsEditPage objects.
- * @author
+ *
  */
 public class QuotationsEditPageFactory implements EditPageFactory {
 

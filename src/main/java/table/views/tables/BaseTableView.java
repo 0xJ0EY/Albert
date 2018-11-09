@@ -23,7 +23,7 @@ import java.util.ArrayList;
 // TODO: Auto-generated Javadoc
 /**
  * The Class BaseTableView.
- * @author
+ *
  */
 public abstract class BaseTableView extends AnchorPane implements TableView {
 

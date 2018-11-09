@@ -10,10 +10,9 @@ import query.wheres.Where;
 
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class JoinQueryBuilder.
- * @author
+ *
  */
 public class JoinQueryBuilder implements JoinQueryBuilderInterface {
 

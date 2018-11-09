@@ -6,10 +6,9 @@ import router.views.PageView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class SettingsView.
- * @author
+ * The Class SettingsView. Loads the SettingsView
+ *
  */
 public class SettingsView extends AnchorPane implements PageView {
 

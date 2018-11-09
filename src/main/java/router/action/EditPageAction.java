@@ -5,14 +5,10 @@ import router.Request;
 import router.Router;
 import router.factories.pages.EditPageFactory;
 import router.response.Response;
-// TODO: Auto-generated Javadoc
 
 /**
- * The Class EditPageAction.
- * @author
- */
-/*
-Hier wordt de pagina getoont na het update.
+ * The Class EditPageAction. Creates an EditPageAction based on action
+ *
  */
 public class EditPageAction implements Action {
 

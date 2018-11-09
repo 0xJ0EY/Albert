@@ -29,10 +29,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ExpenseController.
- * @author
+ *
  */
 public class ExpenseController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
 

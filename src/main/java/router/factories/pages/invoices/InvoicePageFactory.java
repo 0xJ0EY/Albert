@@ -6,10 +6,9 @@ import albert.views.InvoiceView;
 import router.factories.pages.OverviewPageFactory;
 import router.pages.OverviewPage;
 
-// TODO: Auto-generated Javadoc
 /**
  * A factory for creating InvoicePage objects.
- * @author
+ *
  */
 public class InvoicePageFactory implements OverviewPageFactory {
     

@@ -3,10 +3,9 @@ package query;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface WhereQuery.
- * @author
+ *
  */
 public interface WhereQuery extends Serializable {
 

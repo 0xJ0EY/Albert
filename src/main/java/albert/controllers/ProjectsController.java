@@ -29,10 +29,9 @@ import table.views.tables.components.TableButton;
 
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ProjectsController.
- * @author
+ *
  */
 public class ProjectsController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
 

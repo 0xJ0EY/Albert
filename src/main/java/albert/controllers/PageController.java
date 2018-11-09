@@ -6,14 +6,10 @@ import router.views.PageView;
 import router.Router;
 import table.Table;
 
-// TODO: Auto-generated Javadoc
-/*
-De abstracte klas Page controller zorgt voor de juiste view voor elk geslecteerd pagina
- */
 
 /**
- * The Class PageController.
- * @author
+ * The abstract Class PageController. This creates global methods
+ *
  */
 public abstract class PageController implements Page {
 

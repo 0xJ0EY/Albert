@@ -1,9 +1,9 @@
 package query.groupby;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class GroupBy.
- * @author
+ *
  */
 public class GroupBy implements GroupByStatement {
 

@@ -3,10 +3,9 @@ package albert.models;
 
 import java.sql.Timestamp;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Project.
- * @author
+ * The Class Model Project.
+ *
  */
 public class Project {
 

@@ -5,7 +5,7 @@ import table.cells.Cell;
 // TODO: Auto-generated Javadoc
 /**
  * A factory for creating Cell objects.
- * @author
+ *
  */
 public interface CellFactory {
 

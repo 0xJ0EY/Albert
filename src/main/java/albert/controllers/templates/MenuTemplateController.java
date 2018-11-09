@@ -11,10 +11,10 @@ import router.templates.TemplateController;
 
 import java.util.HashMap;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MenuTemplateController.
- * @author
+ * Create the MenuTemplate
+ *
  */
 public class MenuTemplateController implements TemplateController {
 

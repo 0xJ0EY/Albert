@@ -6,10 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
- * Interface for standard mehtods for an dao.
- * @author
+ * Interface for standard methods for an dao.
+ *
  * @param <T> the generic type
  */
 public interface DAO<T> {

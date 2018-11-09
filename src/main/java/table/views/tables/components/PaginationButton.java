@@ -9,7 +9,7 @@ import table.Table;
 // TODO: Auto-generated Javadoc
 /**
  * The Class PaginationButton.
- * @author
+ *
  */
 public class PaginationButton extends Button {
 

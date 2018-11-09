@@ -6,14 +6,10 @@ import config.Config;
 import java.beans.PropertyVetoException;
 import java.sql.Connection;
 import java.sql.SQLException;
-// TODO: Auto-generated Javadoc
 
 /**
  * The Class Database.
- * @author
- */
-/*
-De klas database zorgt dat de app is gekopeld met dbms, waar de data wordt opgeslagen.
+ * Defines the connection with the database
  */
 public class Database {
 

@@ -15,10 +15,9 @@ import java.sql.*;
 import java.util.ArrayList;
 
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ExpenseDAO.
- * @author
+ * The Class ExpenseDAO. Insert an object into the database. And gets data from the database to an object.
+ *
  */
 public class ExpenseDAO implements DAO<Expense>{
 

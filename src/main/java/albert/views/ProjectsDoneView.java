@@ -11,14 +11,11 @@ import table.views.TableView;
 
 import java.awt.*;
 import java.io.IOException;
-// TODO: Auto-generated Javadoc
-/*
-Hier wordt de prrojects geladen
- */
+
 
 /**
- * The Class ProjectsDoneView.
- * @author
+ * The Class ProjectsDoneView. Loads the ProjectsDoneView
+ *
  */
 public class ProjectsDoneView extends AnchorPane implements PageView  {
 

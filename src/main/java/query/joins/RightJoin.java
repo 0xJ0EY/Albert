@@ -1,9 +1,8 @@
 package query.joins;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class RightJoin.
- * @author
+ *
  */
 public class RightJoin implements JoinStatement {
 

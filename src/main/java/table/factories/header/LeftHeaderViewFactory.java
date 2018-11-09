@@ -6,7 +6,7 @@ import table.views.header.LeftHeaderView;
 // TODO: Auto-generated Javadoc
 /**
  * A factory for creating LeftHeaderView objects.
- * @author
+ *
  */
 public class LeftHeaderViewFactory implements HeaderViewFactory {
 

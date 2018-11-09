@@ -7,7 +7,7 @@ import javafx.scene.Parent;
 // TODO: Auto-generated Javadoc
 /**
  * The Interface TemplateView.
- * @author
+ *
  */
 public interface TemplateView {
 

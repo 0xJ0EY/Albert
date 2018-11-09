@@ -5,7 +5,7 @@ import javafx.scene.layout.AnchorPane;
 // TODO: Auto-generated Javadoc
 /**
  * The Interface HeaderView.
- * @author
+ *
  */
 public interface HeaderView {
 
