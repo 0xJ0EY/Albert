@@ -11,17 +11,30 @@ import table.Table;
 import table.views.TableView;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ContactsView.
+ * @author
+ */
 public class ContactsView extends AnchorPane implements PageView {
 
+    /** The resource. */
     private final String resource = "/views/pages/ContactView.fxml";
+    
+    /** The controller. */
     private ContactController controller;
 
+    /** The overview table. */
     @FXML
     private AnchorPane overviewTable;
 
+    /** The search. */
     @FXML
     private TextField search;
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#load()
+     */
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
@@ -36,6 +49,9 @@ public class ContactsView extends AnchorPane implements PageView {
         }
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#update()
+     */
     @Override
     public void update() {
 
@@ -63,16 +79,25 @@ public class ContactsView extends AnchorPane implements PageView {
 
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#setController(albert.controllers.PageController)
+     */
     @Override
     public void setController(PageController controller) {
         this.controller = (ContactController) controller;
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#render()
+     */
     @Override
     public AnchorPane render() {
         return this;
     }
 
+    /**
+     * On click add contact.
+     */
     @FXML
     public void onClickAddContact(){
         controller.getRouter().nav("contacts/create/");

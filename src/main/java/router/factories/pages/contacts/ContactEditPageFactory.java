@@ -11,8 +11,16 @@ import albert.controllers.templates.MenuTemplateController;
 import albert.views.HomeView;
 import router.factories.pages.OverviewPageFactory;
 
+// TODO: Auto-generated Javadoc
+/**
+ * A factory for creating ContactEditPage objects.
+ * @author
+ */
 public class ContactEditPageFactory implements EditPageFactory {
 
+    /* (non-Javadoc)
+     * @see router.factories.PageFactory#create()
+     */
     @Override
     public EditPage create() {
         return new ContactController(new ContactsEditView(), new MenuTemplateController());

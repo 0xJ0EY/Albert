@@ -7,21 +7,38 @@ import java.net.URL;
 import java.nio.channels.FileChannel;
 import java.util.HashMap;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ConfigManager.
+ * @author
+ */
 /*
  * This class is meant for managing everything the config class uses
  * This includes actions like copying .env files and creating the root folder
  */
 public class ConfigManager {
 
+    /** The root. */
     private final String ROOT = System.getProperty("user.home") + File.separator + ".albert" + File.separator;
+    
+    /** The env directory. */
     private final String ENV_DIRECTORY = "/env/";
 
+    /** The config. */
     private Config config;
 
+    /**
+     * Instantiates a new config manager.
+     *
+     * @param config the config
+     */
     public ConfigManager(Config config) {
         this.config = config;
     }
 
+    /**
+     * Initialize.
+     */
     public void initialize() {
 
         // Check if the root folder exists
@@ -36,14 +53,27 @@ public class ConfigManager {
 
     }
 
+    /**
+     * Root exists.
+     *
+     * @return true, if successful
+     */
     private boolean rootExists() {
         return new File(ROOT).exists();
     }
 
+    /**
+     * Creates the root.
+     *
+     * @return true, if successful
+     */
     private boolean createRoot() {
         return new File(ROOT).mkdir();
     }
 
+    /**
+     * Copy env files.
+     */
     private void copyEnvFiles() {
 
         HashMap<String, File> envs = this.listEnvFiles();
@@ -60,6 +90,11 @@ public class ConfigManager {
         }
     }
 
+    /**
+     * List env files.
+     *
+     * @return the hash map
+     */
     private HashMap<String, File> listEnvFiles() {
         URL url = getClass().getResource(ENV_DIRECTORY);
         String path = url.getPath();
@@ -76,6 +111,11 @@ public class ConfigManager {
         return map;
     }
 
+    /**
+     * List config files.
+     *
+     * @return the hash map
+     */
     private HashMap<String, File> listConfigFiles() {
         HashMap<String, File> map = new HashMap<>();
         File[] files = new File(ROOT).listFiles();
@@ -89,6 +129,11 @@ public class ConfigManager {
         return map;
     }
 
+    /**
+     * Copy env file.
+     *
+     * @param source the source
+     */
     private void copyEnvFile(File source) {
         String configName = toConfigName(source.getName());
         File dest = new File(ROOT + configName);
@@ -112,6 +157,9 @@ public class ConfigManager {
         }
     }
 
+    /**
+     * Load config files.
+     */
     private void loadConfigFiles() {
 
         // TODO: Auto import via factory?
@@ -140,6 +188,12 @@ public class ConfigManager {
         this.config.addConfig(tableStrategy, "table");
     }
 
+    /**
+     * To config name.
+     *
+     * @param env the env
+     * @return the string
+     */
     private String toConfigName(String env) {
         if (env.endsWith(".env")) {
             return env.substring(0, env.length() - 4);
@@ -148,6 +202,12 @@ public class ConfigManager {
         return env;
     }
 
+    /**
+     * To env name.
+     *
+     * @param config the config
+     * @return the string
+     */
     private String toEnvName(String config) {
         if ( ! config.endsWith(".env")) {
             return config + ".env";

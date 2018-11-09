@@ -17,30 +17,47 @@ import javafx.scene.layout.AnchorPane;
 
 import java.util.ArrayList;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class QuotationsCreateView.
+ * @author
+ */
 public class QuotationsCreateView extends AnchorPane implements PageView {
 
+    /** The resource. */
     private final String resource = "/views/pages/QuotationsCreateView.fxml";
+    
+    /** The controller. */
     private QuotationsController controller;
 
 
+    /** The Name. */
     @FXML
     private TextField Name;
 
+    /** The Product. */
     @FXML
     private TextField Product;
 
+    /** The Hours expected. */
     @FXML
     private TextField HoursExpected;
 
+    /** The Price expected. */
     @FXML
     private TextField PriceExpected;
 
+    /** The project connect. */
     @FXML
     private ComboBox projectConnect;
 
+    /** The Description. */
     @FXML
     private TextArea Description;
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#load()
+     */
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
@@ -55,6 +72,9 @@ public class QuotationsCreateView extends AnchorPane implements PageView {
         }
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#update()
+     */
     @Override
     public void update() {
         this.controller.getTemplate().addAction("Terug", () -> this.onClickBack());
@@ -69,16 +89,25 @@ public class QuotationsCreateView extends AnchorPane implements PageView {
 
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#setController(albert.controllers.PageController)
+     */
     @Override
     public void setController(PageController controller) {
         this.controller = (QuotationsController) controller;
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#render()
+     */
     @Override
     public AnchorPane render() {
         return this;
     }
 
+    /**
+     * On click save.
+     */
     @FXML
     public void onClickSave(){
         int projectId = controller.getProjectIdFromName(projectConnect.getValue().toString());
@@ -91,6 +120,9 @@ public class QuotationsCreateView extends AnchorPane implements PageView {
         controller.getRouter().nav("quotations/");
     }
 
+    /**
+     * On click back.
+     */
     public void onClickBack(){
         controller.getRouter().nav("quotations/");
     }

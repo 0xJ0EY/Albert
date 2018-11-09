@@ -13,23 +13,38 @@ import table.views.TableView;
 
 import java.io.IOException;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class QuotationsView.
+ * @author
+ */
 public class QuotationsView extends AnchorPane implements PageView {
 
+    /** The resource. */
     private final String resource = "/views/pages/QuotationsView.fxml";
+    
+    /** The controller. */
     private QuotationsController controller;
 
+    /** The overview table. */
     @FXML
     private AnchorPane overviewTable;
 
+    /** The search bar. */
     @FXML
     private TextField searchBar;
 
+    /** The pdf button. */
     @FXML
     private Button pdfButton;
 
+    /** The edit button. */
     @FXML
     private Button editButton;
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#load()
+     */
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
@@ -44,6 +59,9 @@ public class QuotationsView extends AnchorPane implements PageView {
         }
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#update()
+     */
     @Override
     public void update() {
         this.controller.getTemplate().addAction("Nieuwe offerte", () -> this.onClickAddQuotation());
@@ -66,16 +84,25 @@ public class QuotationsView extends AnchorPane implements PageView {
         this.overviewTable.getChildren().add(view);
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#setController(albert.controllers.PageController)
+     */
     @Override
     public void setController(PageController controller) {
         this.controller =(QuotationsController) controller;
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#render()
+     */
     @Override
     public AnchorPane render() {
         return this;
     }
 
+    /**
+     * On click add quotation.
+     */
     @FXML
     public void onClickAddQuotation() {
 

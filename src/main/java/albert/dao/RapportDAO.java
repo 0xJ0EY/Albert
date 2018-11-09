@@ -6,9 +6,19 @@ import database.Database;
 import java.sql.*;
 import java.util.ArrayList;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class RapportDAO.
+ * @author
+ */
 public class RapportDAO implements DAO<Rapportage> {
 
+    /** The report. */
     private Rapportage report;
+    
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#getAll()
+     */
     @Override
     public ArrayList getAll() {
         String sql = "SELECT * FROM report";
@@ -34,6 +44,9 @@ public class RapportDAO implements DAO<Rapportage> {
     }
 
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#loadById(long)
+     */
     @Override
     public Rapportage loadById(long id) {
         String sql = "SELECT * FROM report WHERE report_id= ?";
@@ -58,6 +71,9 @@ public class RapportDAO implements DAO<Rapportage> {
         return report;
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#create(java.lang.Object)
+     */
     @Override
     public void create(Rapportage report) {
         this.report = report;
@@ -85,6 +101,9 @@ public class RapportDAO implements DAO<Rapportage> {
 
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#update(java.lang.Object)
+     */
     @Override
     public void update(Rapportage report) {
         this.report = report;
@@ -109,6 +128,9 @@ public class RapportDAO implements DAO<Rapportage> {
         System.out.println("Report Updated");
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#delete(java.lang.Object)
+     */
     @Override
     public void delete(Rapportage report) {
         this.report = report;
@@ -130,6 +152,9 @@ public class RapportDAO implements DAO<Rapportage> {
         System.out.println("report deleted");
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#extractFromResultSet(java.sql.ResultSet)
+     */
     @Override
     public Rapportage extractFromResultSet(ResultSet rs) throws SQLException {
         Rapportage report = new Rapportage();

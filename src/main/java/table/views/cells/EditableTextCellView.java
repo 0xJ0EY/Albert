@@ -12,14 +12,26 @@ import table.cells.TextCell;
 import table.exceptions.ViewNotFoundException;
 import table.views.CellView;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class EditableTextCellView.
+ * @author
+ */
 public class EditableTextCellView extends AnchorPane implements CellView {
 
+    /** The text field. */
     @FXML
     private TextField textField;
 
+    /** The resource. */
     private final String resource = "/views/table/cells/EditableTextCellView.fxml";
+    
+    /** The controller. */
     private TextCell controller;
 
+    /* (non-Javadoc)
+     * @see table.views.CellView#load()
+     */
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
@@ -34,6 +46,9 @@ public class EditableTextCellView extends AnchorPane implements CellView {
         }
     }
 
+    /* (non-Javadoc)
+     * @see table.views.CellView#update()
+     */
     @Override
     public void update() {
         Object value = this.controller.getValue();
@@ -41,21 +56,33 @@ public class EditableTextCellView extends AnchorPane implements CellView {
         this.textField.setText(value != null ? value.toString() : "");
     }
 
+    /* (non-Javadoc)
+     * @see table.views.CellView#getPriority()
+     */
     @Override
     public Priority getPriority() {
         return Priority.ALWAYS;
     }
 
+    /* (non-Javadoc)
+     * @see table.views.CellView#setCell(table.cells.Cell)
+     */
     @Override
     public void setCell(Cell cell) {
         this.controller = (TextCell) cell;
     }
 
+    /* (non-Javadoc)
+     * @see table.views.CellView#render()
+     */
     @Override
     public AnchorPane render() {
         return this;
     }
 
+    /**
+     * On action.
+     */
     @FXML
     private void onAction() {
         this.controller.setValue(this.textField.getText());

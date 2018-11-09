@@ -15,17 +15,30 @@ import table.views.TableView;
 
 import java.io.IOException;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class InvoiceView.
+ * @author
+ */
 public class InvoiceView extends AnchorPane implements PageView {
 
+    /** The resource. */
     private final String resource = "/views/pages/InvoiceView.fxml";
+    
+    /** The controller. */
     private InvoicesController controller;
 
+    /** The overview table. */
     @FXML
     private AnchorPane overviewTable;
 
+    /** The searchform. */
     @FXML
     private TextField searchform;
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#load()
+     */
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
@@ -41,6 +54,9 @@ public class InvoiceView extends AnchorPane implements PageView {
     }
 
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#update()
+     */
     @Override
     public void update() {
         this.controller.getTemplate().addAction("Nieuwe factuur", () -> this.onClickAddInvoice());
@@ -62,22 +78,34 @@ public class InvoiceView extends AnchorPane implements PageView {
         this.overviewTable.getChildren().add(tableView.render());
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#setController(albert.controllers.PageController)
+     */
     @Override
     public void setController(PageController controller) {
         this.controller = (InvoicesController)controller;
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#render()
+     */
     @Override
     public AnchorPane render() {
         return this;
     }
 
+    /**
+     * On click add invoice.
+     */
     @FXML
     public void onClickAddInvoice(){
         controller.getRouter().nav("invoices/create/");
     }
 
 
+    /**
+     * On click paid.
+     */
     @FXML
     public void onClickPaid(){
         controller.getRouter().nav("invoicespaid/");

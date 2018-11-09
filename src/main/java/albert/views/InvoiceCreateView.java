@@ -21,38 +21,61 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class InvoiceCreateView.
+ * @author
+ */
 public class InvoiceCreateView extends AnchorPane implements PageView {
 
+    /** The resource. */
     private final String resource = "/views/pages/InvoiceCreateView.fxml";
+    
+    /** The controller. */
     private InvoicesController controller;
+    
+    /** The invoice. */
     private Invoice invoice;
+    
+    /** The amount. */
     private Amount amount;
 
+    /** The contact. */
     @FXML
     private TextField contact;
 
+    /** The hours. */
     @FXML
     private TextField hours;
 
+    /** The price. */
     @FXML
     private TextField price;
 
+    /** The linked project. */
     @FXML
     private ComboBox linkedProject;
 
+    /** The linked contact. */
     @FXML
     private ComboBox linkedContact;
 
+    /** The description. */
     @FXML
     private TextField description;
 
+    /** The paid box. */
     @FXML
     private CheckBox paidBox;
 
+    /** The delivery date. */
     @FXML
     private DatePicker deliveryDate;
 
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#load()
+     */
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
@@ -68,6 +91,9 @@ public class InvoiceCreateView extends AnchorPane implements PageView {
 
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#update()
+     */
     @Override
     public void update() {
         this.controller.getTemplate().addAction("Terug", () -> this.onClickBack());
@@ -84,16 +110,25 @@ public class InvoiceCreateView extends AnchorPane implements PageView {
         }
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#setController(albert.controllers.PageController)
+     */
     @Override
     public void setController(PageController controller) {
         this.controller = (InvoicesController) controller;
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#render()
+     */
     @Override
     public AnchorPane render() {
         return this;
     }
 
+    /**
+     * On click save.
+     */
     @FXML
     public void onClickSave(){
         System.out.println("Click on Save");
@@ -116,6 +151,9 @@ public class InvoiceCreateView extends AnchorPane implements PageView {
 
     }
 
+    /**
+     * On click back.
+     */
     @FXML
     public void onClickBack() { controller.getRouter().nav("invoices/");   }
 }

@@ -28,11 +28,22 @@ import router.factories.pages.settings.SettingsEditPageFactory;
 import router.factories.pages.settings.SettingsPageFactory;
 
 import java.util.HashMap;
+// TODO: Auto-generated Javadoc
+
+/**
+ * The Class RouteFactoryBuilder.
+ * @author
+ */
 /*
 De RouteFactoryBuilder zorgt dat de app op de juiste factory staat.
  */
 public class RouteFactoryBuilder {
 
+    /**
+     * Routes.
+     *
+     * @return the hash map
+     */
     public HashMap<Route, Action> routes() {
         HashMap<Route, Action> map = new HashMap<>();
 

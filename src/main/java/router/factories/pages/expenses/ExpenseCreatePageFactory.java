@@ -8,8 +8,15 @@ import albert.views.RapportsCreateView;
 import router.factories.pages.CreatePageFactory;
 import router.pages.CreatePage;
 
+// TODO: Auto-generated Javadoc
+/**
+ * A factory for creating ExpenseCreatePage objects.
+ */
 public class ExpenseCreatePageFactory implements CreatePageFactory {
 
+    /* (non-Javadoc)
+     * @see router.factories.PageFactory#create()
+     */
     @Override
     public CreatePage create() {
         return new ExpenseController(new ExpenseCreateView(), new MenuTemplateController());

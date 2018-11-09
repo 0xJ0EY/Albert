@@ -28,21 +28,52 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class QuotationsController.
+ * @author
+ */
 public class QuotationsController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
 
+    /** The amount. */
     private Amount amount;
+    
+    /** The quotation. */
     private Quotation quotation;
+    
+    /** The dao. */
     private QuotationDAO dao = new QuotationDAO();
+    
+    /** The request. */
     private Request request;
+    
+    /** The projectdao. */
     private ProjectDAO projectdao = new ProjectDAO();
+    
+    /** The calendar. */
     Calendar calendar = Calendar.getInstance();
+    
+    /** The now. */
     java.util.Date now = calendar.getTime();
+    
+    /** The current timestamp. */
     java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
 
+    /**
+     * Instantiates a new quotations controller.
+     *
+     * @param view the view
+     * @param template the template
+     */
     public QuotationsController(PageView view, TemplateController template) {
         super(view, template);
     }
 
+    /**
+     * Gets the overview table.
+     *
+     * @return the overview table
+     */
     public Table getOverviewTable(){
         Table table = new Table(
                 new DatabaseStrategy(Query.table("quotation")),
@@ -82,6 +113,16 @@ public class QuotationsController extends PageController implements OverviewPage
         return table;
     }
 
+    /**
+     * Save quotation.
+     *
+     * @param name the name
+     * @param product the product
+     * @param expectedhours the expectedhours
+     * @param expectedprice the expectedprice
+     * @param projectID the project ID
+     * @param description the description
+     */
     public void saveQuotation(String name, String product, double expectedhours, double expectedprice, int projectID, String description) {
         quotation = new Quotation();
         quotation.setName(name);
@@ -95,8 +136,21 @@ public class QuotationsController extends PageController implements OverviewPage
         dao.create(quotation);
     }
 
+    /**
+     * Delete quotation.
+     */
     public void deleteQuotation() { dao.delete(quotation); }
 
+    /**
+     * Update quotation.
+     *
+     * @param name the name
+     * @param product the product
+     * @param expectedhours the expectedhours
+     * @param expectedprice the expectedprice
+     * @param description the description
+     * @param timestamp the timestamp
+     */
     public void updateQuotation(String name, String product, double expectedhours, double expectedprice, String description, Timestamp timestamp) {
         quotation = new Quotation();
         quotation.setName(name);
@@ -110,51 +164,94 @@ public class QuotationsController extends PageController implements OverviewPage
         dao.update(quotation);
     }
 
+    /**
+     * Gets the projects.
+     *
+     * @return the projects
+     */
     public ArrayList<Project> getProjects(){
         ArrayList<Project> projects = projectdao.getAll();
         return projects;
     }
 
+    /**
+     * Gets the quotation.
+     *
+     * @return the quotation
+     */
     public Quotation getQuotation() {
         return quotation;
     }
 
+    /**
+     * Sets the quotation.
+     *
+     * @param id the new quotation
+     */
     public void setQuotation(int id) {
         this.quotation = dao.loadById(id);
     }
 
+    /**
+     * Gets the request.
+     *
+     * @return the request
+     */
     public Request getRequest() {
         return request;
     }
 
+    /* (non-Javadoc)
+     * @see router.pages.OverviewPage#overview(router.Request)
+     */
     @Override
     public Response overview(Request request) {
         this.request = request;
         return new ViewResponse(this);
     }
 
+    /* (non-Javadoc)
+     * @see router.pages.DetailPage#detail(router.Request)
+     */
     @Override
     public Response detail(Request request) {
         this.request = request;
         return new ViewResponse(this);
     }
 
+    /* (non-Javadoc)
+     * @see router.pages.EditPage#edit(router.Request)
+     */
     @Override
     public Response edit(Request request) {
         this.request = request;
         return new ViewResponse(this);
     }
 
+    /* (non-Javadoc)
+     * @see router.pages.CreatePage#create(router.Request)
+     */
     @Override
     public Response create(Request request) {
         this.request = request;
         return new ViewResponse(this);
     }
 
+    /**
+     * Gets the current id.
+     *
+     * @return the current id
+     */
     public String getCurrentId(){
        return this.getRequest().getParameter("quotation");
     }
 
+    /**
+     * Gets the project id from name.
+     *
+     * @param projectName the project name
+     * @return the project id from name
+     */
     public int getProjectIdFromName(String projectName) {
         int projectId = 0;
         ArrayList<Project> projects = this.getProjects();

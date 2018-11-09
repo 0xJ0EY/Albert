@@ -29,12 +29,28 @@ import table.views.tables.components.TableButton;
 
 import java.util.ArrayList;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ProjectsController.
+ * @author
+ */
 public class ProjectsController extends PageController implements OverviewPage, DetailPage, EditPage, CreatePage {
 
+    /** The project. */
     private Project project;
+    
+    /** The project DAO. */
     private ProjectDAO projectDAO = new ProjectDAO();
+    
+    /** The contact DAO. */
     private ContactDAO contactDAO = new ContactDAO();
 
+    /**
+     * Instantiates a new projects controller.
+     *
+     * @param view the view
+     * @param template the template
+     */
     public ProjectsController(
             PageView view,
             TemplateController template
@@ -42,6 +58,11 @@ public class ProjectsController extends PageController implements OverviewPage, 
         super(view, template);
     }
 
+    /**
+     * Gets the overview table.
+     *
+     * @return the overview table
+     */
     public Table getOverviewTable(){
         Table table = new Table(
             new DatabaseStrategy(Query.table("project")
@@ -69,6 +90,11 @@ public class ProjectsController extends PageController implements OverviewPage, 
         return  table;
     }
 
+    /**
+     * Gets the done overview table.
+     *
+     * @return the done overview table
+     */
     public Table getDoneOverviewTable(){
         Table table = new Table(
                 new DatabaseStrategy(Query.table("project")
@@ -96,6 +122,12 @@ public class ProjectsController extends PageController implements OverviewPage, 
         return  table;
     }
 
+    /**
+     * Gets the invoices table.
+     *
+     * @param project the project
+     * @return the invoices table
+     */
     public Table getInvoicesTable(Project project) {
         Table table = new Table(
             new DatabaseStrategy(
@@ -128,6 +160,12 @@ public class ProjectsController extends PageController implements OverviewPage, 
         return table;
     }
 
+    /**
+     * Gets the quotation table.
+     *
+     * @param project the project
+     * @return the quotation table
+     */
     public Table getQuotationTable(Project project) {
         Table table = new Table(
             new DatabaseStrategy(
@@ -170,6 +208,12 @@ public class ProjectsController extends PageController implements OverviewPage, 
         return table;
     }
 
+    /**
+     * Gets the expenses table.
+     *
+     * @param project the project
+     * @return the expenses table
+     */
     public Table getExpensesTable(Project project) {
         Table table = new Table(
             new DatabaseStrategy(Query.table("expense")
@@ -206,11 +250,17 @@ public class ProjectsController extends PageController implements OverviewPage, 
         return table;
     }
 
+    /* (non-Javadoc)
+     * @see router.pages.OverviewPage#overview(router.Request)
+     */
     @Override
     public Response overview(Request request) {
         return new ViewResponse(this);
     }
 
+    /* (non-Javadoc)
+     * @see router.pages.DetailPage#detail(router.Request)
+     */
     @Override
     public Response detail(Request request) {
         long id = Long.valueOf(request.getParameter("project"));
@@ -220,6 +270,9 @@ public class ProjectsController extends PageController implements OverviewPage, 
         return new ViewResponse(this);
     }
 
+    /* (non-Javadoc)
+     * @see router.pages.EditPage#edit(router.Request)
+     */
     @Override
     public Response edit(Request request) {
         long id = Long.valueOf(request.getParameter("project"));
@@ -229,18 +282,36 @@ public class ProjectsController extends PageController implements OverviewPage, 
         return new ViewResponse(this);
     }
 
+    /**
+     * Gets the contacts.
+     *
+     * @return the contacts
+     */
     public ArrayList<Contact> getContacts() {
         return this.contactDAO.getAll();
     }
 
+    /**
+     * Creates the project.
+     *
+     * @param project the project
+     */
     public void createProject(Project project){
         this.projectDAO.create(project);
     }
 
+    /**
+     * Update project.
+     *
+     * @param project the project
+     */
     public void updateProject(Project project){
         this.projectDAO.update(project);
     }
 
+    /* (non-Javadoc)
+     * @see router.pages.CreatePage#create(router.Request)
+     */
     @Override
     public Response create(Request request) {
 
@@ -253,10 +324,20 @@ public class ProjectsController extends PageController implements OverviewPage, 
 
     }
 
+    /**
+     * Load contacts.
+     *
+     * @return the array list
+     */
     public ArrayList<Contact> loadContacts() {
         return new ContactDAO().getAll();
     }
 
+    /**
+     * Gets the project.
+     *
+     * @return the project
+     */
     public Project getProject() {
         return project;
     }

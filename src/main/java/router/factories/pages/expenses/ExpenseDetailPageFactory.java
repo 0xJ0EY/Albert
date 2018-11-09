@@ -8,8 +8,16 @@ import albert.views.RapportsDetailView;
 import router.factories.pages.DetailPageFactory;
 import router.pages.DetailPage;
 
+// TODO: Auto-generated Javadoc
+/**
+ * A factory for creating ExpenseDetailPage objects.
+ * @author
+ */
 public class ExpenseDetailPageFactory implements DetailPageFactory {
 
+    /* (non-Javadoc)
+     * @see router.factories.PageFactory#create()
+     */
     @Override
     public DetailPage create() {
         return new ExpenseController(new ExpenseDetailView(), new MenuTemplateController());

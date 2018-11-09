@@ -11,10 +11,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ProjectDAO.
+ * @author
+ */
 public class ProjectDAO implements DAO<Project> {
 
+    /** The contact DAO. */
     private ContactDAO contactDAO = new ContactDAO();
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#getAll()
+     */
     @Override
     public ArrayList<Project> getAll() {
 
@@ -40,6 +49,9 @@ public class ProjectDAO implements DAO<Project> {
         return projectArrayList;
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#loadById(long)
+     */
     @Override
     public Project loadById(long id) {
         Project project = null;
@@ -69,6 +81,9 @@ public class ProjectDAO implements DAO<Project> {
     }
 
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#create(java.lang.Object)
+     */
     @Override
     public void create(Project project) {
 
@@ -94,6 +109,9 @@ public class ProjectDAO implements DAO<Project> {
         }
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#update(java.lang.Object)
+     */
     @Override
     public void update(Project project) {
         String sql = "UPDATE project SET name=?, description=?, contact_id=?, done =?  WHERE project_id =?";
@@ -119,6 +137,9 @@ public class ProjectDAO implements DAO<Project> {
         }
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#delete(java.lang.Object)
+     */
     @Override
     public void delete(Project obj) {
         //TODO sql delete schrijven
@@ -141,6 +162,9 @@ public class ProjectDAO implements DAO<Project> {
         System.out.println("Project deleted");
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#extractFromResultSet(java.sql.ResultSet)
+     */
     @Override
     public Project extractFromResultSet(ResultSet rs) throws SQLException {
 

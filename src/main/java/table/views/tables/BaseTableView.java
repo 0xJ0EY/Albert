@@ -20,36 +20,58 @@ import table.views.tables.components.PreviousButton;
 
 import java.util.ArrayList;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class BaseTableView.
+ * @author
+ */
 public abstract class BaseTableView extends AnchorPane implements TableView {
 
+    /** The table. */
     protected Table table;
+    
+    /** The description content. */
     protected final String descriptionContent = Config.get("table", "text.description");
 
+    /** The columns. */
     protected ArrayList<ColumnView> columns = new ArrayList<>();
 
+    /** The table container. */
     @FXML
     protected ScrollPane tableContainer;
 
+    /** The container. */
     @FXML
     protected HBox container;
 
+    /** The pagination container. */
     @FXML
     protected HBox paginationContainer;
 
+    /** The button container. */
     @FXML
     protected HBox buttonContainer;
 
+    /** The description. */
     @FXML
     protected Text description;
 
+    /** The overlay. */
     @FXML
     protected HBox overlay;
 
+    /** The status. */
     @FXML
     protected Text status;
 
+    /* (non-Javadoc)
+     * @see table.views.TableView#load()
+     */
     public abstract void load();
 
+    /* (non-Javadoc)
+     * @see table.views.TableView#update()
+     */
     @Override
     public void update() {
 
@@ -89,10 +111,16 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
 
     }
 
+    /**
+     * Scroll up.
+     */
     protected void scrollUp() {
         this.tableContainer.setVvalue(0);
     }
 
+    /**
+     * Update overlay.
+     */
     protected void updateOverlay() {
         String status;
 
@@ -106,15 +134,24 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
         this.status.setText(status);
     }
 
+    /**
+     * Show overlay.
+     */
     protected void showOverlay() {
         this.overlay.setVisible(true);
     }
 
+    /**
+     * Hide overlay.
+     */
     protected void hideOverlay() {
         this.overlay.setVisible(false);
     }
 
 
+    /**
+     * Creates the columns.
+     */
     protected void createColumns() {
 
         this.columns = new ArrayList<>();
@@ -130,6 +167,9 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
         }
     }
 
+    /**
+     * Creates the headers.
+     */
     protected void createHeaders() {
 
         ArrayList<Column> cols = this.table.getCols();
@@ -155,6 +195,9 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
 
     }
 
+    /**
+     * Creates the rows.
+     */
     protected void createRows() {
 
         // Based on a row
@@ -190,6 +233,9 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
         }
     }
 
+    /**
+     * Creates the pagination.
+     */
     protected void createPagination() {
 
         this.paginationContainer.getChildren().clear();
@@ -200,6 +246,9 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
 
     }
 
+    /**
+     * Creates the previous button.
+     */
     protected void createPreviousButton() {
 
         PreviousButton button = new PreviousButton(1, this.table.getPage(), this.table);
@@ -208,6 +257,9 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
 
     }
 
+    /**
+     * Creates the page number buttons.
+     */
     protected void createPageNumberButtons() {
 
         int minPage = 1;
@@ -237,6 +289,9 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
 
     }
 
+    /**
+     * Creates the buttons.
+     */
     protected void createButtons() {
         this.buttonContainer.getChildren().clear();
 
@@ -246,6 +301,9 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
 
     }
 
+    /**
+     * Creates the next button.
+     */
     protected void createNextButton() {
 
         NextButton button = new NextButton(this.table.getMaxPage(), this.table.getPage(), this.table);
@@ -254,6 +312,9 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
 
     }
 
+    /**
+     * Update text.
+     */
     protected void updateText() {
 
         this.description.setText(
@@ -265,6 +326,9 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
         );
     }
 
+    /**
+     * Update table.
+     */
     protected void updateTable() {
         this.container.getChildren().clear();
 
@@ -282,11 +346,17 @@ public abstract class BaseTableView extends AnchorPane implements TableView {
         this.container.getChildren().addAll(columns);
     }
 
+    /* (non-Javadoc)
+     * @see table.views.TableView#setTable(table.Table)
+     */
     @Override
     public void setTable(Table table) {
         this.table = table;
     }
 
+    /* (non-Javadoc)
+     * @see table.views.TableView#render()
+     */
     @Override
     public AnchorPane render() {
         return this;

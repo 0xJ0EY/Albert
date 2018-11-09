@@ -7,18 +7,35 @@ import javafx.scene.layout.AnchorPane;
 import table.exceptions.ViewNotFoundException;
 import table.views.HeaderView;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CenterHeaderView.
+ * @author
+ */
 public class CenterHeaderView extends AnchorPane implements HeaderView {
 
+    /** The label. */
     @FXML
     private Label label;
 
+    /** The resource. */
     private final String resource = "/views/table/header/CenterHeaderView.fxml";
+    
+    /** The name. */
     private String name;
 
+    /**
+     * Instantiates a new center header view.
+     *
+     * @param name the name
+     */
     public CenterHeaderView(String name) {
         this.name = name;
     }
 
+    /* (non-Javadoc)
+     * @see table.views.HeaderView#load()
+     */
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
@@ -33,16 +50,25 @@ public class CenterHeaderView extends AnchorPane implements HeaderView {
         }
     }
 
+    /* (non-Javadoc)
+     * @see table.views.HeaderView#update()
+     */
     @Override
     public void update() {
         this.label.setText(this.name);
     }
 
+    /* (non-Javadoc)
+     * @see table.views.HeaderView#setName(java.lang.String)
+     */
     @Override
     public void setName(String name) {
         this.name = name;
     }
 
+    /* (non-Javadoc)
+     * @see table.views.HeaderView#render()
+     */
     @Override
     public AnchorPane render() {
         return this;

@@ -15,33 +15,51 @@ import java.sql.Timestamp;
 import java.time.ZoneId;
 import java.util.Date;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class QuotationsEditView.
+ * @author
+ */
 public class QuotationsEditView extends AnchorPane implements PageView {
 
+    /** The resource. */
     private final String resource = "/views/pages/QuotationsEditView.fxml";
+    
+    /** The controller. */
     private QuotationsController controller;
 
+    /** The Name. */
     @FXML
     private TextField Name;
 
+    /** The Product. */
     @FXML
     private TextField Product;
 
+    /** The Hours expected. */
     @FXML
     private TextField HoursExpected;
 
+    /** The Price expected. */
     @FXML
     private TextField PriceExpected;
 
+    /** The Project. */
     @FXML
     private Text Project;
 
+    /** The create date. */
     @FXML
     private DatePicker createDate;
 
+    /** The Description. */
     @FXML
     private TextArea Description;
 
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#load()
+     */
     @Override
     public void load() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(this.resource));
@@ -56,6 +74,9 @@ public class QuotationsEditView extends AnchorPane implements PageView {
         }
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#update()
+     */
     @Override
     public void update() {
         this.controller.getTemplate().addAction("Terug", () -> this.onClickBack());
@@ -64,21 +85,33 @@ public class QuotationsEditView extends AnchorPane implements PageView {
         this.fillForm();
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#setController(albert.controllers.PageController)
+     */
     @Override
     public void setController(PageController controller) {
         this.controller =(QuotationsController) controller;
     }
 
+    /* (non-Javadoc)
+     * @see router.views.PageView#render()
+     */
     @Override
     public AnchorPane render() {
         return this;
     }
 
+    /**
+     * On click back.
+     */
     @FXML
     public void onClickBack() {
         this.controller.getRouter().nav("quotations/");
     }
 
+    /**
+     * On click save.
+     */
     @FXML
     public void onClickSave() {
         java.util.Date date = java.util.Date.from(createDate.getValue().atStartOfDay()
@@ -94,6 +127,9 @@ public class QuotationsEditView extends AnchorPane implements PageView {
         controller.getRouter().nav("quotations/");
     }
 
+    /**
+     * Fill form.
+     */
     public void fillForm(){
         controller.setQuotation(Integer.parseInt(this.controller.getRequest().getParameter("quotation")));
         Name.setText(controller.getQuotation().getName());

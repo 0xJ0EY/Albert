@@ -13,15 +13,34 @@ import java.util.ArrayList;
 
 import java.util.HashMap;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ContactEmailDAO.
+ * @author
+ */
 public class ContactEmailDAO {
 
+    /** The Constant NEW_EMAIL_ID. */
     private static final int NEW_EMAIL_ID = 0;
 
+    /** The select query. */
     private final String SELECT_QUERY = "SELECT * FROM contact_email WHERE contact_id = ?;";
+    
+    /** The insert query. */
     private final String INSERT_QUERY = "INSERT INTO contact_email (email_address, contact_id) VALUES (?, ?);";
+    
+    /** The update query. */
     private final String UPDATE_QUERY = "UPDATE contact_email SET email_address = ? WHERE id = ?;";
+    
+    /** The delete query. */
     private final String DELETE_QUERY = "DELETE FROM contact_email WHERE id = ?;";
 
+    /**
+     * Load contact emails.
+     *
+     * @param contact the contact
+     * @return the array list
+     */
     public ArrayList<ContactEmail> loadContactEmails(Contact contact) {
         ArrayList<ContactEmail> emails = new ArrayList<>();
 
@@ -56,6 +75,11 @@ public class ContactEmailDAO {
         return emails;
     }
 
+    /**
+     * Update emails.
+     *
+     * @param contact the contact
+     */
     public void updateEmails(Contact contact) {
         ArrayList<ContactEmail> newEmails = contact.getEmails();
         HashMap<Integer, ContactEmail> oldEmails = new HashMap<>();
@@ -100,6 +124,11 @@ public class ContactEmailDAO {
 
     }
 
+    /**
+     * Insert email.
+     *
+     * @param email the email
+     */
     private void insertEmail(ContactEmail email) {
 
         try {
@@ -122,6 +151,11 @@ public class ContactEmailDAO {
 
     }
 
+    /**
+     * Update email.
+     *
+     * @param email the email
+     */
     private void updateEmail(ContactEmail email) {
 
         try {
@@ -144,6 +178,11 @@ public class ContactEmailDAO {
 
     }
 
+    /**
+     * Delete email.
+     *
+     * @param email the email
+     */
     private void deleteEmail(ContactEmail email) {
 
         try {

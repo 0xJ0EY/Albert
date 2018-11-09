@@ -9,10 +9,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TaxDAO.
+ * @author
+ */
 public class TaxDAO implements DAO<Tax> {
 
+    /** The tax. */
     private Tax tax;
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#getAll()
+     */
     @Override
     public ArrayList<Tax> getAll() {
         String sql = "SELECT * FROM tax";
@@ -42,6 +51,9 @@ public class TaxDAO implements DAO<Tax> {
     }
 
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#loadById(long)
+     */
     @Override
     public Tax loadById(long id) {
         String sql = "SELECT * FROM tax WHERE tax_id= ?";
@@ -64,6 +76,9 @@ public class TaxDAO implements DAO<Tax> {
         return tax;
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#create(java.lang.Object)
+     */
     @Override
     public void create(Tax obj) {
         this.tax = tax;
@@ -88,6 +103,9 @@ public class TaxDAO implements DAO<Tax> {
         System.out.println("Tax added");
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#update(java.lang.Object)
+     */
     @Override
     public void update(Tax tax) {
         this.tax = tax;
@@ -117,6 +135,9 @@ public class TaxDAO implements DAO<Tax> {
         System.out.println("tax Updated");
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#delete(java.lang.Object)
+     */
     @Override
     public void delete(Tax obj) {
 
@@ -138,6 +159,9 @@ public class TaxDAO implements DAO<Tax> {
 
     }
 
+    /* (non-Javadoc)
+     * @see albert.dao.DAO#extractFromResultSet(java.sql.ResultSet)
+     */
     @Override
     public Tax extractFromResultSet(ResultSet rs) throws SQLException {
         Tax tax = new Tax();

@@ -7,15 +7,26 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import router.Router;
+// TODO: Auto-generated Javadoc
+
+/**
+ * The Class Client.
+ * @author
+ */
 /*
 Dat is het begin van de App, waar de stage start en gekopeld aan de router.
  */
 public class Client extends Application {
 
+    /** The stage. */
     private Stage stage;
 
+    /** The router. */
     private Router router = new Router(this);
 
+    /* (non-Javadoc)
+     * @see javafx.application.Application#start(javafx.stage.Stage)
+     */
     @Override
     public void start(Stage stage) throws Exception {
 
@@ -28,6 +39,11 @@ public class Client extends Application {
 
     }
 
+    /**
+     * Render page.
+     *
+     * @param page the page
+     */
     public void renderPage(PageController page) {
 
         Scene previousScene = this.stage.getScene();
@@ -54,10 +70,21 @@ public class Client extends Application {
         this.stage.show();
     }
 
+    /**
+     * The main method.
+     *
+     * @param args the arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }
 
+    /**
+     * Show warning.
+     *
+     * @param title the title
+     * @param message the message
+     */
     public static void ShowWarning(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(title);

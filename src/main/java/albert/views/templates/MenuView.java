@@ -23,22 +23,37 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MenuView.
+ * @author
+ */
 public class MenuView extends AnchorPane implements TemplateView {
 
+    /** The page. */
     @FXML private AnchorPane page;
 
+    /** The resource. */
     private final String resource = "/views/templates/Menu.fxml";
+    
+    /** The controller. */
     private TemplateController controller;
 
+    /** The back button. */
     @FXML
     private Button backButton;
 
+    /** The next button. */
     @FXML
     private Button nextButton;
 
+    /** The action container. */
     @FXML
     private VBox actionContainer;
 
+    /* (non-Javadoc)
+     * @see router.views.TemplateView#load()
+     */
     @Override
     public void load() {
 
@@ -55,6 +70,9 @@ public class MenuView extends AnchorPane implements TemplateView {
         }
     }
 
+    /* (non-Javadoc)
+     * @see router.views.TemplateView#update()
+     */
     @Override
     public void update() {
 
@@ -80,6 +98,9 @@ public class MenuView extends AnchorPane implements TemplateView {
         this.updateActions();
     }
 
+    /**
+     * Update actions.
+     */
     private void updateActions() {
 
         HashMap<String, TemplateAction> actions = this.controller.getActions();
@@ -102,67 +123,109 @@ public class MenuView extends AnchorPane implements TemplateView {
     }
 
 
+    /**
+     * Update history buttons.
+     */
     private void updateHistoryButtons() {
         this.updateNextButton();
         this.updateBackButton();
     }
 
+    /**
+     * Update back button.
+     */
     private void updateBackButton() {
         Router router = this.controller.getRouter();
         this.backButton.setDisable( ! router.hasPrevious());
     }
 
+    /**
+     * Update next button.
+     */
     private void updateNextButton() {
         Router router = this.controller.getRouter();
         this.nextButton.setDisable( ! router.hasNext());
     }
 
 
+    /* (non-Javadoc)
+     * @see router.views.TemplateView#setController(router.templates.TemplateController)
+     */
     @Override
     public void setController(TemplateController controller) {
         this.controller = controller;
     }
 
+    /* (non-Javadoc)
+     * @see router.views.TemplateView#render()
+     */
     @Override
     public Parent render() {
         return this;
     }
 
+    /**
+     * On click home button.
+     */
     public void onClickHomeButton(){
         controller.getRouter().nav("home/");
     }
 
+    /**
+     * On click back button.
+     */
     public void onClickBackButton() {
         Router router = this.controller.getRouter();
         router.navToPrevious();
     }
 
+    /**
+     * On click next button.
+     */
     public void onClickNextButton() {
         Router router = this.controller.getRouter();
         router.navToNext();
     }
 
+    /**
+     * Click on projects.
+     */
     public void clickOnProjects(){
         controller.getRouter().nav("projects/");
     }
 
+    /**
+     * Click on invoices.
+     */
     public void clickOnInvoices(){
         controller.getRouter().nav("invoices/");
     }
 
+    /**
+     * Click on expenses.
+     */
     public void clickOnExpenses(){
         controller.getRouter().nav("expenses/");
     }
 
+    /**
+     * Click on contacts.
+     */
     public void clickOnContacts()
     {
         controller.getRouter().nav("contacts/");
     }
 
+    /**
+     * Click on settings.
+     */
     public void clickOnSettings(){
         controller.getRouter().nav("settings/");
     }
 
+    /**
+     * Click on quotations.
+     */
     public void clickOnQuotations(){
         controller.getRouter().nav("quotations/");
     }
